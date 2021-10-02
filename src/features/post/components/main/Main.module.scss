@@ -1,0 +1,104 @@
+@import "../../../../styles/config";
+@import "../../../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.main {
+  padding: 16px 32px 32px;
+  max-height: calc(100vh - 48px);
+  overflow-y: scroll;
+
+  &_tag {
+    display: block;
+
+    color: $icn_clr;
+    white-space: nowrap;
+
+    input {
+      display: none;
+    }
+
+    &_display {
+      color: $add_clr;
+      font-size: auto-clamp(11px, 12px);
+    }
+  }
+
+  &_col {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    &_fields {
+      margin-bottom: 0;
+    }
+  }
+
+  &_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+
+    @media (max-width: responsive-width(miniPc)) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &_mid {
+      grid-template-columns: repeat(3, 1fr);
+
+      @media (max-width: 1440px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &_period {
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    &_interviews {
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    &_times {
+      grid-template-columns: 5fr 1fr 5fr;
+    }
+
+    &_costs {
+      grid-template-columns: 5fr 1fr 5fr;
+    }
+
+    &_half {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &_memo {
+    padding: 16px 16px 0;
+    border-radius: 8px;
+    border: 1px solid $bdr_clr;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &_body {
+      padding-bottom: 8px;
+      gap: 16px;
+    }
+
+    &_tag {
+      color: $sub_clr;
+    }
+  }
+}

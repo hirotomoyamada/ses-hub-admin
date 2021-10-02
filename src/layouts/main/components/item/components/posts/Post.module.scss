@@ -1,0 +1,113 @@
+@import "../../../../../../styles/config";
+@import "../../../../../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.item {
+  width: 100%;
+  padding: 12px;
+  border-bottom: 1px solid $bdr_clr;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  color: $main_clr;
+
+  transition: all .4s;
+  cursor: pointer;
+
+  background: $base_clr;
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &_footer {
+    color: $icn_clr;
+    display: flex;
+    gap: 8px;
+    font-size: auto-clamp(13px, 14px);
+  }
+
+  &_row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_category {
+    padding: 0 8px;
+    border-radius: 8px;
+    line-height: 24px;
+    font-size: 12px;
+    color: $base_clr;
+
+    &_public {
+      background: $acnt_clr;
+    }
+
+    &_private {
+      background: $sub_clr;
+    }
+
+    &_status {
+      background: $add_clr;
+
+      &_reserve {
+        background: $sub_clr;
+      }
+
+      &_propo {
+        background: $acnt_ext_clr;
+      }
+
+      &_interview {
+        background: $acnt_sub_clr;
+      }
+
+      &_follow {
+        background: $add_clr;
+      }
+
+      &_end {
+        background: $sub_clr;
+      }
+    }
+
+    &_position {
+      background: $icn_clr;
+    }
+
+    &_contract {
+      background: $add_clr;
+    }
+  }
+
+  &_time {
+    color: $sub_clr;
+    font-size: 12px;
+  }
+
+  &_ttl {
+    font-weight: bold;
+  }
+
+  &_icon {
+    color: $sub_clr;
+  }
+
+  &_user {
+    font-size: 12px;
+    color: $sub_clr;
+  }
+}

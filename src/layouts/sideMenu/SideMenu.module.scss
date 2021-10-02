@@ -1,0 +1,89 @@
+@import "../../styles/config";
+@import "../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: $base_clr;
+
+  width: auto-clamp(184px, 240px);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 48px 1fr 48px;
+
+  &_header {
+    background: $acnt_clr;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    color: $base_clr;
+
+    &_logo {
+      width: 24px;
+      height: 24px;
+
+      fill: $base_clr;
+    }
+  }
+
+  &_nav {
+    color: $icn_clr;
+
+    border-right: 1px solid $bdr_clr;
+
+    &_wrap {
+      padding: 16px 24px;
+      border-top: 1px solid $bdr_clr;
+
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &_head {
+      display: flex;
+      gap: 8px;
+
+      user-select: none;
+    }
+
+    &_btn {
+      display: flex;
+      gap: 8px;
+      padding: 0 8px;
+
+      transition: all 0.4s;
+
+      &_active {
+        color: $acnt_clr;
+      }
+
+      &:hover {
+        color: $acnt_clr;
+      }
+    }
+  }
+
+  &_footer {
+    border-right: 1px solid $bdr_clr;
+    border-top: 1px solid $bdr_clr;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+
+    &_logout {
+      color: $sub_clr;
+    }
+  }
+}

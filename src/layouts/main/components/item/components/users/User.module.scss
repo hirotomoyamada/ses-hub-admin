@@ -1,0 +1,136 @@
+@import "../../../../../../styles/config";
+@import "../../../../../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.item {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+
+  display: grid;
+  grid-template-columns: 48px 1fr 248px;
+  gap: 12px;
+
+  color: $main_clr;
+
+  transition: all 0.4s;
+  cursor: pointer;
+  background: $base_clr;
+
+  border-bottom: 1px solid $bdr_clr;
+
+  &_mini {
+    grid-template-columns: 48px 1fr;
+  }
+
+  &_status {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+
+    background: $acnt_clr;
+    border-radius: 11px;
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: $base_clr;
+    font-size: 11px;
+
+    &_hold {
+      background: $acnt_ext_clr;
+    }
+
+    &_disable {
+      background: $remove_clr;
+    }
+
+    &_modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $acnt_clr;
+      z-index: -1;
+
+      transition: all 0.4s;
+
+      &_open {
+        width: 88px;
+      }
+    }
+  }
+
+  &_main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &_head {
+      font-weight: bold;
+    }
+
+    &_footer {
+      font-size: auto-clamp(13px, 14px);
+      color: $icn_clr;
+    }
+  }
+
+  &_col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &_row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_category {
+    padding: 0 8px;
+    border-radius: 8px;
+    line-height: 24px;
+    font-size: 12px;
+    color: $base_clr;
+    font-weight: normal;
+
+    &_position {
+      background: $icn_clr;
+    }
+  }
+
+  &_time {
+    font-weight: normal;
+    color: $sub_clr;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  &_icon {
+    color: $sub_clr;
+
+    &_post {
+      color: $acnt_clr;
+    }
+
+    &_like {
+      color: $like_clr;
+    }
+
+    &_output {
+      color: $add_clr;
+    }
+
+    &_entry {
+      color: $acnt_clr;
+    }
+  }
+}

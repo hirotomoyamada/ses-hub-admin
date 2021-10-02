@@ -1,0 +1,76 @@
+@import "../../../../styles/config";
+@import "../../../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.data {
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &_col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding-bottom: 16px;
+    border-bottom: 1px solid $bdr_clr;
+  }
+
+  &_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &_col {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &_tag {
+      display: inline-block;
+      padding: 0 8px;
+      border-radius: 8px;
+      line-height: 24px;
+      font-size: 12px;
+      color: $base_clr;
+      background: $icn_clr;
+    }
+
+    &_text {
+      line-height: 24px;
+
+      &_link {
+        color: $link_clr;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &_icon {
+    font-size: 20px;
+
+    &_mail {
+      color: $acnt_clr;
+    }
+
+    &_google {
+      color: $google_clr;
+    }
+
+    &_twitter {
+      color: $twitter_clr;
+    }
+
+    &_github {
+      color: $github_clr;
+    }
+  }
+}

@@ -1,0 +1,135 @@
+@import "../../styles/config";
+@import "../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.main {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 48px 1fr;
+  margin-left: auto-clamp(184px, 240px);
+
+  &_header {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    border-bottom: 1px solid $bdr_clr;
+    background: $base_clr;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    padding: 0 32px;
+
+    &_setting {
+      justify-content: flex-start;
+      color: $sub_clr;
+      font-size: auto-clamp(13px, 14px);
+    }
+
+    &_status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      background: $base_clr;
+      width: 240px;
+      height: 32px;
+      border-radius: 16px;
+      font-size: auto-clamp(11px, 12px);
+      padding: 3px;
+      border: 1px solid $bdr_clr;
+
+      input {
+        display: none;
+      }
+
+      &_btn {
+        cursor: pointer;
+        color: $sub_clr;
+        border-radius: 16px;
+        line-height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &_all {
+          color: $base_clr;
+          background: $acnt_clr;
+        }
+
+        &_hold {
+          color: $base_clr;
+          background: $acnt_ext_clr;
+        }
+
+        &_disable {
+          color: $base_clr;
+          background: $remove_clr;
+        }
+
+        &_public {
+          color: $base_clr;
+          background: $acnt_clr;
+        }
+
+        &_private {
+          color: $base_clr;
+          background: $sub_clr;
+        }
+      }
+    }
+
+    &_search {
+      background: $base_clr;
+      width: 100%;
+
+      display: grid;
+      grid-template-columns: 20px 1fr 20px 20px;
+      gap: 16px;
+      align-items: center;
+
+      font-size: 16px;
+
+      &_btn {
+        width: 22px;
+        height: 22px;
+      }
+
+      &_icon {
+        font-size: 22px !important;
+        color: $sub_clr;
+
+        &_search {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+
+    &_none {
+      height: calc(100vh - 48px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &_message {
+        font-size: auto-clamp(13px, 14px);
+        color: $sub_clr;
+      }
+    }
+
+    &_load {
+      display: flex;
+      justify-content: center;
+      padding: 32px 0;
+    }
+  }
+}

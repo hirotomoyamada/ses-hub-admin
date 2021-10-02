@@ -1,0 +1,50 @@
+// 下記で設定されたピクセルで vw と vh を計算する
+$responsive-width: (
+  // デスクトップ（レイアウト
+  "pc": 1980px,
+  // タブレット (レイアウト)
+  "miniPc": 1440px,
+  "tb": 959px,
+  // スマートフォン (レイアウト)
+  "sp": 519px
+);
+
+$responsive-height: (
+  // タブレット (レイアウト)
+  "tb": 0px,
+  // スマートフォン (レイアウト)
+  "sp": 0px
+);
+
+// フォント
+$ttl_ff: "Noto Sans JP", sans-serif;
+$copy_ff: "", "Noto Sans JP", sans-serif;
+
+// 使用するカラー
+$base_clr: #fff;
+$bg_clr: #f6f6f6;
+$main_clr: #303030;
+$shdw_clr: #30303062;
+$sub_clr: #aeaeae;
+$acnt_clr: hsl(128, 43%, 50%);
+$acnt_hvr_clr: hsl(128, 53%, 50%);
+$acnt_sub_clr: #b749a9;
+$acnt_ext_clr: #b78e49;
+$bdr_clr: #eeeeee;
+$icn_clr: #515a74;
+$add_clr: #4285f4;
+$add_bg_clr: #d9e7fd;
+$remove_clr: #e94235db;
+$remove_bg_clr: #fbd9d7;
+$like_clr: #e0255e;
+$link_clr: #1d94e0;
+
+// SNS
+$sign_clr: #49b758db;
+$google_clr: #e94235db;
+$twitter_clr: #1ea1f2db;
+$github_clr: #24282fdb;
+$instagram_clr: #e02aa0;
+$linkedIn_clr: #0966c2;
+
+// ページごと

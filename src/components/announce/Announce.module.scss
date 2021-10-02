@@ -1,0 +1,65 @@
+// サイト共有の初期設定
+@import "../../styles/config";
+@import "../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.announce {
+  position: fixed;
+  bottom: -48px;
+  left: 0;
+  right: 0;
+
+  z-index: 9999;
+
+  transition: all 0.4s;
+
+  &_up {
+    bottom: 0;
+    animation-name: down;
+    animation-fill-mode: forwards;
+    animation-duration: 0.4s;
+    animation-delay: 3.6s;
+
+    @keyframes down {
+      0% {
+        bottom: 0;
+      }
+      100% {
+        bottom: -48px;
+      }
+    }
+  }
+
+  &_inner {
+    padding: 0 32px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_success {
+      border-top: 1px solid $add_clr;
+      color: $add_clr;
+      background: $add_bg_clr;
+    }
+
+    &_error {
+      border-top: 1px solid $remove_clr;
+      color: $remove_clr;
+      background: $remove_bg_clr;
+    }
+  }
+
+  &_icon {
+    font-size: 20px;
+  }
+
+  &_txt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

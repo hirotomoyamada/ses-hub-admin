@@ -1,0 +1,30 @@
+// サイト共有の初期設定
+@import "../../styles/config";
+@import "../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  width: calc(100vw - clamp(184px, 12.12121vw, 240px));
+  height: 100vh;
+  background: $base_clr;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  transition: all 0.7s;
+
+  &_open {
+    transform: translateX(0%);
+  }
+
+  &_close {
+    transform: translateX(100%);
+  }
+}

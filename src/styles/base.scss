@@ -1,0 +1,22 @@
+// サイト共有の初期設定
+@import "./config";
+@import "./function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+body {
+  font-family: sans-serif;
+  color: $main_clr;
+  font-size: auto-clamp(15px, 16px);
+  overflow-x: hidden;
+}
+
+.lock {
+  overflow-y: hidden;
+}
+
+.admin {
+  width: 100vw;
+  height: 100vh;
+}
