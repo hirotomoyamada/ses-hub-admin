@@ -48,7 +48,7 @@ export const Main = ({ index }) => {
   ) : (
     <main className={styles.main}>
       <Header index={index.page} data={data.seshub} />
-      <Setting data={data.seshub} index={index} />
+      <Setting data={data} index={index.edit} />
     </main>
   );
 };

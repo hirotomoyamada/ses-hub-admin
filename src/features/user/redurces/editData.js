@@ -4,6 +4,10 @@ export const editData = (state, action) => {
   const dataTime = Date.now();
 
   const data = {
+    index:
+      action.payload.index === "companys"
+        ? "seshub"
+        : action.payload.index === "persons" && "freelanceDirect",
     maintenance: { status: action.payload.maintenance.status },
     information: {
       title: action.payload.information.title,
