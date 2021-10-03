@@ -8,8 +8,8 @@ import * as postSlice from "./postSlice";
 import { Header } from "./components/header/Header";
 import { Main } from "./components/main/Main";
 
-import * as matters from "./matters/defaultValues";
-import * as resources from "./resources/defaultValues";
+import * as matters from "./functions/matters";
+import * as resources from "./functions/resources";
 
 export const Post = ({ index, handleClose }) => {
   const dispatch = useDispatch();
