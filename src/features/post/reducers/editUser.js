@@ -1,7 +1,6 @@
 import { functions } from "../../../firebase";
 
 export const editUser = (state, action) => {
-  console.log(action.payload);
   const user = state.posts[action.payload.index].find(
     (post) => post?.uid === action.payload.user.uid
   );
@@ -28,6 +27,11 @@ export const editUser = (state, action) => {
     };
   }
   if (action.payload.index === "persons" && user) {
+    user.icon = action.payload.user.icon;
+    user.cover = action.payload.user.cover;
+    user.status = action.payload.user.status;
+    user.updateAt = action.payload.user.updateAt;
+    user.name = action.payload.user.name;
   }
 
   state.announce = { success: "編集しました" };
