@@ -8,4 +8,5 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+/build
 /node_modules
