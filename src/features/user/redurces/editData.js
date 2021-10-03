@@ -3,11 +3,12 @@ import { functions } from "../../../firebase";
 export const editData = (state, action) => {
   const dataTime = Date.now();
 
+  const index =
+    action.payload.index === "companys"
+      ? "seshub"
+      : action.payload.index === "persons" && "freelanceDirect";
+
   const data = {
-    index:
-      action.payload.index === "companys"
-        ? "seshub"
-        : action.payload.index === "persons" && "freelanceDirect",
     maintenance: { status: action.payload.maintenance.status },
     information: {
       title: action.payload.information.title,
@@ -22,8 +23,10 @@ export const editData = (state, action) => {
     },
   };
 
-  state.data.seshub = data;
+  state.data[index] = data;
   state.announce = { success: "編集しました" };
+
+  data.index = index;
 
   const editData = functions.httpsCallable("admin-editData");
   editData(data).catch((e) => {});
