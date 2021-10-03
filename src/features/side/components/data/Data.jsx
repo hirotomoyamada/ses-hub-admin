@@ -45,7 +45,7 @@ export const Data = ({
             )}
 
             <Auth user={user} />
-            <Payment user={user} />
+            {user.index === "companys" && <Payment user={user} />}
             <Profile user={user} />
             <Provider user={user} />
             <Posts user={user} setType={setType} setIndex={setIndex} />

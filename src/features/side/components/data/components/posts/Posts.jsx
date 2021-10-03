@@ -3,13 +3,20 @@ import styles from "./Posts.module.scss";
 import CountUp from "react-countup";
 
 export const Posts = ({ user, setType, setIndex }) => {
-  const posts = {
-    follows: "フォロー",
-    posts: "投稿",
-    likes: "いいね",
-    outputs: "出力",
-    entries: "問い合わせ",
-  };
+  const posts =
+    user.index === "companys"
+      ? {
+          follows: "フォロー",
+          posts: "投稿",
+          likes: "いいね",
+          outputs: "出力",
+          entries: "問い合わせ",
+        }
+      : user.index === "persons" && {
+          follows: "フォロー",
+          likes: "いいね",
+          entries: "問い合わせ",
+        };
 
   const handleOpen = ({ type, index }) => {
     setType(type);
