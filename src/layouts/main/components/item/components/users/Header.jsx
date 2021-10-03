@@ -5,12 +5,17 @@ export const Header = ({ post }) => {
     <div className={styles.item_main_head}>
       <div className={styles.item_row}>
         <span>{post?.name}</span>
-        <span>{post?.person}</span>
-        <div
-          className={`${styles.item_category} ${styles.item_category_position}`}
-        >
-          <span>{post?.position}</span>
-        </div>
+        {post?.person && <span>{post?.person}</span>}
+
+        {post?.position && (
+          <div
+            className={`${styles.item_category} ${styles.item_category_position}`}
+          >
+            <span>{post?.position}</span>
+          </div>
+        )}
+
+        
       </div>
     </div>
   );

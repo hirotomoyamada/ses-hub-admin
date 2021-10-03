@@ -3,12 +3,13 @@ import styles from "./User.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
-export const Footer = ({ post }) => {
+export const Companys = ({ post }) => {
   return (
     <div className={`${styles.item_main_footer} ${styles.item_row}`}>
       <div className={styles.item_row}>
@@ -20,6 +21,12 @@ export const Footer = ({ post }) => {
         <div className={styles.item_row}>
           <FontAwesomeIcon icon={faPhoneAlt} className={styles.item_icon} />
           <span>{post?.tel}</span>
+        </div>
+      )}
+      {post?.follows[0] && (
+        <div className={styles.item_row}>
+          <FontAwesomeIcon icon={faUsers} className={styles.item_icon_follow} />
+          <span>{post?.follows?.length}人</span>
         </div>
       )}
       {(post?.posts?.matters[0] || post?.posts?.resources[0]) && (

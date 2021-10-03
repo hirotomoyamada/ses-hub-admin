@@ -4,7 +4,8 @@ import { Icon } from "../../../../../../components/icon/Icon";
 
 import { Status } from "./Status";
 import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { Companys } from "./Companys";
+import { Persons } from "./Persons";
 import { At } from "./At";
 
 export const User = ({ post, index, mini }) => {
@@ -14,7 +15,12 @@ export const User = ({ post, index, mini }) => {
       <Icon src={post.icon} />
       <div className={styles.item_main}>
         <Header post={post} />
-        {!mini && <Footer post={post} />}
+        {!mini &&
+          (index === "companys" ? (
+            <Companys post={post} />
+          ) : (
+            index === "persons" && <Persons post={post} />
+          ))}
         {mini && <At post={post} mini />}
       </div>
       {!mini && <At post={post} />}

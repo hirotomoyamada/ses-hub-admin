@@ -117,8 +117,12 @@ $width: responsive-width(pc);
   &_icon {
     color: $sub_clr;
 
+    &_follow {
+      color: $acnt_ext_clr;
+    }
+
     &_post {
-      color: $acnt_clr;
+      color: $sub_clr;
     }
 
     &_like {
