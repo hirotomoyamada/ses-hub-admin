@@ -19,15 +19,16 @@ export const Main = ({ index }) => {
   const data = useSelector(userSlice.data);
 
   useEffect(() => {
-    dispatch(
-      fetchPosts({
-        index: index.page,
-        value: search.value,
-        target: search.target,
-        type: search.type,
-        filter: search.filter,
-      })
-    );
+    index.page !== "setting" &&
+      dispatch(
+        fetchPosts({
+          index: index.page,
+          value: search.value,
+          target: search.target,
+          type: search.type,
+          filter: search.filter,
+        })
+      );
   }, [
     dispatch,
     index.page,
@@ -47,7 +48,7 @@ export const Main = ({ index }) => {
   ) : (
     <main className={styles.main}>
       <Header index={index.page} data={data.seshub} />
-      <Setting data={data.seshub} />
+      <Setting data={data.seshub} index={index} />
     </main>
   );
 };

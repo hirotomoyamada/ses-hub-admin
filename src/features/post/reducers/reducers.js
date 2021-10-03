@@ -1,7 +1,6 @@
 import { selectIndex, selectPost } from "./select";
 import { handleSearch, handleModal, handleAnnounce } from "./handle";
 
-import { resetPosts } from "./resetPosts";
 import { editPost } from "./editPost";
 import { editUser } from "./editUser";
 import { deletePost } from "./deletePost";
@@ -18,7 +17,6 @@ export {
   handleSearch,
   handleModal,
   handleAnnounce,
-  resetPosts,
   editPost,
   editUser,
   deletePost,

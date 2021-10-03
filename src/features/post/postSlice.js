@@ -16,7 +16,6 @@ export const postSlice = createSlice({
     selectIndex: (state, action) => reducers.selectIndex(state, action),
     selectPost: (state, action) => reducers.selectPost(state, action),
     
-    resetPosts: (state) => reducers.resetPosts(state),
     editPost: (state, action) => reducers.editPost(state, action),
     editUser: (state, action) => reducers.editUser(state, action),
     deletePost: (state, action) => reducers.deletePost(state, action),
@@ -44,7 +43,6 @@ export const postSlice = createSlice({
 export const {
   selectIndex,
   selectPost,
-  resetPosts,
   editPost,
   editUser,
   deletePost,

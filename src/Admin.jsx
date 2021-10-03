@@ -10,7 +10,7 @@ export const Admin = () => {
 
   return (
     <div className="admin">
-      <SideMenu index={index.page} />
+      <SideMenu index={index} />
       <Main index={index} />
     </div>
   );

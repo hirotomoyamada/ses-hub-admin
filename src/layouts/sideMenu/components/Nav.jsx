@@ -22,11 +22,11 @@ export const Nav = ({ index }) => {
         <FontAwesomeIcon
           icon={
             type === "users"
-              ? index === "companys" || index === "persons"
+              ? index.page === "companys" || index.page === "persons"
                 ? faFolderOpen
                 : faFolder
               : type === "posts" &&
-                (index === "matters" || index === "resources")
+                (index.page === "matters" || index.page === "resources")
               ? faFolderOpen
               : faFolder
           }
@@ -50,7 +50,13 @@ export const Nav = ({ index }) => {
   const Btn = ({ i, text, type }) => {
     const handleIndex = () => {
       dispatch(postSlice.handleModal(false));
-      dispatch(postSlice.selectIndex({ page: i }));
+      dispatch(
+        postSlice.selectIndex(
+          type !== "setting" || index.edit
+            ? { page: i }
+            : { page: i, edit: "companys" }
+        )
+      );
     };
 
     return (
@@ -59,12 +65,12 @@ export const Nav = ({ index }) => {
           type="button"
           onClick={handleIndex}
           className={`${styles.menu_nav_btn} ${
-            index === i && styles.menu_nav_btn_active
+            index.page === i && styles.menu_nav_btn_active
           }`}
         >
           {type !== "setting" ? (
             <FontAwesomeIcon
-              icon={index === i ? faFolderOpen : faFolder}
+              icon={index.page === i ? faFolderOpen : faFolder}
               className={styles.menu_nav_icon}
             />
           ) : (

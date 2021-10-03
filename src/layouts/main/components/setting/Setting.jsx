@@ -4,12 +4,13 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import * as userSlice from "../../../../features/user/userSlice";
+import * as postSlice from "../../../../features/post/postSlice";
 
 import { Information } from "./components/Information";
 import { Agree } from "./components/Agree";
 import { Maintenance } from "./components/Maintenance";
 
-export const Setting = ({ data }) => {
+export const Setting = ({ data, index }) => {
   const dispatch = useDispatch();
 
   const methods = useForm({

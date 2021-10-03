@@ -17,6 +17,7 @@ export const Side = () => {
     postSlice.user({ state: state, index: "posts" })
   );
   const edit = useSelector(postSlice.index).edit;
+
   const [type, setType] = useState("data");
   const [index, setIndex] = useState("matters");
 
@@ -46,9 +47,6 @@ export const Side = () => {
             })
           );
     }
-    return () => {
-      dispatch(postSlice.resetPosts());
-    };
   }, [dispatch, index, type, user]);
 
   const handleOpen = (target) => {
