@@ -1,4 +1,4 @@
-import styles from "../Form.module.scss";
+import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

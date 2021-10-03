@@ -1,4 +1,4 @@
-import styles from "../Form.module.scss";
+import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 
 export const Person = () => {
@@ -24,7 +24,7 @@ export const Person = () => {
           {...register("person", {
             required: {
               value: true,
-              message: "ユーザー名を入力してください",
+              message: "担当者名を入力してください",
             },
             pattern: {
               value: /^\S+/,

@@ -1,7 +1,7 @@
-import styles from "../Form.module.scss";
+import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 
-export const Url = () => {
+export const Body = () => {
   const {
     register,
     formState: { errors },
@@ -9,15 +9,13 @@ export const Url = () => {
 
   return (
     <div className={styles.form_col}>
-      <span className={styles.form_tag}>URL</span>
-
+      <span className={styles.form_tag}>プロフィール</span>
       <div>
-        <input
-          className={`${styles.form_input} ${
-            errors.url && styles.form_input_error
+        <textarea
+          className={`${styles.form_textarea} ${
+            errors.body && styles.form_textarea_error
           }`}
-          placeholder="https://"
-          {...register("url", {
+          {...register("body", {
             pattern: {
               value: /^\S+/,
               message: "先頭にスペースは使えません",
@@ -27,9 +25,9 @@ export const Url = () => {
               message: "144文字以内で入力してください",
             },
           })}
-        />
-        {errors.url?.message && (
-          <span className={styles.form_error}>{errors.url?.message}</span>
+        ></textarea>
+        {errors.body?.message && (
+          <span className={styles.form_error}>{errors.body?.message}</span>
         )}
       </div>
     </div>

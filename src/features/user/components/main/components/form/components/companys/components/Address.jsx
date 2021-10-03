@@ -1,4 +1,4 @@
-import styles from "../Form.module.scss";
+import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";
 import { usePostalJp } from "use-postal-jp";

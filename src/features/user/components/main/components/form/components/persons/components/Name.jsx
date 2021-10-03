@@ -1,4 +1,4 @@
-import styles from "../Form.module.scss";
+import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 
 export const Name = () => {
@@ -9,25 +9,34 @@ export const Name = () => {
 
   return (
     <div className={styles.form_col}>
-      <span className={styles.form_tag}>会社名</span>
+      <span className={styles.form_tag}>
+        名前
+        <span className={styles.form_tag_desc}>
+          &nbsp;※&nbsp;必ず、フルネームで入力してください
+        </span>
+      </span>
       <div>
         <input
           className={`${styles.form_input} ${
             errors.name && styles.form_input_error
           }`}
-          placeholder="株式会社Hitmeup"
+          placeholder="山田太郎"
           {...register("name", {
             required: {
               value: true,
-              message: "会社名を入力してください",
+              message: "名前を入力してください",
             },
             pattern: {
               value: /^\S+/,
               message: "先頭にスペースは使えません",
             },
+            minLength: {
+              value: 2,
+              message: "2文字以上で入力してください",
+            },
             maxLength: {
-              value: 32,
-              message: "32文字以内で入力してください",
+              value: 24,
+              message: "24文字以内で入力してください",
             },
           })}
         />
