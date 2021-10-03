@@ -9,10 +9,10 @@ export const Payment = ({ user }) => {
         <span className={styles.data_item_tag}>プラン</span>
         <span className={styles.data_item_text}>
           {user?.payment?.status === "active"
-            ? "有料会員"
+            ? "レギュラー"
             : user?.payment?.status === "trialing"
             ? "フリートライアル"
-            : "無料会員"}
+            : "リミテッド"}
         </span>
       </div>
       {user?.payment?.start && (
