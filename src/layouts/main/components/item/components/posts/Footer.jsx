@@ -38,7 +38,7 @@ export const Footer = ({ post, index, mini }) => {
         {index === "matters" ? (
           <span>
             {post?.remote === "あり"
-              ? "フルリモート"
+              ? "リモート"
               : post?.remote === "なし"
               ? "常駐"
               : post?.remote}
