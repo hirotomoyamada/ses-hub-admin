@@ -1,8 +1,9 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 import "firebase/functions";
 
-firebase.initializeApp({
+const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -12,8 +13,28 @@ firebase.initializeApp({
   appId: process.env.REACT_APP_APPID,
 });
 
+export const db = app.firestore();
 export const auth = firebase.auth();
 export const functions = firebase.app().functions("asia-northeast1");
 export const providerGoogle = new firebase.auth.GoogleAuthProvider();
 export const providerTwitter = new firebase.auth.TwitterAuthProvider();
 export const providerGithub = new firebase.auth.GithubAuthProvider();
+
+export const insert = async () => {
+  await db
+    .collection("companys")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.ref
+        //   .set(
+        //     {
+        //       home: doc.data().follows.slice(0, 15),
+        //     },
+        //     { merge: true }
+        //   )
+        //   .catch((e) => {});
+      });
+    })
+    .catch((e) => {});
+};
