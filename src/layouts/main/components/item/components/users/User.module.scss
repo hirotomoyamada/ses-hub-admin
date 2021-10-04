@@ -96,6 +96,7 @@ $width: responsive-width(pc);
 
   &_category {
     padding: 0 8px;
+    background: $acnt_clr;
     border-radius: 8px;
     line-height: 24px;
     font-size: 12px;
@@ -104,6 +105,14 @@ $width: responsive-width(pc);
 
     &_position {
       background: $icn_clr;
+    }
+
+    &_acttive {
+      background: $promo_clr;
+    }
+
+    &_trialing {
+      background: $add_clr;
     }
   }
 

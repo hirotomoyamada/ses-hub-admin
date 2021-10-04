@@ -15,7 +15,24 @@ export const Header = ({ post }) => {
           </div>
         )}
 
-        
+        {post?.payment && (
+          <div
+            className={`${styles.item_category} ${
+              post?.payment?.status === "active"
+                ? styles.item_category_active
+                : post?.payment?.status === "trialing" &&
+                  styles.item_category_trialing
+            }`}
+          >
+            <span>
+              {post?.payment?.status === "active"
+                ? "レギュラー"
+                : post?.payment?.status === "trialing"
+                ? "フリートライアル"
+                : "リミテッド"}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
