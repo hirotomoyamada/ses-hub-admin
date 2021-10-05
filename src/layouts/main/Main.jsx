@@ -7,7 +7,7 @@ import { fetchPosts } from "../../features/post/functions/fetchPosts";
 import * as postSlice from "../../features/post/postSlice";
 import * as userSlice from "../../features/user/userSlice";
 
-import { Header } from "./components/Header";
+import { Header } from "./components/header/Header";
 import { List } from "./components/List";
 import { Modal } from "../../components/modal/Modal";
 import { Setting } from "./components/setting/Setting";
@@ -41,11 +41,13 @@ export const Main = ({ index }) => {
 
   return index.page === "setting" ? (
     <main className={styles.main}>
-      <Header index={index.page} data={data.seshub} />
+      <Header index={index.page} edit={index.edit} data={data} />
       <Setting data={data} index={index.edit} />
     </main>
   ) : index.page === "mail" ? (
-    <main className={styles.main}></main>
+    <main className={styles.main}>
+      <Header index={index.page} edit={index.edit} data={data} />
+    </main>
   ) : (
     <main className={styles.main}>
       <Header index={index.page} />

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { faServer } from "@fortawesome/free-solid-svg-icons";
-import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export const Header = ({ index, type, text }) => {
   return type === "users" || type === "posts" ? (
@@ -31,7 +31,7 @@ export const Header = ({ index, type, text }) => {
     </div>
   ) : (
     <div className={styles.menu_nav_head}>
-      <FontAwesomeIcon icon={faSlidersH} />
+      <FontAwesomeIcon icon={faCog} />
       {text}
     </div>
   );

@@ -11,6 +11,12 @@ $width: responsive-width(pc);
   flex-direction: column;
   gap: 16px;
 
+  &_none {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
   &_col {
     display: flex;
     flex-direction: column;
