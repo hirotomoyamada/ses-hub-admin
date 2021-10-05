@@ -12,6 +12,7 @@ import { List } from "./components/List";
 import { Modal } from "../../components/modal/Modal";
 import { Setting } from "./components/setting/Setting";
 import { Mail } from "./components/mail/Mail";
+import { Fetch } from "../../components/load/Load";
 
 export const Main = ({ index }) => {
   const dispatch = useDispatch();
@@ -44,11 +45,13 @@ export const Main = ({ index }) => {
     <main className={styles.main}>
       <Header index={index.page} edit={index.edit} data={data} />
       <Setting data={data} index={index.edit} />
+      <Fetch />
     </main>
   ) : index.page === "mail" ? (
     <main className={styles.main}>
       <Header index={index.page} edit={index.edit} data={data} />
       <Mail data={data} index={index.edit} />
+      <Fetch />
     </main>
   ) : (
     <main className={styles.main}>

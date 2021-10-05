@@ -24,13 +24,13 @@ export const userSlice = createSlice({
       reducers.login(state, action)
     );
     builder.addCase(editData.pending, (state) => {
-      state.fatch = true;
+      state.fetch = true;
     });
     builder.addCase(editData.fulfilled, (state, action) =>
       reducers.editData(state, action)
     );
     builder.addCase(sendMail.pending, (state) => {
-      state.fatch = true;
+      state.fetch = true;
     });
     builder.addCase(sendMail.fulfilled, (state, action) =>
       reducers.sendMail(state, action)
