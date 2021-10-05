@@ -14,9 +14,9 @@ export const Btn = ({ index, i, text, type }) => {
     dispatch(postSlice.handleModal(false));
     dispatch(
       postSlice.selectIndex(
-        type !== "setting" || index.edit
-          ? { page: i }
-          : { page: i, edit: "companys" }
+        type === "setting" || type === "mail" || !index.edit
+          ? { page: i, edit: "companys" }
+          : { page: i }
       )
     );
   };

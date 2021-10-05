@@ -30,6 +30,7 @@ export const Nav = ({ index }) => {
       <div className={styles.menu_nav_wrap}>
         <Header index={index} text="設定" />
         <Btn index={index} i="setting" type="setting" text="全般" />
+        <Btn index={index} i="mail" type="mail" text="メール" />
       </div>
     </nav>
   );

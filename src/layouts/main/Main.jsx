@@ -20,6 +20,7 @@ export const Main = ({ index }) => {
 
   useEffect(() => {
     index.page !== "setting" &&
+      index.page !== "mail" &&
       dispatch(
         fetchPosts({
           index: index.page,
@@ -38,17 +39,19 @@ export const Main = ({ index }) => {
     search.value,
   ]);
 
-  return index.page !== "setting" ? (
+  return index.page === "setting" ? (
+    <main className={styles.main}>
+      <Header index={index.page} data={data.seshub} />
+      <Setting data={data} index={index.edit} />
+    </main>
+  ) : index.page === "mail" ? (
+    <main className={styles.main}></main>
+  ) : (
     <main className={styles.main}>
       <Header index={index.page} />
       <List index={index.page} posts={posts} search={search} />
 
       <Modal index={index.edit} />
-    </main>
-  ) : (
-    <main className={styles.main}>
-      <Header index={index.page} data={data.seshub} />
-      <Setting data={data} index={index.edit} />
     </main>
   );
 };
