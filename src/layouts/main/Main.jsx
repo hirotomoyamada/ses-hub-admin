@@ -11,6 +11,7 @@ import { Header } from "./components/header/Header";
 import { List } from "./components/List";
 import { Modal } from "../../components/modal/Modal";
 import { Setting } from "./components/setting/Setting";
+import { Mail } from "./components/mail/Mail";
 
 export const Main = ({ index }) => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ export const Main = ({ index }) => {
   ) : index.page === "mail" ? (
     <main className={styles.main}>
       <Header index={index.page} edit={index.edit} data={data} />
+      <Mail data={data} index={index.edit} />
     </main>
   ) : (
     <main className={styles.main}>
