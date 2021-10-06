@@ -1,5 +1,4 @@
 export const editData = (state, action) => {
-  console.log(action.payload);
   const index =
     action.payload.index === "companys"
       ? "seshub"
