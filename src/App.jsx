@@ -13,27 +13,6 @@ import { Admin } from "./Admin";
 import * as Announce from "./components/announce/Announce";
 import { Load } from "./components/load/Load";
 
-// import { db } from "./firebase";
-
-// const test = async (data) => {
-//   const user = await db
-//     .collection("companys")
-//     .where("status", "==", "enable")
-//     .where(
-//       "payment.status",
-//       data.target !== "all" ? "==" : "in",
-//       data.target !== "all" ? data.target : ["active", "canceled", "trialing"]
-//     )
-//     .get()
-//     .then((querySnapshot) => {
-//       return querySnapshot.docs.map((doc) => doc.data().profile.email);
-//     });
-
-//   console.log(user);
-// };
-
-// test({ target: "canceled" });
-
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(userSlice.user);
