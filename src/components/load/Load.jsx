@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import * as userSlice from "../../features/user/userSlice";
 import Loader from "react-loader-spinner";
 import styles from "./Load.module.scss";
+import * as postSlice from "../../features/post/postSlice";
 
 export const Load = () => {
   const load = useSelector(userSlice.load);
@@ -29,8 +30,10 @@ export const Load = () => {
   );
 };
 
-export const Fetch = ({ user }) => {
-  const load = useSelector(userSlice.fetch);
+export const Fetch = () => {
+  const user = useSelector(userSlice.fetch);
+  const post = useSelector(postSlice.fetch);
+  const load = user ? user : post && post;
 
   const [none, setNone] = useState(true);
 
@@ -39,14 +42,12 @@ export const Fetch = ({ user }) => {
   }, [load, none]);
 
   useEffect(() => {
-    !load && setTimeout(() => setNone(false), 700);
+    !load && setTimeout(() => setNone(false), 400);
   }, [load]);
 
   return (
     <div
-      className={`${styles.load} ${styles.load_fetch} ${
-        user && styles.load_user
-      }
+      className={`${styles.load} ${styles.load_fetch}
       ${!load && styles.load_opacity} 
       ${!none && styles.load_none}
       `}

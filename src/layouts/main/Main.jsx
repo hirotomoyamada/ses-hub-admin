@@ -30,11 +30,14 @@ export const Main = ({ index }) => {
           target: search.target,
           type: search.type,
           filter: search.filter,
+          fetch: posts.length && true,
         })
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     dispatch,
     index.page,
+    search.control,
     search.filter,
     search.target,
     search.type,
@@ -57,7 +60,7 @@ export const Main = ({ index }) => {
     <main className={styles.main}>
       <Header index={index.page} />
       <List index={index.page} posts={posts} search={search} />
-
+      <Fetch />
       <Modal index={index.edit} />
     </main>
   );

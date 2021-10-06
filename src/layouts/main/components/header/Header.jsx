@@ -22,17 +22,22 @@ export const Header = ({ index, data, edit }) => {
   });
   const value = methods.watch("value");
   const [open, setOpen] = useState(false);
+  const [control, setControl] = useState(false);
 
   useEffect(() => {
     methods.reset();
   }, [index, methods]);
 
   useEffect(() => {
-    if (value === "") {
+    value && setControl(true);
+
+    if (!value && control) {
       window.scrollTo(0, 0);
       dispatch(postSlice.handleSearch());
+      setControl(false);
     }
-  }, [dispatch, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [control, value]);
 
   const handleOpen = () => {
     setOpen(!open);

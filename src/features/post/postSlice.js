@@ -15,7 +15,7 @@ export const postSlice = createSlice({
   reducers: {
     selectIndex: (state, action) => reducers.selectIndex(state, action),
     selectPost: (state, action) => reducers.selectPost(state, action),
-    
+
     editPost: (state, action) => reducers.editPost(state, action),
     editUser: (state, action) => reducers.editUser(state, action),
     deletePost: (state, action) => reducers.deletePost(state, action),
@@ -25,7 +25,10 @@ export const postSlice = createSlice({
     handleAnnounce: (state, action) => reducers.handleAnnounce(state, action),
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPosts.pending, (state) => reducers.load(state));
+    builder.addCase(fetchPosts.pending, (state, action) => {
+      action.meta.arg.fetch && reducers.fetch(state);
+      reducers.load(state);
+    });
     builder.addCase(fetchPosts.fulfilled, (state, action) =>
       reducers.fetchPosts(state, action)
     );
@@ -61,6 +64,7 @@ export const post = (state) => state.post.post;
 export const user = ({ state, index }) => state.post.user[index];
 
 export const load = (state) => state.post.load;
+export const fetch = (state) => state.post.fetch;
 export const modal = (state) => state.post.modal;
 export const page = (state) => state.post.page;
 export const announce = (state) => state.post.announce;

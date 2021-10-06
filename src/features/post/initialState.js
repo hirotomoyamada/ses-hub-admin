@@ -49,8 +49,9 @@ export const initialState = {
   post: {},
 
   modal: false,
-  
+
   load: true,
+  fetch: false,
 
   announce: {
     success: "",
