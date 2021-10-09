@@ -1,10 +1,10 @@
-import styles from "./SideMenu.module.scss";
+import styles from "./Side.module.scss";
 
 import { Header } from "./components/Header";
 import { Nav } from "./components/nav/Nav";
 import { Footer } from "./components/Footer";
 
-export const SideMenu = ({ index }) => {
+export const Side = ({ index }) => {
   return (
     <aside className={styles.menu}>
       <Header />

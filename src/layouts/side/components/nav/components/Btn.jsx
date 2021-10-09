@@ -1,4 +1,4 @@
-import styles from "../../../SideMenu.module.scss";
+import styles from "../../../Side.module.scss";
 import { useDispatch } from "react-redux";
 import * as postSlice from "../../../../../features/post/postSlice";
 

@@ -1,4 +1,4 @@
-import styles from "../../../SideMenu.module.scss";
+import styles from "../../../Side.module.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";

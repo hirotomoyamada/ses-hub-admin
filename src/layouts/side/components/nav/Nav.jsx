@@ -1,4 +1,4 @@
-import styles from "../../SideMenu.module.scss";
+import styles from "../../Side.module.scss";
 
 import { Header } from "./components/Header";
 import { Btn } from "./components/Btn";

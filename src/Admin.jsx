@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import * as postSlice from "./features/post/postSlice";
 
-import { SideMenu } from "./layouts/sideMenu/SideMenu";
+import { Side } from "./layouts/side/Side";
 import { Main } from "./layouts/main/Main";
 
 export const Admin = () => {
@@ -10,8 +10,8 @@ export const Admin = () => {
 
   return (
     <div className="admin">
-      <SideMenu index={index} />
       <Main index={index} />
+      <Side index={index} />
     </div>
   );
 };
