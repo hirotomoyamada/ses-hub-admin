@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import * as userSlice from "../../../../features/user/userSlice";
+import { editData } from "../../../../features/user/functions/editData";
 import * as postSlice from "../../../../features/post/postSlice";
 
 import { Information } from "./components/Information";
@@ -19,22 +19,38 @@ export const Setting = ({ data, index }) => {
   const methods = useForm({
     defaultValues:
       index === "companys"
-        ? data.seshub
-        : index === "persons" && data.freelanceDirect,
+        ? {
+            information: data.seshub.information,
+            agree: data.seshub.agree,
+            maintenance: data.seshub.maintenance,
+          }
+        : index === "persons" && {
+            information: data.freelanceDirect.information,
+            agree: data.freelanceDirect.agree,
+            maintenance: data.freelanceDirect.maintenance,
+          },
   });
 
   useEffect(() => {
     const value =
       index === "companys"
-        ? data.seshub
-        : index === "persons" && data.freelanceDirect;
+        ? {
+            information: data.seshub.information,
+            agree: data.seshub.agree,
+            maintenance: data.seshub.maintenance,
+          }
+        : index === "persons" && {
+            information: data.freelanceDirect.information,
+            agree: data.freelanceDirect.agree,
+            maintenance: data.freelanceDirect.maintenance,
+          };
     methods.reset(value);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
   const handleEdit = (data) => {
     data.index = index;
-    dispatch(userSlice.editData(data));
+    dispatch(editData(data));
   };
 
   const handleIndex = (index) => {

@@ -9,7 +9,7 @@ import { fetchPosts } from "./fetchPosts";
 import { extractPosts } from "./extractPosts";
 import { fetchUser } from "./fetchUser";
 
-import { load } from "./load";
+import { load, fetch } from "./load";
 
 export {
   selectIndex,
@@ -24,4 +24,5 @@ export {
   extractPosts,
   fetchUser,
   load,
+  fetch,
 };

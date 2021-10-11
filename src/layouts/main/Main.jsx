@@ -7,10 +7,12 @@ import { fetchPosts } from "../../features/post/functions/fetchPosts";
 import * as postSlice from "../../features/post/postSlice";
 import * as userSlice from "../../features/user/userSlice";
 
-import { Header } from "./components/Header";
+import { Header } from "./components/header/Header";
 import { List } from "./components/List";
 import { Modal } from "../../components/modal/Modal";
 import { Setting } from "./components/setting/Setting";
+import { Mail } from "./components/mail/Mail";
+import { Fetch } from "../../components/load/Load";
 
 export const Main = ({ index }) => {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ export const Main = ({ index }) => {
 
   useEffect(() => {
     index.page !== "setting" &&
+      index.page !== "mail" &&
       dispatch(
         fetchPosts({
           index: index.page,
@@ -27,28 +30,38 @@ export const Main = ({ index }) => {
           target: search.target,
           type: search.type,
           filter: search.filter,
+          fetch: posts.length && true,
         })
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     dispatch,
     index.page,
+    search.control,
     search.filter,
     search.target,
     search.type,
     search.value,
   ]);
 
-  return index.page !== "setting" ? (
+  return index.page === "setting" ? (
     <main className={styles.main}>
-      <Header index={index.page} />
-      <List index={index.page} posts={posts} search={search} />
-
-      <Modal index={index.edit} />
+      <Header index={index.page} edit={index.edit} data={data} />
+      <Setting data={data} index={index.edit} />
+      <Fetch />
+    </main>
+  ) : index.page === "mail" ? (
+    <main className={styles.main}>
+      <Header index={index.page} edit={index.edit} data={data} />
+      <Mail data={data} index={index.edit} />
+      <Fetch />
     </main>
   ) : (
     <main className={styles.main}>
-      <Header index={index.page} data={data.seshub} />
-      <Setting data={data} index={index.edit} />
+      <Header index={index.page} />
+      <List index={index.page} posts={posts} search={search} />
+      <Fetch />
+      <Modal index={index.edit} />
     </main>
   );
 };

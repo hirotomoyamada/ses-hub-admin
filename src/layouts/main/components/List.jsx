@@ -51,7 +51,7 @@ export const List = ({ index, posts, search }) => {
         observer.unobserve(ref);
       };
     }
-  }, [hit.currentPage, hit.pages, intersecting, page, list]);
+  }, [hit.currentPage, hit.pages, intersecting, page, list, index, posts]);
 
   useEffect(() => {
     intersecting &&
@@ -63,6 +63,7 @@ export const List = ({ index, posts, search }) => {
           value: search.value,
           target: search.target,
           type: search.type,
+          filter: search.filter,
           page: page,
         })
       ).then(() => {

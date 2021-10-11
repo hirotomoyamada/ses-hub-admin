@@ -32,6 +32,16 @@ export const editUser = (state, action) => {
     user.status = action.payload.user.status;
     user.updateAt = action.payload.user.updateAt;
     user.name = action.payload.user.name;
+    user.body = action.payload.user.body;
+    user.age = action.payload.user.age;
+    user.sex = action.payload.user.sex;
+    user.position = action.payload.user.position;
+    user.location = action.payload.user.location;
+    user.handles = action.payload.user.handles;
+    user.tools = action.payload.user.tools;
+    user.skills = action.payload.user.skills;
+    user.urls = action.payload.user.urls;
+    user.data = action.payload.user.data;
   }
 
   state.announce = { success: "編集しました" };
@@ -41,7 +51,5 @@ export const editUser = (state, action) => {
   editUser({
     index: action.payload.index,
     user: action.payload.user,
-  }).catch((e) => {
-    console.log(e);
-  });
+  }).catch((e) => {});
 };

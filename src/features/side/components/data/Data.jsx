@@ -1,6 +1,8 @@
 import styles from "./Data.module.scss";
 import root from "../../Side.module.scss";
 
+import Loader from "react-loader-spinner";
+
 import { useDispatch } from "react-redux";
 
 import { selectIndex, selectPost } from "../../../post/postSlice";
@@ -38,7 +40,7 @@ export const Data = ({
           type === "data" && root.side_type_inner_current
         }`}
       >
-        {type === "data" && (
+        {type === "data" && Object.keys(user).length ? (
           <div className={styles.data}>
             {(index === "matters" || index === "resources") && (
               <Account user={user} handleChange={handleChange} />
@@ -49,6 +51,10 @@ export const Data = ({
             <Profile user={user} />
             <Provider user={user} />
             <Posts user={user} setType={setType} setIndex={setIndex} />
+          </div>
+        ) : (
+          <div className={`${styles.data} ${styles.data_none}`}>
+            <Loader type="Oval" color="#49b757" height={56} width={56} />
           </div>
         )}
       </div>

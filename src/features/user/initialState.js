@@ -7,6 +7,7 @@ export const initialState = {
   },
 
   load: true,
+  fetch: false,
 
   announce: {
     success: "",

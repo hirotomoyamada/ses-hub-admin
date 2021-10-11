@@ -1,4 +1,4 @@
-import styles from "../SideMenu.module.scss";
+import styles from "../Side.module.scss";
 
 export const Header = () => {
   return (
