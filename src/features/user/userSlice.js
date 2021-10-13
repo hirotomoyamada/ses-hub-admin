@@ -2,9 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { initialState } from "./initialState";
 
-import { login } from "./functions/login";
-import { editData } from "./functions/editData";
-import { sendMail } from "./functions/sendMail";
+import { fetchUser } from "./functions/fetchUser";
+import { extractPosts } from "./functions/extractPosts";
 
 import * as reducers from "./redurces/reducers";
 
@@ -13,37 +12,41 @@ export const userSlice = createSlice({
   initialState,
 
   reducers: {
-    logout: (state) => reducers.logout(state),
-    handleAnnounce: (state, action) => reducers.handleAnnounce(state, action),
+    selectUser: (state, action) => reducers.selectUser(state, action),
+    editUser: (state, action) => reducers.editUser(state, action),
   },
+
   extraReducers: (builder) => {
-    builder.addCase(login.pending, (state) => {
-      state.load = true;
-    });
-    builder.addCase(login.fulfilled, (state, action) =>
-      reducers.login(state, action)
+    builder.addCase(fetchUser.fulfilled, (state, action) =>
+      reducers.fetchUser(state, action)
     );
-    builder.addCase(editData.pending, (state) => {
-      state.fetch = true;
-    });
-    builder.addCase(editData.fulfilled, (state, action) =>
-      reducers.editData(state, action)
+
+    builder.addCase(extractPosts.fulfilled, (state, action) =>
+      reducers.extractPosts(state, action)
     );
-    builder.addCase(sendMail.pending, (state) => {
-      state.fetch = true;
-    });
-    builder.addCase(sendMail.fulfilled, (state, action) =>
-      reducers.sendMail(state, action)
+
+    builder.addMatcher(
+      (action) => action.type.endsWith("/handleModal"),
+      (state, action) => reducers.resetUser(state, action)
+    );
+
+    builder.addMatcher(
+      (action) => action.type.endsWith("/editPost"),
+      (state, action) => reducers.editPost(state, action)
+    );
+    builder.addMatcher(
+      (action) => action.type.endsWith("/deletePost"),
+      (state, action) => reducers.deletePost(state, action)
     );
   },
 });
 
-export const { logout, handleAnnounce } = userSlice.actions;
+export const { selectUser, editUser } = userSlice.actions;
 
-export const user = (state) => state.user.uid;
-export const data = (state) => state.user.data;
-export const load = (state) => state.user.load;
-export const fetch = (state) => state.user.fetch;
-export const announce = (state) => state.user.announce;
+export const user = (state) => state.user.user;
+
+export const posts = (state) => state.user.posts;
+
+export const hit = (state) => state.user.hit;
 
 export default userSlice.reducer;

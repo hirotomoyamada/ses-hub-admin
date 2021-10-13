@@ -5,7 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import * as postSlice from "../post/postSlice";
+import * as userSlice from "../user/userSlice";
 
 import { Header } from "./components/header/Header";
 import { Main } from "./components/main/Main";
@@ -16,7 +16,7 @@ import { persons } from "./functions/persons";
 export const User = ({ index, handleClose }) => {
   const dispatch = useDispatch();
 
-  const user = useSelector(postSlice.post);
+  const user = useSelector(userSlice.user);
 
   const [cover, setCover] = useState(false);
   const [icon, setIcon] = useState(false);
@@ -44,7 +44,7 @@ export const User = ({ index, handleClose }) => {
   const handleEdit = (data) => {
     data.uid = user.uid;
 
-    dispatch(postSlice.editUser({ index: index, user: data }));
+    dispatch(userSlice.editUser({ index: index, user: data }));
   };
 
   return (

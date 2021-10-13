@@ -4,6 +4,7 @@ export const editPost = (state, action) => {
   const post = state.posts[action.payload.index].find(
     (post) => post?.objectID === action.payload.post.objectID
   );
+  
   if (action.payload.index === "matters" && post) {
     post.display = action.payload.post.display;
     post.title = action.payload.post.title;
@@ -53,9 +54,6 @@ export const editPost = (state, action) => {
     post.memo = action.payload.post.memo;
     post.updateAt = action.payload.post.updateAt;
   }
-
-  state.announce = { success: "編集しました" };
-  state.load = false;
 
   const editPost = functions.httpsCallable("admin-editPost");
   editPost({

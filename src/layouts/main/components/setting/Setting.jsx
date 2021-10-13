@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { editData } from "../../../../features/user/functions/editData";
-import * as postSlice from "../../../../features/post/postSlice";
+import { editData } from "../../../../features/root/functions/editData";
+import * as rootSlice from "../../../../features/root/rootSlice";
 
 import { Information } from "./components/Information";
 import { Agree } from "./components/Agree";
@@ -54,7 +54,7 @@ export const Setting = ({ data, index }) => {
   };
 
   const handleIndex = (index) => {
-    dispatch(postSlice.selectIndex({ edit: index }));
+    dispatch(rootSlice.handleIndex({ edit: index }));
   };
 
   return (

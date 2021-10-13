@@ -5,7 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import * as postSlice from "../../../../features/post/postSlice";
+import * as rootSlice from "../../../../features/root/rootSlice";
 
 import { User } from "./components/User";
 import { Post } from "./components/Post";
@@ -14,7 +14,7 @@ import { Search } from "./components/Search";
 
 export const Header = ({ index, data, edit }) => {
   const dispatch = useDispatch();
-  const search = useSelector(postSlice.search);
+  const search = useSelector(rootSlice.search);
   const methods = useForm({
     defaultValues: {
       value: search.value,
@@ -33,7 +33,7 @@ export const Header = ({ index, data, edit }) => {
 
     if (!value && control) {
       window.scrollTo(0, 0);
-      dispatch(postSlice.handleSearch());
+      dispatch(rootSlice.handleSearch());
       setControl(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,23 +46,23 @@ export const Header = ({ index, data, edit }) => {
 
   const handleSortChange = (search) => {
     window.scrollTo(0, 0);
-    dispatch(postSlice.handleSearch(search));
+    dispatch(rootSlice.handleSearch(search));
     setOpen(!open);
   };
   const handleAttribuleChange = (filter) => {
     window.scrollTo(0, 0);
-    dispatch(postSlice.handleSearch({ filter: filter }));
+    dispatch(rootSlice.handleSearch({ filter: filter }));
   };
 
   const handleSearch = () => {
     window.scrollTo(0, 0);
-    dispatch(postSlice.handleSearch({ value: value }));
+    dispatch(rootSlice.handleSearch({ value: value }));
   };
 
   const handleReset = () => {
     window.scrollTo(0, 0);
     methods.reset();
-    dispatch(postSlice.handleSearch());
+    dispatch(rootSlice.handleSearch());
   };
 
   return index !== "setting" && index !== "mail" ? (

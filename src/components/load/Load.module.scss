@@ -23,6 +23,8 @@ $width: responsive-width(pc);
   transition: all 0.7s;
 
   &_fetch {
+    top: 48px;
+    height: calc(100vh - 48px);
     background: none;
     z-index: 99;
     transition: all 0.4s;

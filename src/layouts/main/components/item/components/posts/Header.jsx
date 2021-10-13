@@ -2,7 +2,7 @@ import styles from "./Post.module.scss";
 
 import { timestamp } from "../../../../../../functions/timestamp";
 
-export const Header = ({ post, mini }) => {
+export const Header = ({ post, min }) => {
   return (
     <div className={styles.item_header}>
       <div className={styles.item_row}>
@@ -45,7 +45,7 @@ export const Header = ({ post, mini }) => {
           作成：{timestamp(post?.createAt)}
         </span>
         <span className={styles.item_time}>
-          {post?.updateAt && !mini && `更新：${timestamp(post?.updateAt)}`}
+          {post?.updateAt && !min && `更新：${timestamp(post?.updateAt)}`}
         </span>
       </div>
     </div>

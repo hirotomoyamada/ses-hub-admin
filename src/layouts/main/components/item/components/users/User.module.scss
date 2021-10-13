@@ -21,7 +21,7 @@ $width: responsive-width(pc);
 
   border-bottom: 1px solid $bdr_clr;
 
-  &_mini {
+  &_min {
     grid-template-columns: 48px 1fr;
   }
 

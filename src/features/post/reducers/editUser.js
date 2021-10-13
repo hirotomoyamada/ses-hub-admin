@@ -1,5 +1,3 @@
-import { functions } from "../../../firebase";
-
 export const editUser = (state, action) => {
   const user = state.posts[action.payload.index].find(
     (post) => post?.uid === action.payload.user.uid
@@ -42,14 +40,10 @@ export const editUser = (state, action) => {
     user.skills = action.payload.user.skills;
     user.urls = action.payload.user.urls;
     user.data = action.payload.user.data;
+    user.costs = action.payload.user.costs;
+    user.working = action.payload.user.working;
+    user.resident = action.payload.user.resident;
+    user.clothes = action.payload.user.clothes;
+    user.span = action.payload.user.span;
   }
-
-  state.announce = { success: "編集しました" };
-  state.load = false;
-
-  const editUser = functions.httpsCallable("admin-editUser");
-  editUser({
-    index: action.payload.index,
-    user: action.payload.user,
-  }).catch((e) => {});
 };

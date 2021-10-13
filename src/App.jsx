@@ -4,18 +4,18 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
 
-import { login } from "./features/user/functions/login";
-import * as userSlice from "./features/user/userSlice";
+import { login } from "./features/root/functions/login";
+import * as rootSlice from "./features/root/rootSlice";
 
-import { Auth } from "./features/auth/Auth";
+import { Auth } from "./pages/auth/Auth";
 import { Admin } from "./Admin";
 
-import * as Announce from "./components/announce/Announce";
 import { Load } from "./components/load/Load";
+import { Announce } from "./components/announce/Announce";
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = useSelector(userSlice.user);
+  const admin = useSelector(rootSlice.admin);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -23,17 +23,17 @@ const App = () => {
         dispatch(login(user));
       } else {
         auth.signOut();
-        dispatch(userSlice.logout());
+        dispatch(rootSlice.logout());
       }
     });
   }, [dispatch]);
+
   return (
     <BrowserRouter>
-      <Announce.User />
-      <Announce.Post />
+      <Announce />
       <Load />
 
-      {!user ? (
+      {!admin ? (
         <Switch>
           <Route path="/" component={Auth} />
         </Switch>

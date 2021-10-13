@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { sendMail } from "../../../../features/user/functions/sendMail";
-import * as postSlice from "../../../../features/post/postSlice";
+import { sendMail } from "../../../../features/root/functions/sendMail";
+import * as rootSlice from "../../../../features/root/rootSlice";
 
 import { Btn } from "./components/Btn";
 import { Main } from "./components/Main";
@@ -37,7 +37,7 @@ export const Mail = ({ index, data }) => {
   };
 
   const handleIndex = (index) => {
-    dispatch(postSlice.selectIndex({ edit: index }));
+    dispatch(rootSlice.handleIndex({ edit: index }));
   };
 
   return (

@@ -31,24 +31,19 @@ export const Persons = ({ post }) => {
           <span>{post?.follows?.length}人</span>
         </div>
       )}
-      {(post?.likes?.matters[0] || post?.likes?.resources[0]) && (
+      {post?.likes?.[0] && (
         <div className={styles.item_row}>
           <FontAwesomeIcon icon={faHeart} className={styles.item_icon_like} />
-          <span>
-            {post?.likes?.matters?.length + post?.likes?.resources?.length}件
-          </span>
+          <span>{post?.likes?.length}件</span>
         </div>
       )}
-      {(post?.entries?.matters[0] || post?.entries?.resources[0]) && (
+      {post?.entries?.[0] && (
         <div className={styles.item_row}>
           <FontAwesomeIcon
             icon={faCheckCircle}
             className={styles.item_icon_entry}
           />
-          <span>
-            {post?.entries?.matters?.length + post?.entries?.resources?.length}
-            件
-          </span>
+          <span>{post?.entries?.length}件</span>
         </div>
       )}
     </div>

@@ -1,6 +1,17 @@
-import { login, logout } from "./auth";
-import { editData } from "./editData";
-import { sendMail } from "./sendMail";
-import { handleAnnounce } from "./handle";
+import { fetchUser } from "./fetchUser";
+import { extractPosts } from "./extractPosts";
+import { selectUser } from "./selectUser";
+import { resetUser } from "./resetUser";
+import { editUser } from "./editUser";
+import { editPost } from "./editPost";
+import { deletePost } from "./deletePost";
 
-export { login, logout, editData, sendMail, handleAnnounce };
+export {
+  fetchUser,
+  extractPosts,
+  selectUser,
+  resetUser,
+  editUser,
+  editPost,
+  deletePost,
+};

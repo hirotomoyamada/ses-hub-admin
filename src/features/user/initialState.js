@@ -1,16 +1,31 @@
 export const initialState = {
-  uid: "",
+  user: {},
 
-  data: {
-    seshub: {},
-    freelanceDirect: {},
+  posts: {
+    follows: [],
+    posts: {
+      matters: [],
+      resources: [],
+    },
+    likes: {
+      matters: [],
+      resources: [],
+      persons: [],
+    },
+    outputs: {
+      matters: [],
+      resources: [],
+    },
+    entries: {
+      matters: [],
+      resources: [],
+      persons: [],
+    },
   },
 
-  load: true,
-  fetch: false,
-
-  announce: {
-    success: "",
-    error: "",
+  hit: {
+    posts: 0,
+    pages: 0,
+    currentPage: 0,
   },
 };

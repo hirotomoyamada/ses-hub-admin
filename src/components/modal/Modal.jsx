@@ -2,18 +2,19 @@ import styles from "./Modal.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import * as postSlice from "../../features/post/postSlice";
+import * as rootSlice from "../../features/root/rootSlice";
 
 import { Post } from "../../features/post/Post";
 import { User } from "../../features/user/User";
-import { Side } from "../../features/side/Side";
+
+import { Side } from "../../layouts/side/Side";
 
 export const Modal = ({ index }) => {
   const dispatch = useDispatch();
-  const open = useSelector(postSlice.modal);
+  const open = useSelector(rootSlice.modal);
 
   const handleClose = () => {
-    dispatch(postSlice.handleModal(false));
+    dispatch(rootSlice.handleModal(false));
   };
 
   return (

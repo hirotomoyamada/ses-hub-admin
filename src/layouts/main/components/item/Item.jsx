@@ -1,18 +1,25 @@
 import { useDispatch } from "react-redux";
 
-import { fetchUser } from "../../../../features/post/functions/fetchUser";
+import { fetchUser } from "../../../../features/user/functions/fetchUser";
+import * as rootSlice from "../../../../features/root/rootSlice";
+import * as userSlice from "../../../../features/user/userSlice";
 import * as postSlice from "../../../../features/post/postSlice";
 
 import { Post } from "./components/posts/Post";
 import { User } from "./components/users/User";
 
-export const Item = ({ index, post, user, mini }) => {
+export const Item = ({ index, post, user, min }) => {
   const dispatch = useDispatch();
 
-  const handlePostEdit = () => {
-    dispatch(postSlice.selectIndex({ edit: index }));
-    dispatch(postSlice.selectPost(post));
-    !mini && dispatch(postSlice.handleModal(true));
+  const handleEdit = () => {
+    !min && dispatch(rootSlice.handleModal(true));
+
+    dispatch(rootSlice.handleIndex({ edit: index }));
+    index === "matters" || index === "resources"
+      ? dispatch(postSlice.selectPost(post))
+      : (index === "companys" || index === "persons") &&
+        dispatch(userSlice.selectUser(post));
+
     user?.uid !== post.uid &&
       dispatch(
         fetchUser({
@@ -26,12 +33,12 @@ export const Item = ({ index, post, user, mini }) => {
   };
 
   return (
-    <button type="button" onClick={handlePostEdit}>
+    <button type="button" onClick={handleEdit}>
       {index === "matters" || index === "resources" ? (
-        <Post post={post} index={index} mini={mini} />
+        <Post post={post} index={index} min={min} />
       ) : (
         (index === "companys" || index === "persons") && (
-          <User post={post} index={index} mini={mini} />
+          <User post={post} index={index} min={min} />
         )
       )}
     </button>

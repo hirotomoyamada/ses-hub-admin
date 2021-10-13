@@ -14,5 +14,10 @@ export const persons = (user) => {
     skills: user?.skills,
     urls: user?.urls,
     data: user?.data,
+    costs: user?.costs,
+    working: user?.working,
+    resident: user?.resident,
+    clothes: user?.clothes,
+    span: user?.span,
   };
 };

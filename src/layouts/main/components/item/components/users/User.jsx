@@ -8,22 +8,22 @@ import { Companys } from "./Companys";
 import { Persons } from "./Persons";
 import { At } from "./At";
 
-export const User = ({ post, index, mini }) => {
+export const User = ({ post, index, min }) => {
   return (
-    <article className={`${styles.item} ${mini && styles.item_mini}`}>
+    <article className={`${styles.item} ${min && styles.item_min}`}>
       <Status post={post} />
       <Icon src={post.icon} />
       <div className={styles.item_main}>
-        <Header post={post} />
-        {!mini &&
+        <Header post={post} min={min} />
+        {!min &&
           (index === "companys" ? (
             <Companys post={post} />
           ) : (
             index === "persons" && <Persons post={post} />
           ))}
-        {mini && <At post={post} mini />}
+        {min && <At post={post} mini />}
       </div>
-      {!mini && <At post={post} />}
+      {!min && <At post={post} />}
     </article>
   );
 };

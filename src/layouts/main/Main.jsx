@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchPosts } from "../../features/post/functions/fetchPosts";
+import * as rootSlice from "../../features/root/rootSlice";
 import * as postSlice from "../../features/post/postSlice";
-import * as userSlice from "../../features/user/userSlice";
 
 import { Header } from "./components/header/Header";
 import { List } from "./components/List";
@@ -16,9 +16,10 @@ import { Fetch } from "../../components/load/Load";
 
 export const Main = ({ index }) => {
   const dispatch = useDispatch();
-  const search = useSelector(postSlice.search);
+
+  const data = useSelector(rootSlice.data);
+  const search = useSelector(rootSlice.search);
   const posts = useSelector(postSlice.posts)[index.page];
-  const data = useSelector(userSlice.data);
 
   useEffect(() => {
     index.page !== "setting" &&
@@ -46,21 +47,21 @@ export const Main = ({ index }) => {
 
   return index.page === "setting" ? (
     <main className={styles.main}>
+      <Fetch />
       <Header index={index.page} edit={index.edit} data={data} />
       <Setting data={data} index={index.edit} />
-      <Fetch />
     </main>
   ) : index.page === "mail" ? (
     <main className={styles.main}>
+      <Fetch />
       <Header index={index.page} edit={index.edit} data={data} />
       <Mail data={data} index={index.edit} />
-      <Fetch />
     </main>
   ) : (
     <main className={styles.main}>
+      <Fetch />
       <Header index={index.page} />
       <List index={index.page} posts={posts} search={search} />
-      <Fetch />
       <Modal index={index.edit} />
     </main>
   );

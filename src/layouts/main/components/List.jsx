@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchPosts } from "../../../features/post/functions/fetchPosts";
+import * as rootSlice from "../../../features/root/rootSlice";
 import * as postSlice from "../../../features/post/postSlice";
 
 import { Item } from "./item/Item";
@@ -13,7 +14,7 @@ import { Item } from "./item/Item";
 export const List = ({ index, posts, search }) => {
   const dispatch = useDispatch();
 
-  const load = useSelector(postSlice.load);
+  const load = useSelector(rootSlice.load).list;
   const hit = useSelector(postSlice.hit);
 
   const nextLoad = useRef();

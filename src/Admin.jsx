@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 
-import * as postSlice from "./features/post/postSlice";
+import * as rootSlice from "./features/root/rootSlice";
 
-import { Side } from "./layouts/side/Side";
 import { Main } from "./layouts/main/Main";
+import { Menu } from "./layouts/menu/Menu";
 
 export const Admin = () => {
-  const index = useSelector(postSlice.index);
+  const index = useSelector(rootSlice.index);
 
   return (
     <div className="admin">
       <Main index={index} />
-      <Side index={index} />
+      <Menu index={index} />
     </div>
   );
 };

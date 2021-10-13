@@ -1,13 +1,4 @@
 export const initialState = {
-  index: { page: "companys", edit: "" },
-
-  search: {
-    value: "",
-    target: "",
-    type: "",
-    filter: "all",
-  },
-
   posts: {
     matters: [],
     resources: [],
@@ -21,40 +12,5 @@ export const initialState = {
     currentPage: 0,
   },
 
-  user: {
-    data: {},
-    posts: {
-      follows: [],
-      posts: {
-        matters: [],
-        resources: [],
-      },
-      likes: {
-        matters: [],
-        resources: [],
-        persons: [],
-      },
-      outputs: {
-        matters: [],
-        resources: [],
-      },
-      entries: {
-        matters: [],
-        resources: [],
-        persons: [],
-      },
-    },
-  },
-
   post: {},
-
-  modal: false,
-
-  load: true,
-  fetch: false,
-
-  announce: {
-    success: "",
-    error: "",
-  },
 };
