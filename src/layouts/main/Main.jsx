@@ -38,11 +38,10 @@ export const Main = ({ index }) => {
   }, [
     dispatch,
     index.page,
-    search.control,
-    search.filter,
+    search.value,
     search.target,
     search.type,
-    search.value,
+    search.filter,
   ]);
 
   return index.page === "setting" ? (
