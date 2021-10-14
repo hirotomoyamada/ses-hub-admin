@@ -31,6 +31,10 @@ $width: responsive-width(pc);
       display: flex;
       justify-content: center;
       padding: 32px 0;
+
+      &_none {
+        display: none;
+      }
     }
   }
 }

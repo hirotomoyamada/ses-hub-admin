@@ -47,11 +47,13 @@ export const List = ({
   }, [hit.currentPage, hit.pages]);
 
   useEffect(() => {
-    if (JSON.stringify(list.current.getBoundingClientRect().height) > 50) {
+    if (JSON.stringify(list.current.getBoundingClientRect().height) > 100) {
       const observer = new IntersectionObserver(
         ([results]) => {
-          if (results.isIntersecting && !intersecting && page < hit.pages) {
-            setIntersecting(results.isIntersecting);
+          if (results.isIntersecting && !intersecting) {
+            if (page < hit.pages) {
+              setIntersecting(results.isIntersecting);
+            }
             setPage((prevPage) => prevPage + 1);
           }
         },
@@ -144,8 +146,13 @@ export const List = ({
               )}
               {((target === "follows" && posts?.[target]?.[0]) ||
                 posts?.[target]?.[index]?.[0]) && (
-                <div ref={nextLoad} className={styles.list_inner_load}>
-                  {page < hit.pages - 1 && (
+                <div
+                  ref={nextLoad}
+                  className={`${styles.list_inner_load} ${
+                    page === hit.pages && styles.list_inner_load_none
+                  }`}
+                >
+                  {page < hit.pages && (
                     <Loader
                       type="Oval"
                       color="#49b757"
@@ -176,8 +183,13 @@ export const List = ({
               )}
               {((target === "follows" && posts?.[target]?.[0]) ||
                 posts?.[target]?.[index]?.[0]) && (
-                <div ref={nextLoad} className={styles.list_inner_load}>
-                  {page < hit.pages - 1 && (
+                <div
+                  ref={nextLoad}
+                  className={`${styles.list_inner_load} ${
+                    page === hit.pages && styles.list_inner_load_none
+                  }`}
+                >
+                  {page < hit.pages && (
                     <Loader
                       type="Oval"
                       color="#49b757"

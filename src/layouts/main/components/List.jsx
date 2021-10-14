@@ -35,8 +35,10 @@ export const List = ({ index, posts, search }) => {
     ) {
       const observer = new IntersectionObserver(
         ([results]) => {
-          if (results.isIntersecting && !intersecting && page < hit.pages) {
-            setIntersecting(results.isIntersecting);
+          if (results.isIntersecting && !intersecting) {
+            if (page < hit.pages) {
+              setIntersecting(results.isIntersecting);
+            }
             setPage((prevPage) => prevPage + 1);
           }
         },
@@ -107,9 +109,14 @@ export const List = ({ index, posts, search }) => {
           )}
         </div>
       )}
-      {posts?.[0] && (
-        <div ref={nextLoad} className={styles.main_list_load}>
-          {page < hit.pages - 1 && (
+      {posts?.length >= 50 && (
+        <div
+          ref={nextLoad}
+          className={`${styles.main_list_load} ${
+            page === hit.pages && styles.main_list_load_none
+          }`}
+        >
+          {page < hit.pages && (
             <Loader type="Oval" color="#49b757" height={32} width={32} />
           )}
         </div>
