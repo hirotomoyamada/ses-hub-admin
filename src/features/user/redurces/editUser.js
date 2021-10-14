@@ -49,7 +49,5 @@ export const editUser = (state, action) => {
   editUser({
     index: action.payload.index,
     user: action.payload.user,
-  }).catch((e) => {
-    console.log(e);
-  });
+  }).catch((e) => {});
 };

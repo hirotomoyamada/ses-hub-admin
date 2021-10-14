@@ -6,12 +6,9 @@ export const sendMail = createAsyncThunk("root/sendMail", async (data) => {
 
   const res = sendMail(data)
     .then(({ data }) => {
-      console.log(data);
       return data;
     })
-    .catch((e) => {
-      console.log(e);
-    });
+    .catch((e) => {});
 
   return res;
 });
