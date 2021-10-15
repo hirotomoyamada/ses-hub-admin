@@ -144,8 +144,8 @@ export const List = ({
                     />
                   )
               )}
-              {((target === "follows" && posts?.[target]?.[0]) ||
-                posts?.[target]?.[index]?.[0]) && (
+              {((target === "follows" && posts?.[target]?.length >= 50) ||
+                posts?.[target]?.[index]?.length >= 50) && (
                 <div
                   ref={nextLoad}
                   className={`${styles.list_inner_load} ${
@@ -181,8 +181,8 @@ export const List = ({
                     />
                   )
               )}
-              {((target === "follows" && posts?.[target]?.[0]) ||
-                posts?.[target]?.[index]?.[0]) && (
+              {((target === "follows" && posts?.[target]?.length >= 50) ||
+                posts?.[target]?.[index]?.length >= 50) && (
                 <div
                   ref={nextLoad}
                   className={`${styles.list_inner_load} ${
