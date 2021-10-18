@@ -26,7 +26,7 @@ export const Side = () => {
 
   useEffect(() => {
     if (type !== "data") {
-      type !== "follows"
+      (type !== "follows" && edit !== "persons") || type === "requests"
         ? user?.[type]?.[index]?.[0] &&
           dispatch(
             extractPosts({
@@ -38,19 +38,29 @@ export const Side = () => {
         : user?.[type]?.[0] &&
           dispatch(
             extractPosts({
-              index: "companys",
+              index:
+                index === "enable" || index === "hold" || index === "disable"
+                  ? "companys"
+                  : index,
               type: type,
               user: user,
             })
           );
     }
-  }, [dispatch, index, type, user]);
+  }, [dispatch, edit, index, type, user]);
 
   const handleOpen = (target) => {
     if (target === "follows") {
       setIndex("companys");
+    } else if (target === "requests") {
+      setIndex("hold");
     } else if (target !== "likes" || target !== "entries") {
-      (index === "companys" || index === "persons") && setIndex("matters");
+      (index === "companys" ||
+        index === "persons" ||
+        index === "enable" ||
+        index === "hold" ||
+        index === "disable") &&
+        setIndex("matters");
     }
     setType(target);
   };
@@ -75,6 +85,7 @@ export const Side = () => {
         <List
           key={post}
           type={type}
+          edit={edit}
           index={index}
           posts={posts}
           user={user}

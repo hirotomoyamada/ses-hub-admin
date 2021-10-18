@@ -41,14 +41,14 @@ export const Data = ({
           type === "data" && root.side_type_inner_current
         }`}
       >
-        {type === "data" && user.index ? (
+        {type === "data" && user ? (
           <div className={styles.data}>
             {(index === "matters" || index === "resources") && (
               <Account user={user} handleChange={handleChange} />
             )}
 
             <Auth user={user} />
-            {user.index === "companys" && <Payment user={user} />}
+            {index === "companys" && <Payment user={user} />}
             <Profile user={user} />
             <Provider user={user} />
             <Posts user={user} setType={setType} setIndex={setIndex} />

@@ -11,7 +11,7 @@ import * as rootSlice from "../../../../features/root/rootSlice";
 import * as userSlice from "../../../../features/user/userSlice";
 
 import { Header } from "../header/Header";
-import { Index } from "./components/index/Index";
+import { Index } from "../index/Index";
 import { Item } from "../../../../layouts/main/components/item/Item";
 
 export const List = ({
@@ -19,6 +19,7 @@ export const List = ({
   posts,
   user,
   index,
+  edit,
   handleIndex,
   handleOpen,
   target,
@@ -122,6 +123,7 @@ export const List = ({
       >
         <div className={styles.list}>
           <Index
+            edit={edit}
             type={type}
             index={index}
             handleIndexScroll={handleIndexScroll}

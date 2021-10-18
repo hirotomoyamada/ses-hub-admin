@@ -1,13 +1,13 @@
 import styles from "./Icon.module.scss";
 import { useFormContext } from "react-hook-form";
 
-export const Icon = () => {
+export const Icon = ({ index }) => {
   const { register } = useFormContext();
 
-  const icon = 17;
+  const icon = index === "companys" ? 17 : 35;
   const input = [];
 
-  for (let i = 0; i <= icon; i++) {
+  for (let i = index === "companys" ? 0 : 18; i <= icon; i++) {
     input.push(
       <div key={i} className={styles.icon_item}>
         <input
@@ -17,10 +17,7 @@ export const Icon = () => {
           value={`icon${i}`}
           className={styles.icon_input}
         />
-        <label
-          htmlFor={`icon${i}`}
-          className={styles.icon_input_label}
-        >
+        <label htmlFor={`icon${i}`} className={styles.icon_input_label}>
           <img
             src={`${process.env.PUBLIC_URL}/img/icon/icon${i}.svg`}
             alt=""

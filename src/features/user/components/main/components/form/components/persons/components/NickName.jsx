@@ -1,7 +1,7 @@
 import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 
-export const Name = () => {
+export const NickName = () => {
   const {
     register,
     formState: { errors },
@@ -9,18 +9,14 @@ export const Name = () => {
 
   return (
     <div className={styles.form_col}>
-      <span className={styles.form_tag}>氏名</span>
+      <span className={styles.form_tag}>ニックネーム</span>
       <div>
         <input
           className={`${styles.form_input} ${
-            errors.name && styles.form_input_error
+            errors.nickName && styles.form_input_error
           }`}
-          placeholder="山田太郎"
-          {...register("name", {
-            required: {
-              value: true,
-              message: "名前を入力してください",
-            },
+          placeholder="天下の大将軍"
+          {...register("nickName", {
             pattern: {
               value: /^\S+/,
               message: "先頭にスペースは使えません",
@@ -30,13 +26,13 @@ export const Name = () => {
               message: "2文字以上で入力してください",
             },
             maxLength: {
-              value: 24,
-              message: "24文字以内で入力してください",
+              value: 16,
+              message: "16文字以内で入力してください",
             },
           })}
         />
-        {errors.name?.message && (
-          <span className={styles.form_error}>{errors.name?.message}</span>
+        {errors.nickName?.message && (
+          <span className={styles.form_error}>{errors.nickName?.message}</span>
         )}
       </div>
     </div>

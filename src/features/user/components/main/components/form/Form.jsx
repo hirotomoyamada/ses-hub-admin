@@ -4,12 +4,16 @@ import { Header } from "./components/header/Header";
 import { Companys } from "./components/companys/Companys";
 import { Persons } from "./components/persons/Persons";
 
-export const Form = ({ index, icon, cover, setIcon, setCover }) => {
+export const Form = ({ index, user, icon, cover, setIcon, setCover }) => {
   return (
     <div className={styles.form}>
       <Header icon={icon} cover={cover} setIcon={setIcon} setCover={setCover} />
 
-      {index === "companys" ? <Companys /> : index === "persons" && <Persons />}
+      {index === "companys" ? (
+        <Companys />
+      ) : (
+        index === "persons" && <Persons user={user} />
+      )}
     </div>
   );
 };
