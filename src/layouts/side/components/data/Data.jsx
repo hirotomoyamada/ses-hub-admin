@@ -15,6 +15,7 @@ import { Payment } from "./components/Payment";
 import { Profile } from "./components/Profile";
 import { Provider } from "./components/Provider";
 import { Posts } from "./components/posts/Posts";
+import { Resume } from "./components/resume/Resume";
 
 export const Data = ({
   user,
@@ -41,15 +42,16 @@ export const Data = ({
           type === "data" && root.side_type_inner_current
         }`}
       >
-        {type === "data" && user ? (
+        {type === "data" && user.index ? (
           <div className={styles.data}>
             {(index === "matters" || index === "resources") && (
               <Account user={user} handleChange={handleChange} />
             )}
 
             <Auth user={user} />
-            {index === "companys" && <Payment user={user} />}
+            {user.index === "companys" && <Payment user={user} />}
             <Profile user={user} />
+            {user.index === "persons" && <Resume user={user} />}
             <Provider user={user} />
             <Posts user={user} setType={setType} setIndex={setIndex} />
           </div>

@@ -4,6 +4,7 @@ import { initialState } from "./initialState";
 
 import { fetchUser } from "./functions/fetchUser";
 import { extractPosts } from "./functions/extractPosts";
+import { uploadResume } from "./functions/uploadResume";
 
 import * as reducers from "./redurces/reducers";
 
@@ -14,6 +15,7 @@ export const userSlice = createSlice({
   reducers: {
     selectUser: (state, action) => reducers.selectUser(state, action),
     editUser: (state, action) => reducers.editUser(state, action),
+    deleteResume: (state, action) => reducers.deleteResume(state, action),
   },
 
   extraReducers: (builder) => {
@@ -25,6 +27,10 @@ export const userSlice = createSlice({
       reducers.extractPosts(state, action)
     );
 
+    builder.addCase(uploadResume.fulfilled, (state, action) =>
+      reducers.uploadResume(state, action)
+    );
+
     builder.addMatcher(
       (action) => action.type.endsWith("/handleModal"),
       (state, action) => reducers.resetUser(state, action)
@@ -34,6 +40,7 @@ export const userSlice = createSlice({
       (action) => action.type.endsWith("/editPost"),
       (state, action) => reducers.editPost(state, action)
     );
+
     builder.addMatcher(
       (action) => action.type.endsWith("/deletePost"),
       (state, action) => reducers.deletePost(state, action)
@@ -41,7 +48,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { selectUser, editUser } = userSlice.actions;
+export const { selectUser, editUser, deleteResume } = userSlice.actions;
 
 export const user = (state) => state.user.user;
 

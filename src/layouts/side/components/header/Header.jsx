@@ -14,7 +14,7 @@ export const Header = ({ target, type, handleOpen }) => {
         : target === "follows"
         ? "フォロー"
         : target === "likes"
-        ? "気になる"
+        ? "いいね"
         : target === "outputs"
         ? "出力"
         : target === "requests"

@@ -16,6 +16,7 @@ export const Posts = ({ user, setType, setIndex }) => {
           follows: "フォロー",
           likes: "いいね",
           entries: "問い合わせ",
+          requests: "リクエスト",
         };
 
   const handleOpen = ({ type, index }) => {
@@ -33,7 +34,8 @@ export const Posts = ({ user, setType, setIndex }) => {
             {posts[type]}
           </span>
 
-          {type !== "follows" ? (
+          {(user.index === "companys" && type !== "follows") ||
+          (user.index === "persons" && type === "requests") ? (
             <div className={styles.posts_wrap}>
               {user?.[type] &&
                 Object.keys(user[type]).map((index) => (
@@ -64,7 +66,9 @@ export const Posts = ({ user, setType, setIndex }) => {
                         useEasing={true}
                       />
                       &nbsp;
-                      <span className={styles.posts_item_count_desc}>件</span>
+                      <span className={styles.posts_item_count_desc}>
+                        {type !== "requests" ? "件" : "人"}
+                      </span>
                     </div>
                   </button>
                 ))}
@@ -90,7 +94,9 @@ export const Posts = ({ user, setType, setIndex }) => {
                     useEasing={true}
                   />
                   &nbsp;
-                  <span className={styles.posts_item_count_desc}>人</span>
+                  <span className={styles.posts_item_count_desc}>
+                    {type !== "follows" ? "件" : "人"}
+                  </span>
                 </div>
               </button>
             </div>

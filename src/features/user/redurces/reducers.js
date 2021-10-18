@@ -6,6 +6,8 @@ import { editUser } from "./editUser";
 import { editPost } from "./editPost";
 import { deletePost } from "./deletePost";
 
+import { uploadResume, deleteResume } from "./resume";
+
 export {
   fetchUser,
   extractPosts,
@@ -14,4 +16,6 @@ export {
   editUser,
   editPost,
   deletePost,
+  uploadResume,
+  deleteResume,
 };
