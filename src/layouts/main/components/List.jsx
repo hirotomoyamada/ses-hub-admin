@@ -48,10 +48,10 @@ export const List = ({ index, posts, search }) => {
       );
 
       const ref = nextLoad.current;
-      observer.observe(ref);
+      ref && observer.observe(ref);
 
       return () => {
-        observer.unobserve(ref);
+        ref && observer.unobserve(ref);
       };
     }
   }, [hit.currentPage, hit.pages, intersecting, page, list, index, posts]);

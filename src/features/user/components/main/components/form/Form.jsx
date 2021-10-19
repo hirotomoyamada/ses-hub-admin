@@ -10,7 +10,7 @@ export const Form = ({ index, user, icon, cover, setIcon, setCover }) => {
       <Header icon={icon} cover={cover} setIcon={setIcon} setCover={setCover} />
 
       {index === "companys" ? (
-        <Companys />
+        <Companys user={user} />
       ) : (
         index === "persons" && <Persons user={user} />
       )}

@@ -9,14 +9,14 @@ import { More } from "./components/More";
 import { Social } from "./components/Social";
 import { Url } from "./components/Url";
 
-export const Companys = () => {
+export const Companys = ({ user }) => {
   return (
     <div className={styles.form_container}>
       <Name />
       <Person />
       <Body />
       <More />
-      <Address />
+      <Address user={user} />
       <Tel />
       <Url />
       <Social />
