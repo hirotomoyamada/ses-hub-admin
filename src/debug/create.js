@@ -16,13 +16,16 @@ export const data = {
 };
 
 export const create = async () => {
+  const users = [];
+
   for (let i = 0; i < data.user; i++) {
     const uid = setting.uid();
-
+    
     const objectIDs = data.index === "companys" && (await createPost(uid));
-
     await createUser(uid, objectIDs);
   }
+
+  users.map((user) => console.log(user.payment));
 };
 
 const createPost = async (uid) => {

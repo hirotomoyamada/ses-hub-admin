@@ -93,6 +93,7 @@ export const companys = ({ uid, objectIDs, user }) => {
                 notice: false,
               },
               {
+                status: status,
                 load: false,
                 cancel: [true, false][Math.floor(Math.random() * 2)],
                 price: `price_${uid}`,
@@ -126,6 +127,7 @@ export const companys = ({ uid, objectIDs, user }) => {
       status: user.status,
       name: user.profile.name,
       person: user.profile.person,
+      body: user.profile.body,
       position: user.profile.position,
       postal: user.profile.postal,
       address: user.profile.address,
@@ -134,6 +136,7 @@ export const companys = ({ uid, objectIDs, user }) => {
       more: user.profile.more,
       region: user.profile.region,
       social: user.profile.social,
+      url: user.profile.url,
       createAt: user.createAt,
       lastLogin: user.createAt,
     };
