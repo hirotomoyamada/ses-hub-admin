@@ -3,6 +3,8 @@ import * as value from "./value";
 
 export const persons = ({ uid, user }) => {
   if (!user) {
+    const createAt =
+      data.createAt + 60 * 60 * 1000 * Math.floor(Math.random() * 720 + 1);
     return {
       icon: `icon${Math.floor(Math.random() * (36 - 18) + 18)}`,
       cover: `cover${Math.floor(Math.random() * 19)}`,
@@ -70,10 +72,10 @@ export const persons = ({ uid, user }) => {
           display: ["public", "private"][Math.floor(Math.random() * 2)],
           type: ["内容次第", "応談"][Math.floor(Math.random() * 2)],
         },
-        working: ["常駐可", "リモート希望", "どちらでも", ""][
+        resident: ["常駐可", "リモート希望", "どちらでも", ""][
           Math.floor(Math.random() * 4)
         ],
-        resident: Math.floor(Math.random() * 5 * 1),
+        working: Math.floor(Math.random() * 5 * 1),
         clothes: ["カジュアル", "スーツ可", "スーツNG", ""][
           Math.floor(Math.random() * 4)
         ],
@@ -104,14 +106,15 @@ export const persons = ({ uid, user }) => {
       },
       agree: "enable",
       status: ["enable", "hold", "disable"][Math.floor(Math.random() * 3)],
-      createAt:
-        data.createAt + 60 * 60 * 1000 * Math.floor(Math.random() * 720 + 1),
+      createAt: createAt,
+      lastLogin: createAt,
     };
   } else {
     return {
       objectID: uid,
       uid: uid,
       status: user.status,
+      name: user.profile.name,
       nickName: user.profile.nickName,
       email: user.profile.email,
 

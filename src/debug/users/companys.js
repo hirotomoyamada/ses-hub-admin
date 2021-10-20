@@ -119,6 +119,7 @@ export const companys = ({ uid, objectIDs, user }) => {
               notice: [true, false][Math.floor(Math.random() * 2)],
             },
       createAt: createAt,
+      lastLogin: createAt,
     };
   } else {
     return {

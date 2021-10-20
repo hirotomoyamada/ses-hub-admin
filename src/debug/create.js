@@ -9,10 +9,10 @@ import { persons } from "./users/persons";
 import * as setting from "./setting";
 
 export const data = {
-  index: "companys",
+  index: "persons",
   createAt: setting.timestamp(2021, 10, 1),
-  user: 5,
-  post: 5,
+  user: 10,
+  post: 10,
 };
 
 export const create = async () => {
@@ -20,7 +20,7 @@ export const create = async () => {
 
   for (let i = 0; i < data.user; i++) {
     const uid = setting.uid();
-    
+
     const objectIDs = data.index === "companys" && (await createPost(uid));
     await createUser(uid, objectIDs);
   }
