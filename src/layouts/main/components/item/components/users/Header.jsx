@@ -1,11 +1,12 @@
 import styles from "./User.module.scss";
 
-export const Header = ({ post, min}) => {
+export const Header = ({ post, min }) => {
   return (
     <div className={styles.item_main_head}>
       <div className={styles.item_row}>
         <span>{post?.name}</span>
-        {post?.person && <span>{post?.person}</span>}
+        {post?.person && <span>{post.person}</span>}
+        {post?.nickName && <span>(&nbsp;{post.nickName}&nbsp;)</span>}
 
         {!min && post?.position && (
           <div
