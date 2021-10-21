@@ -75,7 +75,7 @@ export const persons = ({ uid, user }) => {
         resident: ["常駐可", "リモート希望", "どちらでも", ""][
           Math.floor(Math.random() * 4)
         ],
-        working: Math.floor(Math.random() * 5 * 1),
+        working: Math.floor(Math.random() * 5 + 1),
         clothes: ["カジュアル", "スーツ可", "スーツNG", ""][
           Math.floor(Math.random() * 4)
         ],
