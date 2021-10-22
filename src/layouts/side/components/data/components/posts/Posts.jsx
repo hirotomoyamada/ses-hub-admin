@@ -45,13 +45,23 @@ export const Posts = ({ user, setType, setIndex }) => {
                     className={styles.posts_item}
                     key={index}
                   >
-                    <span className={styles.posts_item_tag}>
-                      {index === "matters"
-                        ? "案件"
-                        : index === "resources"
-                        ? "人材"
-                        : index === "persons" && "エンジニア"}
-                    </span>
+                    {user.index === "companys" ? (
+                      <span className={styles.posts_item_tag}>
+                        {index === "matters"
+                          ? "案件"
+                          : index === "resources"
+                          ? "人材"
+                          : index === "persons" && "エンジニア"}
+                      </span>
+                    ) : (
+                      <span className={styles.posts_item_tag}>
+                        {index === "enable"
+                          ? "承認済み"
+                          : index === "hold"
+                          ? "未承認"
+                          : index === "disable" && "ブロック"}
+                      </span>
+                    )}
 
                     <div
                       className={`${styles.posts_item_count} ${
