@@ -37,6 +37,12 @@ export const Payment = ({ user }) => {
           {!user?.payment?.trial ? "済" : "未"}
         </span>
       </div>
+      <div className={styles.data_item}>
+        <span className={styles.data_item_tag}>オプション</span>
+        <span className={styles.data_item_text}>
+          {user?.payment?.option?.freelanceDirect ? "済" : "未"}
+        </span>
+      </div>
     </div>
   );
 };
