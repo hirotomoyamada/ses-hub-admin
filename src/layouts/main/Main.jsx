@@ -8,7 +8,7 @@ import * as rootSlice from "../../features/root/rootSlice";
 import * as postSlice from "../../features/post/postSlice";
 
 import { Header } from "./components/header/Header";
-import { List } from "./components/List";
+import { List } from "./components/list/List";
 import { Modal } from "../../components/modal/Modal";
 import { Setting } from "./components/setting/Setting";
 import { Mail } from "./components/mail/Mail";
