@@ -12,7 +12,7 @@ export const data = {
   index: "companys",
   createAt: setting.timestamp(2021, 10, 1),
   user: 10,
-  post: { min: 1, max: 3 },
+  post: { min: 8, max: 15 },
 };
 
 export const create = async () => {
