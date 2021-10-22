@@ -4,7 +4,7 @@ import * as value from "./value";
 export const persons = ({ uid, user }) => {
   if (!user) {
     const createAt =
-      data.createAt + 60 * 60 * 1000 * Math.floor(Math.random() * 720 + 1);
+      data.createAt + 60 * 60 * 1000 * Math.floor(Math.random() * 528 + 1);
     return {
       icon: `icon${Math.floor(Math.random() * (36 - 18) + 18)}`,
       cover: `cover${Math.floor(Math.random() * 19)}`,
@@ -41,7 +41,10 @@ export const persons = ({ uid, user }) => {
             )[0]
         ),
 
-        body: "これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。",
+        body: [
+          "これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。",
+          "",
+        ][Math.floor(Math.random() * 2)],
         tools: [...Array(Math.floor(Math.random() * 8 + 1))].map(
           () =>
             [...value.tools].splice(
@@ -75,7 +78,9 @@ export const persons = ({ uid, user }) => {
         resident: ["常駐可", "リモート希望", "どちらでも", ""][
           Math.floor(Math.random() * 4)
         ],
-        working: Math.floor(Math.random() * 5 + 1),
+        working: [Math.floor(Math.random() * 5 + 1), ""][
+          Math.floor(Math.random() * 2)
+        ],
         clothes: ["カジュアル", "スーツ可", "スーツNG", ""][
           Math.floor(Math.random() * 4)
         ],
@@ -102,7 +107,7 @@ export const persons = ({ uid, user }) => {
       history: [],
       resume: {
         key: `${uid}-${Math.random().toString(32).substring(2)}`,
-        url: "https://storage.googleapis.com/ses-hub-resume-i1iqe/1Oup3RKN57cxU3IjlvqlRAJlcR33-r3jd6umvlh.pdf",
+        url: "https://storage.googleapis.com/ses-hub-resume-i1iqe/mwttg6s1JZOHSXETwlbguNcovPd2-ov1cjk2p87o.pdf",
       },
       agree: "enable",
       status: ["enable", "hold", "disable"][Math.floor(Math.random() * 3)],

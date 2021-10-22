@@ -9,10 +9,10 @@ import { persons } from "./users/persons";
 import * as setting from "./setting";
 
 export const data = {
-  index: "persons",
+  index: "companys",
   createAt: setting.timestamp(2021, 10, 1),
   user: 10,
-  post: 10,
+  post: { min: 1, max: 3 },
 };
 
 export const create = async () => {
@@ -35,7 +35,14 @@ const createPost = async (uid) => {
     const index = algolia.initIndex(post);
     const posts = [];
 
-    for (let i = 0; i < data.post; i++) {
+    for (
+      let i = 0;
+      i <
+      Math.floor(
+        Math.random() * (data.post.max - data.post.min) + data.post.min
+      );
+      i++
+    ) {
       posts.push(
         post === "matters"
           ? matters(uid)

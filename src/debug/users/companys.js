@@ -8,7 +8,7 @@ export const companys = ({ uid, objectIDs, user }) => {
     ];
 
     const createAt =
-      data.createAt + 60 * 60 * 1000 * Math.floor(Math.random() * 720 + 1);
+      data.createAt + 60 * 60 * 1000 * Math.floor(Math.random() * 528 + 1);
 
     return {
       icon: `icon${Math.floor(Math.random() * 17 + 1)}`,
@@ -30,7 +30,10 @@ export const companys = ({ uid, objectIDs, user }) => {
           value.firstName[Math.floor(Math.random() * value.firstName.length)]
         }`,
         position: "メンバー",
-        body: "これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。",
+        body: [
+          "これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。これはデモの概要です。",
+          "",
+        ][Math.floor(Math.random() * 2)],
         postal: `${Math.floor(Math.random() * (999 - 100) + 100)}-${Math.floor(
           Math.random() * (9999 - 1000) + 1000
         )}`,
@@ -122,24 +125,112 @@ export const companys = ({ uid, objectIDs, user }) => {
       lastLogin: createAt,
     };
   } else {
-    return {
-      objectID: uid,
-      uid: uid,
-      status: user.status,
-      name: user.profile.name,
-      person: user.profile.person,
-      body: user.profile.body,
-      position: user.profile.position,
-      postal: user.profile.postal,
-      address: user.profile.address,
-      tel: user.profile.tel,
-      email: user.profile.email,
-      more: user.profile.more,
-      region: user.profile.region,
-      social: user.profile.social,
-      url: user.profile.url,
-      createAt: user.createAt,
-      lastLogin: user.createAt,
-    };
+    if (user.payment?.option?.freelanceDirect) {
+      return {
+        objectID: uid,
+        uid: uid,
+        status: user.status,
+        freelanceDirect: "enable",
+        plan: "enable",
+        name: user.profile.name,
+        person: user.profile.person,
+        body: user.profile.body,
+        position: user.profile.position,
+        postal: user.profile.postal,
+        address: user.profile.address,
+        tel: user.profile.tel,
+        email: user.profile.email,
+        more: user.profile.more,
+        region: user.profile.region,
+        social: user.profile.social,
+        url: user.profile.url,
+        createAt: user.createAt,
+        lastLogin: user.createAt,
+      };
+    } else if (user.payment?.status !== "canceled") {
+      return {
+        objectID: uid,
+        uid: uid,
+        status: user.status,
+        plan: "enable",
+        name: user.profile.name,
+        person: user.profile.person,
+        body: user.profile.body,
+        position: user.profile.position,
+        postal: user.profile.postal,
+        address: user.profile.address,
+        tel: user.profile.tel,
+        email: user.profile.email,
+        more: user.profile.more,
+        region: user.profile.region,
+        social: user.profile.social,
+        url: user.profile.url,
+        createAt: user.createAt,
+        lastLogin: user.createAt,
+      };
+    } else {
+      return [
+        {
+          objectID: uid,
+          uid: uid,
+          status: user.status,
+          name: user.profile.name,
+          person: user.profile.person,
+          body: user.profile.body,
+          position: user.profile.position,
+          postal: user.profile.postal,
+          address: user.profile.address,
+          tel: user.profile.tel,
+          email: user.profile.email,
+          more: user.profile.more,
+          region: user.profile.region,
+          social: user.profile.social,
+          url: user.profile.url,
+          createAt: user.createAt,
+          lastLogin: user.createAt,
+        },
+        {
+          objectID: uid,
+          uid: uid,
+          status: user.status,
+          plan: "disable",
+          name: user.profile.name,
+          person: user.profile.person,
+          body: user.profile.body,
+          position: user.profile.position,
+          postal: user.profile.postal,
+          address: user.profile.address,
+          tel: user.profile.tel,
+          email: user.profile.email,
+          more: user.profile.more,
+          region: user.profile.region,
+          social: user.profile.social,
+          url: user.profile.url,
+          createAt: user.createAt,
+          lastLogin: user.createAt,
+        },
+        {
+          objectID: uid,
+          uid: uid,
+          status: user.status,
+          plan: "disable",
+          freelanceDirect: "disable",
+          name: user.profile.name,
+          person: user.profile.person,
+          body: user.profile.body,
+          position: user.profile.position,
+          postal: user.profile.postal,
+          address: user.profile.address,
+          tel: user.profile.tel,
+          email: user.profile.email,
+          more: user.profile.more,
+          region: user.profile.region,
+          social: user.profile.social,
+          url: user.profile.url,
+          createAt: user.createAt,
+          lastLogin: user.createAt,
+        },
+      ][Math.floor(Math.random() * 3)];
+    }
   }
 };
