@@ -42,8 +42,7 @@ export const List = ({ index, posts, search }) => {
     return () => {
       ref && observer.unobserve(ref);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hit.pages, intersecting, page]);
+  }, [hit.pages, intersecting, page, list, hit]);
 
   useEffect(() => {
     intersecting &&
