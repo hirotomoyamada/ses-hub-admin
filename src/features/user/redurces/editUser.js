@@ -22,11 +22,13 @@ export const editUser = (state, action) => {
       linkedIn: action.payload.user.social.linkedIn,
     };
   }
+
   if (action.payload.index === "persons") {
     state.user.icon = action.payload.user.icon;
     state.user.cover = action.payload.user.cover;
     state.user.status = action.payload.user.status;
     state.user.updateAt = action.payload.user.updateAt;
+    state.user.nickName = action.payload.user.nickName;
     state.user.name = action.payload.user.name;
     state.user.body = action.payload.user.body;
     state.user.age = action.payload.user.age;
