@@ -31,7 +31,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-to-print": "^2.13.0",
-    "use-postal-jp": "^2.0.1"
+    "use-postal-jp": "1.1.4"
   },
   "scripts": {
     "start": "dotenv -e .env.dev react-scripts start",

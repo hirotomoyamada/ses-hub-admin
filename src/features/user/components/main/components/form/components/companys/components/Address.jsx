@@ -1,17 +1,23 @@
 import styles from "../../../Form.module.scss";
+
 import { useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 import { usePostalJp } from "use-postal-jp";
 
-export const Address = ({ user }) => {
+export const Address = () => {
   const {
     register,
     watch,
     formState: { errors },
   } = useFormContext();
 
+  const { address, pending, setPostalCode } = usePostalJp();
+
   const postal = watch("postal");
 
-  const [address, loading] = usePostalJp(!postal ? user?.postal : postal, true);
+  useEffect(() => {
+    setPostalCode(postal);
+  }, [setPostalCode, postal]);
 
   return (
     <div className={styles.form_col}>
@@ -47,12 +53,12 @@ export const Address = ({ user }) => {
             }`}
             placeholder="東京都新宿区新宿4-3-15 レイフラット新宿B 3F THE HUB"
             defaultValue={
-              !loading
-                ? `${address?.prefecture ? address.prefecture : ""}${
-                    address?.address1 ? address.address1 : ""
-                  }${address?.address2 ? address.address2 : ""}${
-                    address?.address3 ? address.address3 : ""
-                  }${address?.address4 ? address.address4 : ""}`
+              !pending
+                ? `${address.prefecture ? address.prefecture : ""}${
+                    address.address1 ? address.address1 : ""
+                  }${address.address2 ? address.address2 : ""}${
+                    address.address3 ? address.address3 : ""
+                  }${address.address4 ? address.address4 : ""}`
                 : "検索中"
             }
             {...register("address", {
