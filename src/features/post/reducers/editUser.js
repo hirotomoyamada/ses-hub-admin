@@ -29,6 +29,8 @@ export const editUser = (state, action) => {
     user.cover = action.payload.user.cover;
     user.status = action.payload.user.status;
     user.updateAt = action.payload.user.updateAt;
+    user.state = action.payload.user.state;
+    user.nickName = action.payload.user.nickName;
     user.name = action.payload.user.name;
     user.body = action.payload.user.body;
     user.age = action.payload.user.age;
@@ -39,7 +41,6 @@ export const editUser = (state, action) => {
     user.tools = action.payload.user.tools;
     user.skills = action.payload.user.skills;
     user.urls = action.payload.user.urls;
-    user.data = action.payload.user.data;
     user.costs = action.payload.user.costs;
     user.working = action.payload.user.working;
     user.resident = action.payload.user.resident;

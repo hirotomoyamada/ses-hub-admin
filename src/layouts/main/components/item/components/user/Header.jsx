@@ -45,7 +45,12 @@ export const Header = ({ post, min }) => {
 
         {!min && post?.state && (
           <div
-            className={`${styles.item_category} ${styles.item_category_trialing}`}
+            className={`${styles.item_category} ${styles.item_category_state} ${
+              (post?.state === "確定" ||
+                post?.state === "商談中" ||
+                post?.state === "情報収集中") &&
+              styles.item_category_disable
+            } ${post?.state === "至急" && styles.item_category_hurry}`}
           >
             <span>{post?.state}</span>
           </div>

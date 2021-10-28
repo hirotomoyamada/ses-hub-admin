@@ -5,8 +5,8 @@ import * as rootSlice from "../../../../features/root/rootSlice";
 import * as userSlice from "../../../../features/user/userSlice";
 import * as postSlice from "../../../../features/post/postSlice";
 
-import { Post } from "./components/posts/Post";
-import { User } from "./components/users/User";
+import { Post } from "./components/post/Post";
+import { User } from "./components/user/User";
 
 export const Item = ({ index, post, user, min }) => {
   const dispatch = useDispatch();

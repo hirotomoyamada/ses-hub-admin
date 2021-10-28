@@ -113,6 +113,18 @@ $width: responsive-width(pc);
     &_trialing {
       background: $add_clr;
     }
+
+    &_state {
+      background: $acnt_ext_clr;
+    }
+
+    &_disable {
+      background: $sub_clr;
+    }
+
+    &_hurry {
+      background: $remove_clr;
+    }
   }
 
   &_time {
