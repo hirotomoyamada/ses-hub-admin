@@ -9,6 +9,7 @@ $width: responsive-width(pc);
   overflow-y: scroll;
 
   &_container {
+    position: relative;
     padding: 64px 32px 32px;
 
     display: flex;
@@ -146,6 +147,28 @@ $width: responsive-width(pc);
 
     &_error {
       border: 1px solid $remove_clr;
+    }
+  }
+
+  &_state {
+    position: absolute;
+    top: 16px;
+    right: 32px;
+
+    background: $acnt_ext_clr;
+    width: 112px;
+    height: 32px;
+
+    border-radius: 16px;
+    color: $base_clr;
+    text-align: center;
+
+    &_disable {
+      background: $sub_clr;
+    }
+
+    &_hurry {
+      background: $remove_clr;
     }
   }
 

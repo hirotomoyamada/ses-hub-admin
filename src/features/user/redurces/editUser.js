@@ -27,7 +27,7 @@ export const editUser = (state, action) => {
     state.user.icon = action.payload.user.icon;
     state.user.cover = action.payload.user.cover;
     state.user.status = action.payload.user.status;
-    state.user.updateAt = action.payload.user.updateAt;
+    state.user.state = action.payload.user.state;
     state.user.nickName = action.payload.user.nickName;
     state.user.name = action.payload.user.name;
     state.user.body = action.payload.user.body;
@@ -44,6 +44,7 @@ export const editUser = (state, action) => {
     state.user.resident = action.payload.user.resident;
     state.user.clothes = action.payload.user.clothes;
     state.user.period = action.payload.user.period;
+    state.user.updateAt = action.payload.user.updateAt;
   }
 
   const editUser = functions.httpsCallable("admin-editUser");

@@ -1,5 +1,6 @@
 import styles from "../../Form.module.scss";
 
+import { State } from "./components/State";
 import { NickName } from "./components/NickName";
 import { Name } from "./components/Name";
 import { Body } from "./components/Body";
@@ -20,6 +21,7 @@ import { Costs } from "./components/Costs";
 export const Persons = ({ user }) => {
   return (
     <div className={styles.form_container}>
+      <State />
       <NickName />
       <Name />
       <Body />

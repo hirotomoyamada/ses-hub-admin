@@ -79,11 +79,14 @@ export const fetchUser = (state, action) => {
     state.user.cover = action.payload.cover;
     state.user.status = action.payload.status;
     state.user.agree = action.payload.agree;
+    state.user.resume = action.payload.resume;
     state.user.provider = action.payload.provider;
     state.user.createAt = action.payload.createAt;
     state.user.updateAt = action.payload.updateAt;
     state.user.lastLogin = action.payload.lastLogin;
 
+    state.user.state = action.payload.state;
+    state.user.nickName = action.payload.nickName;
     state.user.name = action.payload.name;
     state.user.body = action.payload.body;
     state.user.position = action.payload.position;
@@ -94,7 +97,6 @@ export const fetchUser = (state, action) => {
     state.user.tools = action.payload.tools;
     state.user.skills = action.payload.skills;
     state.user.urls = action.payload.urls;
-    state.user.data = action.payload.data;
     state.user.costs = {
       min: action.payload.costs.min,
       max: action.payload.costs.max,
