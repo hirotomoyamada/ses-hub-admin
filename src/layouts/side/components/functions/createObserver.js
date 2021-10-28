@@ -9,20 +9,20 @@ export const createObserver = (
   const listHeight = JSON.stringify(
     list?.current?.getBoundingClientRect().height
   );
-  const innerHeight = window.innerHeight + 100;
 
-  if (listHeight > innerHeight) {
+  if (listHeight > 100) {
     return new IntersectionObserver(
       ([results]) => {
         if (results.isIntersecting && !intersecting) {
           if (page < hit.pages) {
-            setIntersecting(true);
+            setIntersecting(results.isIntersecting);
           }
           setPage((prevPage) => prevPage + 1);
         }
       },
       {
-        rootMargin: `0px 0px ${innerHeight}px 0px`,
+        root: list.current,
+        rootMargin: `0px`,
       }
     );
   }

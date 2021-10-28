@@ -1,11 +1,8 @@
 import styles from "./Main.module.scss";
+import { useSelector } from "react-redux";
+import { usePosts } from "./hook/usePosts";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { fetchPosts } from "../../features/post/functions/fetchPosts";
 import * as rootSlice from "../../features/root/rootSlice";
-import * as postSlice from "../../features/post/postSlice";
 
 import { Header } from "./components/header/Header";
 import { List } from "./components/list/List";
@@ -15,34 +12,10 @@ import { Mail } from "./components/mail/Mail";
 import { Fetch } from "../../components/load/Load";
 
 export const Main = ({ index }) => {
-  const dispatch = useDispatch();
-
   const data = useSelector(rootSlice.data);
   const search = useSelector(rootSlice.search);
-  const posts = useSelector(postSlice.posts)[index.page];
 
-  useEffect(() => {
-    index.page !== "setting" &&
-      index.page !== "mail" &&
-      dispatch(
-        fetchPosts({
-          index: index.page,
-          value: search.value,
-          target: search.target,
-          type: search.type,
-          filter: search.filter,
-          fetch: posts.length && true,
-        })
-      );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    dispatch,
-    index.page,
-    search.value,
-    search.target,
-    search.type,
-    search.filter,
-  ]);
+  const posts = usePosts(index, search);
 
   return index.page === "setting" ? (
     <main className={styles.main}>

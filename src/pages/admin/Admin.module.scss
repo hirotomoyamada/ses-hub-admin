@@ -1,0 +1,10 @@
+@import "../../styles/config";
+@import "../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.admin {
+  width: 100vw;
+  height: 100vh;
+}

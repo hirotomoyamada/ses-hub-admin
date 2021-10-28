@@ -1,8 +1,7 @@
 import styles from "./Side.module.scss";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useFetch } from "./hook/useFetch";
 
-import { extractPosts } from "../../features/user/functions/extractPosts";
 import * as rootSlice from "../../features/root/rootSlice";
 import * as userSlice from "../../features/user/userSlice";
 
@@ -10,44 +9,10 @@ import { Data } from "./components/data/Data";
 import { List } from "./components/list/List";
 
 export const Side = () => {
-  const dispatch = useDispatch();
   const user = useSelector(userSlice.user);
-  const posts = useSelector(userSlice.posts);
   const edit = useSelector(rootSlice.index).edit;
 
-  const [type, setType] = useState("data");
-  const [index, setIndex] = useState("matters");
-
-  useEffect(() => {
-    return () => {
-      setType("data");
-    };
-  }, [user]);
-
-  useEffect(() => {
-    if (type !== "data") {
-      (type !== "follows" && edit !== "persons") || type === "requests"
-        ? user?.[type]?.[index]?.[0] &&
-          dispatch(
-            extractPosts({
-              index: index,
-              type: type,
-              user: user,
-            })
-          )
-        : user?.[type]?.[0] &&
-          dispatch(
-            extractPosts({
-              index:
-                index === "enable" || index === "hold" || index === "disable"
-                  ? "companys"
-                  : index,
-              type: type,
-              user: user,
-            })
-          );
-    }
-  }, [dispatch, edit, index, type, user]);
+  const [posts, type, setType, index, setIndex] = useFetch(user, edit);
 
   const handleOpen = (target) => {
     if (target === "follows") {
