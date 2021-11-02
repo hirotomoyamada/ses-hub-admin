@@ -5,14 +5,18 @@ export const Header = ({ post, min }) => {
     <div className={styles.item_main_head}>
       <div className={styles.item_row}>
         <span>{post?.name}</span>
-        {post?.person && <span>{post.person}</span>}
+        {post?.type !== "corporate" && post?.person && (
+          <span>{post.person}</span>
+        )}
         {post?.nickName && <span>(&nbsp;{post.nickName}&nbsp;)</span>}
 
         {!min && post?.position && (
           <div
-            className={`${styles.item_category} ${styles.item_category_position}`}
+            className={`${styles.item_category} ${
+              styles.item_category_position
+            } ${post?.type === "corporate" && styles.item_category_corporate}`}
           >
-            <span>{post?.position}</span>
+            <span>{post?.type !== "corporate" ? post?.position : "法人"}</span>
           </div>
         )}
 

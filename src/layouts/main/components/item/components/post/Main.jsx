@@ -18,7 +18,9 @@ export const Main = ({ post, index }) => {
       </div>
       <div className={styles.item_row}>
         <span className={styles.item_user}>{post?.user?.name}</span>
-        <span className={styles.item_user}>{post?.user?.person}</span>
+        {post?.user?.type !== "corporate" && (
+          <span className={styles.item_user}>{post?.user?.person}</span>
+        )}
       </div>
     </div>
   );

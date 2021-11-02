@@ -6,6 +6,12 @@ export const Payment = ({ user }) => {
   return (
     <div className={styles.data_col}>
       <div className={styles.data_item}>
+        <span className={styles.data_item_tag}>タイプ</span>
+        <span className={styles.data_item_text}>
+          {user?.type !== "corporate" ? "個人" : "法人"}
+        </span>
+      </div>
+      <div className={styles.data_item}>
         <span className={styles.data_item_tag}>プラン</span>
         <span className={styles.data_item_text}>
           {user?.payment?.status === "active"
