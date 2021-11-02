@@ -10,6 +10,9 @@ import { Announce } from "./components/announce/Announce";
 // import { create } from "./debug/create";
 // create();
 
+// import { insert } from "./firebase";
+// insert();
+
 const App = () => {
   const admin = useApp();
 

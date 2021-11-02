@@ -26,14 +26,14 @@ export const insert = async () => {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        // doc.ref
-        //   .set(
-        //     {
-        //       home: doc.data().follows.slice(0, 15),
-        //     },
-        //     { merge: true }
-        //   )
-        //   .catch((e) => {});
+        doc.ref
+          .set(
+            {
+              type: ["individual", "corporate"][Math.floor(Math.random() * 2)],
+            },
+            { merge: true }
+          )
+          .catch((e) => {});
       });
     })
     .catch((e) => {});
