@@ -5,7 +5,17 @@ export const Posts = ({ user, posts, target, index, single }) => {
     ? posts?.[target]?.map(
         (post) =>
           post && (
-            <Item key={post.uid} index={index} post={post} user={user} min />
+            <Item
+              key={
+                index === "matters" || index === "resources"
+                  ? post.objectID
+                  : post.uid
+              }
+              index={index}
+              post={post}
+              user={user}
+              min
+            />
           )
       )
     : posts?.[target]?.[index]?.map(
@@ -15,9 +25,9 @@ export const Posts = ({ user, posts, target, index, single }) => {
               key={
                 index === "matters" || index === "resources"
                   ? post.objectID
-                  : index === "persons" && post.uid
+                  : post.uid
               }
-              index={index}
+              index={target !== "requests" ? index : "companys"}
               post={post}
               user={user}
               min
