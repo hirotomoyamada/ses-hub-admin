@@ -48,35 +48,19 @@ export const useFetch = (index, user, type, target) => {
   }, [hit, intersecting, page]);
 
   useEffect(() => {
-    if (type !== "follows") {
-      intersecting &&
-        hit.pages &&
-        page !== hit.pages &&
-        dispatch(
-          extractPosts({
-            index: index,
-            type: type,
-            user: user,
-            page: page,
-          })
-        ).then(() => {
-          setIntersecting(!intersecting);
-        });
-    } else {
-      intersecting &&
-        hit.pages &&
-        page !== hit.pages &&
-        dispatch(
-          extractPosts({
-            index: "companys",
-            type: type,
-            user: user,
-            page: page,
-          })
-        ).then(() => {
-          setIntersecting(!intersecting);
-        });
-    }
+    intersecting &&
+      hit.pages &&
+      page !== hit.pages &&
+      dispatch(
+        extractPosts({
+          index: type !== "follows" ? index : "companys",
+          type: type,
+          user: user,
+          page: page,
+        })
+      ).then(() => {
+        setIntersecting(!intersecting);
+      });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, list]);

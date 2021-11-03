@@ -15,7 +15,6 @@ export const List = ({
   posts,
   user,
   index,
-  edit,
   handleIndex,
   handleOpen,
   target,
@@ -27,6 +26,10 @@ export const List = ({
     handleIndex(index);
   };
 
+  const single =
+    (user.index === "companys" && target === "follows") ||
+    (user.index === "persons" && target !== "requests");
+
   return (
     <div className={root.side_type} ref={list}>
       <Header type={type} target={target} handleOpen={handleOpen} />
@@ -37,30 +40,30 @@ export const List = ({
         }`}
       >
         <div className={styles.list}>
-          <Index
-            edit={edit}
-            type={type}
-            index={index}
-            handleIndexScroll={handleIndexScroll}
-          />
+          {!single && (
+            <Index
+              type={type}
+              index={index}
+              handleIndexScroll={handleIndexScroll}
+            />
+          )}
 
-          {target === "follows" && posts?.[target]?.[0] ? (
+          {posts?.[target]?.[0] || posts?.[target]?.[index]?.[0] ? (
             <div
-              className={`${styles.list_inner} ${styles.list_inner_follows}`}
+              className={`${styles.list_inner} 
+              ${single && styles.list_inner_single}
+              `}
               ref={inner}
             >
-              <Posts user={user} posts={posts} target={target} index={index} />
+              <Posts
+                user={user}
+                posts={posts}
+                target={target}
+                index={index}
+                single={single}
+              />
 
-              {((target === "follows" && posts?.[target]?.length >= 50) ||
-                posts?.[target]?.[index]?.length >= 50) && (
-                <Load load={load} page={page} hit={hit} />
-              )}
-            </div>
-          ) : posts?.[target]?.[index]?.[0] ? (
-            <div className={styles.list_inner} ref={inner}>
-              <Posts user={user} posts={posts} target={target} index={index} />
-
-              {((target === "follows" && posts?.[target]?.length >= 50) ||
+              {(posts?.[target]?.length >= 50 ||
                 posts?.[target]?.[index]?.length >= 50) && (
                 <Load load={load} page={page} hit={hit} />
               )}

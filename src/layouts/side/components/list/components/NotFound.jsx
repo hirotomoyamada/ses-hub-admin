@@ -18,7 +18,10 @@ export const NotFound = ({ index }) => {
             ? "案件情報がありません"
             : index === "resources"
             ? "人材情報がありません"
-            : index === "companys"
+            : index === "companys" ||
+              index === "enable" ||
+              index === "hold" ||
+              index === "disable"
             ? "メンバー情報がありません"
             : index === "persons" && "エンジニア情報がありません"}
         </span>

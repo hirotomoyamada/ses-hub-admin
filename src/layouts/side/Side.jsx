@@ -50,7 +50,6 @@ export const Side = () => {
         <List
           key={post}
           type={type}
-          edit={edit}
           index={index}
           posts={posts}
           user={user}

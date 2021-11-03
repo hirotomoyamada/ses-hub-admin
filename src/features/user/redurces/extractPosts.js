@@ -1,5 +1,8 @@
 export const extractPosts = (state, action) => {
-  if (action.payload.type === "follows") {
+  if (
+    (state.user.index === "companys" && action.payload.type === "follows") ||
+    (state.user.index === "persons" && action.payload.type !== "requests")
+  ) {
     if (action.payload.hit.currentPage !== 0 && action.payload.hit.pages > 1) {
       state.posts[action.payload.type] = [
         ...state.posts[action.payload.type],

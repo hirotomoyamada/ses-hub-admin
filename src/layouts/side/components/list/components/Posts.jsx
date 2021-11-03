@@ -1,7 +1,7 @@
 import { Item } from "../../../../../layouts/main/components/item/Item";
 
-export const Posts = ({ user, posts, target, index }) => {
-  return target === "follows"
+export const Posts = ({ user, posts, target, index, single }) => {
+  return single
     ? posts?.[target]?.map(
         (post) =>
           post && (
