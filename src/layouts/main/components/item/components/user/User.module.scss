@@ -11,6 +11,7 @@ $width: responsive-width(pc);
 
   display: grid;
   grid-template-columns: 48px 1fr 248px;
+  align-items: center;
   gap: 12px;
 
   color: $main_clr;
