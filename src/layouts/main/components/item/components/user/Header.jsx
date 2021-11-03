@@ -10,13 +10,19 @@ export const Header = ({ post, min }) => {
         )}
         {post?.nickName && <span>(&nbsp;{post.nickName}&nbsp;)</span>}
 
-        {!min && post?.position && (
+        {!min && (
           <div
             className={`${styles.item_category} ${
               styles.item_category_position
             } ${post?.type === "corporate" && styles.item_category_corporate}`}
           >
-            <span>{post?.type !== "corporate" ? post?.position : "法人"}</span>
+            <span>
+              {post?.type !== "corporate"
+                ? post?.position
+                  ? post?.position
+                  : "未設定"
+                : "法人"}
+            </span>
           </div>
         )}
 
