@@ -25,7 +25,7 @@ export const Persons = ({ post }) => {
         <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.item_icon} />
         <span>{post?.location}</span>
       </div>
-      {post?.follows[0] && (
+      {post?.follows?.[0] && (
         <div className={styles.item_row}>
           <FontAwesomeIcon icon={faUsers} className={styles.item_icon_follow} />
           <span>{post?.follows?.length}人</span>
