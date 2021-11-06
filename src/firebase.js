@@ -3,6 +3,8 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/functions";
 
+// import { algolia } from "./algolia";
+
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -21,20 +23,14 @@ export const providerTwitter = new firebase.auth.TwitterAuthProvider();
 export const providerGithub = new firebase.auth.GithubAuthProvider();
 
 export const insert = async () => {
+  // const index = algolia.initIndex("companys");
+  // const timestamp = Date.now();
+
   await db
     .collection("companys")
     .get()
     .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        doc.ref
-          .set(
-            {
-              type: ["individual", "corporate"][Math.floor(Math.random() * 2)],
-            },
-            { merge: true }
-          )
-          .catch((e) => {});
-      });
+      querySnapshot.forEach(async (doc) => {});
     })
     .catch((e) => {});
 };
