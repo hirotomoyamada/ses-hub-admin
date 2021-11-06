@@ -112,7 +112,7 @@ export const fetchUser = (state, action) => {
     state.user.home = action.payload.home;
     state.user.likes = action.payload.likes;
     state.user.entries = action.payload.entries;
-    state.user.history = action.payload.history;
+    state.user.histories = action.payload.histories;
 
     state.user.requests = {
       enable: action.payload.requests.enable,
@@ -124,7 +124,7 @@ export const fetchUser = (state, action) => {
       follows: [],
       likes: [],
       entries: [],
-      history: [],
+      histories: [],
       requests: {
         enable: [],
         hold: [],

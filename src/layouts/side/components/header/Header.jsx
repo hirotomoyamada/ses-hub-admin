@@ -19,7 +19,7 @@ export const Header = ({ target, type, handleOpen }) => {
         ? "出力"
         : target === "requests"
         ? "リクエスト"
-        : target === "history"
+        : target === "histories"
         ? "履歴"
         : target === "entries" && "問い合わせ"}
     </button>
