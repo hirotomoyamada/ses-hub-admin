@@ -26,8 +26,8 @@ export const NickName = () => {
               message: "2文字以上で入力してください",
             },
             maxLength: {
-              value: 16,
-              message: "16文字以内で入力してください",
+              value: 18,
+              message: "18文字以内で入力してください",
             },
           })}
         />
