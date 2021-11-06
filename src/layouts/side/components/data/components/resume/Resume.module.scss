@@ -35,10 +35,6 @@ $width: responsive-width(pc);
 
     transition: all 0.4s;
 
-    @media (max-width: responsive-width(sp)) {
-      height: 120px;
-    }
-
     & > a {
       width: 100%;
       height: 100%;
@@ -59,10 +55,6 @@ $width: responsive-width(pc);
 
       font-size: 14px;
 
-      @media (max-width: responsive-width(sp)) {
-        font-size: 10px;
-      }
-
       &:hover {
         opacity: 0.7;
       }
@@ -82,10 +74,6 @@ $width: responsive-width(pc);
     &_icon {
       color: $remove_clr;
       font-size: 48px;
-
-      @media (max-width: responsive-width(sp)) {
-        font-size: 36px;
-      }
     }
 
     &:hover {
@@ -101,21 +89,18 @@ $width: responsive-width(pc);
     right: -14px;
     z-index: 1;
 
+    width: 24px;
+    height: 24px;
     border-radius: 16px;
 
-    color: $acnt_clr;
-    font-size: 28px !important;
+    background: $acnt_clr;
+    color: $base_clr;
+    font-size: 24px !important;
 
     transition: all 0.4s !important;
 
     &:hover {
       opacity: 0.8;
-    }
-
-    @media (max-width: responsive-width(sp)) {
-      top: -10px;
-      right: -10px;
-      font-size: 20px !important;
     }
 
     &_delete {
@@ -140,14 +125,6 @@ $width: responsive-width(pc);
     line-height: 28px;
 
     transition: all 0.4s;
-
-    @media (max-width: responsive-width(sp)) {
-      height: 20px;
-      padding: 0 8px;
-
-      line-height: 20px;
-      font-size: 10px;
-    }
 
     &:hover {
       opacity: 0.8;
@@ -175,10 +152,6 @@ $width: responsive-width(pc);
       content: "※";
       display: block;
       margin-right: 4px;
-    }
-
-    @media (max-width: responsive-width(sp)) {
-      font-size: 10px;
     }
   }
 }
