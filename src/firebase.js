@@ -3,8 +3,6 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/functions";
 
-// import { algolia } from "./algolia";
-
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -23,14 +21,34 @@ export const providerTwitter = new firebase.auth.TwitterAuthProvider();
 export const providerGithub = new firebase.auth.GithubAuthProvider();
 
 export const insert = async () => {
-  // const index = algolia.initIndex("companys");
-  // const timestamp = Date.now();
-
   await db
-    .collection("companys")
+    .collection("persons")
     .get()
     .then((querySnapshot) => {
-      querySnapshot.forEach(async (doc) => {});
+      querySnapshot.forEach((doc) => {
+        // データ 追加
+        doc.ref
+          .set(
+            {
+              // histories: [],
+            },
+            { merge: true }
+          )
+          .catch((e) => {
+            console.log(e);
+          });
+
+        // データ 削除
+        doc.ref
+          .update({
+            // history: firebase.firestore.FieldValue.delete(),
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      });
     })
-    .catch((e) => {});
+    .catch((e) => {
+      console.log(e);
+    });
 };
