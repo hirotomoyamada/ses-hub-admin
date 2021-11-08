@@ -35,9 +35,7 @@ export const postSlice = createSlice({
 export const { selectPost, editPost, deletePost } = postSlice.actions;
 
 export const posts = (state) => state.post.posts;
-
 export const post = (state) => state.post.post;
-
 export const hit = (state) => state.post.hit;
 
 export default postSlice.reducer;

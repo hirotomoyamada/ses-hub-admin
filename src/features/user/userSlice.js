@@ -15,6 +15,7 @@ export const userSlice = createSlice({
   reducers: {
     selectUser: (state, action) => reducers.selectUser(state, action),
     editUser: (state, action) => reducers.editUser(state, action),
+    resetUser: (state, action) => reducers.resetUser(state, action),
     deleteResume: (state, action) => reducers.deleteResume(state, action),
   },
 
@@ -48,12 +49,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const { selectUser, editUser, deleteResume } = userSlice.actions;
+export const { selectUser, editUser, resetUser, deleteResume } =
+  userSlice.actions;
 
 export const user = (state) => state.user.user;
-
+export const users = (state) => state.user.users;
 export const posts = (state) => state.user.posts;
-
 export const hit = (state) => state.user.hit;
 
 export default userSlice.reducer;

@@ -5,5 +5,23 @@
 $width: responsive-width(pc);
 
 .profile {
-  
+  background: $acnt_bg_clr;
+  border: 1px solid $acnt_clr;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  padding: 4px 16px;
+
+  display: flex;
+  gap: 24px;
+
+  &_wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_icon {
+    color: $acnt_clr;
+  }
 }

@@ -29,5 +29,5 @@ export const initialState = {
     currentPage: 0,
   },
 
-  selectUser: [],
+  users: [],
 };

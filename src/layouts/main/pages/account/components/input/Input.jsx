@@ -7,20 +7,33 @@ import { useDispatch } from "react-redux";
 import { useFormContext } from "react-hook-form";
 
 import { fetchUser } from "../../../../../../features/user/actions/fetchUser";
-
+import * as userSlice from "../../../../../../features/user/userSlice";
 export const Input = ({ i, index }) => {
   const dispatch = useDispatch();
-  const { register, watch, reset } = useFormContext();
+  const { register, watch, setValue } = useFormContext();
 
   const uid = watch(`user[${i}].uid`);
 
   useEffect(() => {
     uid?.length === 28 &&
-      dispatch(fetchUser({ index: index, uid: uid, type: "selectUser" }));
-  }, [dispatch, index, uid]);
+      dispatch(fetchUser({ index: index, uid: uid, type: "users", i: i }));
+  }, [dispatch, i, index, uid]);
 
   const handleReset = () => {
-    reset();
+    setValue(`user[${i}].uid`, "", {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+    setValue(`user[${i}].status`, "", {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+    setValue(`user[${i}].option`, "none", {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+    
+    dispatch(userSlice.resetUser(i))
   };
 
   return (

@@ -1,5 +1,5 @@
 export const resetUser = (state, action) => {
-  if (!action.payload) {
+  if (typeof action.payload !== "number") {
     state.user = {};
 
     state.posts = {
@@ -29,5 +29,7 @@ export const resetUser = (state, action) => {
       pages: 0,
       currentPage: 0,
     };
+  } else {
+    state.users[action.payload] = null;
   }
 };

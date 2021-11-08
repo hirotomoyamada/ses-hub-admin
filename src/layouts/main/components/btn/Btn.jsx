@@ -1,14 +1,14 @@
 import styles from "./Btn.module.scss";
 
-export const Btn = ({ index, handleIndex }) => {
+export const Btn = ({ index, handleIndex, disable }) => {
   return (
-    <div className={styles.btn}>
+    <div className={`${styles.btn}`}>
       <div className={styles.btn_wrap}>
         <button
           type="button"
           className={`${styles.btn_index} ${
             index === "companys" && styles.btn_index_sh
-          }`}
+          } ${disable && styles.btn_index_disable}`}
           onClick={() => handleIndex("companys")}
         >
           SES_HUB
@@ -18,7 +18,7 @@ export const Btn = ({ index, handleIndex }) => {
           type="button"
           className={`${styles.btn_index} ${
             index === "persons" && styles.btn_index_fd
-          }`}
+          } ${disable && styles.btn_index_disable}`}
           onClick={() => handleIndex("persons")}
         >
           Freelance Direct

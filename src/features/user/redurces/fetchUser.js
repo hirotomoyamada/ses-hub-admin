@@ -1,10 +1,10 @@
 export const fetchUser = (state, action) => {
-  if (action.payload.type !== "selectUser") {
+  if (action.payload.type !== "users") {
     action.payload.user.index === "companys"
       ? companys(state, action)
       : action.payload.user.index === "persons" && persons(state, action);
   } else {
-    state.selectUser = [...state.selectUser, action.payload.user];
+    state.users[action.payload.i] = action.payload.user;
   }
 };
 

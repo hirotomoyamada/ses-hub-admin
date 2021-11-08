@@ -3,13 +3,16 @@ import { functions } from "../../../firebase";
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async (data) => {
   const fetchUser = functions.httpsCallable("admin-fetchUser");
+
+  const type = data.type;
+  const i = data.i;
+
   const user = fetchUser({
     index: data.index,
     uid: data.uid,
-    type: data.type,
   })
     .then(({ data }) => {
-      return data;
+      return { user: data, type: type, i: i };
     })
     .catch((e) => {});
 

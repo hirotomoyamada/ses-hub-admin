@@ -43,6 +43,10 @@ $width: responsive-width(pc);
       color: $base_clr;
       background: $add_clr;
     }
+    
+    &_disable {
+      pointer-events: none;
+    }
   }
 
   &_submit {

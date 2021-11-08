@@ -6,19 +6,18 @@ $width: responsive-width(pc);
 
 .toggle {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   background: $bg_clr;
-  width: 220px;
+  width: 270px;
   height: 40px;
   border-radius: 8px;
   font-size: auto-clamp(11px, 12px);
   padding: 3px;
   border: 1px solid $bdr_clr;
 
-  &_option {
-    grid-template-columns: repeat(3, 1fr);
-    width: 330px;
+  &_disable {
+    pointer-events: none;
   }
 
   input {
@@ -33,10 +32,37 @@ $width: responsive-width(pc);
     display: flex;
     justify-content: center;
     line-height: 32px;
+
+    transition: all 0.4s;
   }
 
-  input:checked + &_btn {
+  input:checked + &_active {
     background: $acnt_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_trialing {
+    background: $add_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_canceled {
+    background: $promo_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_enable {
+    background: $acnt_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_disable {
+    background: $remove_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_none {
+    background: $sub_clr;
     color: $base_clr;
   }
 }

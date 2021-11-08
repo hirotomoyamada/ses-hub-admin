@@ -1,9 +1,10 @@
 import styles from "./Account.module.scss";
 
 import { useForm, FormProvider } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import * as rootSlice from "../../../../features/root/rootSlice";
+import * as userSlice from "../../../../features/user/userSlice";
 
 import { Btn } from "../../components/btn/Btn";
 import { Input } from "./components/input/Input";
@@ -12,10 +13,13 @@ import { Profile } from "./components/profile/Profile";
 
 export const Account = ({ index }) => {
   const dispatch = useDispatch();
+  const users = useSelector(userSlice.users);
 
   const methods = useForm({});
 
-  const handleEdit = () => {};
+  const handleEdit = (data) => {
+    console.log(data);
+  };
 
   const handleIndex = (index) => {
     dispatch(rootSlice.handleIndex({ edit: index }));
@@ -27,14 +31,14 @@ export const Account = ({ index }) => {
         className={styles.account}
         onSubmit={methods.handleSubmit(handleEdit)}
       >
-        <Main index={index} />
-        <Btn handleIndex={handleIndex} index={index} />
+        <Main index={index} users={users} />
+        <Btn handleIndex={handleIndex} index={index} disable={true} />
       </form>
     </FormProvider>
   );
 };
 
-const Main = ({ index }) => {
+const Main = ({ index, users }) => {
   const account = [];
   const length = 20;
 
@@ -43,9 +47,9 @@ const Main = ({ index }) => {
       <div className={styles.account_container} key={i}>
         <div className={styles.account_wrap}>
           <Input i={i} index={index} />
-          <Toggle i={i} />
+          <Toggle i={i} user={users[i]} />
         </div>
-        <Profile i={i} />
+        <Profile user={users[i]} />
       </div>
     );
   }
