@@ -22,7 +22,7 @@ export const Account = ({ index }) => {
 
   const handleEdit = (data) => {
     const array = data.user
-      .filter((user, index) => user.uid && !users[index].payment.price)
+      .filter((user, index) => user.uid && !users[index]?.payment?.price)
       .map((user) =>
         user.option !== "none"
           ? {

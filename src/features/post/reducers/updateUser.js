@@ -1,13 +1,16 @@
 export const updateUser = (state, action) => {
+  console.log(action.payload);
   for (const user of action.payload) {
     const target = state.posts.companys.find((post) => post?.uid === user.uid);
+    
+    if (target) {
+      target.payment.status = user.status;
 
-    target.payment.status = user.status;
-
-    if (user.option) {
-      target.payment.option = {
-        freelanceDirect: user.option === "enable" ? true : false,
-      };
+      if (user.option) {
+        target.payment.option = {
+          freelanceDirect: user.option === "enable" ? true : false,
+        };
+      }
     }
   }
 };
