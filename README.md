@@ -8,6 +8,12 @@
 |     SES_HUB      | enable  |         [URL](https://ses-hub.app/)          |  [URL](https://ses-hub-admin-2c308.web.app/)   |
 | Freelance Direct | enable  |     [URL](https://freelance-direct.app/)     | [URL](https://freelance-direct-2855f.web.app/) |
 
+### ブランチ
+
+`main` 稼働しているブランチ
+`hotfix` 緊急性がある修正を行うブランチ
+`dev` 主に開発を行うブランチ ※機能別は、ここから派生する
+
 ### ディレクトリ
 
 ```
