@@ -5,10 +5,10 @@ import { usePosts } from "./hook/usePosts";
 import * as rootSlice from "../../features/root/rootSlice";
 
 import { Header } from "./components/header/Header";
-import { List } from "./components/list/List";
+import { List } from "./pages/list/List";
 import { Modal } from "../../components/modal/Modal";
-import { Setting } from "./components/setting/Setting";
-import { Mail } from "./components/mail/Mail";
+import { Setting } from "./pages/setting/Setting";
+import { Mail } from "./pages/mail/Mail";
 import { Fetch } from "../../components/load/Load";
 
 export const Main = ({ index }) => {

@@ -1,6 +1,6 @@
 import styles from "./User.module.scss";
 
-import { Icon } from "../../../../../../components/icon/Icon";
+import { Icon } from "../../../icon/Icon";
 
 import { Status } from "./Status";
 import { Header } from "./Header";

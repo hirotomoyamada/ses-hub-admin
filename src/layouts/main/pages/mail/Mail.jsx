@@ -5,12 +5,13 @@ import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { sendMail } from "../../../../features/root/functions/sendMail";
+import { sendMail } from "../../../../features/root/actions/sendMail";
 import * as rootSlice from "../../../../features/root/rootSlice";
 
-import { Btn } from "./components/Btn";
 import { Main } from "./components/Main";
 import { Target } from "./components/Target";
+
+import { Btn } from "../../components/btn/Btn";
 
 export const Mail = ({ index, data }) => {
   const dispatch = useDispatch();

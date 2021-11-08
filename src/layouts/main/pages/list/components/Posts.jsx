@@ -1,6 +1,6 @@
 import styles from "../../../Main.module.scss";
 
-import { Item } from "../../item/Item";
+import { Item } from "../../../../../components/item/Item";
 
 export const Posts = ({ index, posts, list }) => {
   return (

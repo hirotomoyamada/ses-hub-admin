@@ -1,4 +1,4 @@
-import { Item } from "../../../../../layouts/main/components/item/Item";
+import { Item } from "../../../../../components/item/Item";
 
 export const Posts = ({ user, posts, target, index, single }) => {
   return single

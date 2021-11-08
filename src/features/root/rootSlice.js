@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { initialState } from "./initialState";
 
-import { login } from "../root/functions/login";
-import { editData } from "../root/functions/editData";
-import { sendMail } from "../root/functions/sendMail";
+import { login } from "../root/actions/login";
+import { editData } from "../root/actions/editData";
+import { sendMail } from "../root/actions/sendMail";
 
 import * as reducers from "./reducers/reducers";
 

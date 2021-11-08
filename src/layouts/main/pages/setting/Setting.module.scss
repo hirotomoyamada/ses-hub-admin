@@ -4,7 +4,7 @@
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
 
-.mail {
+.setting {
   position: relative;
   padding: 16px 32px 32px;
 
@@ -34,10 +34,10 @@ $width: responsive-width(pc);
 
   &_toggle {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 4px;
     background: $bg_clr;
-    width: 480px;
+    width: 128px;
     height: 32px;
     border-radius: 20px;
     font-size: auto-clamp(11px, 12px);
@@ -52,10 +52,9 @@ $width: responsive-width(pc);
       cursor: pointer;
       color: $sub_clr;
       border-radius: 20px;
-
       display: flex;
       justify-content: center;
-      line-height: 24px;
+      align-items: center;
     }
 
     input:checked + &_btn {
@@ -98,7 +97,7 @@ $width: responsive-width(pc);
       background: $bg_clr;
       border: 1px solid $bdr_clr;
       width: 100%;
-      height: 720px;
+      height: 240px;
       border-radius: 8px;
       padding: 16px;
 
@@ -111,61 +110,6 @@ $width: responsive-width(pc);
       white-space: nowrap;
       color: $sub_clr;
       font-size: auto-clamp(11px, 12px);
-    }
-  }
-
-  &_btn {
-    position: absolute;
-    top: -40px;
-    z-index: 9999;
-    right: 32px;
-
-    display: flex;
-    gap: 16px;
-
-    &_wrap {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 4px;
-      background: $base_clr;
-      width: 240px;
-      height: 32px;
-      border-radius: 16px;
-      font-size: auto-clamp(11px, 12px);
-      padding: 3px;
-      border: 1px solid $bdr_clr;
-    }
-
-    &_index {
-      color: $sub_clr;
-      border-radius: 16px;
-      line-height: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &_sh {
-        color: $base_clr;
-        background: $acnt_clr;
-      }
-
-      &_fd {
-        color: $base_clr;
-        background: $add_clr;
-      }
-    }
-
-    &_submit {
-      background: $acnt_clr;
-      width: 112px;
-      height: 32px;
-      color: $base_clr;
-      border-radius: 20px;
-      text-align: center;
-
-      &:hover {
-        opacity: 0.8;
-      }
     }
   }
 }

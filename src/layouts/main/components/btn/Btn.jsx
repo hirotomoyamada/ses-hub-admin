@@ -1,13 +1,13 @@
-import styles from "../Mail.module.scss";
+import styles from "./Btn.module.scss";
 
 export const Btn = ({ index, handleIndex }) => {
   return (
-    <div className={styles.mail_btn}>
-      <div className={styles.mail_btn_wrap}>
+    <div className={styles.btn}>
+      <div className={styles.btn_wrap}>
         <button
           type="button"
-          className={`${styles.mail_btn_index} ${
-            index === "companys" && styles.mail_btn_index_sh
+          className={`${styles.btn_index} ${
+            index === "companys" && styles.btn_index_sh
           }`}
           onClick={() => handleIndex("companys")}
         >
@@ -16,8 +16,8 @@ export const Btn = ({ index, handleIndex }) => {
 
         <button
           type="button"
-          className={`${styles.mail_btn_index} ${
-            index === "persons" && styles.mail_btn_index_fd
+          className={`${styles.btn_index} ${
+            index === "persons" && styles.btn_index_fd
           }`}
           onClick={() => handleIndex("persons")}
         >
@@ -25,7 +25,7 @@ export const Btn = ({ index, handleIndex }) => {
         </button>
       </div>
 
-      <button type="submit" className={styles.mail_btn_submit}>
+      <button type="submit" className={styles.btn_submit}>
         送信
       </button>
     </div>

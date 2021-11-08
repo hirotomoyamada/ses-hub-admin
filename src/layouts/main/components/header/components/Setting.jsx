@@ -7,15 +7,19 @@ export const Setting = ({ index, data, edit }) => {
     <div className={`${styles.header} ${styles.header_setting}`}>
       <span>
         {index === "setting" ? "最終更新：" : "最終送信："}
-        {timestamp(
-          index === "mail"
-            ? edit === "companys"
-              ? data.seshub.mail.updateAt
-              : data.freelanceDirect.mail.updateAt
-            : edit === "companys"
-            ? data.seshub.information.updateAt
-            : data.freelanceDirect.information.updateAt
-        )}
+        {index === "mail"
+          ? edit === "companys"
+            ? data.seshub.mail.updateAt
+              ? timestamp(data.seshub.mail.updateAt)
+              : "まだ送信がありません"
+            : data.freelanceDirect.mail.updateAt
+            ? timestamp(data.freelanceDirect.mail.updateAt)
+            : "まだ送信がありません"
+          : timestamp(
+              edit === "companys"
+                ? data.seshub.information.updateAt
+                : data.freelanceDirect.information.updateAt
+            )}
       </span>
     </div>
   );

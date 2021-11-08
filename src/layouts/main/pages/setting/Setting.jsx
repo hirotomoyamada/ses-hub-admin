@@ -5,13 +5,14 @@ import { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { editData } from "../../../../features/root/functions/editData";
+import { editData } from "../../../../features/root/actions/editData";
 import * as rootSlice from "../../../../features/root/rootSlice";
 
 import { Information } from "./components/Information";
 import { Agree } from "./components/Agree";
 import { Maintenance } from "./components/Maintenance";
-import { Btn } from "./components/Btn";
+
+import { Btn } from "../../components/btn/Btn";
 
 export const Setting = ({ data, index }) => {
   const dispatch = useDispatch();

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../../../../features/post/actions/fetchPosts";
 import * as postSlice from "../../../../../features/post/postSlice";
 
-import { createObserver } from "../../functions/createObserver";
+import { createObserver } from "../functions/createObserver";
 
 export const useFetch = (index, search) => {
   const dispatch = useDispatch();

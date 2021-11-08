@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../firebase";
 
-import { login } from "../features/root/functions/login";
+import { login } from "../features/root/actions/login";
 import * as rootSlice from "../features/root/rootSlice";
 
 export const useApp = () => {

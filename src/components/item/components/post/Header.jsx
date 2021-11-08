@@ -1,6 +1,6 @@
 import styles from "./Post.module.scss";
 
-import { timestamp } from "../../../../../../functions/timestamp";
+import { timestamp } from "../../../../functions/timestamp";
 
 export const Header = ({ post, min }) => {
   return (
