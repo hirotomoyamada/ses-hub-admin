@@ -48,6 +48,8 @@ $width: responsive-width(pc);
       justify-content: center;
       align-items: center;
 
+      transition: all 0.4s;
+
       &_all {
         color: $base_clr;
         background: $acnt_clr;

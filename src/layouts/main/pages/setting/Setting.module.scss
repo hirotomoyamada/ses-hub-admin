@@ -55,6 +55,8 @@ $width: responsive-width(pc);
       display: flex;
       justify-content: center;
       align-items: center;
+
+      transition: all 0.4s;
     }
 
     input:checked + &_btn {

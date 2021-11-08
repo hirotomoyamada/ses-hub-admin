@@ -31,6 +31,8 @@ $width: responsive-width(pc);
     border-radius: 16px;
     text-align: center;
 
+    transition: all 0.4s;
+
     &_current {
       background: $acnt_clr;
       color: $base_clr;

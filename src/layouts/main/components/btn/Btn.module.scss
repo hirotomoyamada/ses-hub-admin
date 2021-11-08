@@ -34,6 +34,8 @@ $width: responsive-width(pc);
     justify-content: center;
     align-items: center;
 
+    transition: all 0.4s;
+
     &_sh {
       color: $base_clr;
       background: $acnt_clr;
@@ -43,7 +45,7 @@ $width: responsive-width(pc);
       color: $base_clr;
       background: $add_clr;
     }
-    
+
     &_disable {
       pointer-events: none;
     }
@@ -56,6 +58,8 @@ $width: responsive-width(pc);
     color: $base_clr;
     border-radius: 20px;
     text-align: center;
+
+    transition: all 0.4s;
 
     &:hover {
       opacity: 0.8;
