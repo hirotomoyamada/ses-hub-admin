@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { extractPosts } from "../../../features/user/functions/extractPosts";
+import { extractPosts } from "../../../features/user/actions/extractPosts";
 import * as userSlice from "../../../features/user/userSlice";
 
 export const useFetch = (user, edit) => {

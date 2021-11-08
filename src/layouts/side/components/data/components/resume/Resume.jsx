@@ -3,7 +3,7 @@ import root from "../../Data.module.scss";
 import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { uploadResume } from "../../../../../../features/user/functions/uploadResume";
+import { uploadResume } from "../../../../../../features/user/actions/uploadResume";
 import * as userSlice from "../../../../../../features/user/userSlice";
 
 import { File } from "./components/File";

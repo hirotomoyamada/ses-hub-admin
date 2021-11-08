@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { initialState } from "./initialState";
 
-import { fetchPosts } from "./functions/fetchPosts";
+import { fetchPosts } from "./actions/fetchPosts";
 
 import * as reducers from "./reducers/reducers";
 

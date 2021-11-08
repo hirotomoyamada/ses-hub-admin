@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { initialState } from "./initialState";
 
-import { fetchUser } from "./functions/fetchUser";
-import { extractPosts } from "./functions/extractPosts";
-import { uploadResume } from "./functions/uploadResume";
+import { fetchUser } from "./actions/fetchUser";
+import { extractPosts } from "./actions/extractPosts";
+import { uploadResume } from "./actions/uploadResume";
 
 import * as reducers from "./redurces/reducers";
 

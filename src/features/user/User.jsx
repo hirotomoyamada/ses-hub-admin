@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as userSlice from "../user/userSlice";
 
-import { Header } from "./components/header/Header";
-import { Main } from "./components/main/Main";
+import { Header } from "./layouts/header/Header";
+import { Main } from "./layouts/main/Main";
 
 import * as companys from "./functions/companys";
 import * as persons from "./functions/persons";

@@ -5,8 +5,8 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as postSlice from "./postSlice";
 
-import { Header } from "./components/header/Header";
-import { Main } from "./components/main/Main";
+import { Header } from "./layouts/header/Header";
+import { Main } from "./layouts/main/Main";
 
 import * as matters from "./functions/matters";
 import * as resources from "./functions/resources";

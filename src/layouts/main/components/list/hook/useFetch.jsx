@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchPosts } from "../../../../../features/post/functions/fetchPosts";
+import { fetchPosts } from "../../../../../features/post/actions/fetchPosts";
 import * as postSlice from "../../../../../features/post/postSlice";
 
 import { createObserver } from "../../functions/createObserver";

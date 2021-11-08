@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { fetchUser } from "../../../../features/user/functions/fetchUser";
+import { fetchUser } from "../../../../features/user/actions/fetchUser";
 import * as rootSlice from "../../../../features/root/rootSlice";
 import * as userSlice from "../../../../features/user/userSlice";
 import * as postSlice from "../../../../features/post/postSlice";
