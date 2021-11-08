@@ -7,6 +7,7 @@ import { editData } from "../root/actions/editData";
 import { sendMail } from "../root/actions/sendMail";
 
 import * as reducers from "./reducers/reducers";
+import { updateUser } from "./actions/updateUser";
 
 export const rootSlice = createSlice({
   name: "root",
@@ -37,13 +38,18 @@ export const rootSlice = createSlice({
       reducers.sendMail(state, action)
     );
 
+    builder.addCase(updateUser.fulfilled, (state, action) =>
+      reducers.updateUser(state, action)
+    );
+
     builder.addMatcher(
       (action) => action.type.endsWith("/pending"),
       (state, action) => {
         state.load.fetch =
           action.meta.arg.fetch ||
           action.type === "root/editData/pending" ||
-          action.type === "root/sendMail/pending"
+          action.type === "root/sendMail/pending" ||
+          action.type === "root/updateUser/pending"
             ? true
             : false;
         state.load.list = true;

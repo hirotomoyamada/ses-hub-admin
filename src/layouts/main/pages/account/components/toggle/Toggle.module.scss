@@ -16,7 +16,7 @@ $width: responsive-width(pc);
   padding: 3px;
   border: 1px solid $bdr_clr;
 
-  &_disable {
+  &_none {
     pointer-events: none;
   }
 

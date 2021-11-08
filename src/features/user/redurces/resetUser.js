@@ -29,6 +29,8 @@ export const resetUser = (state, action) => {
       pages: 0,
       currentPage: 0,
     };
+
+    state.users = [];
   } else {
     state.users[action.payload] = null;
   }

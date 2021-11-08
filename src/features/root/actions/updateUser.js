@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { functions } from "../../../firebase";
 
-export const sendMail = createAsyncThunk("root/sendMail", async (data) => {
-  const sendMail = functions.httpsCallable("admin-sendMail");
+export const updateUser = createAsyncThunk("root/updateUser", async (data) => {
+  const updateUser = functions.httpsCallable("admin-updateUser");
 
-  const res = sendMail(data)
+  const res = updateUser(data)
     .then(({ data }) => {
       return data;
     })

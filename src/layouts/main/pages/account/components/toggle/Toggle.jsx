@@ -30,83 +30,83 @@ export const Toggle = ({ i, user }) => {
 
   return (
     <div className={root.account_wrap}>
-      <div className={`${styles.toggle} ${!user && styles.toggle_disable}`}>
+      <div className={`${styles.toggle} ${!user && styles.toggle_none}`}>
         <input
           type="radio"
-          id="active"
+          id={`active${i}`}
           value="active"
           {...register(`user[${i}].status`)}
         />
         <label
           className={`${styles.toggle_btn} ${styles.toggle_active}`}
-          htmlFor="active"
+          htmlFor={`active${i}`}
         >
           レギュラー
         </label>
 
         <input
           type="radio"
-          id="trialing"
+          id={`trialing${i}`}
           value="trialing"
           {...register(`user[${i}].status`)}
         />
         <label
           className={`${styles.toggle_btn} ${styles.toggle_trialing}`}
-          htmlFor="trialing"
+          htmlFor={`trialing${i}`}
         >
           トライアル
         </label>
 
         <input
           type="radio"
-          id="canceled"
+          id={`canceled${i}`}
           value="canceled"
           {...register(`user[${i}].status`)}
         />
         <label
           className={`${styles.toggle_btn} ${styles.toggle_canceled}`}
-          htmlFor="canceled"
+          htmlFor={`canceled${i}`}
         >
           リミテッド
         </label>
       </div>
 
-      <div className={`${styles.toggle} ${!user && styles.toggle_disable}`}>
+      <div className={`${styles.toggle} ${!user && styles.toggle_none}`}>
         <input
           type="radio"
-          id="enable"
+          id={`enable${i}`}
           value="enable"
           {...register(`user[${i}].option`)}
         />
         <label
           className={`${styles.toggle_btn} ${styles.toggle_enable}`}
-          htmlFor="enable"
+          htmlFor={`enable${i}`}
         >
           有効
         </label>
 
         <input
           type="radio"
-          id="disable"
+          id={`disable${i}`}
           value="disable"
           {...register(`user[${i}].option`)}
         />
         <label
           className={`${styles.toggle_btn} ${styles.toggle_disable}`}
-          htmlFor="disable"
+          htmlFor={`disable${i}`}
         >
           無効
         </label>
 
         <input
           type="radio"
-          id="none"
+          id={`none${i}`}
           value="none"
           {...register(`user[${i}].option`)}
         />
         <label
           className={`${styles.toggle_btn} ${styles.toggle_none}`}
-          htmlFor="none"
+          htmlFor={`none${i}`}
         >
           選択しない
         </label>

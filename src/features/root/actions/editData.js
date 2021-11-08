@@ -8,7 +8,9 @@ export const editData = createAsyncThunk("root/editData", async (data) => {
     .then(({ data }) => {
       return data;
     })
-    .catch((e) => {});
+    .catch((e) => {
+      return { error: e.message };
+    });
 
   return res;
 });

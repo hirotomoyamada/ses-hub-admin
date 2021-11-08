@@ -7,7 +7,7 @@ $width: responsive-width(pc);
 .account {
   position: relative;
 
-  padding: 16px 32px 32px;
+  padding: 32px;
 
   display: flex;
   flex-direction: column;
@@ -22,5 +22,22 @@ $width: responsive-width(pc);
   &_wrap {
     display: flex;
     gap: 8px;
+  }
+
+  &_btn {
+    background: $acnt_clr;
+    width: 160px;
+    height: 32px;
+    color: $base_clr;
+    border-radius: 16px;
+    text-align: center;
+
+    margin: 0 auto;
+
+    transition: all 0.4s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }

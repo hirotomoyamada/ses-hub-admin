@@ -7,5 +7,16 @@ import { login } from "./login";
 import { logout } from "./logout";
 import { editData } from "./editData";
 import { sendMail } from "./sendMail";
+import { updateUser } from "./updateUser";
 
-export { index, search, modal, announce, login, logout, editData, sendMail };
+export {
+  index,
+  search,
+  modal,
+  announce,
+  login,
+  logout,
+  editData,
+  sendMail,
+  updateUser,
+};
