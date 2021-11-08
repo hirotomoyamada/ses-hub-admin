@@ -16,6 +16,10 @@ $width: responsive-width(pc);
   grid-template-columns: 1fr 24px;
   gap: 8px;
 
+  &_disable {
+    color: $sub_clr;
+  }
+
   &_btn {
     display: flex;
     justify-content: center;

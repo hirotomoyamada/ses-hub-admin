@@ -75,7 +75,7 @@ const Main = ({ index, users, display }) => {
     account.push(
       <div className={styles.account_container} key={i}>
         <div className={styles.account_wrap}>
-          <Input i={i} index={index} />
+          <Input i={i} index={index} user={users[i]} />
           <Toggle i={i} user={users[i]} />
         </div>
         <Profile user={users[i]} />

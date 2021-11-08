@@ -30,7 +30,11 @@ export const Toggle = ({ i, user }) => {
 
   return (
     <div className={root.account_wrap}>
-      <div className={`${styles.toggle} ${!user && styles.toggle_notFound}`}>
+      <div
+        className={`${styles.toggle} ${
+          (!user || user?.payment?.price) && styles.toggle_notFound
+        }`}
+      >
         <input
           type="radio"
           id={`active${i}`}
@@ -71,7 +75,11 @@ export const Toggle = ({ i, user }) => {
         </label>
       </div>
 
-      <div className={`${styles.toggle} ${!user && styles.toggle_notFound}`}>
+      <div
+        className={`${styles.toggle} ${
+          (!user || user?.payment?.price) && styles.toggle_notFound
+        }`}
+      >
         <input
           type="radio"
           id={`enable${i}`}
