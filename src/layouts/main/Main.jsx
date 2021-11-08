@@ -10,6 +10,7 @@ import { Modal } from "../../components/modal/Modal";
 import { Setting } from "./pages/setting/Setting";
 import { Mail } from "./pages/mail/Mail";
 import { Fetch } from "../../components/load/Load";
+import { Account } from "./pages/account/Account";
 
 export const Main = ({ index }) => {
   const data = useSelector(rootSlice.data);
@@ -28,6 +29,12 @@ export const Main = ({ index }) => {
       <Fetch />
       <Header index={index.page} edit={index.edit} data={data} />
       <Mail data={data} index={index.edit} />
+    </main>
+  ) : index.page === "account" ? (
+    <main className={styles.main}>
+      <Fetch />
+      <Header index={index.page} edit={index.edit} />
+      <Account index={index.edit} />
     </main>
   ) : (
     <main className={styles.main}>

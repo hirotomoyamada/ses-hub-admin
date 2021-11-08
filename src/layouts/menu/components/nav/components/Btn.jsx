@@ -14,7 +14,10 @@ export const Btn = ({ index, i, text, type }) => {
     dispatch(rootSlice.handleModal(false));
     dispatch(
       rootSlice.handleIndex(
-        type === "setting" || type === "mail" || !index.edit
+        type === "setting" ||
+          type === "mail" ||
+          type === "account" ||
+          !index.edit
           ? { page: i, edit: "companys" }
           : { page: i }
       )
@@ -32,7 +35,7 @@ export const Btn = ({ index, i, text, type }) => {
           index.page === i && styles.menu_nav_btn_active
         }`}
       >
-        {type !== "setting" && type !== "mail" ? (
+        {type !== "setting" && type !== "mail" && type !== "account" ? (
           <FontAwesomeIcon
             icon={index.page === i ? faFolderOpen : faFolder}
             className={styles.menu_nav_icon}

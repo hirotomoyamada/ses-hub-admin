@@ -1,135 +1,147 @@
 export const fetchUser = (state, action) => {
-  if (action.payload.index === "companys") {
-    state.user.index = action.payload.index;
-    state.user.uid = action.payload.uid;
-    state.user.icon = action.payload.icon;
-    state.user.cover = action.payload.cover;
-    state.user.status = action.payload.status;
-    state.user.payment = action.payload.payment;
-    state.user.agree = action.payload.agree;
-    state.user.provider = action.payload.provider;
-    state.user.createAt = action.payload.createAt;
-    state.user.updateAt = action.payload.updateAt;
-    state.user.lastLogin = action.payload.lastLogin;
-
-    state.user.name = action.payload.name;
-    state.user.person = action.payload.person;
-    state.user.position = action.payload.position;
-    state.user.body = action.payload.body;
-    state.user.more = action.payload.more;
-    state.user.region = action.payload.region;
-    state.user.postal = action.payload.postal;
-    state.user.address = action.payload.address;
-    state.user.tel = action.payload.tel;
-    state.user.email = action.payload.email;
-    state.user.social = action.payload.social;
-
-    state.user.follows = action.payload.follows;
-    state.user.home = action.payload.home;
-
-    state.user.posts = {
-      matters: action.payload.posts.matters,
-      resources: action.payload.posts.resources,
-    };
-
-    state.user.likes = {
-      matters: action.payload.likes.matters,
-      resources: action.payload.likes.resources,
-      persons: action.payload.likes.persons,
-    };
-
-    state.user.outputs = {
-      matters: action.payload.outputs.matters,
-      resources: action.payload.outputs.resources,
-    };
-
-    state.user.entries = {
-      matters: action.payload.entries.matters,
-      resources: action.payload.entries.resources,
-      persons: action.payload.entries.persons,
-    };
-
-    state.posts = {
-      follows: [],
-      posts: {
-        matters: [],
-        resources: [],
-      },
-      likes: {
-        matters: [],
-        resources: [],
-        persons: [],
-      },
-      outputs: {
-        matters: [],
-        resources: [],
-      },
-      entries: {
-        matters: [],
-        resources: [],
-        persons: [],
-      },
-    };
+  if (action.payload.type !== "selectUser") {
+    action.payload.user.index === "companys"
+      ? companys(state, action)
+      : action.payload.user.index === "persons" && persons(state, action);
+  } else {
+    state.selectUser = [...state.selectUser, action.payload.user];
   }
+};
 
-  if (action.payload.index === "persons") {
-    state.user.index = action.payload.index;
-    state.user.uid = action.payload.uid;
-    state.user.icon = action.payload.icon;
-    state.user.cover = action.payload.cover;
-    state.user.status = action.payload.status;
-    state.user.agree = action.payload.agree;
-    state.user.resume = action.payload.resume;
-    state.user.provider = action.payload.provider;
-    state.user.createAt = action.payload.createAt;
-    state.user.updateAt = action.payload.updateAt;
-    state.user.lastLogin = action.payload.lastLogin;
+const companys = (state, action) => {
+  state.user.index = action.payload.user.index;
+  state.user.uid = action.payload.user.uid;
+  state.user.icon = action.payload.user.icon;
+  state.user.cover = action.payload.user.cover;
+  state.user.status = action.payload.user.status;
+  state.user.payment = action.payload.user.payment;
+  state.user.agree = action.payload.user.agree;
+  state.user.provider = action.payload.user.provider;
+  state.user.createAt = action.payload.user.createAt;
+  state.user.updateAt = action.payload.user.updateAt;
+  state.user.lastLogin = action.payload.user.lastLogin;
 
-    state.user.state = action.payload.state;
-    state.user.nickName = action.payload.nickName;
-    state.user.name = action.payload.name;
-    state.user.body = action.payload.body;
-    state.user.position = action.payload.position;
-    state.user.age = action.payload.age;
-    state.user.sex = action.payload.sex;
-    state.user.location = action.payload.location;
-    state.user.handles = action.payload.handles;
-    state.user.tools = action.payload.tools;
-    state.user.skills = action.payload.skills;
-    state.user.urls = action.payload.urls;
-    state.user.costs = {
-      min: action.payload.costs.min,
-      max: action.payload.costs.max,
-      display: action.payload.costs.display,
-      type: action.payload.costs.type,
-    };
-    state.user.working = action.payload.working;
-    state.user.resident = action.payload.resident;
-    state.user.clothes = action.payload.clothes;
-    state.user.span = action.payload.span;
+  state.user.name = action.payload.user.name;
+  state.user.person = action.payload.user.person;
+  state.user.position = action.payload.user.position;
+  state.user.body = action.payload.user.body;
+  state.user.more = action.payload.user.more;
+  state.user.region = action.payload.user.region;
+  state.user.postal = action.payload.user.postal;
+  state.user.address = action.payload.user.address;
+  state.user.tel = action.payload.user.tel;
+  state.user.email = action.payload.user.email;
+  state.user.social = action.payload.user.social;
 
-    state.user.follows = action.payload.follows;
-    state.user.home = action.payload.home;
-    state.user.likes = action.payload.likes;
-    state.user.entries = action.payload.entries;
-    state.user.histories = action.payload.histories;
+  state.user.follows = action.payload.user.follows;
+  state.user.home = action.payload.user.home;
 
-    state.user.requests = {
-      enable: action.payload.requests.enable,
-      hold: action.payload.requests.hold,
-      disable: action.payload.requests.disable,
-    };
+  state.user.posts = {
+    matters: action.payload.user.posts.matters,
+    resources: action.payload.user.posts.resources,
+  };
 
-    state.posts = {
-      follows: [],
-      likes: [],
-      entries: [],
-      histories: [],
-      requests: {
-        enable: [],
-        hold: [],
-        disable: [],
-      },
-    };
-  }
+  state.user.likes = {
+    matters: action.payload.user.likes.matters,
+    resources: action.payload.user.likes.resources,
+    persons: action.payload.user.likes.persons,
+  };
+
+  state.user.outputs = {
+    matters: action.payload.user.outputs.matters,
+    resources: action.payload.user.outputs.resources,
+  };
+
+  state.user.entries = {
+    matters: action.payload.user.entries.matters,
+    resources: action.payload.user.entries.resources,
+    persons: action.payload.user.entries.persons,
+  };
+
+  state.posts = {
+    follows: [],
+    posts: {
+      matters: [],
+      resources: [],
+    },
+    likes: {
+      matters: [],
+      resources: [],
+      persons: [],
+    },
+    outputs: {
+      matters: [],
+      resources: [],
+    },
+    entries: {
+      matters: [],
+      resources: [],
+      persons: [],
+    },
+  };
+
+  return;
+};
+
+const persons = (state, action) => {
+  state.user.index = action.payload.user.index;
+  state.user.uid = action.payload.user.uid;
+  state.user.icon = action.payload.user.icon;
+  state.user.cover = action.payload.user.cover;
+  state.user.status = action.payload.user.status;
+  state.user.agree = action.payload.user.agree;
+  state.user.resume = action.payload.user.resume;
+  state.user.provider = action.payload.user.provider;
+  state.user.createAt = action.payload.user.createAt;
+  state.user.updateAt = action.payload.user.updateAt;
+  state.user.lastLogin = action.payload.user.lastLogin;
+
+  state.user.state = action.payload.user.state;
+  state.user.nickName = action.payload.user.nickName;
+  state.user.name = action.payload.user.name;
+  state.user.body = action.payload.user.body;
+  state.user.position = action.payload.user.position;
+  state.user.age = action.payload.user.age;
+  state.user.sex = action.payload.user.sex;
+  state.user.location = action.payload.user.location;
+  state.user.handles = action.payload.user.handles;
+  state.user.tools = action.payload.user.tools;
+  state.user.skills = action.payload.user.skills;
+  state.user.urls = action.payload.user.urls;
+  state.user.costs = {
+    min: action.payload.user.costs.min,
+    max: action.payload.user.costs.max,
+    display: action.payload.user.costs.display,
+    type: action.payload.user.costs.type,
+  };
+  state.user.working = action.payload.user.working;
+  state.user.resident = action.payload.user.resident;
+  state.user.clothes = action.payload.user.clothes;
+  state.user.span = action.payload.user.span;
+
+  state.user.follows = action.payload.user.follows;
+  state.user.home = action.payload.user.home;
+  state.user.likes = action.payload.user.likes;
+  state.user.entries = action.payload.user.entries;
+  state.user.histories = action.payload.user.histories;
+
+  state.user.requests = {
+    enable: action.payload.user.requests.enable,
+    hold: action.payload.user.requests.hold,
+    disable: action.payload.user.requests.disable,
+  };
+
+  state.posts = {
+    follows: [],
+    likes: [],
+    entries: [],
+    histories: [],
+    requests: {
+      enable: [],
+      hold: [],
+      disable: [],
+    },
+  };
+
+  return;
 };

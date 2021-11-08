@@ -6,6 +6,7 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async (data) => {
   const user = fetchUser({
     index: data.index,
     uid: data.uid,
+    type: data.type,
   })
     .then(({ data }) => {
       return data;

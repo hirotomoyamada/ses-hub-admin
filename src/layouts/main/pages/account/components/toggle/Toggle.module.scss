@@ -1,0 +1,42 @@
+@import "../../../../../../styles/config";
+@import "../../../../../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.toggle {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  background: $bg_clr;
+  width: 220px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: auto-clamp(11px, 12px);
+  padding: 3px;
+  border: 1px solid $bdr_clr;
+
+  &_option {
+    grid-template-columns: repeat(3, 1fr);
+    width: 330px;
+  }
+
+  input {
+    display: none;
+  }
+
+  &_btn {
+    cursor: pointer;
+    color: $sub_clr;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    line-height: 32px;
+  }
+
+  input:checked + &_btn {
+    background: $acnt_clr;
+    color: $base_clr;
+  }
+}

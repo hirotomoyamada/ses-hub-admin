@@ -65,7 +65,7 @@ export const Header = ({ index, data, edit }) => {
     dispatch(rootSlice.handleSearch());
   };
 
-  return index !== "setting" && index !== "mail" ? (
+  return index !== "setting" && index !== "mail" && index !== "account" ? (
     <FormProvider {...methods}>
       <form
         className={styles.header}

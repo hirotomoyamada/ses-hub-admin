@@ -12,6 +12,7 @@ export const usePosts = (index, search) => {
   useEffect(() => {
     index.page !== "setting" &&
       index.page !== "mail" &&
+      index.page !== "account" &&
       dispatch(
         fetchPosts({
           index: index.page,
