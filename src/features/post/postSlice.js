@@ -25,9 +25,20 @@ export const postSlice = createSlice({
       (action) => action.type.endsWith("/editUser"),
       (state, action) => reducers.editUser(state, action)
     );
+
     builder.addMatcher(
       (action) => action.type.endsWith("/handleSearch") && !action.payload,
       (state) => reducers.resetPost(state)
+    );
+
+    builder.addMatcher(
+      (action) => action.type.endsWith("/editUser"),
+      (state, action) => reducers.editUser(state, action)
+    );
+
+    builder.addMatcher(
+      (action) => action.type.endsWith("/updateUser/fulfilled"),
+      (state, action) => reducers.updateUser(state, action)
     );
   },
 });

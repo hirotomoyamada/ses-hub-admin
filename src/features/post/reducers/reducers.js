@@ -6,6 +6,7 @@ import { resetPost } from "./resetPost";
 import { editPost } from "./editPost";
 import { deletePost } from "./deletePost";
 import { editUser } from "./editUser";
+import { updateUser } from "./updateUser";
 
 export {
   fetchPosts,
@@ -15,4 +16,5 @@ export {
   editPost,
   deletePost,
   editUser,
+  updateUser,
 };

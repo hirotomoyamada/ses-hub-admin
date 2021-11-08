@@ -26,6 +26,7 @@ export const rootSlice = createSlice({
     builder.addCase(login.pending, (state) => {
       state.load.root = true;
     });
+    
     builder.addCase(login.fulfilled, (state, action) =>
       reducers.login(state, action)
     );
