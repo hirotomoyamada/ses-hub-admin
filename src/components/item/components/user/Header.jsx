@@ -68,7 +68,10 @@ export const Header = ({ post, min }) => {
 
         {post?.handles &&
           post.handles.slice(0, 3).map((handle, index) => (
-            <div className={styles.item_category} key={index}>
+            <div
+              className={`${styles.item_category} ${styles.item_category_handle}`}
+              key={index}
+            >
               <span>{handle}</span>
             </div>
           ))}
