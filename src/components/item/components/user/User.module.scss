@@ -107,8 +107,12 @@ $width: responsive-width(pc);
       background: $icn_clr;
     }
 
-    &_corporate {
+    &_parent {
       background: $acnt_sub_clr;
+    }
+
+    &_child {
+      background: $promo_clr;
     }
 
     &_active {

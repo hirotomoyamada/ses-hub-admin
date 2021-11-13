@@ -5,23 +5,25 @@ export const Header = ({ post, min }) => {
     <div className={styles.item_main_head}>
       <div className={styles.item_row}>
         <span>{post?.name}</span>
-        {post?.type !== "corporate" && post?.person && (
-          <span>{post.person}</span>
-        )}
+        {post?.person && <span>{post.person}</span>}
         {post?.nickName && <span>(&nbsp;{post.nickName}&nbsp;)</span>}
 
         {!min && (
           <div
             className={`${styles.item_category} ${
               styles.item_category_position
-            } ${post?.type === "corporate" && styles.item_category_corporate}`}
+            } ${post?.type === "parent" && styles.item_category_parent} ${
+              post?.type === "child" && styles.item_category_child
+            }`}
           >
             <span>
-              {post?.type !== "corporate"
-                ? post?.position
+              {post?.type !== "parent"
+                ? post?.type === "child"
+                  ? "法人\n(\n子アカウント\n)"
+                  : post?.position
                   ? post?.position
                   : "未設定"
-                : "法人"}
+                : "法人\n(\n親アカウント\n)"}
             </span>
           </div>
         )}

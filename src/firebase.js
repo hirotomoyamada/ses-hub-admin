@@ -22,7 +22,8 @@ export const providerGithub = new firebase.auth.GithubAuthProvider();
 
 export const insert = async () => {
   await db
-    .collection("persons")
+    .collection("companys")
+    // .collection("persons")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -30,7 +31,7 @@ export const insert = async () => {
         doc.ref
           .set(
             {
-              // histories: [],
+              type: ["individual", "parent"][Math.floor(Math.random() * 2)],
             },
             { merge: true }
           )
@@ -39,13 +40,13 @@ export const insert = async () => {
           });
 
         // データ 削除
-        doc.ref
-          .update({
-            // history: firebase.firestore.FieldValue.delete(),
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        // doc.ref
+        //   .update({
+        //     // history: firebase.firestore.FieldValue.delete(),
+        //   })
+        //   .catch((e) => {
+        //     console.log(e);
+        //   });
       });
     })
     .catch((e) => {
