@@ -2,6 +2,7 @@ export const initialState = {
   user: {},
 
   posts: {
+    children: [],
     follows: [],
     posts: {
       matters: [],

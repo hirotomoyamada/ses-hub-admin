@@ -27,6 +27,7 @@ export const List = ({
   };
 
   const single =
+    (user.index === "companys" && target === "children") ||
     (user.index === "companys" && target === "follows") ||
     (user.index === "persons" && target !== "requests");
 
@@ -36,7 +37,11 @@ export const List = ({
 
       <div
         className={`${root.side_type_inner} ${
-          type === target && root.side_type_inner_current
+          type === target &&
+          user?.type === "parent" &&
+          user?.payment?.children?.length
+            ? root.side_type_inner_current_parent
+            : type === target && root.side_type_inner_current
         }`}
       >
         <div className={styles.list}>

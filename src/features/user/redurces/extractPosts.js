@@ -1,5 +1,6 @@
 export const extractPosts = (state, action) => {
   if (
+    (state.user.index === "companys" && action.payload.type === "children") ||
     (state.user.index === "companys" && action.payload.type === "follows") ||
     (state.user.index === "persons" && action.payload.type !== "requests")
   ) {

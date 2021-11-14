@@ -15,7 +15,7 @@ export const Side = () => {
   const [posts, type, setType, index, setIndex] = useFetch(user, edit);
 
   const handleOpen = (target) => {
-    if (target === "follows") {
+    if (target === "follows" || target === "children") {
       setIndex("companys");
     } else if (target === "requests") {
       setIndex("hold");
@@ -46,18 +46,24 @@ export const Side = () => {
         setIndex={setIndex}
       />
 
-      {Object.keys(posts).map((post) => (
-        <List
-          key={post}
-          type={type}
-          index={index}
-          posts={posts}
-          user={user}
-          handleIndex={handleIndex}
-          handleOpen={handleOpen}
-          target={post}
-        />
-      ))}
+      {Object.keys(posts)
+        .map(
+          (post) =>
+            (post !== "children" ||
+              (user?.type === "parent" && user?.payment?.children?.length)) && (
+              <List
+                key={post}
+                type={type}
+                index={index}
+                posts={posts}
+                user={user}
+                handleIndex={handleIndex}
+                handleOpen={handleOpen}
+                target={post}
+              />
+            )
+        )
+        .filter((post) => post)}
     </div>
   );
 };

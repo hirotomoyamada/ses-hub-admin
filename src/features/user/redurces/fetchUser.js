@@ -61,7 +61,9 @@ const companys = (state, action) => {
   };
 
   state.posts = {
+    children: [],
     follows: [],
+
     posts: {
       matters: [],
       resources: [],

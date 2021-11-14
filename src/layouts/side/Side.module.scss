@@ -24,6 +24,10 @@ $width: responsive-width(pc);
 
       &_current {
         height: calc(100vh - (49.33px * 6));
+
+        &_parent {
+          height: calc(100vh - (49.33px * 7));
+        }
       }
     }
   }

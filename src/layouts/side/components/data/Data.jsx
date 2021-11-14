@@ -43,7 +43,11 @@ export const Data = ({
 
       <div
         className={`${root.side_type_inner} ${
-          type === "data" && root.side_type_inner_current
+          type === target &&
+          user?.type === "parent" &&
+          user?.payment?.children?.length
+            ? root.side_type_inner_current_parent
+            : type === target && root.side_type_inner_current
         }`}
       >
         {type === "data" && user.index ? (

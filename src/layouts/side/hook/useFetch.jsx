@@ -8,6 +8,7 @@ export const useFetch = (user, edit) => {
   const dispatch = useDispatch();
 
   const posts = useSelector(userSlice.posts);
+
   const [type, setType] = useState("data");
   const [index, setIndex] = useState("matters");
 
@@ -19,8 +20,9 @@ export const useFetch = (user, edit) => {
 
   useEffect(() => {
     if (type !== "data") {
-      (type !== "follows" && edit !== "persons") || type === "requests"
-        ? user?.[type]?.[index]?.[0] &&
+      (type !== "follows" && type !== "children" && edit !== "persons") ||
+      type === "requests"
+        ? user?.[type]?.[index]?.length &&
           dispatch(
             extractPosts({
               index: index,
@@ -28,7 +30,8 @@ export const useFetch = (user, edit) => {
               user: user,
             })
           )
-        : user?.[type]?.[0] &&
+        : ((type !== "children" && user?.[type]?.length) ||
+            (type === "children" && user?.payment?.children?.length)) &&
           dispatch(
             extractPosts({
               index:
