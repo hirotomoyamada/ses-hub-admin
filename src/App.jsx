@@ -14,21 +14,28 @@ import { Announce } from "./components/announce/Announce";
 // insert();
 
 const App = () => {
-  const admin = useApp();
+  const [admin, device] = useApp();
 
   return (
     <BrowserRouter>
       <Announce />
       <Load />
 
-      {!admin ? (
-        <Switch>
-          <Route path="/" component={Auth} />
-        </Switch>
+      {device ? (
+        !admin ? (
+          <Switch>
+            <Route path="/" component={Auth} />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/" component={Admin} />
+          </Switch>
+        )
       ) : (
-        <Switch>
-          <Route path="/" component={Admin} />
-        </Switch>
+        <div className="disable">
+          <span>このデバイスでは操作できません</span>
+          <span>スマートフォン・タブレット以外をご利用ください</span>
+        </div>
       )}
     </BrowserRouter>
   );
