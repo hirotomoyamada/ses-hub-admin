@@ -58,6 +58,29 @@ $width: responsive-width(pc);
         white-space: nowrap;
       }
     }
+
+    &_btn {
+      display: flex;
+      gap: 8px;
+
+      transition: all 0.4s;
+
+      &:hover {
+        color: $link_clr;
+      }
+
+      &_copy {
+        &:after {
+          content: "コピーしました";
+          display: block;
+          background: $link_clr;
+          color: $base_clr;
+          border-radius: 8px;
+          padding: 0 8px;
+          font-size: 12px;
+        }
+      }
+    }
   }
 
   &_icon {
