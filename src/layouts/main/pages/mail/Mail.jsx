@@ -16,6 +16,8 @@ import { Btn } from "../../components/btn/Btn";
 export const Mail = ({ index, data }) => {
   const dispatch = useDispatch();
 
+  console.log(index);
+
   const methods = useForm({
     defaultValues:
       index === "companys"
@@ -44,7 +46,7 @@ export const Mail = ({ index, data }) => {
   return (
     <FormProvider {...methods}>
       <form className={styles.mail} onSubmit={methods.handleSubmit(handleEdit)}>
-        <Target />
+        <Target index={index} />
         <Main />
         <Btn handleIndex={handleIndex} index={index} />
       </form>

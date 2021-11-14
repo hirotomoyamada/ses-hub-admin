@@ -44,6 +44,11 @@ $width: responsive-width(pc);
     padding: 3px;
     border: 1px solid $bdr_clr;
 
+    &_persons {
+      grid-template-columns: repeat(1, 1fr);
+      width: 120px;
+    }
+
     input {
       display: none;
     }
