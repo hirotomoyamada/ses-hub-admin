@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export const Btn = ({ index, i, text, type }) => {
   const dispatch = useDispatch();
@@ -41,7 +43,16 @@ export const Btn = ({ index, i, text, type }) => {
             className={styles.menu_nav_icon}
           />
         ) : (
-          <FontAwesomeIcon icon={faSlidersH} className={styles.menu_nav_icon} />
+          <FontAwesomeIcon
+            icon={
+              type === "mail"
+                ? faPaperPlane
+                : type === "account"
+                ? faUser
+                : faSlidersH
+            }
+            className={styles.menu_nav_icon}
+          />
         )}
         {text}
       </button>

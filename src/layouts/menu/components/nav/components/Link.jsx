@@ -7,11 +7,13 @@ export const Link = ({ text, icon }) => {
     <li>
       <a
         href={
-          text === "firebase"
+          text === "Firebase"
             ? "https://console.firebase.google.com/u/1/project/ses-hub/overview"
-            : text === "algolia"
+            : text === "Algolia"
             ? "https://www.algolia.com/apps/86KURAOCRS/dashboard"
-            : text === "stripe" && "https://dashboard.stripe.com/dashboard"
+            : text === "Stripe"
+            ? "https://dashboard.stripe.com/dashboard"
+            : text === "SendGrid" && "https://app.sendgrid.com/"
         }
         className={styles.menu_nav_btn}
         target="_blank"

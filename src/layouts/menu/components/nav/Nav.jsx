@@ -5,6 +5,7 @@ import { Btn } from "./components/Btn";
 import { Link } from "./components/Link";
 
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
+import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
 import { faCcStripe } from "@fortawesome/free-brands-svg-icons";
 
@@ -23,9 +24,10 @@ export const Nav = ({ index }) => {
       </div>
       <div className={styles.menu_nav_wrap}>
         <Header index={index} type="server" text="サーバー" />
-        <Link icon={faDatabase} text="firebase" />
-        <Link icon={faAlgolia} text="algolia" />
-        <Link icon={faCcStripe} text="stripe" />
+        <Link icon={faDatabase} text="Firebase" />
+        <Link icon={faAlgolia} text="Algolia" />
+        <Link icon={faCcStripe} text="Stripe" />
+        <Link icon={faAt} text="SendGrid" />
       </div>
       <div className={styles.menu_nav_wrap}>
         <Header index={index} text="設定" />
