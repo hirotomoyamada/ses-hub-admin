@@ -147,6 +147,11 @@ $width: responsive-width(pc);
     text-align: right;
   }
 
+  &_none {
+    font-weight: normal;
+    color: $sub_clr;
+  }
+
   &_icon {
     color: $sub_clr;
 

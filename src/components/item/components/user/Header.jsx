@@ -5,7 +5,13 @@ export const Header = ({ post, min }) => {
     <div className={styles.item_main_head}>
       <div className={styles.item_row}>
         <span>{post?.name}</span>
-        {post?.person && <span>{post.person}</span>}
+        {post?.person ? (
+          <span>{post.person}</span>
+        ) : (
+          post?.type === "child" && (
+            <span className={styles.item_none}>未設定</span>
+          )
+        )}
         {post?.nickName && <span>(&nbsp;{post.nickName}&nbsp;)</span>}
 
         {!min && (
