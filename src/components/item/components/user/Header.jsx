@@ -1,6 +1,6 @@
 import styles from "./User.module.scss";
 
-export const Header = ({ post, min }) => {
+export const Header = ({ index, post, min }) => {
   return (
     <div className={styles.item_main_head}>
       <div className={styles.item_row}>
@@ -21,6 +21,7 @@ export const Header = ({ post, min }) => {
             } ${post?.type === "parent" && styles.item_category_parent} ${
               post?.type === "child" && styles.item_category_child
             } ${
+              index === "companys" &&
               !post?.payment?.price &&
               (post?.payment?.status !== "canceled" ||
                 post?.payment?.option?.freelanceDirect) &&
@@ -28,7 +29,8 @@ export const Header = ({ post, min }) => {
             }`}
           >
             <span>
-              {!post?.payment?.price &&
+              {index === "companys" &&
+              !post?.payment?.price &&
               (post?.payment?.status !== "canceled" ||
                 post?.payment?.option?.freelanceDirect)
                 ? "エキストラ"

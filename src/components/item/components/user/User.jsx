@@ -14,7 +14,7 @@ export const User = ({ post, index, min }) => {
       <Status post={post} />
       <Icon src={post.icon} />
       <div className={styles.item_main}>
-        <Header post={post} min={min} />
+        <Header index={index} post={post} min={min} />
         {!min &&
           (index === "companys" ? (
             <Companys post={post} />
