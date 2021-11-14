@@ -138,6 +138,10 @@ $width: responsive-width(pc);
     &_handle {
       background: $add_clr;
     }
+
+    &_extra {
+      background: $remove_clr;
+    }
   }
 
   &_time {

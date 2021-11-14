@@ -20,10 +20,19 @@ export const Header = ({ post, min }) => {
               styles.item_category_position
             } ${post?.type === "parent" && styles.item_category_parent} ${
               post?.type === "child" && styles.item_category_child
+            } ${
+              !post?.payment?.price &&
+              (post?.payment?.status !== "canceled" ||
+                post?.payment?.option?.freelanceDirect) &&
+              styles.item_category_extra
             }`}
           >
             <span>
-              {post?.type !== "parent"
+              {!post?.payment?.price &&
+              (post?.payment?.status !== "canceled" ||
+                post?.payment?.option?.freelanceDirect)
+                ? "エキストラ"
+                : post?.type !== "parent"
                 ? post?.type === "child"
                   ? "法人\n(\n子アカウント\n)"
                   : post?.position
