@@ -15,7 +15,7 @@ export const Payment = ({ user }) => {
             : "法人\n(\n子アカウント\n)"}
         </span>
       </div>
-      
+
       <div className={styles.data_item}>
         <span className={styles.data_item_tag}>プラン</span>
         <span className={styles.data_item_text}>
@@ -24,6 +24,9 @@ export const Payment = ({ user }) => {
             : user?.payment?.status === "trialing"
             ? "フリートライアル"
             : "リミテッド"}
+          {user?.type === "parent" &&
+            user?.payment?.price &&
+            `\n(\n${user?.payment?.account}人\n)\n`}
         </span>
       </div>
 
