@@ -30,7 +30,11 @@ export const Data = ({
 
   const handleChange = () => {
     dispatch(rootSlice.handleIndex({ edit: user.index }));
-    dispatch(userSlice.selectUser(user));
+    dispatch(
+      userSlice.selectUser(
+        index === "matters" || index === "resources" ? user : user?.parent
+      )
+    );
   };
 
   return (
@@ -44,8 +48,18 @@ export const Data = ({
       >
         {type === "data" && user.index ? (
           <div className={styles.data}>
-            {(index === "matters" || index === "resources") && (
-              <Account user={user} handleChange={handleChange} />
+            {(index === "matters" ||
+              index === "resources" ||
+              user.type === "child") && (
+              <Account
+                user={
+                  index === "matters" || index === "resources"
+                    ? user
+                    : user?.parent
+                }
+                index={index}
+                handleChange={handleChange}
+              />
             )}
 
             <Auth user={user} />

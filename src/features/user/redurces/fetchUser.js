@@ -33,6 +33,8 @@ const companys = (state, action) => {
   state.user.email = action.payload.user.email;
   state.user.social = action.payload.user.social;
 
+  state.user.parent = action.payload.user.parent;
+
   state.user.follows = action.payload.user.follows;
   state.user.home = action.payload.user.home;
 
