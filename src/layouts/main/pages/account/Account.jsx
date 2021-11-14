@@ -12,6 +12,7 @@ import { Input } from "./components/input/Input";
 import { Toggle } from "./components/toggle/Toggle";
 import { Profile } from "./components/profile/Profile";
 import { updateUser } from "../../../../features/root/actions/updateUser";
+import { Header } from "./components/header/Header";
 
 export const Account = ({ index }) => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export const Account = ({ index }) => {
         className={styles.account}
         onSubmit={methods.handleSubmit(handleEdit)}
       >
+        <Header />
         <Main index={index} users={users} display={display} />
 
         {display < 20 && (
@@ -83,5 +85,5 @@ const Main = ({ index, users, display }) => {
     );
   }
 
-  return account;
+  return <div className={styles.account_main}>{account}</div>;
 };

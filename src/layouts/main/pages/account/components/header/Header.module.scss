@@ -1,0 +1,15 @@
+@import "../../../../../../styles/config";
+@import "../../../../../../styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.header {
+  padding-bottom: 16px;
+
+  display: grid;
+  grid-template-columns: 1fr 270px 270px;
+  gap: 8px;
+  color: $icn_clr;
+  font-weight: bold;
+}
