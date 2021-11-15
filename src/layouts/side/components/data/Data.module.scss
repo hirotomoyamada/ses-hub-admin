@@ -39,6 +39,7 @@ $width: responsive-width(pc);
 
     &_tag {
       display: inline-block;
+      white-space: nowrap;
       padding: 0 8px;
       border-radius: 8px;
       line-height: 24px;

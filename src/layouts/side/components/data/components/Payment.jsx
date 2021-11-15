@@ -1,10 +1,50 @@
 import styles from "../Data.module.scss";
 
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
+import { useState } from "react";
+
 import { timestamp } from "../../../../../functions/timestamp";
 
 export const Payment = ({ user }) => {
+  const [copy, setCopy] = useState(false);
+
+  const handleCopy = () => {
+    setCopy(true);
+    setTimeout(() => setCopy(false), 2000);
+  };
+
   return (
     <div className={styles.data_col}>
+      {user?.payment?.id && (
+        <div className={styles.data_item}>
+          <span className={styles.data_item_tag}>ID</span>
+          <CopyToClipboard text={user?.payment?.id} onCopy={handleCopy}>
+            <button
+              className={`${styles.data_item_text} ${styles.data_item_btn} ${
+                copy && styles.data_item_btn_copy
+              }`}
+            >
+              {user?.payment?.id}
+            </button>
+          </CopyToClipboard>
+        </div>
+      )}
+
+      {user?.payment?.link && (
+        <div className={styles.data_item}>
+          <span className={styles.data_item_tag}>ダッシュボード</span>
+          <a
+            href={user?.payment?.link}
+            target="_blank"
+            rel="noreferrer noopener"
+            className={`${styles.data_item_text} ${styles.data_item_text_link}`}
+          >
+            {user?.payment?.link}
+          </a>
+        </div>
+      )}
+
       <div className={styles.data_item}>
         <span className={styles.data_item_tag}>タイプ</span>
         <span className={styles.data_item_text}>
