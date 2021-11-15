@@ -51,6 +51,10 @@ $width: responsive-width(pc);
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &_none {
+        pointer-events: none;
+      }
     }
 
     input:checked + &_btn {
@@ -68,6 +72,11 @@ $width: responsive-width(pc);
         background: $remove_clr;
       }
     }
+
+    input:checked + &_btn_none {
+      color: $base_clr;
+      background: $sub_clr;
+    }
   }
 
   &_submit {
@@ -80,6 +89,11 @@ $width: responsive-width(pc);
 
     &:hover {
       opacity: 0.8;
+    }
+
+    &_none {
+      background: $sub_clr;
+      pointer-events: none;
     }
   }
 }

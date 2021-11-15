@@ -4,6 +4,8 @@ import { useFormContext } from "react-hook-form";
 export const Header = ({ handleClose, handleBack, icon, cover, user }) => {
   const { register } = useFormContext();
 
+  const fetch = user.index;
+
   return (
     <div className={styles.header}>
       <button
@@ -28,7 +30,9 @@ export const Header = ({ handleClose, handleBack, icon, cover, user }) => {
               {...register("status")}
             />
             <label
-              className={`${styles.header_status_btn} ${styles.header_status_btn_enable}`}
+              className={`${styles.header_status_btn} ${
+                !fetch && styles.header_status_btn_none
+              } ${styles.header_status_btn_enable}`}
               htmlFor="status1"
             >
               認証
@@ -43,14 +47,16 @@ export const Header = ({ handleClose, handleBack, icon, cover, user }) => {
                   {...register("status")}
                 />
                 <label
-                  className={`${styles.header_status_btn} ${styles.header_status_btn_hold}`}
+                  className={`${styles.header_status_btn} ${
+                    !fetch && styles.header_status_btn_none
+                  } ${styles.header_status_btn_hold}`}
                   htmlFor="status2"
                 >
                   未認証
                 </label>
               </>
             )}
-            
+
             <input
               type="radio"
               id="status3"
@@ -58,14 +64,21 @@ export const Header = ({ handleClose, handleBack, icon, cover, user }) => {
               {...register("status")}
             />
             <label
-              className={`${styles.header_status_btn} ${styles.header_status_btn_disable}`}
+              className={`${styles.header_status_btn} ${
+                !fetch && styles.header_status_btn_none
+              } ${styles.header_status_btn_disable}`}
               htmlFor="status3"
             >
               停止
             </label>
           </div>
 
-          <button className={styles.header_submit} type="submit">
+          <button
+            className={`${styles.header_submit} ${
+              !fetch && styles.header_submit_none
+            }`}
+            type="submit"
+          >
             編集
           </button>
         </div>
