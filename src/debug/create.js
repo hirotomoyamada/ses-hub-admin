@@ -16,8 +16,6 @@ export const data = {
 };
 
 export const create = async () => {
-  const users = [];
-
   for (let i = 0; i < data.user; i++) {
     const uid = setting.uid();
 
