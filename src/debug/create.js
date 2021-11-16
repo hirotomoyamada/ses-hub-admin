@@ -24,8 +24,6 @@ export const create = async () => {
     const objectIDs = data.index === "companys" && (await createPost(uid));
     await createUser(uid, objectIDs);
   }
-
-  users.map((user) => console.log(user.payment));
 };
 
 const createPost = async (uid) => {

@@ -16,8 +16,6 @@ import { Btn } from "../../components/btn/Btn";
 export const Mail = ({ index, data }) => {
   const dispatch = useDispatch();
 
-  console.log(index);
-
   const methods = useForm({
     defaultValues:
       index === "companys"
