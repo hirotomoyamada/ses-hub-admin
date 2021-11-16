@@ -60,6 +60,11 @@ $width: responsive-width(pc);
     position: relative;
   }
 
+  &_mark {
+    text-align: center;
+    line-height: 48px;
+  }
+
   &_select {
     position: relative;
 
