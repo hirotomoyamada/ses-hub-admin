@@ -11,7 +11,7 @@ import { fetchUser } from "../../../../../../features/user/actions/fetchUser";
 import * as userSlice from "../../../../../../features/user/userSlice";
 import * as rootSlice from "../../../../../../features/root/rootSlice";
 
-export const Input = ({ i, index, user }) => {
+export const Input = ({ i, index }) => {
   const dispatch = useDispatch();
   const { register, watch, setValue } = useFormContext();
 
@@ -49,17 +49,11 @@ export const Input = ({ i, index, user }) => {
   };
 
   return (
-    <div
-      className={`${styles.input} ${
-        user?.payment?.price && styles.input_disable
-      }`}
-    >
+    <div className={styles.input}>
       <input
         type="text"
         className={styles.input_uid}
-        {...register(`user[${i}].uid`, {
-          disabled: user?.payment?.price ? true : false,
-        })}
+        {...register(`user[${i}].uid`)}
       />
       <button type="button" onClick={handleReset} className={styles.input_btn}>
         {fetch ? (

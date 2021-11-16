@@ -23,7 +23,7 @@ export const Account = ({ index }) => {
 
   const handleEdit = (data) => {
     const array = data.user
-      .filter((user, index) => user.uid && !users[index]?.payment?.price)
+      .filter((user) => user.uid)
       .map((user) =>
         user.option !== "none"
           ? {
@@ -77,7 +77,7 @@ const Main = ({ index, users, display }) => {
     account.push(
       <div className={styles.account_container} key={i}>
         <div className={styles.account_wrap}>
-          <Input i={i} index={index} user={users[i]} />
+          <Input i={i} index={index} />
           <Toggle i={i} user={users[i]} />
         </div>
         <Profile user={users[i]} />

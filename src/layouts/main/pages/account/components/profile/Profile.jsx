@@ -22,8 +22,7 @@ export const Profile = ({ user }) => {
             }`}
           />
           <span className={user?.payment?.price && styles.profile_error_desc}>
-            このアカウントは、現在プラン または
-            オプションを契約中のため、編集できません。
+            このアカウントは、現在プランを契約中のため、プランの編集できません。
           </span>
         </div>
       )}
