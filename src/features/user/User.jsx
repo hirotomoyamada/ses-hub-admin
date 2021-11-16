@@ -5,7 +5,8 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import * as userSlice from "../user/userSlice";
+import * as userSlice from "./userSlice";
+import * as rootSlice from "../root/rootSlice";
 
 import { Header } from "./layouts/header/Header";
 import { Main } from "./layouts/main/Main";
@@ -42,6 +43,17 @@ export const User = ({ index, handleClose }) => {
   };
 
   const handleEdit = (data) => {
+    if (index === "companys" && user.type !== data.type && user.payment.price) {
+      dispatch(
+        rootSlice.handleAnnounce({
+          type: "error",
+          text: "このアカウントは、現在プランまたはオプションを契約中のため、個人・法人の編集できません。",
+        })
+      );
+
+      return;
+    }
+
     const object =
       index === "companys"
         ? {

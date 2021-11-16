@@ -4,6 +4,7 @@ export const editUser = (state, action) => {
   );
 
   if (action.payload.index === "companys" && user) {
+    user.type = action.payload.user.type;
     user.icon = action.payload.user.icon;
     user.cover = action.payload.user.cover;
     user.status = action.payload.user.status;

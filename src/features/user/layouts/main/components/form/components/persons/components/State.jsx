@@ -8,10 +8,10 @@ export const State = () => {
 
   return (
     <select
-      className={`${styles.form_state} ${
+      className={`${styles.form_toggle} ${
         (state === "確定" || state === "商談中" || state === "情報収集中") &&
-        styles.form_state_disable
-      } ${state === "至急" && styles.form_state_hurry}`}
+        styles.form_toggle_disable
+      } ${state === "至急" && styles.form_toggle_hurry}`}
       {...register("state")}
     >
       <option value="案件探し中">案件探し中</option>

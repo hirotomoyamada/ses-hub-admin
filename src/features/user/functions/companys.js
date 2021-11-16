@@ -1,5 +1,6 @@
 export const defaultValues = (user) => {
   return {
+    type: user?.type,
     status: user?.status,
     icon: user?.icon ? user.icon : "icon0",
     cover: user?.cover ? user.cover : "cover0",
@@ -18,6 +19,7 @@ export const defaultValues = (user) => {
 
 export const object = (data) => {
   return {
+    type: data.type,
     status: data.status,
     icon: data.icon,
     cover: data.cover,

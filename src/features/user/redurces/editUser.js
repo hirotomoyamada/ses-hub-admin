@@ -2,6 +2,7 @@ import { functions } from "../../../firebase";
 
 export const editUser = (state, action) => {
   if (action.payload.index === "companys") {
+    state.user.type = action.payload.user.type;
     state.user.icon = action.payload.user.icon;
     state.user.cover = action.payload.user.cover;
     state.user.status = action.payload.user.status;

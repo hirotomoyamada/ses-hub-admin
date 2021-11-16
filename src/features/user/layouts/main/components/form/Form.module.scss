@@ -160,7 +160,7 @@ $width: responsive-width(pc);
     }
   }
 
-  &_state {
+  &_toggle {
     position: absolute;
     top: 16px;
     right: 32px;
@@ -173,12 +173,27 @@ $width: responsive-width(pc);
     color: $base_clr;
     text-align: center;
 
+    cursor: pointer;
+
     &_disable {
       background: $sub_clr;
     }
 
     &_hurry {
       background: $remove_clr;
+    }
+
+    &_individual {
+      background: $acnt_clr;
+    }
+
+    &_parent {
+      background: $acnt_sub_clr;
+    }
+
+    &_child {
+      background: $promo_clr;
+      pointer-events: none;
     }
   }
 

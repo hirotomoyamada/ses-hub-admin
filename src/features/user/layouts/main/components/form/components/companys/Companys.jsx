@@ -8,10 +8,12 @@ import { Address } from "./components/Address";
 import { More } from "./components/More";
 import { Social } from "./components/Social";
 import { Url } from "./components/Url";
+import { Type } from "./components/Type";
 
 export const Companys = () => {
   return (
     <div className={styles.form_container}>
+      <Type />
       <Name />
       <Person />
       <Body />
