@@ -53,7 +53,7 @@ export const List = ({
             />
           )}
 
-          {posts?.[target]?.lenght || posts?.[target]?.[index]?.lenght ? (
+          {posts?.[target]?.length || posts?.[target]?.[index]?.length ? (
             <div
               className={`${styles.list_inner} 
               ${single && styles.list_inner_single}

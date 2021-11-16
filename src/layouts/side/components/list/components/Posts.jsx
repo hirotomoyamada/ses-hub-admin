@@ -3,17 +3,17 @@ import { Item } from "../../../../../components/item/Item";
 export const Posts = ({ user, posts, target, index, single }) => {
   return single
     ? posts?.[target]?.map(
-        (post, index) =>
+        (post, i) =>
           post && (
             <Item
               key={
                 index === "matters" || index === "resources"
-                  ? post.objectID
+                  ? post?.objectID
                     ? post.objectID
-                    : index
-                  : post.uid
-                  ? post.uid
-                  : index
+                    : i
+                  : post?.uid
+                  ? post?.uid
+                  : i
               }
               index={index}
               post={post}
@@ -23,17 +23,17 @@ export const Posts = ({ user, posts, target, index, single }) => {
           )
       )
     : posts?.[target]?.[index]?.map(
-        (post, index) =>
+        (post, i) =>
           post && (
             <Item
               key={
                 index === "matters" || index === "resources"
-                  ? post.objectID
+                  ? post?.objectID
                     ? post.objectID
-                    : index
-                  : post.uid
+                    : i
+                  : post?.uid
                   ? post.uid
-                  : index
+                  : i
               }
               index={target !== "requests" ? index : "companys"}
               post={post}
