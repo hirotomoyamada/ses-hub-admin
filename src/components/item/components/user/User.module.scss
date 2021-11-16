@@ -10,7 +10,7 @@ $width: responsive-width(pc);
   padding: 12px;
 
   display: grid;
-  grid-template-columns: 48px 1fr 248px;
+  grid-template-columns: 56px 1fr 248px;
   align-items: center;
   gap: 12px;
 
@@ -71,9 +71,14 @@ $width: responsive-width(pc);
     display: flex;
     flex-direction: column;
     gap: 8px;
+    overflow-x: hidden;
 
     &_head {
       font-weight: bold;
+
+      span {
+        white-space: nowrap;
+      }
     }
 
     &_footer {
@@ -91,7 +96,10 @@ $width: responsive-width(pc);
   &_row {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    height: 24px;
     gap: 8px;
+    overflow-y: hidden;
   }
 
   &_category {
@@ -102,6 +110,7 @@ $width: responsive-width(pc);
     font-size: 12px;
     color: $base_clr;
     font-weight: normal;
+    white-space: nowrap;
 
     &_position {
       background: $icn_clr;

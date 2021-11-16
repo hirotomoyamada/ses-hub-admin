@@ -12,22 +12,22 @@ export const defaultValues = (user) => {
     position: user?.position,
     location: user?.location,
 
-    handles: user?.handles?.[0]
+    handles: user?.handles?.length
       ? user?.handles.map((value) => ({
           handle: value,
         }))
       : [{ handle: "" }, { handle: "" }, { handle: "" }, { handle: "" }],
-    tools: user?.tools?.[0]
+    tools: user?.tools?.length
       ? user?.tools.map((value) => ({
           tool: value,
         }))
       : [{ tool: "" }, { tool: "" }, { tool: "" }, { tool: "" }],
-    skills: user?.skills?.[0]
+    skills: user?.skills?.length
       ? user?.skills.map((value) => ({
           skill: value,
         }))
       : [{ skill: "" }, { skill: "" }, { skill: "" }],
-    urls: user?.urls?.[0]
+    urls: user?.urls?.length
       ? user?.urls.map((value) => ({
           url: value,
         }))

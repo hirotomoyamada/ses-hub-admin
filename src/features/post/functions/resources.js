@@ -20,17 +20,17 @@ export const defaultValues = (post) => {
       display: post?.costs?.display,
       type: post?.costs?.type,
     },
-    handles: post.handles?.[0]
+    handles: post.handles?.length
       ? post.handles.map((value) => ({
           handle: value,
         }))
       : [{ handle: "" }],
-    tools: post.tools?.[0]
+    tools: post.tools?.length
       ? post.tools.map((value) => ({
           tool: value,
         }))
       : [{ tool: "" }],
-    skills: post.skills?.[0]
+    skills: post.skills?.length
       ? post.skills.map((value) => ({
           skill: value,
         }))

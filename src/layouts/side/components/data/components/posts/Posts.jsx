@@ -65,7 +65,7 @@ export const Posts = ({ user, setType, setIndex }) => {
 
                     <div
                       className={`${styles.posts_item_count} ${
-                        !user?.[type]?.[index]?.[0] &&
+                        !user?.[type]?.[index]?.length &&
                         styles.posts_item_count_none
                       }`}
                     >
@@ -94,7 +94,7 @@ export const Posts = ({ user, setType, setIndex }) => {
 
                 <div
                   className={`${styles.posts_item_count} ${
-                    !user?.[type]?.[0] && styles.posts_item_count_none
+                    !user?.[type]?.length && styles.posts_item_count_none
                   }`}
                 >
                   <CountUp

@@ -49,10 +49,9 @@ export const editUser = (state, action) => {
   }
 
   const editUser = functions.httpsCallable("admin-editUser");
+
   editUser({
     index: action.payload.index,
     user: action.payload.user,
-  }).catch((e) => {
-    console.log(e);
-  });
+  }).catch((e) => {});
 };

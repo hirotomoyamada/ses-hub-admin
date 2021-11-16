@@ -23,13 +23,15 @@ export const Companys = ({ post }) => {
           <span>{post?.tel}</span>
         </div>
       )}
-      {post?.follows[0] && (
+      
+      {post?.follows?.[0] && (
         <div className={styles.item_row}>
           <FontAwesomeIcon icon={faUsers} className={styles.item_icon_follow} />
           <span>{post?.follows?.length}人</span>
         </div>
       )}
-      {(post?.posts?.matters[0] || post?.posts?.resources[0]) && (
+
+      {(post?.posts?.matters?.[0] || post?.posts?.resources?.[0]) && (
         <div className={styles.item_row}>
           <FontAwesomeIcon icon={faCopy} className={styles.item_icon_post} />
           <span>
@@ -37,7 +39,8 @@ export const Companys = ({ post }) => {
           </span>
         </div>
       )}
-      {(post?.likes?.matters[0] || post?.likes?.resources[0]) && (
+
+      {(post?.likes?.matters?.[0] || post?.likes?.resources?.[0]) && (
         <div className={styles.item_row}>
           <FontAwesomeIcon icon={faHeart} className={styles.item_icon_like} />
           <span>
@@ -45,7 +48,8 @@ export const Companys = ({ post }) => {
           </span>
         </div>
       )}
-      {(post?.outputs?.matters[0] || post?.outputs?.resources[0]) && (
+
+      {(post?.outputs?.matters?.[0] || post?.outputs?.resources?.[0]) && (
         <div className={styles.item_row}>
           <FontAwesomeIcon
             icon={faExternalLinkAlt}
@@ -57,7 +61,8 @@ export const Companys = ({ post }) => {
           </span>
         </div>
       )}
-      {(post?.entries?.matters[0] || post?.entries?.resources[0]) && (
+
+      {(post?.entries?.matters?.[0] || post?.entries?.resources?.[0]) && (
         <div className={styles.item_row}>
           <FontAwesomeIcon
             icon={faCheckCircle}

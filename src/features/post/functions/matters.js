@@ -16,22 +16,22 @@ export const defaultValues = (post) => {
       display: post?.costs?.display,
       type: post?.costs?.type,
     },
-    handles: post.handles?.[0]
+    handles: post.handles?.length
       ? post.handles.map((value) => ({
           handle: value,
         }))
       : [{ handle: "" }],
-    tools: post.tools?.[0]
+    tools: post.tools?.length
       ? post.tools.map((value) => ({
           tool: value,
         }))
       : [{ tool: "" }],
-    requires: post.requires?.[0]
+    requires: post.requires?.length
       ? post.requires.map((value) => ({
           require: value,
         }))
       : [{ require: "" }],
-    prefers: post.prefers?.[0]
+    prefers: post.prefers?.length
       ? post.prefers.map((value) => ({
           prefer: value,
         }))

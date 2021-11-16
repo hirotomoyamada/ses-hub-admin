@@ -1,6 +1,6 @@
 export const editPost = (state, action) => {
   Object.keys(state.posts).forEach((type) => {
-    if (type === "follows") {
+    if (type === "follows" || type === "children") {
       return;
     }
 
