@@ -66,6 +66,7 @@ export const Payment = ({ user }) => {
             : "リミテッド"}
           {user?.type === "parent" &&
             user?.payment?.price &&
+            user?.payment?.account &&
             `\n(\n${user?.payment?.account}人\n)\n`}
         </span>
       </div>
