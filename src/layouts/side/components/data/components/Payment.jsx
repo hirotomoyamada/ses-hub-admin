@@ -96,12 +96,13 @@ export const Payment = ({ user }) => {
         </span>
       </div>
 
-      <div className={styles.data_item}>
+      {/* ver 2.0.0 */}
+      {/* <div className={styles.data_item}>
         <span className={styles.data_item_tag}>オプション</span>
         <span className={styles.data_item_text}>
           {user?.payment?.option?.freelanceDirect ? "済" : "未"}
         </span>
-      </div>
+      </div> */}
     </div>
   );
 };
