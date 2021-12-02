@@ -3,6 +3,8 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/functions";
 
+import { algolia } from "./algolia";
+
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -20,24 +22,39 @@ export const providerGoogle = new firebase.auth.GoogleAuthProvider();
 export const providerTwitter = new firebase.auth.TwitterAuthProvider();
 export const providerGithub = new firebase.auth.GithubAuthProvider();
 
+const index = algolia.initIndex("companys");
+
 export const insert = async () => {
   await db
     .collection("companys")
     // .collection("persons")
     .get()
     .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(async (doc) => {
         // データ 追加
-        doc.ref
+        await doc.ref
           .set(
             {
-              type: ["individual", "parent"][Math.floor(Math.random() * 2)],
+              payment: {
+                option: { freelanceDirect: true },
+              },
+              // type: ["individual", "parent"][Math.floor(Math.random() * 2)],
             },
             { merge: true }
           )
           .catch((e) => {
             console.log(e);
           });
+
+        await index.partialUpdateObject(
+          {
+            objectID: doc.id,
+            freelanceDirect: "enable",
+          },
+          {
+            createIfNotExists: false,
+          }
+        );
 
         // データ 削除
         // doc.ref
