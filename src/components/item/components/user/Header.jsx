@@ -23,17 +23,21 @@ export const Header = ({ index, post, min }) => {
             } ${
               index === "companys" &&
               !post?.payment?.price &&
-              (post?.payment?.status !== "canceled" ||
-                post?.payment?.option?.freelanceDirect) &&
+              post?.payment?.status !== "canceled" &&
+              // ver 2.0.0
+              // (post?.payment?.status !== "canceled" ||
+              //   post?.payment?.option?.freelanceDirect) &&
               styles.item_category_extra
             }`}
           >
             <span>
               {index === "companys" &&
               !post?.payment?.price &&
-              (post?.payment?.status !== "canceled" ||
-                post?.payment?.option?.freelanceDirect)
-                ? "エキストラ"
+              post?.payment?.status !== "canceled"
+                ? // ver 2.0.0
+                  // (post?.payment?.status !== "canceled" ||
+                  // post?.payment?.option?.freelanceDirect)
+                  "エキストラ"
                 : post?.type !== "parent"
                 ? post?.type === "child"
                   ? "法人\n(\n子アカウント\n)"
