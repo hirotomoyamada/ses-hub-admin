@@ -64,13 +64,14 @@ export const Header = ({ index, post, min }) => {
           </div>
         )}
 
-        {!min && post?.payment?.option?.freelanceDirect && (
+        {/* ver 2.0.0 */}
+        {/* {!min && post?.payment?.option?.freelanceDirect && (
           <div
             className={`${styles.item_category} ${styles.item_category_trialing}`}
           >
             <span>オプション</span>
           </div>
-        )}
+        )} */}
 
         {!min && post?.state && (
           <div
