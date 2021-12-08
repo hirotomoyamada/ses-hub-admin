@@ -12,22 +12,22 @@ export const Maintenance = () => {
       <div className={styles.setting_toggle}>
         <input
           type="radio"
-          id="offMaintenance"
-          value="disable"
-          {...register("maintenance.status")}
-        />
-        <label className={styles.setting_toggle_btn} htmlFor="offMaintenance">
-          オフ
-        </label>
-
-        <input
-          type="radio"
           id="onMaintenance"
           value="enable"
           {...register("maintenance.status")}
         />
         <label className={styles.setting_toggle_btn} htmlFor="onMaintenance">
-          オン
+          はい
+        </label>
+
+        <input
+          type="radio"
+          id="offMaintenance"
+          value="disable"
+          {...register("maintenance.status")}
+        />
+        <label className={styles.setting_toggle_btn} htmlFor="offMaintenance">
+          いいえ
         </label>
       </div>
     </div>

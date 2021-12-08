@@ -70,22 +70,22 @@ export const Agree = () => {
         <div className={styles.setting_toggle}>
           <input
             type="radio"
-            id="disable"
-            value="disable"
-            {...register("agree.status")}
-          />
-          <label className={styles.setting_toggle_btn} htmlFor="disable">
-            オフ
-          </label>
-
-          <input
-            type="radio"
             id="enable"
             value="enable"
             {...register("agree.status")}
           />
           <label className={styles.setting_toggle_btn} htmlFor="enable">
-            オン
+            はい
+          </label>
+
+          <input
+            type="radio"
+            id="disable"
+            value="disable"
+            {...register("agree.status")}
+          />
+          <label className={styles.setting_toggle_btn} htmlFor="disable">
+            いいえ
           </label>
         </div>
       </div>
