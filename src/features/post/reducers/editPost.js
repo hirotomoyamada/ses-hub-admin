@@ -4,7 +4,7 @@ export const editPost = (state, action) => {
   const post = state.posts[action.payload.index].find(
     (post) => post?.objectID === action.payload.post.objectID
   );
-  
+
   if (action.payload.index === "matters" && post) {
     post.display = action.payload.post.display;
     post.title = action.payload.post.title;
@@ -26,6 +26,7 @@ export const editPost = (state, action) => {
     post.remote = action.payload.post.remote;
     post.distribution = action.payload.post.distribution;
     post.span = action.payload.post.span;
+    post.approval = action.payload.post.approval;
     post.note = action.payload.post.note;
     post.status = action.payload.post.status;
     post.memo = action.payload.post.memo;

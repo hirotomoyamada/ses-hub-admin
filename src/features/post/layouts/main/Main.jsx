@@ -27,6 +27,7 @@ import { Parallel } from "./components/Parallel";
 import { Age } from "./components/Age";
 import { Sex } from "./components/Sex";
 import { Roman } from "./components/Roman";
+import { Approval } from "./components/Approval";
 
 export const Main = ({ index }) => {
   switch (index) {
@@ -75,6 +76,7 @@ export const Main = ({ index }) => {
             <Adjustment />
             <Distribution />
             <Span />
+            <Approval />
           </div>
 
           <Note />
