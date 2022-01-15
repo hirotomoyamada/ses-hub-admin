@@ -96,7 +96,7 @@ export const Payment = ({ user }) => {
         </span>
       </div>
 
-      {/* ver 2.0.0 */}
+      {/* ver 2.X.X */}
       {/* <div className={styles.data_item}>
         <span className={styles.data_item_tag}>オプション</span>
         <span className={styles.data_item_text}>

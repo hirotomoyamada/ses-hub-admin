@@ -24,7 +24,7 @@ export const Header = ({ index, post, min }) => {
               index === "companys" &&
               !post?.payment?.price &&
               post?.payment?.status !== "canceled" &&
-              // ver 2.0.0
+              // ver 2.X.X
               // (post?.payment?.status !== "canceled" ||
               //   post?.payment?.option?.freelanceDirect) &&
               styles.item_category_extra
@@ -34,7 +34,7 @@ export const Header = ({ index, post, min }) => {
               {index === "companys" &&
               !post?.payment?.price &&
               post?.payment?.status !== "canceled"
-                ? // ver 2.0.0
+                ? // ver 2.X.X
                   // (post?.payment?.status !== "canceled" ||
                   // post?.payment?.option?.freelanceDirect)
                   "エキストラ"
@@ -68,7 +68,7 @@ export const Header = ({ index, post, min }) => {
           </div>
         )}
 
-        {/* ver 2.0.0 */}
+        {/* ver 2.X.X */}
         {/* {!min && post?.payment?.option?.freelanceDirect && (
           <div
             className={`${styles.item_category} ${styles.item_category_trialing}`}
