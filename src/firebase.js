@@ -32,24 +32,24 @@ export const insert = async () => {
     .then((querySnapshot) => {
       querySnapshot.forEach(async (doc) => {
         // データ 追加
-        await doc.ref
-          .set(
-            {
-              payment: {
-                option: { freelanceDirect: true },
-              },
-              // type: ["individual", "parent"][Math.floor(Math.random() * 2)],
-            },
-            { merge: true }
-          )
-          .catch((e) => {
-            console.log(e);
-          });
+        // await doc.ref
+        //   .set(
+        //     {
+        //       payment: {
+        //         option: { freelanceDirect: true },
+        //       },
+        //       // type: ["individual", "parent"][Math.floor(Math.random() * 2)],
+        //     },
+        //     { merge: true }
+        //   )
+        //   .catch((e) => {
+        //     console.log(e);
+        //   });
 
         await index.partialUpdateObject(
           {
             objectID: doc.id,
-            freelanceDirect: "enable",
+            type: doc.data().type,
           },
           {
             createIfNotExists: false,
