@@ -46,7 +46,7 @@ export const Mail = ({ index, data }) => {
       <form className={styles.mail} onSubmit={methods.handleSubmit(handleEdit)}>
         <Target index={index} />
         <Main />
-        <Btn handleIndex={handleIndex} index={index} />
+        <Btn handleIndex={handleIndex} index={index} mail />
       </form>
     </FormProvider>
   );
