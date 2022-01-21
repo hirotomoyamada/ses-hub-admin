@@ -1,6 +1,6 @@
 import styles from "./Btn.module.scss";
 
-export const Btn = ({ index, handleIndex, disable }) => {
+export const Btn = ({ index, handleIndex, disable, mail }) => {
   return (
     <div className={`${styles.btn}`}>
       <div className={styles.btn_wrap}>
@@ -26,7 +26,7 @@ export const Btn = ({ index, handleIndex, disable }) => {
       </div>
 
       <button type="submit" className={styles.btn_submit}>
-        送信
+        {!mail ? "変更" : "送信"}
       </button>
     </div>
   );
