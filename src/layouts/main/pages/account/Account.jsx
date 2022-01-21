@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as rootSlice from "../../../../features/root/rootSlice";
 import * as userSlice from "../../../../features/user/userSlice";
 
-import { Btn } from "../../components/btn/Btn";
+import { Header } from "./components/header/Header";
 import { Input } from "./components/input/Input";
 import { Toggle } from "./components/toggle/Toggle";
 import { Profile } from "./components/profile/Profile";
+import { Btn } from "../../components/btn/Btn";
+
 import { updateUser } from "../../../../features/root/actions/updateUser";
-import { Header } from "./components/header/Header";
 
 export const Account = ({ index }) => {
   const dispatch = useDispatch();
@@ -23,17 +24,33 @@ export const Account = ({ index }) => {
 
   const handleEdit = (data) => {
     const array = data.user
-      .filter((user) => user.uid)
+      .filter(
+        (user, index) =>
+          user.uid && !users?.[index]?.error && users?.[index]?.type !== "child"
+      )
       .map((user) =>
         user.option !== "none"
+          ? isNaN(Number(user.status))
+            ? {
+                uid: user.uid,
+                status: user.status,
+                option: user.option,
+              }
+            : {
+                uid: user.uid,
+                status: "active",
+                account: Number(user.status),
+                option: user.option,
+              }
+          : isNaN(Number(user.status))
           ? {
               uid: user.uid,
               status: user.status,
-              option: user.option,
             }
           : {
               uid: user.uid,
-              status: user.status,
+              status: "active",
+              account: Number(user.status),
             }
       );
 

@@ -22,10 +22,28 @@ $width: responsive-width(pc);
     gap: 24px;
   }
 
+  &_parent {
+    height: 94px;
+
+    &_account {
+      font-weight: bold;
+      color: $remove_clr;
+    }
+  }
+
   &_error {
     background: $remove_bg_clr;
     border: 1px solid $remove_clr;
     height: 64px;
+
+    &_desc {
+      color: $remove_clr;
+    }
+  }
+
+  &_notFound {
+    background: $remove_bg_clr;
+    border: 1px solid $remove_clr;
 
     &_desc {
       color: $remove_clr;

@@ -1,17 +1,28 @@
 import root from "../../Account.module.scss";
-import styles from "./Toggle.module.scss";
 
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 
+import { Individual } from "./components/Individual";
+import { Parent } from "./components/Parent";
+import { Option } from "./components/Option";
+
 export const Toggle = ({ i, user }) => {
-  const { register, setValue } = useFormContext();
+  const { setValue } = useFormContext();
 
   useEffect(() => {
-    setValue(`user[${i}].status`, user?.payment?.status, {
-      shouldValidate: true,
-      shouldDirty: true,
-    });
+    setValue(
+      `user[${i}].status`,
+      user?.type !== "child"
+        ? user?.type === "parent" && user?.payment?.account > 0
+          ? String(user?.payment?.account)
+          : user?.payment?.status
+        : "canceled",
+      {
+        shouldValidate: true,
+        shouldDirty: true,
+      }
+    );
 
     setValue(
       `user[${i}].option`,
@@ -30,91 +41,13 @@ export const Toggle = ({ i, user }) => {
 
   return (
     <div className={root.account_wrap}>
-      <div
-        className={`${styles.toggle} ${
-          (!user || user?.payment?.price) && styles.toggle_notFound
-        }`}
-      >
-        <input
-          type="radio"
-          id={`active${i}`}
-          value="active"
-          {...register(`user[${i}].status`)}
-        />
-        <label
-          className={`${styles.toggle_btn} ${styles.toggle_active}`}
-          htmlFor={`active${i}`}
-        >
-          レギュラー
-        </label>
+      {!user?.uid || user?.type === "individual" ? (
+        <Individual i={i} user={user} />
+      ) : (
+        <Parent i={i} user={user} />
+      )}
 
-        <input
-          type="radio"
-          id={`trialing${i}`}
-          value="trialing"
-          {...register(`user[${i}].status`)}
-        />
-        <label
-          className={`${styles.toggle_btn} ${styles.toggle_trialing}`}
-          htmlFor={`trialing${i}`}
-        >
-          トライアル
-        </label>
-
-        <input
-          type="radio"
-          id={`canceled${i}`}
-          value="canceled"
-          {...register(`user[${i}].status`)}
-        />
-        <label
-          className={`${styles.toggle_btn} ${styles.toggle_canceled}`}
-          htmlFor={`canceled${i}`}
-        >
-          リミテッド
-        </label>
-      </div>
-
-      <div className={`${styles.toggle} ${!user && styles.toggle_notFound}`}>
-        <input
-          type="radio"
-          id={`enable${i}`}
-          value="enable"
-          {...register(`user[${i}].option`)}
-        />
-        <label
-          className={`${styles.toggle_btn} ${styles.toggle_enable}`}
-          htmlFor={`enable${i}`}
-        >
-          有効
-        </label>
-
-        <input
-          type="radio"
-          id={`disable${i}`}
-          value="disable"
-          {...register(`user[${i}].option`)}
-        />
-        <label
-          className={`${styles.toggle_btn} ${styles.toggle_disable}`}
-          htmlFor={`disable${i}`}
-        >
-          無効
-        </label>
-
-        <input
-          type="radio"
-          id={`none${i}`}
-          value="none"
-          {...register(`user[${i}].option`)}
-        />
-        <label
-          className={`${styles.toggle_btn} ${styles.toggle_none}`}
-          htmlFor={`none${i}`}
-        >
-          選択しない
-        </label>
-      </div>
+      <Option i={i} user={user} />
     </div>
   );
 };

@@ -4,7 +4,11 @@ export const fetchUser = (state, action) => {
       ? companys(state, action)
       : action.payload.user.index === "persons" && persons(state, action);
   } else {
-    state.users[action.payload.i] = action.payload.user;
+    if (action.payload.user) {
+      state.users[action.payload.i] = action.payload.user;
+    } else {
+      state.users[action.payload.i] = { error: true };
+    }
   }
 };
 

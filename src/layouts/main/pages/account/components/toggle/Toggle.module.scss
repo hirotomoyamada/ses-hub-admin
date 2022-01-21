@@ -16,6 +16,10 @@ $width: responsive-width(pc);
   padding: 3px;
   border: 1px solid $bdr_clr;
 
+  &_parent {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
   &_notFound {
     pointer-events: none;
   }
@@ -34,6 +38,10 @@ $width: responsive-width(pc);
     line-height: 32px;
 
     transition: all 0.4s;
+
+    &_disable {
+      pointer-events: none;
+    }
   }
 
   input:checked + &_active {
