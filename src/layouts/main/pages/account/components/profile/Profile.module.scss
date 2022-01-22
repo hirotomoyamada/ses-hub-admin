@@ -25,6 +25,10 @@ $width: responsive-width(pc);
   &_parent {
     height: 94px;
 
+    &_none {
+      height: 64px;
+    }
+
     &_account {
       font-weight: bold;
       color: $remove_clr;

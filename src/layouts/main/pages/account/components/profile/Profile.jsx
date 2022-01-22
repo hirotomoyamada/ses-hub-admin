@@ -9,11 +9,19 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 export const Profile = ({ user }) => {
   return user?.uid ? (
     <div
-      className={`${styles.profile} ${
-        user?.type === "parent" && styles.profile_parent
-      } ${
-        (user?.type === "child" || user?.payment?.price) && styles.profile_error
-      }`}
+      className={`
+        ${styles.profile} 
+        ${user?.type === "parent" && styles.profile_parent} 
+        ${
+          user?.type === "parent" &&
+          !user?.payment?.children?.length &&
+          styles.profile_parent_none
+        } 
+        ${
+          (user?.type === "child" || user?.payment?.price) &&
+          styles.profile_error
+        }
+      `}
     >
       {(user?.type === "child" || user?.payment?.price) && (
         <div className={styles.profile_wrap}>
@@ -43,30 +51,40 @@ export const Profile = ({ user }) => {
             icon={faExclamationCircle}
             className={`${styles.profile_icon}`}
           />
-          <span>
-            このアカウントは、法人アカウントです&nbsp;※&nbsp;現在、このアカウントを含め
-            &nbsp;
-            <span className={styles.profile_parent_account}>
-              {!user?.payment?.children
-                ? 1
-                : user?.payment?.children?.length + 1}
+
+          <span>このアカウントは、法人アカウントです</span>
+
+          {user?.payment?.children?.length ? (
+            <span>
+              ※&nbsp;このアカウントを含め &nbsp;
+              <span className={styles.profile_parent_account}>
+                {!user?.payment?.children
+                  ? 1
+                  : user?.payment?.children?.length + 1}
+              </span>
+              &nbsp;アカウントを保有しています
             </span>
-            &nbsp;アカウントを保有しています
-          </span>
+          ) : (
+            <span className={styles.profile_parent_account}>
+              ※&nbsp;このアカウントは、グループアカウントを保有していません
+            </span>
+          )}
         </div>
       )}
 
-      {user?.type === "parent" && !user?.payment?.price && (
-        <div className={styles.profile_wrap}>
-          <FontAwesomeIcon
-            icon={faExclamationCircle}
-            className={`${styles.profile_icon} ${styles.profile_icon_error}`}
-          />
-          <span className={styles.profile_error_desc}>
-            このアカウントを編集すると、保有するアカウントも反映されます
-          </span>
-        </div>
-      )}
+      {user?.type === "parent" &&
+        !user?.payment?.price &&
+        user?.payment?.children?.length && (
+          <div className={styles.profile_wrap}>
+            <FontAwesomeIcon
+              icon={faExclamationCircle}
+              className={`${styles.profile_icon} ${styles.profile_icon_error}`}
+            />
+            <span className={styles.profile_error_desc}>
+              このアカウントを編集すると、保有するグループアカウントも反映されます
+            </span>
+          </div>
+        )}
 
       <div className={styles.profile_container}>
         <div className={styles.profile_wrap}>
