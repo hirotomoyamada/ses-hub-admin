@@ -13,11 +13,6 @@ export const Profile = ({ user }) => {
         ${styles.profile} 
         ${user?.type === "parent" && styles.profile_parent} 
         ${
-          user?.type === "parent" &&
-          !user?.payment?.children?.length &&
-          styles.profile_parent_none
-        } 
-        ${
           (user?.type === "child" || user?.payment?.price) &&
           styles.profile_error
         }
@@ -54,7 +49,7 @@ export const Profile = ({ user }) => {
 
           <span>このアカウントは、法人アカウントです</span>
 
-          {user?.payment?.children?.length ? (
+          {user?.payment?.children?.length && (
             <span>
               ※&nbsp;このアカウントを含め &nbsp;
               <span className={styles.profile_parent_account}>
@@ -64,27 +59,23 @@ export const Profile = ({ user }) => {
               </span>
               &nbsp;アカウントを保有しています
             </span>
-          ) : (
-            <span className={styles.profile_error_desc}>
-              ※&nbsp;このアカウントは、グループアカウントを保有していません
-            </span>
           )}
         </div>
       )}
 
-      {user?.type === "parent" &&
-        !user?.payment?.price &&
-        user?.payment?.children?.length && (
-          <div className={styles.profile_wrap}>
-            <FontAwesomeIcon
-              icon={faExclamationCircle}
-              className={`${styles.profile_icon} ${styles.profile_icon_error}`}
-            />
-            <span className={styles.profile_error_desc}>
-              このアカウントを編集すると、保有するグループアカウントも反映されます
-            </span>
-          </div>
-        )}
+      {user?.type === "parent" && !user?.payment?.price && (
+        <div className={styles.profile_wrap}>
+          <FontAwesomeIcon
+            icon={faExclamationCircle}
+            className={`${styles.profile_icon} ${styles.profile_icon_error}`}
+          />
+          <span className={styles.profile_error_desc}>
+            {user?.payment?.children?.length
+              ? "このアカウントを編集すると、保有するグループアカウントも反映されます"
+              : "このアカウントは、グループアカウントを保有していません"}
+          </span>
+        </div>
+      )}
 
       <div className={styles.profile_container}>
         <div className={styles.profile_wrap}>
