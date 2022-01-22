@@ -65,7 +65,7 @@ export const Profile = ({ user }) => {
               &nbsp;アカウントを保有しています
             </span>
           ) : (
-            <span className={styles.profile_parent_account}>
+            <span className={styles.profile_error_desc}>
               ※&nbsp;このアカウントは、グループアカウントを保有していません
             </span>
           )}
