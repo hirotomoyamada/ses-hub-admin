@@ -47,7 +47,9 @@ export const Profile = ({ user }) => {
             このアカウントは、法人アカウントです&nbsp;※&nbsp;現在、このアカウントを含め
             &nbsp;
             <span className={styles.profile_parent_account}>
-              {user?.payment?.children?.length + 1}
+              {!user?.payment?.children
+                ? 1
+                : user?.payment?.children?.length + 1}
             </span>
             &nbsp;アカウントを保有しています
           </span>
