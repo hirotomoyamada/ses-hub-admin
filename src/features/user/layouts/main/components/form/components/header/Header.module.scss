@@ -6,6 +6,7 @@ $width: responsive-width(pc);
 
 .header {
   position: relative;
+  z-index: 999;
 
   &_btn {
     width: 100%;

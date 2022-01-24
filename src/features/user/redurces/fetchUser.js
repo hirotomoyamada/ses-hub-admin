@@ -1,13 +1,15 @@
 export const fetchUser = (state, action) => {
-  if (action.payload.type !== "users") {
-    action.payload.user.index === "companys"
-      ? companys(state, action)
-      : action.payload.user.index === "persons" && persons(state, action);
-  } else {
-    if (action.payload.user) {
-      state.users[action.payload.i] = action.payload.user;
+  if (action.payload) {
+    if (action.payload.type !== "users") {
+      action.payload.user.index === "companys"
+        ? companys(state, action)
+        : action.payload.user.index === "persons" && persons(state, action);
     } else {
-      state.users[action.payload.i] = { error: true };
+      if (action.payload.user) {
+        state.users[action.payload.i] = action.payload.user;
+      } else {
+        state.users[action.payload.i] = { error: true };
+      }
     }
   }
 };
