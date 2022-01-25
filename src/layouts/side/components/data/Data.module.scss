@@ -46,6 +46,10 @@ $width: responsive-width(pc);
       font-size: 12px;
       color: $base_clr;
       background: $icn_clr;
+
+      &_extra {
+        background: $remove_clr;
+      }
     }
 
     &_text {

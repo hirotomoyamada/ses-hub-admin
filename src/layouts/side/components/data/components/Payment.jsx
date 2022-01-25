@@ -58,6 +58,11 @@ export const Payment = ({ user }) => {
 
       <div className={styles.data_item}>
         <span className={styles.data_item_tag}>プラン</span>
+        <span
+          className={`${styles.data_item_tag} ${styles.data_item_tag_extra}`}
+        >
+          {!user?.payment?.price && `エキストラ`}
+        </span>
         <span className={styles.data_item_text}>
           {user?.payment?.status === "active"
             ? "レギュラー"
@@ -65,7 +70,6 @@ export const Payment = ({ user }) => {
             ? "フリートライアル"
             : "リミテッド"}
           {user?.type === "parent" &&
-            user?.payment?.price &&
             user?.payment?.account &&
             `\n(\n${user?.payment?.account}人\n)\n`}
         </span>
