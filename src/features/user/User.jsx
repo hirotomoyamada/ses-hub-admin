@@ -18,6 +18,7 @@ export const User = ({ index, handleClose }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(userSlice.user);
+  const filter = useSelector(rootSlice.search).filter;
 
   const [cover, setCover] = useState(false);
   const [icon, setIcon] = useState(false);
@@ -65,7 +66,9 @@ export const User = ({ index, handleClose }) => {
             ...persons.object(data),
           };
 
-    dispatch(userSlice.editUser({ index: index, user: object }));
+    dispatch(
+      userSlice.editUser({ index: index, user: object, filter: filter })
+    );
   };
 
   return (

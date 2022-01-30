@@ -3,6 +3,39 @@ export const editUser = (state, action) => {
     (post) => post?.uid === action.payload.user.uid
   );
 
+  if (
+    user &&
+    action.payload.filter === "status:hold" &&
+    user?.status === "hold" &&
+    action.payload.status !== "hold"
+  ) {
+    state.posts[action.payload.index] = state.posts[
+      action.payload.index
+    ].filter((post) => post?.uid !== action.payload.user.uid);
+  }
+
+  if (
+    user &&
+    action.payload.filter === "status:disable" &&
+    user?.status === "disable" &&
+    action.payload.status !== "disable"
+  ) {
+    state.posts[action.payload.index] = state.posts[
+      action.payload.index
+    ].filter((post) => post?.uid !== action.payload.user.uid);
+  }
+
+  if (
+    user &&
+    action.payload.filter === "application" &&
+    user?.type === "individual" &&
+    action.payload.type !== "individual"
+  ) {
+    state.posts[action.payload.index] = state.posts[
+      action.payload.index
+    ].filter((post) => post?.uid !== action.payload.user.uid);
+  }
+
   if (action.payload.index === "companys" && user) {
     user.type = action.payload.user.type;
     user.icon = action.payload.user.icon;
@@ -25,6 +58,7 @@ export const editUser = (state, action) => {
       linkedIn: action.payload.user.social.linkedIn,
     };
   }
+
   if (action.payload.index === "persons" && user) {
     user.icon = action.payload.user.icon;
     user.cover = action.payload.user.cover;
