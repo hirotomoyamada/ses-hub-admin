@@ -15,6 +15,7 @@ import { Search } from "./components/Search";
 export const Header = ({ index, data, edit }) => {
   const dispatch = useDispatch();
   const search = useSelector(rootSlice.search);
+  const notice = useSelector(rootSlice.data);
   const methods = useForm({
     defaultValues: {
       value: search.value,
@@ -72,7 +73,12 @@ export const Header = ({ index, data, edit }) => {
         onSubmit={methods.handleSubmit(handleSearch)}
       >
         {index === "companys" || index === "persons" ? (
-          <User search={search} handleAttribuleChange={handleAttribuleChange} />
+          <User
+            index={index}
+            search={search}
+            notice={notice}
+            handleAttribuleChange={handleAttribuleChange}
+          />
         ) : (
           (index === "matters" || index === "resources") && (
             <Post

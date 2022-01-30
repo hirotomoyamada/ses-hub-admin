@@ -42,6 +42,11 @@ $width: responsive-width(pc);
     color: $base_clr;
     font-size: 11px;
 
+    &_application {
+      font-size: 12px;
+      background: $acnt_sub_clr;
+    }
+
     &_hold {
       background: $acnt_ext_clr;
     }

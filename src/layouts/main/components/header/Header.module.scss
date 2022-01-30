@@ -40,6 +40,11 @@ $width: responsive-width(pc);
       display: none;
     }
 
+    &_user {
+      grid-template-columns: repeat(4, 1fr);
+      width: 320px;
+    }
+
     &_btn {
       color: $sub_clr;
       border-radius: 16px;
@@ -53,6 +58,11 @@ $width: responsive-width(pc);
       &_all {
         color: $base_clr;
         background: $acnt_clr;
+      }
+
+      &_application {
+        color: $base_clr;
+        background: $acnt_sub_clr;
       }
 
       &_hold {
@@ -73,6 +83,23 @@ $width: responsive-width(pc);
       &_private {
         color: $base_clr;
         background: $sub_clr;
+      }
+
+      &_notice {
+        position: relative;
+
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: -1px;
+          right: -1px;
+
+          width: 8px;
+          height: 8px;
+          border-radius: 4px;
+          background: $acnt_clr;
+        }
       }
     }
   }
