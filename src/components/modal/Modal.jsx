@@ -2,6 +2,7 @@ import styles from "./Modal.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import { updateNotice } from "../../features/root/actions/updateNotice";
 import * as rootSlice from "../../features/root/rootSlice";
 
 import { Post } from "../../features/post/Post";
@@ -15,6 +16,7 @@ export const Modal = ({ index }) => {
 
   const handleClose = () => {
     dispatch(rootSlice.handleModal(false));
+    dispatch(updateNotice(""));
   };
 
   return (

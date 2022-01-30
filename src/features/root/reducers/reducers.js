@@ -8,6 +8,7 @@ import { logout } from "./logout";
 import { editData } from "./editData";
 import { sendMail } from "./sendMail";
 import { updateUser } from "./updateUser";
+import { updateNotice } from "./updateNotice";
 
 export {
   index,
@@ -19,4 +20,5 @@ export {
   editData,
   sendMail,
   updateUser,
+  updateNotice,
 };

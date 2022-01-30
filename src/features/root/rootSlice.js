@@ -5,9 +5,10 @@ import { initialState } from "./initialState";
 import { login } from "../root/actions/login";
 import { editData } from "../root/actions/editData";
 import { sendMail } from "../root/actions/sendMail";
+import { updateUser } from "./actions/updateUser";
+import { updateNotice } from "./actions/updateNotice";
 
 import * as reducers from "./reducers/reducers";
-import { updateUser } from "./actions/updateUser";
 
 export const rootSlice = createSlice({
   name: "root",
@@ -26,7 +27,7 @@ export const rootSlice = createSlice({
     builder.addCase(login.pending, (state) => {
       state.load.root = true;
     });
-    
+
     builder.addCase(login.fulfilled, (state, action) =>
       reducers.login(state, action)
     );
@@ -41,6 +42,10 @@ export const rootSlice = createSlice({
 
     builder.addCase(updateUser.fulfilled, (state, action) =>
       reducers.updateUser(state, action)
+    );
+
+    builder.addCase(updateNotice.fulfilled, (state, action) =>
+      reducers.updateNotice(state, action)
     );
 
     builder.addMatcher(
