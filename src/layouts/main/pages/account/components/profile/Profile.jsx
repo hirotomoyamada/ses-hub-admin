@@ -49,7 +49,7 @@ export const Profile = ({ user }) => {
 
           <span>このアカウントは、法人アカウントです</span>
 
-          {user?.payment?.children?.length && (
+          {user?.payment?.children?.length ? (
             <span>
               ※&nbsp;このアカウントを含め &nbsp;
               <span className={styles.profile_parent_account}>
@@ -59,6 +59,8 @@ export const Profile = ({ user }) => {
               </span>
               &nbsp;アカウントを保有しています
             </span>
+          ) : (
+            <></>
           )}
         </div>
       )}

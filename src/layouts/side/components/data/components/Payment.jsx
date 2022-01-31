@@ -73,9 +73,9 @@ export const Payment = ({ user }) => {
             : user?.payment?.status === "trialing"
             ? "フリートライアル"
             : "リミテッド"}
-          {user?.type === "parent" &&
-            user?.payment?.account &&
-            `\n(\n${user?.payment?.account}人\n)\n`}
+          {user?.type === "parent" && user?.payment?.account
+            ? `\n(\n${user?.payment?.account}人\n)\n`
+            : ""}
         </span>
       </div>
 

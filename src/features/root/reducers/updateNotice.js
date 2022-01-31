@@ -1,3 +1,5 @@
 export const updateNotice = (state, action) => {
-  Object.assign(state.data, action.payload);
+  for (const index of Object.keys(state.data)) {
+    Object.assign(state.data[index], action.payload[index]);
+  }
 };
