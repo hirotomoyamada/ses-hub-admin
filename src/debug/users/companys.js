@@ -75,6 +75,7 @@ export const companys = ({ uid, objectIDs, user }) => {
       home: [],
       agree: "enable",
       status: "enable",
+      type: "individual",
       payment:
         status !== "canceled"
           ? [
@@ -132,6 +133,7 @@ export const companys = ({ uid, objectIDs, user }) => {
         status: user.status,
         freelanceDirect: "enable",
         plan: "enable",
+        type: user.type,
         name: user.profile.name,
         person: user.profile.person,
         body: user.profile.body,
@@ -153,6 +155,7 @@ export const companys = ({ uid, objectIDs, user }) => {
         uid: uid,
         status: user.status,
         plan: "enable",
+        type: user.type,
         name: user.profile.name,
         person: user.profile.person,
         body: user.profile.body,
@@ -174,6 +177,7 @@ export const companys = ({ uid, objectIDs, user }) => {
           objectID: uid,
           uid: uid,
           status: user.status,
+          type: user.type,
           name: user.profile.name,
           person: user.profile.person,
           body: user.profile.body,
@@ -194,6 +198,7 @@ export const companys = ({ uid, objectIDs, user }) => {
           uid: uid,
           status: user.status,
           plan: "disable",
+          type: user.type,
           name: user.profile.name,
           person: user.profile.person,
           body: user.profile.body,
@@ -215,6 +220,7 @@ export const companys = ({ uid, objectIDs, user }) => {
           status: user.status,
           plan: "disable",
           freelanceDirect: "disable",
+          type: user.type,
           name: user.profile.name,
           person: user.profile.person,
           body: user.profile.body,
