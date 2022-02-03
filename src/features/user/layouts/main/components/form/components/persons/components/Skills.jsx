@@ -69,11 +69,9 @@ export const Skills = () => {
               )}
             </div>
 
-            {errors.skills?.[i]?.skill.message && (
-              <span className={styles.form_error}>
-                {errors.skills?.[i]?.skill.message}
-              </span>
-            )}
+            <span className={styles.form_error}>
+              {errors.skills?.[i]?.skill.message}
+            </span>
           </div>
         ))}
       </div>

@@ -69,11 +69,9 @@ export const Urls = () => {
               )}
             </div>
 
-            {errors.urls?.[i]?.url.message && (
-              <span className={styles.form_error}>
-                {errors.urls?.[i]?.url.message}
-              </span>
-            )}
+            <span className={styles.form_error}>
+              {errors.urls?.[i]?.url.message}
+            </span>
           </div>
         ))}
       </div>

@@ -82,6 +82,10 @@ $width: responsive-width(pc);
     &_half {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    &_gap {
+      gap: 16px;
+    }
   }
 
   &_memo {

@@ -24,7 +24,7 @@ export const Tools = ({ index }) => {
 
   return (
     <div className={`${root.main_col} ${root.main_col_fields}`}>
-      <div className={root.main_grid}>
+      <div className={`${root.main_grid} ${root.main_grid_gap}`}>
         {toolsFields.map((field, i) => (
           <div key={field.id} className={styles.item}>
             <input

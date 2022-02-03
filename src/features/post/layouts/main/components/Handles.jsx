@@ -24,7 +24,7 @@ export const Handles = ({ index }) => {
 
   return (
     <div className={root.main_col}>
-      <div className={root.main_grid}>
+      <div className={`${root.main_grid} ${root.main_grid_gap}`}>
         {handlesFields.map((field, i) => (
           <div key={field.id} className={styles.item}>
             <input
