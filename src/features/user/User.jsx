@@ -55,6 +55,21 @@ export const User = ({ index, handleClose }) => {
       return;
     }
 
+    if (
+      index === "companys" &&
+      user.type !== data.type &&
+      user.payment?.children?.length
+    ) {
+      dispatch(
+        rootSlice.handleAnnounce({
+          type: "error",
+          text: "このアカウントは、グループアカウントを保有しているため、個人・法人の編集できません。",
+        })
+      );
+
+      return;
+    }
+
     const object =
       index === "companys"
         ? {
