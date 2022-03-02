@@ -1,0 +1,17 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.header {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: $base_clr;
+
+  &_current {
+    background: $acnt_clr;
+    color: $base_clr;
+  }
+}

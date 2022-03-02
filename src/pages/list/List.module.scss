@@ -1,0 +1,32 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  &_none {
+    height: calc(100vh - 48px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_message {
+      font-size: auto-clamp(13px, 14px);
+      color: $sub_clr;
+    }
+  }
+
+  &_load {
+    display: flex;
+    justify-content: center;
+    padding: 32px 0;
+
+    &_none {
+      display: none;
+    }
+  }
+}

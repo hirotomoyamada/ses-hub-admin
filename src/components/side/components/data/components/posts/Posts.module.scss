@@ -1,0 +1,80 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  &_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  &_wrap {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  &_tag {
+    display: inline-block;
+    padding: 0 8px;
+    border-radius: 8px;
+    line-height: 24px;
+    font-size: 12px;
+    color: $base_clr;
+    background: $icn_clr;
+
+    &_likes {
+      background: $like_clr;
+    }
+
+    &_outputs {
+      background: $add_clr;
+    }
+
+    &_entries {
+      background: $acnt_clr;
+    }
+  }
+
+  &_item {
+    background: $bg_clr;
+    width: 100%;
+    height: 48px;
+    border-radius: 12px;
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_tag {
+      color: $icn_clr;
+    }
+
+    &_count {
+      color: $acnt_clr;
+      font-size: 20px;
+
+      &_none {
+        color: $sub_clr;
+      }
+
+      &_desc {
+        color: $sub_clr;
+        font-size: auto-clamp(15px, 16px);
+      }
+    }
+  }
+}

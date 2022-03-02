@@ -1,0 +1,58 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.account {
+  position: relative;
+  background: $bg_clr;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  img {
+    width: 48px;
+    height: 48px;
+  }
+
+  &_footer {
+    width: 100%;
+    color: $sub_clr;
+    text-align: center;
+  }
+
+  &_person {
+    font-weight: bold;
+    font-size: auto-clamp(17px, 18px);
+  }
+
+  &_name {
+    color: $sub_clr;
+    font-size: auto-clamp(12px, 13px);
+  }
+
+  &_parent {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    display: inline-block;
+    padding: 0 8px;
+    border-radius: 7px;
+    line-height: 24px;
+    font-size: 12px;
+    color: $base_clr;
+    background: $acnt_sub_clr;
+  }
+}

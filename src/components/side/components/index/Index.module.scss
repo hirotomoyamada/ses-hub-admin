@@ -1,0 +1,41 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.index {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  left: 0;
+  padding: 0 32px;
+
+  &_inner {
+    background: $bg_clr;
+    padding: 2.8px;
+    border: 1px solid $bdr_clr;
+    border-radius: 26px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    &_persons {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &_btn {
+    color: $sub_clr;
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 16px;
+    text-align: center;
+
+    transition: all 0.4s;
+
+    &_current {
+      background: $acnt_clr;
+      color: $base_clr;
+    }
+  }
+}

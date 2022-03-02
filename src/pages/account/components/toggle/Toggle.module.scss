@@ -1,0 +1,76 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.toggle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: $bg_clr;
+  width: 270px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: auto-clamp(11px, 12px);
+  padding: 3px;
+  border: 1px solid $bdr_clr;
+
+  &_parent {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &_notFound {
+    pointer-events: none;
+  }
+
+  input {
+    display: none;
+  }
+
+  &_btn {
+    cursor: pointer;
+    color: $sub_clr;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    line-height: 32px;
+
+    transition: all 0.4s;
+
+    &_disable {
+      pointer-events: none;
+    }
+  }
+
+  input:checked + &_active {
+    background: $acnt_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_trialing {
+    background: $add_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_canceled {
+    background: $promo_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_enable {
+    background: $acnt_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_disable {
+    background: $remove_clr;
+    color: $base_clr;
+  }
+
+  input:checked + &_none {
+    background: $sub_clr;
+    color: $base_clr;
+  }
+}
