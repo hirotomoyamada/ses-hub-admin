@@ -1,4 +1,9 @@
-import { ArgAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  ArgAction,
+  createSlice,
+  ErrorAction,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { RootState } from "app/store";
 import { Edit, initialState, Page, State } from "features/root/initialState";
 import * as actions from "features/root/actions";
@@ -66,24 +71,42 @@ export const rootSlice = createSlice({
     builder.addMatcher(
       (action: PayloadAction) => action.type.endsWith("/pending"),
       (state, action: ArgAction<{ fetch: boolean }>) => {
-        state.load.fetch =
+        if (
           action.meta.arg.fetch ||
-          action.type === "root/editData/pending" ||
-          action.type === "root/sendMail/pending" ||
-          action.type === "root/updateUser/pending"
-            ? true
-            : false;
-        state.load.list = true;
+          action.type.includes("/editData") ||
+          action.type.includes("/sendMail") ||
+          action.type.includes("/updateAccount")
+        ) {
+          state.load.fetch = true;
+        } else {
+          state.load.list = true;
+        }
       }
     );
 
     builder.addMatcher(
-      (action: PayloadAction) =>
-        action.type.endsWith("/fulfilled") &&
-        action.type !== "root/login/fulfilled",
-      (state) => {
-        state.load.fetch = false;
+      (action: PayloadAction) => action.type.endsWith("/rejected"),
+      (state, action: ErrorAction) => {
+        console.log(action);
+
+        state.announce.error = action.error.message;
+
+        state.load.root = false;
         state.load.list = false;
+        state.load.fetch = false;
+      }
+    );
+
+    builder.addMatcher(
+      (action: PayloadAction) => action.type.endsWith("/fulfilled"),
+      (state, action: PayloadAction) => {
+        if (action.type.includes("login")) {
+          state.announce.success = "ログインしました";
+        }
+
+        state.load.root = false;
+        state.load.list = false;
+        state.load.fetch = false;
       }
     );
 

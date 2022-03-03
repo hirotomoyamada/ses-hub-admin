@@ -62,134 +62,132 @@ export const List: React.FC<PropType> = ({
             : type === target && root.side_type_inner_current
         }`}
       >
-        <div className={styles.list}>
-          {!single && (
-            <Index
-              type={type}
-              index={index}
-              handleIndexScroll={handleIndexScroll}
-            />
-          )}
+        {type === target ? (
+          <div className={styles.list}>
+            {!single && (
+              <Index
+                type={type}
+                index={index}
+                handleIndexScroll={handleIndexScroll}
+              />
+            )}
 
-          {"posts" in posts ? (
-            (target === "likes" || target === "entries") &&
-            (index === "matters" ||
-              index === "resources" ||
-              index === "persons") &&
-            posts?.[target]?.[index]?.length ? (
-              <div
-                className={`${styles.list_inner} 
-              ${single && styles.list_inner_single}
-              `}
-                ref={inner}
-              >
-                <Posts
-                  user={user}
-                  posts={posts}
-                  target={target}
-                  index={index}
-                />
-
-                {posts?.[target]?.[index]?.length >= 50 && (
-                  <Load load={load} page={page} hit={hit} />
-                )}
-              </div>
-            ) : (target === "posts" || target === "outputs") &&
-              (index === "matters" || index === "resources") &&
+            {"posts" in posts &&
+              ((target === "likes" || target === "entries") &&
+              (index === "matters" ||
+                index === "resources" ||
+                index === "persons") &&
               posts?.[target]?.[index]?.length ? (
-              <div
-                className={`${styles.list_inner} 
+                <div
+                  className={`${styles.list_inner} 
               ${single && styles.list_inner_single}
               `}
-                ref={inner}
-              >
-                <Posts
-                  user={user}
-                  posts={posts}
-                  target={target}
-                  index={index}
-                />
+                  ref={inner}
+                >
+                  <Posts
+                    user={user}
+                    posts={posts}
+                    target={target}
+                    index={index}
+                  />
 
-                {posts?.[target]?.[index]?.length >= 50 && (
-                  <Load load={load} page={page} hit={hit} />
-                )}
-              </div>
-            ) : (target === "follows" || target === "children") &&
-              posts?.[target]?.length ? (
-              <div
-                className={`${styles.list_inner} 
+                  {posts?.[target]?.[index]?.length >= 50 && (
+                    <Load load={load} page={page} hit={hit} />
+                  )}
+                </div>
+              ) : (target === "posts" || target === "outputs") &&
+                (index === "matters" || index === "resources") &&
+                posts?.[target]?.[index]?.length ? (
+                <div
+                  className={`${styles.list_inner} 
               ${single && styles.list_inner_single}
               `}
-                ref={inner}
-              >
-                <Posts
-                  user={user}
-                  posts={posts}
-                  target={target}
-                  index={index}
-                />
+                  ref={inner}
+                >
+                  <Posts
+                    user={user}
+                    posts={posts}
+                    target={target}
+                    index={index}
+                  />
 
-                {posts?.[target]?.length >= 50 && (
-                  <Load load={load} page={page} hit={hit} />
-                )}
-              </div>
-            ) : (
-              <NotFound index={index} />
-            )
-          ) : (
-            <NotFound index={index} />
-          )}
-
-          {"requests" in posts ? (
-            target === "requests" &&
-            (index === "enable" || index === "hold" || index === "disable") &&
-            posts?.requests?.[index].length ? (
-              <div
-                className={`${styles.list_inner} 
+                  {posts?.[target]?.[index]?.length >= 50 && (
+                    <Load load={load} page={page} hit={hit} />
+                  )}
+                </div>
+              ) : (target === "follows" || target === "children") &&
+                posts?.[target]?.length ? (
+                <div
+                  className={`${styles.list_inner} 
               ${single && styles.list_inner_single}
               `}
-                ref={inner}
-              >
-                <Posts
-                  user={user}
-                  posts={posts}
-                  target={target}
-                  index={index}
-                />
+                  ref={inner}
+                >
+                  <Posts
+                    user={user}
+                    posts={posts}
+                    target={target}
+                    index={index}
+                  />
 
-                {posts?.[target]?.[index]?.length >= 50 && (
-                  <Load load={load} page={page} hit={hit} />
-                )}
-              </div>
-            ) : (target === "follows" ||
-                target === "likes" ||
-                target === "entries" ||
-                target === "histories") &&
-              posts?.[target]?.length ? (
-              <div
-                className={`${styles.list_inner} 
+                  {posts?.[target]?.length >= 50 && (
+                    <Load load={load} page={page} hit={hit} />
+                  )}
+                </div>
+              ) : (
+                <NotFound index={index} />
+              ))}
+
+            {"requests" in posts &&
+              (target === "requests" &&
+              (index === "enable" || index === "hold" || index === "disable") &&
+              posts?.requests?.[index].length ? (
+                <div
+                  className={`${styles.list_inner} 
               ${single && styles.list_inner_single}
               `}
-                ref={inner}
-              >
-                <Posts
-                  user={user}
-                  posts={posts}
-                  target={target}
-                  index={index}
-                />
+                  ref={inner}
+                >
+                  <Posts
+                    user={user}
+                    posts={posts}
+                    target={target}
+                    index={index}
+                  />
 
-                {posts?.[target]?.length >= 50 && (
-                  <Load load={load} page={page} hit={hit} />
-                )}
-              </div>
-            ) : (
-              <NotFound index={index} />
-            )
-          ) : (
-            <NotFound index={index} />
-          )}
-        </div>
+                  {posts?.[target]?.[index]?.length >= 50 && (
+                    <Load load={load} page={page} hit={hit} />
+                  )}
+                </div>
+              ) : (target === "follows" ||
+                  target === "likes" ||
+                  target === "entries" ||
+                  target === "histories") &&
+                posts?.[target]?.length ? (
+                <div
+                  className={`${styles.list_inner} 
+              ${single && styles.list_inner_single}
+              `}
+                  ref={inner}
+                >
+                  <Posts
+                    user={user}
+                    posts={posts}
+                    target={target}
+                    index={index}
+                  />
+
+                  {posts?.[target]?.length >= 50 && (
+                    <Load load={load} page={page} hit={hit} />
+                  )}
+                </div>
+              ) : (
+                <NotFound index={index} />
+              ))}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

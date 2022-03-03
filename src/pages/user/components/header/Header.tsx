@@ -21,7 +21,7 @@ export const Header: React.FC<PropType> = ({
 }) => {
   const { register } = useFormContext();
 
-  const fetch = useSelector(rootSlice.load).fetch;
+  const fetch = useSelector(rootSlice.load).list;
 
   return (
     <div className={styles.header}>
@@ -48,7 +48,7 @@ export const Header: React.FC<PropType> = ({
             />
             <label
               className={`${styles.header_status_btn} ${
-                !fetch && styles.header_status_btn_none
+                fetch && styles.header_status_btn_none
               } ${styles.header_status_btn_enable}`}
               htmlFor="status1"
             >
@@ -65,7 +65,7 @@ export const Header: React.FC<PropType> = ({
                 />
                 <label
                   className={`${styles.header_status_btn} ${
-                    !fetch && styles.header_status_btn_none
+                    fetch && styles.header_status_btn_none
                   } ${styles.header_status_btn_hold}`}
                   htmlFor="status2"
                 >
@@ -82,7 +82,7 @@ export const Header: React.FC<PropType> = ({
             />
             <label
               className={`${styles.header_status_btn} ${
-                !fetch && styles.header_status_btn_none
+                fetch && styles.header_status_btn_none
               } ${styles.header_status_btn_disable}`}
               htmlFor="status3"
             >
@@ -92,7 +92,7 @@ export const Header: React.FC<PropType> = ({
 
           <button
             className={`${styles.header_submit} ${
-              !fetch && styles.header_submit_none
+              fetch && styles.header_submit_none
             }`}
             type="submit"
           >

@@ -3,7 +3,7 @@ import root from "../../Side.module.scss";
 
 import Loader from "react-loader-spinner";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import * as rootSlice from "features/root/rootSlice";
 import * as userSlice from "features/user/userSlice";
@@ -40,6 +40,7 @@ export const Data: React.FC<PropType> = ({
   setIndex,
 }) => {
   const dispatch = useDispatch();
+  const fetch = useSelector(rootSlice.load).list;
 
   const handleChange = (): void => {
     dispatch(
@@ -73,7 +74,7 @@ export const Data: React.FC<PropType> = ({
             : type === target && root.side_type_inner_current
         }`}
       >
-        {type === "data" ? (
+        {!fetch && type === "data" ? (
           <div className={styles.data}>
             {(index === "matters" ||
               index === "resources" ||
@@ -98,6 +99,8 @@ export const Data: React.FC<PropType> = ({
             <Provider user={user} />
             <Posts user={user} setType={setType} setIndex={setIndex} />
           </div>
+        ) : type !== "data" ? (
+          <></>
         ) : (
           <div className={`${styles.data} ${styles.data_none}`}>
             <Loader type="Oval" color="#49b757" height={56} width={56} />
