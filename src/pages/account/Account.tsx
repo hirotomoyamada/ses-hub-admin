@@ -22,7 +22,7 @@ interface PropType {
   index: Edit;
 }
 
-type Data = {
+export type Data = {
   account: { uid: string; status: string; option: string }[];
 };
 

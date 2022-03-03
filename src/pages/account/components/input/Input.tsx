@@ -11,6 +11,7 @@ import { fetchUser } from "features/user/actions";
 import * as userSlice from "features/user/userSlice";
 import * as rootSlice from "features/root/rootSlice";
 import { Edit } from "features/root/initialState";
+import { Data } from "pages/account/Account";
 
 interface PropType {
   i: number;
@@ -19,11 +20,11 @@ interface PropType {
 
 export const Input: React.FC<PropType> = ({ i, index }) => {
   const dispatch = useDispatch();
-  const { register, watch, setValue } = useFormContext();
+  const { register, watch, setValue } = useFormContext<Data>();
 
   const [fetch, setFetch] = useState(false);
 
-  const uid = watch(`account.${i}.uid`) as string;
+  const uid = watch(`account.${i}.uid`);
   const load = useSelector(rootSlice.load).list;
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export const Input: React.FC<PropType> = ({ i, index }) => {
       <input
         type="text"
         className={styles.input_uid}
-        {...register(`account[${i}].uid`)}
+        {...register(`account.${i}.uid` as const)}
       />
       <button type="button" onClick={handleReset} className={styles.input_btn}>
         {fetch ? (
