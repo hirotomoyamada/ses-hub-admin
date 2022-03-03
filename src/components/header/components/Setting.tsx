@@ -19,10 +19,10 @@ export const Setting: React.FC<PropType> = ({ index, data, edit }) => {
           {index === "setting" ? "最終更新：" : "最終送信："}
           {index === "mail"
             ? edit === "companys"
-              ? data.seshub.mail.updateAt
+              ? data.seshub.mail?.updateAt
                 ? functions.root.timestamp(data.seshub.mail.updateAt)
                 : "まだ送信がありません"
-              : data.freelanceDirect.mail.updateAt
+              : data.freelanceDirect.mail?.updateAt
               ? functions.root.timestamp(data.freelanceDirect.mail.updateAt)
               : "まだ送信がありません"
             : functions.root.timestamp(

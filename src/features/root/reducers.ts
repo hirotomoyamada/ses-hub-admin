@@ -90,12 +90,10 @@ export const editData = (
   const index =
     action.payload.index === "companys" ? "seshub" : "freelanceDirect";
 
-  Object.assign(state.data, {
-    [index]: {
-      information: action.payload.information,
-      agree: action.payload.agree,
-      maintenance: action.payload.maintenance,
-    },
+  Object.assign(state.data[index], {
+    information: action.payload.information,
+    agree: action.payload.agree,
+    maintenance: action.payload.maintenance,
   });
 
   state.announce.success = "編集しました";
