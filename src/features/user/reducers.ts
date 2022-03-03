@@ -11,7 +11,7 @@ export const fetchUser = (
   state: State,
   action: PayloadAction<FetchUser["data"]>
 ): void => {
-  if (action.payload.type === "user") {
+  if (!action.payload.type) {
     if (action.payload.index === "companys") {
       company(state, action.payload.user as Company);
     }
@@ -312,8 +312,9 @@ export const editPost = (state: State, action: PayloadAction<Post>): void => {
   if ("posts" in state.posts) {
     for (const i in state.posts) {
       const key = i as keyof Posts["company"];
+
       if (key === "follows" || key === "children") {
-        return;
+        continue;
       }
 
       if (action.payload.index === "matters") {
