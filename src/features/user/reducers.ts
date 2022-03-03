@@ -21,7 +21,10 @@ export const fetchUser = (
     }
   }
 
-  if (action.payload.type === "accounts" && action.payload.i) {
+  if (
+    action.payload.type === "accounts" &&
+    typeof action.payload.i === "number"
+  ) {
     if (action.payload.user) {
       state.accounts[action.payload.i] = action.payload.user as Company;
     } else {
@@ -249,7 +252,7 @@ export const resetUser = (
   state: State,
   action: PayloadAction<number | undefined | boolean>
 ): void => {
-  if (!action.payload) {
+  if (!action.payload && typeof action.payload !== "number") {
     state.user = {};
 
     state.posts = {
