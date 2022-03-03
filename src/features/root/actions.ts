@@ -104,7 +104,7 @@ export const updateNotice = createAsyncThunk(
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot?.docs?.length) {
-          Object.assign(data, { [index]: { [key]: false } });
+          Object.assign(data[index as keyof UpdateNotice], { [key]: false });
         }
       }
     }
