@@ -45,7 +45,7 @@ export const Admin: React.FC = () => {
       ) : (
         <div className={styles.admin_inner}>
           <Fetch />
-          <Header index={index.page} />
+          <Header index={index.page} data={data} />
           <List index={index.page} posts={posts} search={search} />
           <Modal index={index.edit} />
         </div>
