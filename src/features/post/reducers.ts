@@ -211,6 +211,14 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
       return;
     }
 
+    if (
+      user.application &&
+      user.type === "individual" &&
+      (action.payload.user as Company).type === "parent"
+    ) {
+      user.application = false;
+    }
+
     user.type = (action.payload.user as Company).type;
     user.icon = (action.payload.user as Company).icon;
     user.cover = (action.payload.user as Company).cover;
