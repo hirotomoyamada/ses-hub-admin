@@ -14,7 +14,10 @@ export const login = (state: State, action: PayloadAction<Login>): void => {
 };
 
 export const logout = (): State => {
-  return initialState;
+  return {
+    ...initialState,
+    load: { root: false, list: false, fetch: false },
+  };
 };
 
 export const index = (state: State, action: PayloadAction<Index>): void => {

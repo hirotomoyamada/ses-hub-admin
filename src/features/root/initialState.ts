@@ -75,7 +75,7 @@ export const initialState: State = {
   load: {
     root: true,
     list: true,
-    fetch: false,
+    fetch: true,
   },
 
   announce: {
