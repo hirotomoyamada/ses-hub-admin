@@ -66,8 +66,8 @@ export const defaultValues = (user: Person): NestedPartial<Data> => {
         }))
       : [{ url: "" }],
     costs: {
-      min: user?.costs?.min,
-      max: user?.costs?.max,
+      min: user?.costs?.min ? user?.costs?.min : null,
+      max: user?.costs?.max ? user?.costs?.max : null,
       display: user?.costs?.display,
       type: user?.costs?.type,
     },
@@ -134,8 +134,8 @@ export const profile = (
       .map((array) => array.skill),
     urls: data.urls.filter((array) => array.url).map((array) => array.url),
     costs: {
-      min: Number(data.costs?.min),
-      max: Number(data.costs?.max),
+      min: data.costs.min ? Number(data.costs.min) : null,
+      max: data.costs.min ? Number(data.costs.max) : null,
       display: data.costs?.display,
       type: data.costs?.type,
     },

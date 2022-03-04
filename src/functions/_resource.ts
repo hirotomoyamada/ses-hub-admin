@@ -10,9 +10,9 @@ export type Data = {
   costs: {
     display: "public" | "private";
     type: string;
-    min: number;
-    max: number;
-    contract?: number;
+    min: number | null;
+    max: number | null;
+    contract?: number | null;
   };
   handles: { handle: string }[];
   tools: { tool: string }[];
@@ -43,9 +43,9 @@ export const defaultValues = (post: Resource): NestedPartial<Data> => {
       month: post?.period?.month,
     },
     costs: {
-      min: post?.costs?.min,
-      max: post?.costs?.max,
-      contract: post?.costs?.contract,
+      min: post?.costs?.min ? post?.costs?.min : null,
+      max: post?.costs?.max ? post?.costs?.max : null,
+      contract: post?.costs?.contract ? post?.costs?.contract : null,
       display: post?.costs?.display,
       type: post?.costs?.type,
     },
@@ -87,9 +87,9 @@ export const edit = (
       month: Number(data.period.month),
     },
     costs: {
-      min: Number(data.costs.min),
-      max: Number(data.costs.max),
-      contract: Number(data.costs.contract),
+      min: data.costs.min ? Number(data.costs.min) : null,
+      max: data.costs.min ? Number(data.costs.max) : null,
+      contract: data.costs.contract ? Number(data.costs.contract) : null,
       display: data.costs.display,
       type: data.costs.type,
     },
