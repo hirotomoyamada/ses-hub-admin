@@ -1,4 +1,4 @@
-import { Matter } from "types/posts";
+import { Matter } from "types/post";
 import { NestedPartial } from "types/utils";
 
 export type Data = {

@@ -3,7 +3,7 @@ import { RootState } from "app/store";
 import { initialState, State } from "./initialState";
 import * as actions from "features/user/actions";
 import * as reducers from "features/user/reducers";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { Post } from "features/post/postSlice";
 
 export interface User {

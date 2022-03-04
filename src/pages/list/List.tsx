@@ -4,7 +4,7 @@ import { Posts } from "./components/Posts";
 import { NotFound } from "./components/NotFound";
 import { Load } from "./components/Load";
 import { Page } from "features/root/initialState";
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 
 interface PropType {
   index: Page;

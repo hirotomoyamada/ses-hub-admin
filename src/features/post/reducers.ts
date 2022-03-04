@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { initialState, State } from "features/post/initialState";
 import { functions } from "libs/firebase";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 import { FetchPosts } from "./actions";
 import { Post } from "features/post/postSlice";
 import { User } from "features/user/userSlice";

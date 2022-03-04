@@ -8,7 +8,7 @@ import { Header } from "./components/header/Header";
 import { Main } from "./components/main/Main";
 import * as functions from "functions";
 import { Edit } from "features/root/initialState";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 interface PropType {
   index: Edit;

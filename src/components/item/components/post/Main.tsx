@@ -1,5 +1,5 @@
 import React from "react";
-import { Matter, Resource } from "types/posts";
+import { Matter, Resource } from "types/post";
 import styles from "./Post.module.scss";
 
 interface PropType {

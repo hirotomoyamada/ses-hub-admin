@@ -1,4 +1,4 @@
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 
 export interface State {
   posts: {

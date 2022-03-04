@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "features/post/actions";
 import * as postSlice from "features/post/postSlice";
 import { Page } from "features/root/initialState";
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 
 export const usePosts = (
   page: Page,

@@ -8,7 +8,7 @@ import * as userSlice from "features/user/userSlice";
 
 import { File } from "./components/File";
 import { Upload } from "./components/Upload";
-import { Person } from "types/posts";
+import { Person } from "types/post";
 
 interface PropType {
   user: Person;

@@ -2,7 +2,7 @@ import { Cover } from "./components/cover/Cover";
 import { Icon } from "./components/icon/Icon";
 import { Form } from "./components/form/Form";
 import { Edit } from "features/root/initialState";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 interface PropType {
   index: Edit;

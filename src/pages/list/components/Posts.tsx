@@ -2,7 +2,7 @@ import styles from "../List.module.scss";
 
 import { Item } from "components/item/Item";
 import { Page } from "features/root/initialState";
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 
 interface PropType {
   index: Page;

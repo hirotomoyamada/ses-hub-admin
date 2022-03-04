@@ -6,7 +6,7 @@ import * as userSlice from "../features/user/userSlice";
 
 import * as functions from "functions";
 import { Index, Type } from "hooks/useSideFetch";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { OwnDispatch } from "@reduxjs/toolkit";
 
 export const useSideScrollFetch = (

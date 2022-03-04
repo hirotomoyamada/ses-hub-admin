@@ -1,4 +1,4 @@
-import { Person } from "types/posts";
+import { Person } from "types/post";
 import root from "../../../Data.module.scss";
 import styles from "../Resume.module.scss";
 

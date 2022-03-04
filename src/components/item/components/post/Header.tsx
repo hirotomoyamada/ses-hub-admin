@@ -1,7 +1,7 @@
 import styles from "./Post.module.scss";
 
 import * as functions from "functions";
-import { Matter, Resource } from "types/posts";
+import { Matter, Resource } from "types/post";
 
 interface PropType {
   post: Matter | Resource;

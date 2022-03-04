@@ -5,7 +5,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faPause } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface PropType {

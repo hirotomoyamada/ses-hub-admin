@@ -16,7 +16,7 @@ import { Btn } from "../../components/btn/Btn";
 import { updateAccount } from "features/root/actions";
 import { Edit } from "features/root/initialState";
 import { Accounts } from "features/user/initialState";
-import { Company } from "types/posts";
+import { Company } from "types/post";
 
 interface PropType {
   index: Edit;

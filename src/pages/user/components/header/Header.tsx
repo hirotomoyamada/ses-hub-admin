@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 import { useFormContext } from "react-hook-form";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { useSelector } from "react-redux";
 import * as rootSlice from "features/root/rootSlice";
 

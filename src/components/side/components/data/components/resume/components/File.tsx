@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePdf } from "@fortawesome/free-regular-svg-icons";
 import * as rootSlice from "features/root/rootSlice";
-import { Person } from "types/posts";
+import { Person } from "types/post";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface PropType {

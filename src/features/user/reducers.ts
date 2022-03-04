@@ -5,7 +5,7 @@ import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { Post } from "features/post/postSlice";
 import { ExtractPosts, FetchUser } from "features/user/actions";
 import { User } from "features/user/userSlice";
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 
 export const fetchUser = (
   state: State,

@@ -17,7 +17,7 @@ import { Resident } from "./components/Resident";
 import { Working } from "./components/Working";
 import { Clothes } from "./components/Clothes";
 import { Costs } from "./components/Costs";
-import { Person } from "types/posts";
+import { Person } from "types/post";
 
 interface PropType {
   user: Person;

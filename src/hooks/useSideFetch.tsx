@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { extractPosts } from "features/user/actions";
 import * as userSlice from "../features/user/userSlice";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 import { Posts } from "features/user/initialState";
 import { Edit } from "features/root/initialState";

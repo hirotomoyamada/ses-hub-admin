@@ -4,7 +4,7 @@ import { Header } from "./components/header/Header";
 import { Companys } from "./components/companys/Companys";
 import { Persons } from "./components/persons/Persons";
 import { Edit } from "features/root/initialState";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 interface PropType {
   index: Edit;

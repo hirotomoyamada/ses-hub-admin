@@ -1,7 +1,7 @@
 import styles from "./User.module.scss";
 
 import * as functions from "functions";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 interface PropType {
   post: Company | Person;

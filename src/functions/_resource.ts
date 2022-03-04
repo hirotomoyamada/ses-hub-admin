@@ -1,4 +1,4 @@
-import { Resource } from "types/posts";
+import { Resource } from "types/post";
 import { NestedPartial } from "types/utils";
 
 export type Data = {

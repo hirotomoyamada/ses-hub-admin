@@ -5,7 +5,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface PropType {

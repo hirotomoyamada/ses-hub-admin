@@ -1,7 +1,7 @@
 import styles from "./Posts.module.scss";
 
 import CountUp from "react-countup";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { Index, Type } from "hooks/useSideFetch";
 
 interface PropType {

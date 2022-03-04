@@ -2,7 +2,7 @@ import styles from "../../../Form.module.scss";
 import { useFormContext } from "react-hook-form";
 import { Data } from "functions/_person";
 
-import { Person } from "types/posts";
+import { Person } from "types/post";
 
 interface PropType {
   user: Person;

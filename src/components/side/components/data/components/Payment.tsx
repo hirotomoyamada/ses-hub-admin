@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../Data.module.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import * as functions from "functions";
-import { Company } from "types/posts";
+import { Company } from "types/post";
 
 interface PropType {
   user: Company;

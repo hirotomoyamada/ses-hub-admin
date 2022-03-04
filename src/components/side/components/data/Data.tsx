@@ -16,7 +16,7 @@ import { Profile } from "./components/Profile";
 import { Provider } from "./components/Provider";
 import { Posts } from "./components/posts/Posts";
 import { Resume } from "./components/resume/Resume";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { Edit } from "features/root/initialState";
 import { Index, Type } from "hooks/useSideFetch";
 

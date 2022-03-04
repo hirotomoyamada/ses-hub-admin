@@ -3,7 +3,7 @@ import { RootState } from "app/store";
 import { initialState, State } from "./initialState";
 import * as actions from "features/post/actions";
 import * as reducers from "features/post/reducers";
-import { Matter, Resource } from "types/posts";
+import { Matter, Resource } from "types/post";
 import { UpdateAccount } from "features/root/actions";
 import { User } from "features/user/userSlice";
 

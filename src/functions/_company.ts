@@ -1,4 +1,4 @@
-import { Company } from "types/posts";
+import { Company } from "types/post";
 import { NestedPartial } from "types/utils";
 
 export type Data = {

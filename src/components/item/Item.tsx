@@ -5,7 +5,7 @@ import * as userSlice from "features/user/userSlice";
 import * as postSlice from "features/post/postSlice";
 import { Post } from "./components/post/Post";
 import { User } from "./components/user/User";
-import { Matter, Resource, Company, Person } from "types/posts";
+import { Matter, Resource, Company, Person } from "types/post";
 
 interface PropType {
   index: "matters" | "resources" | "companys" | "persons";

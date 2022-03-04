@@ -1,4 +1,4 @@
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import styles from "./User.module.scss";
 
 interface PropType {

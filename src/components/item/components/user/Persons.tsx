@@ -1,7 +1,7 @@
 import styles from "./User.module.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Person } from "types/posts";
+import { Person } from "types/post";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";

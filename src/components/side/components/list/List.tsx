@@ -11,7 +11,7 @@ import { Load } from "./components/Load";
 import { NotFound } from "./components/NotFound";
 import * as Side from "hooks/useSideFetch";
 import * as User from "features/user/initialState";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 interface PropType {
   type: Side.Type;

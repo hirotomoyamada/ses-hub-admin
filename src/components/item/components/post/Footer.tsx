@@ -9,7 +9,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faYenSign } from "@fortawesome/free-solid-svg-icons";
 import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
-import { Matter, Resource } from "types/posts";
+import { Matter, Resource } from "types/post";
 
 interface PropType {
   index: "matters" | "resources";

@@ -10,7 +10,7 @@ import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
-import { Company } from "types/posts";
+import { Company } from "types/post";
 
 interface PropType {
   post: Company;

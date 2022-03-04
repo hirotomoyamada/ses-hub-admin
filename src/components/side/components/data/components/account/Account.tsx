@@ -1,7 +1,7 @@
 import styles from "./Account.module.scss";
 
 import { Icon } from "components/icon/Icon";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 import { Edit } from "features/root/initialState";
 
 interface PropType {

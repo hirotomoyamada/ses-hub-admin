@@ -6,7 +6,7 @@ import { Header } from "./Header";
 import { Companys } from "./Companys";
 import { Persons } from "./Persons";
 import { At } from "./At";
-import { Company, Person } from "types/posts";
+import { Company, Person } from "types/post";
 
 interface PropType {
   post: Company | Person;
