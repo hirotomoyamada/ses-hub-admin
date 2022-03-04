@@ -88,7 +88,7 @@ export const Costs: React.FC = () => {
                       message: "3文字以内で入力してください",
                     },
                     validate: {
-                      max: (max) => max > min,
+                      max: (max) => Number(max) > Number(min),
                     },
                   })}
                 />
