@@ -102,7 +102,8 @@ export const Footer: React.FC<PropType> = ({ post, index, min }) => {
         ) : (
           <span>〜&nbsp;{post?.costs?.max}万</span>
         )}
-        {post?.costs?.contract !== 0 && !min && (
+        
+        {post?.costs?.contract && !min && (
           <div
             className={`${styles.item_category} ${styles.item_category_contract}`}
           >
