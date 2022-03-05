@@ -87,8 +87,6 @@ export const rootSlice = createSlice({
     builder.addMatcher(
       (action: PayloadAction) => action.type.endsWith("/rejected"),
       (state, action: ErrorAction) => {
-        console.log(action);
-
         state.announce.error = action.error.message;
 
         state.load.root = false;
