@@ -43,8 +43,8 @@ export const Body: React.FC<PropType> = ({ index }) => {
                     message: "16文字以上で入力してください",
                   },
                   maxLength: {
-                    value: 600,
-                    message: "600文字以内で入力してください",
+                    value: 280,
+                    message: "280文字以内で入力してください",
                   },
                 }
               : index === "resources"
@@ -62,8 +62,8 @@ export const Body: React.FC<PropType> = ({ index }) => {
                     message: "16文字以上で入力してください",
                   },
                   maxLength: {
-                    value: 600,
-                    message: "600文字以内で入力してください",
+                    value: 360,
+                    message: "360文字以内で入力してください",
                   },
                 }
               : {}
