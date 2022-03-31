@@ -63,7 +63,7 @@ export const useSideFetch = (
               extractPosts({
                 index: index,
                 type: type,
-                posts: user[type][index],
+                objectIDs: user[type][index],
               })
             );
         }
@@ -77,7 +77,7 @@ export const useSideFetch = (
               extractPosts({
                 index: index,
                 type: type,
-                posts: user[type][index],
+                objectIDs: user[type][index],
               })
             );
         }
@@ -88,7 +88,7 @@ export const useSideFetch = (
               extractPosts({
                 index: "companys",
                 type: type,
-                posts: user.follows,
+                objectIDs: user.follows,
               })
             );
         }
@@ -99,7 +99,7 @@ export const useSideFetch = (
               extractPosts({
                 index: "companys",
                 type: type,
-                posts: user.payment.children,
+                objectIDs: user.payment.children,
               })
             );
         }
@@ -113,7 +113,7 @@ export const useSideFetch = (
               extractPosts({
                 index: index,
                 type: type,
-                posts: user[type][index],
+                objectIDs: user[type][index],
               })
             );
         }
@@ -129,7 +129,7 @@ export const useSideFetch = (
               extractPosts({
                 index: type === "follows" ? "companys" : "matters",
                 type: type,
-                posts: user[type],
+                objectIDs: user[type],
               })
             );
         }

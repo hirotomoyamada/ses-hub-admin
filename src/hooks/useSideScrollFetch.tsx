@@ -99,7 +99,7 @@ const fetchScroll = async (
           extractPosts({
             index: index,
             type: type,
-            posts: user[type][index],
+            objectIDs: user[type][index],
             page: page,
           })
         ));
@@ -114,7 +114,7 @@ const fetchScroll = async (
           extractPosts({
             index: index,
             type: type,
-            posts: user[type][index],
+            objectIDs: user[type][index],
             page: page,
           })
         ));
@@ -126,7 +126,7 @@ const fetchScroll = async (
           extractPosts({
             index: "companys",
             type: type,
-            posts: user.follows,
+            objectIDs: user.follows,
             page: page,
           })
         ));
@@ -138,7 +138,7 @@ const fetchScroll = async (
           extractPosts({
             index: "companys",
             type: type,
-            posts: user.payment.children,
+            objectIDs: user.payment.children,
             page: page,
           })
         ));
@@ -153,7 +153,7 @@ const fetchScroll = async (
           extractPosts({
             index: index,
             type: type,
-            posts: user[type][index],
+            objectIDs: user[type][index],
             page: page,
           })
         ));
@@ -170,7 +170,7 @@ const fetchScroll = async (
           extractPosts({
             index: type === "follows" ? "companys" : "matters",
             type: type,
-            posts: user[type],
+            objectIDs: user[type],
             page: page,
           })
         ));

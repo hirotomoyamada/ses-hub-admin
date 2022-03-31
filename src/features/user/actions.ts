@@ -83,7 +83,7 @@ export interface ExtractPosts {
       | "entries"
       | "histories"
       | "requests";
-    posts: string[];
+    objectIDs: string[];
     page?: number;
   };
 
@@ -124,7 +124,7 @@ export const extractPosts = createAsyncThunk(
 
     const { data } = await extractPosts({
       index: arg.index,
-      posts: arg.posts,
+      objectIDs: arg.objectIDs,
       type: arg.type,
       page: arg.page,
     });
