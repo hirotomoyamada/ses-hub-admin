@@ -89,12 +89,91 @@ const fetchScroll = async (
     return;
   }
 
-  await dispatch(
-    extractPosts({
-      index: type !== "follows" ? index : "companys",
-      type: type,
-      user: user,
-      page: page,
-    })
-  );
+  if ("posts" in user) {
+    if (
+      (type === "likes" || type === "entries") &&
+      (index === "matters" || index === "resources" || index === "persons")
+    ) {
+      user?.[type]?.[index]?.length &&
+        (await dispatch(
+          extractPosts({
+            index: index,
+            type: type,
+            posts: user[type][index],
+            page: page,
+          })
+        ));
+    }
+
+    if (
+      (type === "posts" || type === "outputs") &&
+      (index === "matters" || index === "resources")
+    ) {
+      user?.[type]?.[index]?.length &&
+        (await dispatch(
+          extractPosts({
+            index: index,
+            type: type,
+            posts: user[type][index],
+            page: page,
+          })
+        ));
+    }
+
+    if (type === "follows") {
+      user.follows.length &&
+        (await dispatch(
+          extractPosts({
+            index: "companys",
+            type: type,
+            posts: user.follows,
+            page: page,
+          })
+        ));
+    }
+
+    if (type === "children") {
+      user.payment.children?.length &&
+        (await dispatch(
+          extractPosts({
+            index: "companys",
+            type: type,
+            posts: user.payment.children,
+            page: page,
+          })
+        ));
+    }
+  } else {
+    if (
+      type === "requests" &&
+      (index === "enable" || index === "hold" || index === "disable")
+    ) {
+      user?.[type]?.[index]?.length &&
+        (await dispatch(
+          extractPosts({
+            index: index,
+            type: type,
+            posts: user[type][index],
+            page: page,
+          })
+        ));
+    }
+
+    if (
+      type === "follows" ||
+      type === "likes" ||
+      type === "entries" ||
+      type === "histories"
+    ) {
+      user?.[type]?.length &&
+        (await dispatch(
+          extractPosts({
+            index: type === "follows" ? "companys" : "matters",
+            type: type,
+            posts: user[type],
+            page: page,
+          })
+        ));
+    }
+  }
 };

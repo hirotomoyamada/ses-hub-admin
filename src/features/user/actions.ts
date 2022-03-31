@@ -74,7 +74,6 @@ export interface ExtractPosts {
       | "enable"
       | "hold"
       | "disable";
-    user: Company | Person;
     type:
       | "children"
       | "follows"
@@ -84,6 +83,7 @@ export interface ExtractPosts {
       | "entries"
       | "histories"
       | "requests";
+    posts: string[];
     page?: number;
   };
 
@@ -124,7 +124,7 @@ export const extractPosts = createAsyncThunk(
 
     const { data } = await extractPosts({
       index: arg.index,
-      user: arg.user,
+      posts: arg.posts,
       type: arg.type,
       page: arg.page,
     });
