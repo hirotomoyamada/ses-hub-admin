@@ -1,5 +1,5 @@
 import { useApp } from "hooks/useApp";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth } from "pages/auth/Auth";
 import { Admin } from "pages/admin/Admin";
 import { Load } from "components/load/Load";
@@ -16,9 +16,9 @@ const App: React.FC = () => {
           <Announce />
           <Load />
 
-          <Switch>
-            <Route path="/" component={!admin ? Auth : Admin} />
-          </Switch>
+          <Routes>
+            <Route index element={!admin ? <Auth /> : <Admin />} />
+          </Routes>
         </BrowserRouter>
       );
     default:

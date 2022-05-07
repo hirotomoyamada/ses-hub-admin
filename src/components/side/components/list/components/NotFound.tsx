@@ -1,6 +1,6 @@
 import styles from "../List.module.scss";
 
-import Loader from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 import { useSelector } from "react-redux";
 import * as rootSlice from "features/root/rootSlice";
@@ -16,7 +16,7 @@ export const NotFound: React.FC<PropType> = ({ index }) => {
   return (
     <div className={styles.list_inner_none}>
       {load ? (
-        <Loader type="Oval" color="#49b757" height={56} width={56} />
+        <Oval color="#49b757" height={56} width={56} />
       ) : (
         <span className={styles.list_inner_none_message}>
           {index === "matters"

@@ -2,7 +2,7 @@ import styles from "../Resume.module.scss";
 
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import Loader from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 import { useSelector } from "react-redux";
 
@@ -44,7 +44,7 @@ export const File: React.FC<PropType> = ({ user, file, handleDelete }) => {
         </div>
       ) : load ? (
         <div className={`${styles.resume_file} ${styles.resume_file_load}`}>
-          <Loader type="Oval" color="#49b757" height={36} width={36} />
+          <Oval color="#49b757" height={36} width={36} />
         </div>
       ) : (
         <label

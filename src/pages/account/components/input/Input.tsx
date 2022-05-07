@@ -1,7 +1,7 @@
 import styles from "./Input.module.scss";
 
 import CloseIcon from "@material-ui/icons/Close";
-import Loader from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,7 +64,7 @@ export const Input: React.FC<PropType> = ({ i, index }) => {
       />
       <button type="button" onClick={handleReset} className={styles.input_btn}>
         {fetch ? (
-          <Loader type="Oval" color="#49b757" height={20} width={20} />
+          <Oval color="#49b757" height={20} width={20} />
         ) : (
           <CloseIcon className={styles.input_icon} />
         )}

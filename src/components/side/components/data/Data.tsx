@@ -1,7 +1,7 @@
 import styles from "./Data.module.scss";
 import root from "../../Side.module.scss";
 
-import Loader from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -103,7 +103,7 @@ export const Data: React.FC<PropType> = ({
           <></>
         ) : (
           <div className={`${styles.data} ${styles.data_none}`}>
-            <Loader type="Oval" color="#49b757" height={56} width={56} />
+            <Oval color="#49b757" height={56} width={56} />
           </div>
         )}
       </div>
