@@ -45,10 +45,23 @@ $width: responsive-width(pc);
     }
 
     &_head {
+      pointer-events: none;
       display: flex;
       gap: 8px;
 
-      user-select: none;
+      transition: all 0.4s;
+
+      &_btn {
+        pointer-events: all;
+      }
+
+      &_active {
+        color: $acnt_clr;
+      }
+
+      &:hover {
+        color: $acnt_clr;
+      }
     }
 
     &_btn {
