@@ -4,10 +4,10 @@ import { Oval } from "react-loader-spinner";
 
 import { useSelector } from "react-redux";
 import * as rootSlice from "features/root/rootSlice";
-import { Page } from "features/root/initialState";
+import { Index } from "features/root/initialState";
 
 interface PropType {
-  index: Page;
+  index: Index;
   list: React.RefObject<HTMLDivElement>;
 }
 

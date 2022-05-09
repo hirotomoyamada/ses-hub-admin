@@ -13,7 +13,6 @@ $width: responsive-width(pc);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 48px 1fr;
-    margin-left: auto-clamp(184px, 240px);
 
     &_list {
       display: flex;

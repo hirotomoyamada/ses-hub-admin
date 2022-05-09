@@ -2,12 +2,12 @@ import styles from "./Posts.module.scss";
 
 import CountUp from "react-countup";
 import { Company, Person } from "types/post";
-import { Index, Type } from "hooks/useSideFetch";
+import { HandleOpen } from "hooks/useSideFetch";
+import { Index } from "features/root/initialState";
 
 interface PropType {
   user: Company | Person;
-  setType: React.Dispatch<React.SetStateAction<Type>>;
-  setIndex: React.Dispatch<React.SetStateAction<Index>>;
+  handleOpen: HandleOpen;
 }
 
 type PostList =
@@ -26,7 +26,7 @@ type PostList =
     }
   | undefined;
 
-export const Posts: React.FC<PropType> = ({ user, setType, setIndex }) => {
+export const Posts: React.FC<PropType> = ({ user, handleOpen }) => {
   const posts: PostList =
     "posts" in user
       ? {
@@ -44,11 +44,6 @@ export const Posts: React.FC<PropType> = ({ user, setType, setIndex }) => {
           requests: "リクエスト",
         }
       : undefined;
-
-  const handleOpen = ({ type, index }: { type: Type; index?: Index }): void => {
-    setType(type);
-    index ? setIndex(index) : setIndex("companys");
-  };
 
   return (
     <div className={styles.posts}>

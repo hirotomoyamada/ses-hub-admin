@@ -3,7 +3,7 @@ import styles from "./Setting.module.scss";
 import { useEffect } from "react";
 
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { editData } from "features/root/actions";
 import * as rootSlice from "features/root/rootSlice";
@@ -12,14 +12,9 @@ import { Information } from "./components/Information";
 import { Agree } from "./components/Agree";
 import { Maintenance } from "./components/Maintenance";
 
-import { Btn } from "components/btn/Btn";
-import { Edit } from "features/root/initialState";
 import { Data } from "types/auth";
-
-interface PropType {
-  index: Edit;
-  data: { seshub: Data; freelanceDirect: Data };
-}
+import { PageProvider } from "components/provider/page/PageProvider";
+import { Header } from "components/header/setting/Header";
 
 export type SettingData = Pick<
   Data,
@@ -28,8 +23,10 @@ export type SettingData = Pick<
   index: "companys" | "persons";
 };
 
-export const Setting: React.FC<PropType> = ({ data, index }) => {
+export const Setting: React.FC = () => {
   const dispatch = useDispatch();
+  const index = useSelector(rootSlice.index);
+  const data = useSelector(rootSlice.data);
 
   const methods = useForm<SettingData>({
     defaultValues:
@@ -47,6 +44,11 @@ export const Setting: React.FC<PropType> = ({ data, index }) => {
           }
         : undefined,
   });
+
+  useEffect(() => {
+    if (index !== "companys" && index !== "persons")
+      dispatch(rootSlice.handleIndex("companys"));
+  }, [index]);
 
   useEffect(() => {
     const value =
@@ -73,22 +75,19 @@ export const Setting: React.FC<PropType> = ({ data, index }) => {
     }
   };
 
-  const handleIndex = (index: Edit) => {
-    dispatch(rootSlice.handleIndex({ edit: index }));
-  };
-
   return (
-    <FormProvider {...methods}>
-      <form
-        className={styles.setting}
-        onSubmit={methods.handleSubmit(handleEdit)}
-      >
-        <Maintenance />
-        <Information />
-        <Agree />
-
-        <Btn handleIndex={handleIndex} index={index} />
-      </form>
-    </FormProvider>
+    <PageProvider header={<Header index={index} data={data} />}>
+      <FormProvider {...methods}>
+        <form
+          id="setting"
+          className={styles.setting}
+          onSubmit={methods.handleSubmit(handleEdit)}
+        >
+          <Maintenance />
+          <Information />
+          <Agree />
+        </form>
+      </FormProvider>
+    </PageProvider>
   );
 };

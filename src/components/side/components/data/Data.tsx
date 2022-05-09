@@ -3,10 +3,9 @@ import root from "../../Side.module.scss";
 
 import { Oval } from "react-loader-spinner";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import * as rootSlice from "features/root/rootSlice";
-import * as userSlice from "features/user/userSlice";
 
 import { Header } from "../header/Header";
 import { Account } from "./components/account/Account";
@@ -17,17 +16,16 @@ import { Provider } from "./components/Provider";
 import { Posts } from "./components/posts/Posts";
 import { Resume } from "./components/resume/Resume";
 import { Company, Person } from "types/post";
-import { Edit } from "features/root/initialState";
-import { Index, Type } from "hooks/useSideFetch";
+import { Index } from "features/root/initialState";
+import { HandleIndex, HandleOpen, Type } from "hooks/useSideFetch";
 
 interface PropType {
   user: Company | Person;
-  index: Edit;
+  index: Index;
   type: Type;
-  handleOpen: (t: Type) => void;
   target: "data";
-  setType: React.Dispatch<React.SetStateAction<Type>>;
-  setIndex: React.Dispatch<React.SetStateAction<Index>>;
+  handleOpen: HandleOpen;
+  handleIndex: HandleIndex;
 }
 
 export const Data: React.FC<PropType> = ({
@@ -36,28 +34,22 @@ export const Data: React.FC<PropType> = ({
   type,
   handleOpen,
   target,
-  setType,
-  setIndex,
+  handleIndex,
 }) => {
-  const dispatch = useDispatch();
   const fetch = useSelector(rootSlice.load).list;
 
   const handleChange = (): void => {
-    dispatch(
-      rootSlice.handleIndex({
-        edit: "payment" in user ? "companys" : "persons",
-      })
-    );
+    handleIndex("payment" in user ? "companys" : "persons");
 
-    dispatch(
-      userSlice.selectUser(
-        index === "matters" || index === "resources"
-          ? user
-          : "parent" in user && user?.parent
-          ? user?.parent
-          : user
-      )
-    );
+    // dispatch(
+    //   userSlice.selectUser(
+    //     index === "matters" || index === "resources"
+    //       ? user
+    //       : "parent" in user && user?.parent
+    //       ? user?.parent
+    //       : user
+    //   )
+    // );
   };
 
   return (
@@ -97,7 +89,7 @@ export const Data: React.FC<PropType> = ({
             <Profile user={user} />
             {"resume" in user && <Resume user={user} />}
             <Provider user={user} />
-            <Posts user={user} setType={setType} setIndex={setIndex} />
+            <Posts user={user} handleOpen={handleOpen} />
           </div>
         ) : type !== "data" ? (
           <></>

@@ -1,0 +1,13 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.admin {
+  display: grid;
+  grid-template-columns: auto-clamp(184px, 240px) 1fr;
+
+  width: 100vw;
+  height: 100vh;
+}

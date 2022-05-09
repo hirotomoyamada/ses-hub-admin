@@ -4,7 +4,7 @@ import { Oval } from "react-loader-spinner";
 
 import { useSelector } from "react-redux";
 import * as rootSlice from "features/root/rootSlice";
-import { Index } from "hooks/useSideFetch";
+import { Index } from "features/root/initialState";
 
 interface PropType {
   index: Index;

@@ -17,7 +17,7 @@ export const postSlice = createSlice({
   initialState,
 
   reducers: {
-    selectPost: (state, action: PayloadAction<Post["post"]>) =>
+    selectPost: (state, action: PayloadAction<Post["post"] | unknown>) =>
       reducers.selectPost(state, action),
     editPost: (state, action: PayloadAction<Post>) =>
       reducers.editPost(state, action),
@@ -26,6 +26,9 @@ export const postSlice = createSlice({
   },
 
   extraReducers: (builder): void => {
+    builder.addCase(actions.fetchPost.fulfilled, (state, action) =>
+      reducers.fetchPost(state, action)
+    );
     builder.addCase(actions.fetchPosts.fulfilled, (state, action) =>
       reducers.fetchPosts(state, action)
     );

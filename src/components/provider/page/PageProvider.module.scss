@@ -1,0 +1,26 @@
+@import "styles/config";
+@import "styles/function";
+@import "styles/animation";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.page {
+  position: relative;
+  display: grid;
+
+  &_inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 48px calc(100vh - 48px);
+    overflow: scroll;
+
+    &_single {
+      grid-template-rows: 100vh;
+    }
+  }
+
+  &_side {
+    grid-template-columns: 1fr 1fr;
+  }
+}

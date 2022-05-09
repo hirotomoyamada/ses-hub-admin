@@ -1,0 +1,79 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.header {
+  border-bottom: 1px solid $bdr_clr;
+  background: $base_clr;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 0 32px;
+
+  color: $sub_clr;
+  font-size: auto-clamp(13px, 14px);
+}
+
+.btn {
+  display: flex;
+  gap: 16px;
+
+  &_wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    background: $base_clr;
+    width: 240px;
+    height: 32px;
+    border-radius: 16px;
+    font-size: auto-clamp(11px, 12px);
+    padding: 3px;
+    border: 1px solid $bdr_clr;
+  }
+
+  &_index {
+    color: $sub_clr;
+    border-radius: 16px;
+    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.4s;
+
+    &_sh {
+      color: $base_clr;
+      background: $acnt_clr;
+    }
+
+    &_fd {
+      color: $base_clr;
+      background: $add_clr;
+    }
+
+    &_disable {
+      pointer-events: none;
+    }
+  }
+
+  &_submit {
+    background: $acnt_clr;
+    width: 112px;
+    height: 32px;
+    color: $base_clr;
+    border-radius: 16px;
+    text-align: center;
+
+    transition: all 0.4s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

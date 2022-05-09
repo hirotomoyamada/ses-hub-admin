@@ -1,6 +1,6 @@
 import styles from "./Side.module.scss";
 import { useSelector } from "react-redux";
-import { Index, Type, useSideFetch } from "hooks/useSideFetch";
+import { Type, useSideFetch } from "hooks/useSideFetch";
 
 import * as rootSlice from "features/root/rootSlice";
 import * as userSlice from "features/user/userSlice";
@@ -10,40 +10,19 @@ import { List } from "./components/list/List";
 
 export const Side: React.FC = () => {
   const user = useSelector(userSlice.user);
-  const edit = useSelector(rootSlice.index).edit;
+  const index = useSelector(rootSlice.index);
 
-  const [posts, type, setType, index, setIndex] = useSideFetch(user, edit);
-
-  const handleOpen = (t: Type): void => {
-    if (t === "follows" || t === "children") {
-      setIndex("companys");
-    } else if (t === "requests") {
-      setIndex("hold");
-    } else if (t !== "likes" && t !== "entries") {
-      (index === "companys" ||
-        index === "persons" ||
-        index === "enable" ||
-        index === "hold" ||
-        index === "disable") &&
-        setIndex("matters");
-    }
-    setType(t);
-  };
-
-  const handleIndex = (i: Index): void => {
-    setIndex(i);
-  };
+  const [posts, type, handleOpen, handleIndex] = useSideFetch(user, index);
 
   return (
     <div className={styles.side}>
       <Data
-        index={edit}
+        index={index}
         user={user}
         type={type}
-        handleOpen={handleOpen}
         target={"data"}
-        setType={setType}
-        setIndex={setIndex}
+        handleOpen={handleOpen}
+        handleIndex={handleIndex}
       />
 
       {Object.keys(posts)
@@ -59,9 +38,9 @@ export const Side: React.FC = () => {
                 index={index}
                 posts={posts}
                 user={user}
-                handleIndex={handleIndex}
-                handleOpen={handleOpen}
                 target={post as Type}
+                handleOpen={handleOpen}
+                handleIndex={handleIndex}
               />
             )
         )

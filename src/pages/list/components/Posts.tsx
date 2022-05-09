@@ -1,11 +1,10 @@
 import styles from "../List.module.scss";
 
 import { Item } from "components/item/Item";
-import { Page } from "features/root/initialState";
 import { Matter, Resource, Company, Person } from "types/post";
 
 interface PropType {
-  index: Page;
+  index: "matters" | "resources" | "companys" | "persons";
   list: React.RefObject<HTMLDivElement>;
   posts?: Matter[] | Resource[] | Company[] | Person[];
 }
@@ -16,7 +15,7 @@ export const Posts: React.FC<PropType> = ({ index, posts, list }) => {
       {posts?.map((post) => (
         <Item
           key={"objectID" in post ? post.objectID : post.uid}
-          index={index as "matters" | "resources" | "companys" | "persons"}
+          index={index}
           post={post}
         />
       ))}

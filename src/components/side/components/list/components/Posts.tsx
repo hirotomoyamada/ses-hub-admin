@@ -1,16 +1,15 @@
 import { Item } from "components/item/Item";
-import { Company, Person } from "types/post";
-import * as Side from "hooks/useSideFetch";
+import { Type } from "hooks/useSideFetch";
 import * as User from "features/user/initialState";
+import { Index } from "features/root/initialState";
 
 interface PropType {
-  user: Company | Person;
   posts: User.Posts["company"] | User.Posts["person"] | Record<string, never>;
-  target: Side.Type;
-  index: Side.Index;
+  target: Type;
+  index: Index;
 }
 
-export const Posts: React.FC<PropType> = ({ user, posts, target, index }) => {
+export const Posts: React.FC<PropType> = ({ posts, target, index }) => {
   return (
     <>
       {"posts" in posts ? (
@@ -30,7 +29,6 @@ export const Posts: React.FC<PropType> = ({ user, posts, target, index }) => {
                   }
                   index={index}
                   post={post}
-                  user={user}
                   min
                 />
               )
@@ -45,7 +43,6 @@ export const Posts: React.FC<PropType> = ({ user, posts, target, index }) => {
                   key={"objectID" in post ? post.objectID : i}
                   index={index}
                   post={post}
-                  user={user}
                   min
                 />
               )
@@ -59,7 +56,6 @@ export const Posts: React.FC<PropType> = ({ user, posts, target, index }) => {
                   key={"uid" in post ? post.uid : i}
                   index={"companys"}
                   post={post}
-                  user={user}
                   min
                 />
               )
@@ -78,7 +74,6 @@ export const Posts: React.FC<PropType> = ({ user, posts, target, index }) => {
                   key={"uid" in post ? post.uid : i}
                   index={"companys"}
                   post={post}
-                  user={user}
                   min
                 />
               )
@@ -101,7 +96,6 @@ export const Posts: React.FC<PropType> = ({ user, posts, target, index }) => {
                   }
                   index={"matters"}
                   post={post}
-                  user={user}
                   min
                 />
               )

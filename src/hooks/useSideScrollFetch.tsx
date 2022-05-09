@@ -5,9 +5,10 @@ import { extractPosts } from "features/user/actions";
 import * as userSlice from "../features/user/userSlice";
 
 import * as functions from "functions";
-import { Index, Type } from "hooks/useSideFetch";
+import { Type } from "hooks/useSideFetch";
 import { Company, Person } from "types/post";
 import { OwnDispatch } from "@reduxjs/toolkit";
+import { Index } from "features/root/initialState";
 
 export const useSideScrollFetch = (
   index: Index,

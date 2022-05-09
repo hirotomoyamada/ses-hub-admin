@@ -1,5 +1,6 @@
 @import "styles/config";
 @import "styles/function";
+@import "styles/animation";
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -9,7 +10,117 @@ $width: responsive-width(pc);
   height: 100%;
   background: $base_clr;
 
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 48px 1fr;
+  padding: 16px 32px 32px;
+  max-height: calc(100vh - 48px);
+  overflow-y: scroll;
+
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+
+  &_fetch {
+    height: calc(100vh - 48px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_tag {
+    display: block;
+
+    color: $icn_clr;
+    white-space: nowrap;
+
+    input {
+      display: none;
+    }
+
+    &_display {
+      color: $add_clr;
+      font-size: auto-clamp(11px, 12px);
+    }
+  }
+
+  &_col {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    &_fields {
+      margin-bottom: 0;
+    }
+  }
+
+  &_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 0px;
+    column-gap: 16px;
+
+    @media (max-width: responsive-width(miniPc)) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &_mid {
+      grid-template-columns: repeat(3, 1fr);
+
+      @media (max-width: 1440px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &_period {
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    &_interviews {
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    &_times {
+      grid-template-columns: 5fr 1fr 5fr;
+    }
+
+    &_costs {
+      grid-template-columns: 5fr 1fr 5fr;
+    }
+
+    &_half {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &_gap {
+      gap: 16px;
+    }
+  }
+
+  &_memo {
+    padding: 16px 16px 0;
+    border-radius: 8px;
+    border: 1px solid $bdr_clr;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &_body {
+      padding-bottom: 8px;
+      gap: 16px;
+    }
+
+    &_tag {
+      color: $sub_clr;
+    }
+  }
 }

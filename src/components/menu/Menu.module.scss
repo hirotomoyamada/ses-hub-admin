@@ -5,13 +5,7 @@
 $width: responsive-width(pc);
 
 .menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
   background: $base_clr;
-
-  width: auto-clamp(184px, 240px);
 
   display: grid;
   grid-template-columns: 1fr;

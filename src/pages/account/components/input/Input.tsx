@@ -10,12 +10,12 @@ import { useFormContext } from "react-hook-form";
 import { fetchUser } from "features/user/actions";
 import * as userSlice from "features/user/userSlice";
 import * as rootSlice from "features/root/rootSlice";
-import { Edit } from "features/root/initialState";
+import { Index } from "features/root/initialState";
 import { Data } from "pages/account/Account";
 
 interface PropType {
   i: number;
-  index: Edit;
+  index: Index;
 }
 
 export const Input: React.FC<PropType> = ({ i, index }) => {

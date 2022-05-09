@@ -5,15 +5,10 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { RootState } from "app/store";
-import { Edit, initialState, Page, State } from "features/root/initialState";
+import { Index, initialState, State } from "features/root/initialState";
 import * as actions from "features/root/actions";
 import * as reducers from "features/root/reducers";
 import { Data } from "types/auth";
-
-export interface Index {
-  page?: Page;
-  edit?: Edit;
-}
 
 export interface Search {
   value?: string;

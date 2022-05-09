@@ -1,17 +1,17 @@
-import { Type } from "hooks/useSideFetch";
+import { HandleOpen, Type } from "hooks/useSideFetch";
 import styles from "./Header.module.scss";
 
 interface PropType {
   target: Type;
   type: Type;
-  handleOpen: (t: Type) => void;
+  handleOpen: HandleOpen;
 }
 
 export const Header: React.FC<PropType> = ({ target, type, handleOpen }) => {
   return (
     <button
       type="button"
-      onClick={() => handleOpen(target)}
+      onClick={() => handleOpen({ type: target })}
       className={`${styles.header} ${type === target && styles.header_current}`}
     >
       {target === "data"

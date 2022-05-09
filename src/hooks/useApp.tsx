@@ -5,9 +5,9 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { login } from "features/root/actions";
 import * as rootSlice from "features/root/rootSlice";
 
-export const useApp = (): [admin: string | null, support: boolean] => {
+export const useApp = (): [admin: boolean, support: boolean] => {
   const dispatch = useDispatch();
-  const admin = useSelector(rootSlice.admin);
+  const admin = Boolean(useSelector(rootSlice.admin));
 
   const [support, setSupport] = useState(true);
 

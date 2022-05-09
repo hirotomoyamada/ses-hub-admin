@@ -1,9 +1,9 @@
-import { Page } from "features/root/initialState";
+import { Index } from "features/root/initialState";
 import styles from "./Command.module.scss";
 
 interface PropType {
   sort: boolean;
-  index: Page;
+  index: Index;
   open: boolean;
   handleSortChange: ({
     target,

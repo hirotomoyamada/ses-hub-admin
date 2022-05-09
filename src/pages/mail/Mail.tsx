@@ -3,7 +3,7 @@ import styles from "./Mail.module.scss";
 import { useEffect } from "react";
 
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { sendMail } from "features/root/actions";
 import * as rootSlice from "features/root/rootSlice";
@@ -11,17 +11,14 @@ import * as rootSlice from "features/root/rootSlice";
 import { Main } from "./components/Main";
 import { Target } from "./components/Target";
 
-import { Btn } from "components/btn/Btn";
-import { Edit } from "features/root/initialState";
 import { Data } from "types/auth";
+import { PageProvider } from "components/provider/page/PageProvider";
+import { Header } from "components/header/setting/Header";
 
-interface PropType {
-  index: Edit;
-  data: { seshub: Data; freelanceDirect: Data };
-}
-
-export const Mail: React.FC<PropType> = ({ index, data }) => {
+export const Mail: React.FC = () => {
   const dispatch = useDispatch();
+  const index = useSelector(rootSlice.index);
+  const data = useSelector(rootSlice.data);
 
   const methods = useForm<Data["mail"]>({
     defaultValues:
@@ -31,6 +28,11 @@ export const Mail: React.FC<PropType> = ({ index, data }) => {
         ? data.freelanceDirect.mail
         : undefined,
   });
+
+  useEffect(() => {
+    if (index !== "companys" && index !== "persons")
+      dispatch(rootSlice.handleIndex("companys"));
+  }, [index]);
 
   useEffect(() => {
     const value =
@@ -49,17 +51,18 @@ export const Mail: React.FC<PropType> = ({ index, data }) => {
     }
   };
 
-  const handleIndex = (index: Edit) => {
-    dispatch(rootSlice.handleIndex({ edit: index }));
-  };
-
   return (
-    <FormProvider {...methods}>
-      <form className={styles.mail} onSubmit={methods.handleSubmit(handleEdit)}>
-        <Target index={index} />
-        <Main />
-        <Btn handleIndex={handleIndex} index={index} mail />
-      </form>
-    </FormProvider>
+    <PageProvider header={<Header index={index} data={data} />}>
+      <FormProvider {...methods}>
+        <form
+          id="mail"
+          className={styles.mail}
+          onSubmit={methods.handleSubmit(handleEdit)}
+        >
+          <Target index={index} />
+          <Main />
+        </form>
+      </FormProvider>
+    </PageProvider>
   );
 };

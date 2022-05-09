@@ -1,22 +1,16 @@
 import styles from "../../../Menu.module.scss";
-import { useDispatch } from "react-redux";
-import * as rootSlice from "../../../../../features/root/rootSlice";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { Edit, Page } from "features/root/initialState";
+import { useDispatch, useSelector } from "react-redux";
+import * as rootSlice from "features/root/rootSlice";
+import * as userSlice from "features/user/userSlice";
 
 interface PropType {
-  index: {
-    page: Page;
-    edit: Edit;
-  };
-  i:
+  index:
     | "matters"
     | "resources"
     | "companys"
@@ -24,55 +18,45 @@ interface PropType {
     | "setting"
     | "mail"
     | "account";
+  icon?: IconProp;
   text: string;
-  type?: "posts" | "users" | "server" | "setting" | "mail" | "account";
 }
 
-export const Btn: React.FC<PropType> = ({ index, i, text, type }) => {
+export const Btn: React.FC<PropType> = ({ index, icon, text }) => {
   const dispatch = useDispatch();
-
-  const handleIndex = () => {
-    dispatch(rootSlice.handleModal(false));
-    dispatch(
-      rootSlice.handleIndex(
-        type === "setting" ||
-          type === "mail" ||
-          type === "account" ||
-          !index.edit
-          ? { page: i, edit: "companys" }
-          : { page: i }
-      )
-    );
-
-    window.scrollTo(0, 0);
-  };
+  const navigate = useNavigate();
+  const user = useSelector(userSlice.user);
+  const rootIndex = useSelector(rootSlice.index);
+  const pathname = useLocation().pathname.slice(1);
+  const page = pathname.substring(
+    0,
+    pathname.indexOf("/") >= 0 ? pathname.indexOf("/") : undefined
+  );
 
   return (
     <li>
       <button
         type="button"
-        onClick={handleIndex}
-        className={`${styles.menu_nav_btn} ${
-          index.page === i && styles.menu_nav_btn_active
-        }`}
+        onClick={() => {
+          navigate(`/${index}`);
+
+          if (index !== "setting" && index !== "account" && index !== "mail")
+            if (index !== rootIndex) dispatch(rootSlice.handleIndex(index));
+
+          if ("uid" in user) dispatch(userSlice.resetUser());
+        }}
+        className={`
+          ${styles.menu_nav_btn} 
+          ${page === index && styles.menu_nav_btn_active}
+        `}
       >
-        {type !== "setting" && type !== "mail" && type !== "account" ? (
-          <FontAwesomeIcon
-            icon={(index.page === i ? faFolderOpen : faFolder) as IconProp}
-            className={styles.menu_nav_icon}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={
-              type === "mail"
-                ? (faPaperPlane as IconProp)
-                : type === "account"
-                ? (faUser as IconProp)
-                : (faSlidersH as IconProp)
-            }
-            className={styles.menu_nav_icon}
-          />
-        )}
+        <FontAwesomeIcon
+          icon={
+            icon || ((page === index ? faFolderOpen : faFolder) as IconProp)
+          }
+          className={styles.menu_nav_icon}
+        />
+
         {text}
       </button>
     </li>

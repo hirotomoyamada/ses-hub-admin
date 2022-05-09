@@ -1,37 +1,39 @@
 import styles from "./Account.module.scss";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import * as rootSlice from "../../features/root/rootSlice";
-import * as userSlice from "../../features/user/userSlice";
+import * as userSlice from "features/user/userSlice";
+import * as rootSlice from "features/root/rootSlice";
 
-import { Header } from "./components/header/Header";
+import { Tag } from "./components/tag/Tag";
 import { Input } from "./components/input/Input";
 import { Toggle } from "./components/toggle/Toggle";
 import { Profile } from "./components/profile/Profile";
-import { Btn } from "../../components/btn/Btn";
 
 import { updateAccount } from "features/root/actions";
-import { Edit } from "features/root/initialState";
 import { Accounts } from "features/user/initialState";
 import { Company } from "types/post";
-
-interface PropType {
-  index: Edit;
-}
+import { PageProvider } from "components/provider/page/PageProvider";
+import { Header } from "components/header/setting/Header";
+import { Index } from "features/root/initialState";
 
 export type Data = {
   account: { uid: string; status: string; option: string }[];
 };
 
-export const Account: React.FC<PropType> = ({ index }) => {
+export const Account: React.FC = () => {
   const dispatch = useDispatch();
+  const index = useSelector(rootSlice.index);
   const accounts = useSelector(userSlice.accounts);
   const [display, setDisplay] = useState(5);
 
   const methods = useForm<Data>();
+
+  useEffect(() => {
+    if (index !== "companys") dispatch(rootSlice.handleIndex("companys"));
+  }, [index]);
 
   const handleEdit: SubmitHandler<Data> = (data): void => {
     const array = data.account
@@ -71,32 +73,29 @@ export const Account: React.FC<PropType> = ({ index }) => {
     array.length && dispatch(updateAccount(array));
   };
 
-  const handleIndex = (index: Edit): void => {
-    dispatch(rootSlice.handleIndex({ edit: index }));
-  };
-
   return (
-    <FormProvider {...methods}>
-      <form
-        className={styles.account}
-        onSubmit={methods.handleSubmit(handleEdit)}
-      >
-        <Header />
-        <Main index={index} accounts={accounts} display={display} />
+    <PageProvider header={<Header index={index} disable />}>
+      <FormProvider {...methods}>
+        <form
+          id="account"
+          className={styles.account}
+          onSubmit={methods.handleSubmit(handleEdit)}
+        >
+          <Tag />
+          <Main index={index} accounts={accounts} display={display} />
 
-        {display < 20 && (
-          <button
-            type="button"
-            className={styles.account_btn}
-            onClick={() => setDisplay((prev) => prev + 5)}
-          >
-            さらに表示する
-          </button>
-        )}
-
-        <Btn handleIndex={handleIndex} index={index} disable={true} />
-      </form>
-    </FormProvider>
+          {display < 20 && (
+            <button
+              type="button"
+              className={styles.account_btn}
+              onClick={() => setDisplay((prev) => prev + 5)}
+            >
+              さらに表示する
+            </button>
+          )}
+        </form>
+      </FormProvider>
+    </PageProvider>
   );
 };
 
@@ -105,7 +104,7 @@ const Main = ({
   accounts,
   display,
 }: {
-  index: Edit;
+  index: Index;
   accounts: Accounts;
   display: number;
 }) => {

@@ -1,28 +1,35 @@
+import { useEffect } from "react";
 import { usePosts } from "hooks/usePosts";
+import { useDispatch, useSelector } from "react-redux";
+import * as rootSlice from "features/root/rootSlice";
+import * as userSlice from "features/user/userSlice";
 import { useListScrollFetch } from "hooks/useListScrollFetch";
 import { Posts } from "./components/Posts";
 import { NotFound } from "./components/NotFound";
 import { Load } from "./components/Load";
-import { Page } from "features/root/initialState";
-import { Matter, Resource, Company, Person } from "types/post";
+import { useParams } from "react-router-dom";
+import { PageProvider } from "components/provider/page/PageProvider";
+import { Header } from "components/header/search/Header";
 
-interface PropType {
-  index: Page;
-  search: {
-    value: string | null;
-    target: string | null;
-    type: string | null;
-    filter: string | null;
-  };
-  posts?: Matter[] | Resource[] | Company[] | Person[];
-}
-
-export const List: React.FC<PropType> = ({ index, search }) => {
+export const List: React.FC = () => {
+  const dispatch = useDispatch();
+  const search = useSelector(rootSlice.search);
+  const user = useSelector(userSlice.user);
+  const rootIndex = useSelector(rootSlice.index);
+  const { index } =
+    useParams<{ index: "matters" | "resources" | "companys" | "persons" }>();
   const posts = usePosts(index, search);
   const [list, load, page, hit] = useListScrollFetch(index, search);
 
-  return (
-    <div>
+  useEffect(() => {
+    if (!index) return;
+    if (index !== rootIndex) dispatch(rootSlice.handleIndex(index));
+
+    if ("uid" in user) dispatch(userSlice.resetUser());
+  }, [index]);
+
+  return index ? (
+    <PageProvider header={<Header index={index} />}>
       {posts?.length ? (
         <Posts index={index} posts={posts} list={list} />
       ) : (
@@ -32,6 +39,8 @@ export const List: React.FC<PropType> = ({ index, search }) => {
       {posts && posts.length >= 50 && (
         <Load load={load} page={page} hit={hit} />
       )}
-    </div>
+    </PageProvider>
+  ) : (
+    <></>
   );
 };

@@ -11,16 +11,17 @@ import { Load } from "./components/Load";
 import { NotFound } from "./components/NotFound";
 import * as Side from "hooks/useSideFetch";
 import * as User from "features/user/initialState";
+import * as Root from "features/root/initialState";
 import { Company, Person } from "types/post";
 
 interface PropType {
   type: Side.Type;
   posts: User.Posts["company"] | User.Posts["person"] | Record<string, never>;
   user: Company | Person;
-  index: Side.Index;
-  handleIndex: (i: Side.Index) => void;
-  handleOpen: (t: Side.Type) => void;
+  index: Root.Index;
   target: Side.Type;
+  handleOpen: Side.HandleOpen;
+  handleIndex: Side.HandleIndex;
 }
 useSideScrollFetch;
 export const List: React.FC<PropType> = ({
@@ -39,7 +40,7 @@ export const List: React.FC<PropType> = ({
     target
   );
 
-  const handleIndexScroll = (i: Side.Index) => {
+  const handleIndexScroll = (i: Root.Index) => {
     inner.current && inner.current.scrollTo(0, 0);
     handleIndex(i);
   };
@@ -84,12 +85,7 @@ export const List: React.FC<PropType> = ({
               `}
                   ref={inner}
                 >
-                  <Posts
-                    user={user}
-                    posts={posts}
-                    target={target}
-                    index={index}
-                  />
+                  <Posts posts={posts} target={target} index={index} />
 
                   {posts?.[target]?.[index]?.length >= 50 && (
                     <Load load={load} page={page} hit={hit} />
@@ -104,12 +100,7 @@ export const List: React.FC<PropType> = ({
               `}
                   ref={inner}
                 >
-                  <Posts
-                    user={user}
-                    posts={posts}
-                    target={target}
-                    index={index}
-                  />
+                  <Posts posts={posts} target={target} index={index} />
 
                   {posts?.[target]?.[index]?.length >= 50 && (
                     <Load load={load} page={page} hit={hit} />
@@ -123,12 +114,7 @@ export const List: React.FC<PropType> = ({
               `}
                   ref={inner}
                 >
-                  <Posts
-                    user={user}
-                    posts={posts}
-                    target={target}
-                    index={index}
-                  />
+                  <Posts posts={posts} target={target} index={index} />
 
                   {posts?.[target]?.length >= 50 && (
                     <Load load={load} page={page} hit={hit} />
@@ -148,12 +134,7 @@ export const List: React.FC<PropType> = ({
               `}
                   ref={inner}
                 >
-                  <Posts
-                    user={user}
-                    posts={posts}
-                    target={target}
-                    index={index}
-                  />
+                  <Posts posts={posts} target={target} index={index} />
 
                   {posts?.[target]?.[index]?.length >= 50 && (
                     <Load load={load} page={page} hit={hit} />
@@ -170,12 +151,7 @@ export const List: React.FC<PropType> = ({
               `}
                   ref={inner}
                 >
-                  <Posts
-                    user={user}
-                    posts={posts}
-                    target={target}
-                    index={index}
-                  />
+                  <Posts posts={posts} target={target} index={index} />
 
                   {posts?.[target]?.length >= 50 && (
                     <Load load={load} page={page} hit={hit} />

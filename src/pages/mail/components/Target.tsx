@@ -1,10 +1,10 @@
 import styles from "../Mail.module.scss";
 import { useFormContext } from "react-hook-form";
 
-import { Edit } from "features/root/initialState";
+import { Index } from "features/root/initialState";
 
 interface PropType {
-  index: Edit;
+  index: Index;
 }
 
 export const Target: React.FC<PropType> = ({ index }) => {

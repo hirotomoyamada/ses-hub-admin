@@ -2,23 +2,29 @@ import styles from "./User.module.scss";
 import { useEffect, useState } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import * as userSlice from "features/user/userSlice";
 import * as rootSlice from "features/root/rootSlice";
-import { Header } from "./components/header/Header";
-import { Main } from "./components/main/Main";
+import { Header } from "components/header/user/Header";
+import { Cover } from "./components/cover/Cover";
+import { Icon } from "./components/icon/Icon";
+import { Form } from "./components/form/Form";
 import * as functions from "functions";
-import { Edit } from "features/root/initialState";
 import { Company, Person } from "types/post";
+import { PageProvider } from "components/provider/page/PageProvider";
+import { fetchUser } from "features/user/actions";
 
 interface PropType {
-  index: Edit;
-  handleClose: () => void;
+  index: "companys" | "persons";
 }
 
 export type Data = functions.company.Data | functions.person.Data;
 
-export const User: React.FC<PropType> = ({ index, handleClose }) => {
+export const User: React.FC<PropType> = ({ index }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { uid } = useParams<{ uid: string }>();
 
   const user = useSelector(userSlice.user);
   const filter = useSelector(rootSlice.search).filter;
@@ -36,12 +42,30 @@ export const User: React.FC<PropType> = ({ index, handleClose }) => {
   });
 
   useEffect(() => {
+    if (uid) dispatch(fetchUser({ index, uid }));
+
+    return () => {
+      dispatch(userSlice.resetUser());
+    };
+  }, [index, uid]);
+
+  useEffect(() => {
     methods.reset(
       index === "companys"
         ? functions.company.defaultValues(user as Company)
         : functions.person.defaultValues(user as Person)
     );
   }, [index, methods, user]);
+
+  const handleClose = () => {
+    const { key } = location;
+
+    if (key !== "default") {
+      navigate(-1);
+    } else {
+      navigate(`/${index}`);
+    }
+  };
 
   const handleBack = () => {
     setCover(false);
@@ -117,24 +141,46 @@ export const User: React.FC<PropType> = ({ index, handleClose }) => {
 
   return (
     <FormProvider {...methods}>
-      <form className={styles.user} onSubmit={methods.handleSubmit(handleEdit)}>
-        <Header
-          user={user}
-          icon={icon}
-          cover={cover}
-          handleBack={handleBack}
-          handleClose={handleClose}
-        />
+      <PageProvider
+        header={
+          <Header
+            user={user}
+            icon={icon}
+            cover={cover}
+            handleBack={handleBack}
+            handleClose={handleClose}
+          />
+        }
+        side
+      >
+        <form
+          id="user"
+          className={styles.user}
+          onSubmit={methods.handleSubmit(handleEdit)}
+        >
+          {(() => {
+            switch (true) {
+              case cover:
+                return <Cover />;
 
-        <Main
-          index={index}
-          user={user}
-          icon={icon}
-          setIcon={setIcon}
-          cover={cover}
-          setCover={setCover}
-        />
-      </form>
+              case icon:
+                return <Icon index={index} />;
+
+              default:
+                return (
+                  <Form
+                    index={index}
+                    user={user}
+                    icon={icon}
+                    cover={cover}
+                    setIcon={setIcon}
+                    setCover={setCover}
+                  />
+                );
+            }
+          })()}
+        </form>
+      </PageProvider>
     </FormProvider>
   );
 };

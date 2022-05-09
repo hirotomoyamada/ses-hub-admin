@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { extractPosts } from "features/user/actions";
 import * as userSlice from "../features/user/userSlice";
+import * as rootSlice from "features/root/rootSlice";
 import { Company, Person } from "types/post";
 
 import { Posts } from "features/user/initialState";
-import { Edit } from "features/root/initialState";
+import { Index } from "features/root/initialState";
 
 export type Type =
   | "data"
@@ -19,31 +20,54 @@ export type Type =
   | "histories"
   | "requests";
 
-export type Index =
-  | "matters"
-  | "resources"
-  | "companys"
-  | "persons"
-  | "enable"
-  | "hold"
-  | "disable";
+export type HandleOpen = ({
+  type,
+  index,
+}: {
+  type: Type;
+  index?: Index;
+}) => void;
+export type HandleIndex = (i: Index) => void;
 
 export const useSideFetch = (
   user: Company | Person,
-  edit: Edit
+  index: Index
 ): [
   posts: Posts["company"] | Posts["person"] | Record<string, never>,
   type: Type,
-  setType: React.Dispatch<React.SetStateAction<Type>>,
-  index: Index,
-  setIndex: React.Dispatch<React.SetStateAction<Index>>
+  handleOpen: HandleOpen,
+  handleIndex: HandleIndex
 ] => {
   const dispatch = useDispatch();
 
   const posts = useSelector(userSlice.posts);
 
   const [type, setType] = useState<Type>("data");
-  const [index, setIndex] = useState<Index>("matters");
+
+  const handleOpen: HandleOpen = (arg) => {
+    if (!arg.index) {
+      if (arg.type === "follows" || arg.type === "children") {
+        handleIndex("companys");
+      } else if (arg.type === "requests") {
+        handleIndex("hold");
+      } else if (arg.type !== "likes" && arg.type !== "entries") {
+        (index === "companys" ||
+          index === "persons" ||
+          index === "enable" ||
+          index === "hold" ||
+          index === "disable") &&
+          handleIndex("matters");
+      }
+    } else {
+      handleIndex(arg.index);
+    }
+
+    setType(arg.type);
+  };
+
+  const handleIndex: HandleIndex = (i) => {
+    dispatch(rootSlice.handleIndex(i));
+  };
 
   useEffect(() => {
     return () => {
@@ -135,7 +159,7 @@ export const useSideFetch = (
         }
       }
     }
-  }, [dispatch, edit, index, type, user]);
+  }, [dispatch, index, type, user]);
 
-  return [posts, type, setType, index, setIndex];
+  return [posts, type, handleOpen, handleIndex];
 };

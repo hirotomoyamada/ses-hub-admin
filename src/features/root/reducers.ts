@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { initialState, State } from "features/root/initialState";
+import { initialState, Index, State } from "features/root/initialState";
 import { EditData, Login, SendMail, UpdateNotice } from "./actions";
-import { Announce, Index, Search } from "./rootSlice";
+import { Announce, Search } from "./rootSlice";
 
 export const login = (state: State, action: PayloadAction<Login>): void => {
   state.admin = action.payload.uid;
@@ -21,16 +21,13 @@ export const logout = (): State => {
 };
 
 export const index = (state: State, action: PayloadAction<Index>): void => {
-  if (action.payload.page) {
-    state.index.page = action.payload.page;
+  if (action.payload) {
+    state.index = action.payload;
 
     state.search.target = null;
     state.search.type = null;
     state.search.value = null;
     state.search.filter = "all";
-  }
-  if (action.payload.edit) {
-    state.index.edit = action.payload.edit;
   }
 };
 

@@ -1,26 +1,34 @@
 import styles from "./Post.module.scss";
 import { useEffect } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as postSlice from "features/post/postSlice";
 import * as rootSlice from "features/root/rootSlice";
-import { Header } from "./components/header/Header";
-import { Main } from "./components/main/Main";
+import { Header } from "components/header/post/Header";
 import * as functions from "functions";
-import { Edit } from "features/root/initialState";
 import { Matter, Resource } from "types/post";
+import * as Item from "./components/Item";
+import { PageProvider } from "components/provider/page/PageProvider";
+import { fetchPost } from "features/post/actions";
+import { fetchUser } from "features/user/actions";
+import { Oval } from "react-loader-spinner";
+import * as userSlice from "features/user/userSlice";
 
 interface PropType {
-  index: Edit;
-  handleClose: () => void;
+  index: "matters" | "resources";
 }
 
 export type Data = functions.matter.Data | functions.resource.Data;
 
-export const Post: React.FC<PropType> = ({ index, handleClose }) => {
+export const Post: React.FC<PropType> = ({ index }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { objectID } = useParams<{ objectID: string }>();
 
   const post = useSelector(postSlice.post);
+  const user = useSelector(userSlice.user);
 
   const methods = useForm<Data>({
     defaultValues:
@@ -32,6 +40,19 @@ export const Post: React.FC<PropType> = ({ index, handleClose }) => {
   });
 
   useEffect(() => {
+    if (objectID) dispatch(fetchPost({ index, objectID }));
+
+    return () => {
+      dispatch(postSlice.selectPost({}));
+    };
+  }, [index, objectID]);
+
+  useEffect(() => {
+    if ("uid" in post && post.uid !== user.uid)
+      dispatch(fetchUser({ index: "companys", uid: post.uid }));
+  }, [post]);
+
+  useEffect(() => {
     methods.reset(
       index === "matters"
         ? functions.matter.defaultValues(post as Matter)
@@ -40,6 +61,16 @@ export const Post: React.FC<PropType> = ({ index, handleClose }) => {
         : undefined
     );
   }, [index, methods, post]);
+
+  const handleClose = () => {
+    const { key } = location;
+
+    if (key !== "default") {
+      navigate(-1);
+    } else {
+      navigate(`/${index}`);
+    }
+  };
 
   const handleEdit: SubmitHandler<Data> = (data): void => {
     if (index !== "matters" && index !== "resources") {
@@ -83,10 +114,141 @@ export const Post: React.FC<PropType> = ({ index, handleClose }) => {
 
   return (
     <FormProvider {...methods}>
-      <form className={styles.post} onSubmit={methods.handleSubmit(handleEdit)}>
-        <Header handleClose={handleClose} handleDelete={handleDelete} />
-        <Main index={index} />
-      </form>
+      <PageProvider
+        header={
+          <Header handleClose={handleClose} handleDelete={handleDelete} />
+        }
+        side
+      >
+        {"objectID" in post ? (
+          <form
+            id="post"
+            className={styles.post}
+            onSubmit={methods.handleSubmit(handleEdit)}
+          >
+            {(() => {
+              switch (index) {
+                case "matters":
+                  return (
+                    <>
+                      <Item.Status />
+                      <Item.Title />
+                      <Item.Position />
+                      <Item.Body index={index} />
+
+                      <div className={styles.post_grid}>
+                        <Item.AreaLocation />
+                        <Item.PlaceLocation />
+                        <Item.Remote />
+                      </div>
+
+                      <div
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}
+                      >
+                        <Item.Period index={index} />
+                        <Item.Times />
+                      </div>
+
+                      <div className={styles.post_col}>
+                        <span className={styles.post_tag}>開発環境</span>
+
+                        <div>
+                          <Item.Handles index={index} />
+                          <Item.Tools index={index} />
+                        </div>
+                      </div>
+
+                      <div className={styles.post_col}>
+                        <span className={styles.post_tag}>必須</span>
+
+                        <Item.Requires />
+                      </div>
+
+                      <div className={styles.post_col}>
+                        <span className={styles.post_tag}>尚可</span>
+                        <Item.Perfers />
+                      </div>
+
+                      <Item.Interviews />
+
+                      <Item.Costs />
+
+                      <div className={styles.post_grid}>
+                        <Item.Adjustment />
+                        <Item.Distribution />
+                        <Item.Span />
+                        <Item.Approval />
+                      </div>
+
+                      <Item.Note />
+                      <Item.Memo index={index} />
+                    </>
+                  );
+
+                case "resources":
+                  return (
+                    <>
+                      <Item.Status />
+                      <Item.Roman />
+                      <Item.Position />
+
+                      <div
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}
+                      >
+                        <div
+                          className={`${styles.post_grid} ${styles.post_grid_half}`}
+                        >
+                          <Item.Sex />
+                          <Item.Age />
+                        </div>
+                      </div>
+
+                      <Item.Body index={index} />
+
+                      <div className={styles.post_grid}>
+                        <Item.Belong />
+                        <Item.Station />
+                      </div>
+
+                      <div className={styles.post_grid}>
+                        <Item.Period index={index} />
+                      </div>
+
+                      <Item.Costs />
+
+                      <div className={styles.post_col}>
+                        <span className={styles.post_tag}>開発環境</span>
+
+                        <div>
+                          <Item.Handles index={index} />
+                          <Item.Tools index={index} />
+                        </div>
+                      </div>
+
+                      <div className={styles.post_col}>
+                        <span className={styles.post_tag}>スキル</span>
+
+                        <Item.Skills />
+                      </div>
+
+                      <Item.Parallel />
+                      <Item.Note />
+
+                      <Item.Memo index={index} />
+                    </>
+                  );
+
+                default:
+                  return <div>エラーが発生しました</div>;
+              }
+            })()}
+          </form>
+        ) : (
+          <div className={styles.post_fetch}>
+            <Oval color="#49b757" height={56} width={56} />
+          </div>
+        )}
+      </PageProvider>
     </FormProvider>
   );
 };

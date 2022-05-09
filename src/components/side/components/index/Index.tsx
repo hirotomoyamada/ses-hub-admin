@@ -1,10 +1,11 @@
-import * as Side from "hooks/useSideFetch";
+import { Type } from "hooks/useSideFetch";
+import * as Root from "features/root/initialState";
 import styles from "./Index.module.scss";
 
 interface PropType {
-  type: Side.Type;
-  index: Side.Index;
-  handleIndexScroll: (i: Side.Index) => void;
+  type: Type;
+  index: Root.Index;
+  handleIndexScroll: (i: Root.Index) => void;
 }
 
 export const Index: React.FC<PropType> = ({
@@ -32,6 +33,7 @@ export const Index: React.FC<PropType> = ({
         >
           {type !== "requests" ? "案件" : "承認済み"}
         </button>
+
         <button
           type="button"
           className={`${styles.index_btn} ${
@@ -44,6 +46,7 @@ export const Index: React.FC<PropType> = ({
         >
           {type !== "requests" ? "人材" : "未承認"}
         </button>
+
         {(type === "likes" || type === "entries" || type === "requests") && (
           <button
             type="button"

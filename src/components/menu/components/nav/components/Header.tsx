@@ -1,48 +1,31 @@
 import styles from "../../../Menu.module.scss";
+import { useLocation } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-import { faServer } from "@fortawesome/free-solid-svg-icons";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { Edit, Page } from "features/root/initialState";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface PropType {
-  index: {
-    page: Page;
-    edit: Edit;
-  };
+  index?: string[];
+  icon?: IconProp;
   text: string;
-  type?: "posts" | "users" | "server" | "setting" | "mail" | "account";
 }
 
-export const Header: React.FC<PropType> = ({ index, type, text }) => {
-  return type === "users" || type === "posts" ? (
+export const Header: React.FC<PropType> = ({ index, icon, text }) => {
+  const pathname = useLocation().pathname.slice(1);
+  const page = pathname.substring(
+    0,
+    pathname.indexOf("/") >= 0 ? pathname.indexOf("/") : undefined
+  );
+
+  return (
     <div className={styles.menu_nav_head}>
       <FontAwesomeIcon
         icon={
-          (type === "users"
-            ? index.page === "companys" || index.page === "persons"
-              ? faFolderOpen
-              : faFolder
-            : type === "posts" &&
-              (index.page === "matters" || index.page === "resources")
-            ? faFolderOpen
-            : faFolder) as IconProp
+          icon || (index && index.indexOf(page) >= 0 ? faFolderOpen : faFolder)
         }
-        className={styles.menu_nav_icon}
       />
-      {text}
-    </div>
-  ) : type === "server" ? (
-    <div className={styles.menu_nav_head}>
-      <FontAwesomeIcon icon={faServer as IconProp} />
-      {text}
-    </div>
-  ) : (
-    <div className={styles.menu_nav_head}>
-      <FontAwesomeIcon icon={faCog as IconProp} />
       {text}
     </div>
   );

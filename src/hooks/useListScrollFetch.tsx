@@ -5,11 +5,11 @@ import { fetchPosts } from "../features/post/actions";
 import * as postSlice from "../features/post/postSlice";
 
 import * as functions from "functions";
-import { Page } from "features/root/initialState";
+import { Index } from "features/root/initialState";
 import { OwnDispatch } from "@reduxjs/toolkit";
 
 export const useListScrollFetch = (
-  index: Page,
+  index: Index | undefined,
   search: {
     value: string | null;
     target: string | null;
@@ -60,7 +60,8 @@ export const useListScrollFetch = (
   }, [hit.pages, intersecting, page, list, hit]);
 
   useEffect(() => {
-    intersecting &&
+    index &&
+      intersecting &&
       hit.pages &&
       page !== hit.pages &&
       fetchScroll(dispatch, index, search, page).then(() => {
@@ -73,7 +74,7 @@ export const useListScrollFetch = (
 
 const fetchScroll = async (
   dispatch: OwnDispatch,
-  index: Page,
+  index: Index,
   search: {
     value: string | null;
     target: string | null;

@@ -10,8 +10,4 @@ $width: responsive-width(pc);
   background: $base_clr;
 
   transition: all 0.7s;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 48px 1fr;
 }

@@ -3,10 +3,17 @@ import { initialState, State } from "features/post/initialState";
 import { functions } from "libs/firebase";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { Matter, Resource, Company, Person } from "types/post";
-import { FetchPosts } from "./actions";
+import { FetchPost, FetchPosts } from "./actions";
 import { Post } from "features/post/postSlice";
 import { User } from "features/user/userSlice";
 import { UpdateAccount } from "features/root/actions";
+
+export const fetchPost = (
+  state: State,
+  action: PayloadAction<FetchPost["data"]>
+): void => {
+  state.post = action.payload.post;
+};
 
 export const fetchPosts = (
   state: State,
@@ -34,7 +41,7 @@ export const fetchPosts = (
 
 export const selectPost = (
   state: State,
-  action: PayloadAction<Post["post"]>
+  action: PayloadAction<Post["post"] | unknown>
 ): void => {
   state.post = action.payload;
 };

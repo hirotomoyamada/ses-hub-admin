@@ -1,12 +1,18 @@
 import { Data } from "types/auth";
 
+export type Index =
+  | "matters"
+  | "resources"
+  | "companys"
+  | "persons"
+  | "enable"
+  | "hold"
+  | "disable";
+
 export interface State {
   admin: string | null;
 
-  index: {
-    page: Page;
-    edit: Edit;
-  };
+  index: Index;
 
   search: {
     value: string | null;
@@ -34,29 +40,10 @@ export interface State {
   };
 }
 
-export type Page =
-  | "matters"
-  | "resources"
-  | "companys"
-  | "persons"
-  | "setting"
-  | "mail"
-  | "account";
-
-export type Edit =
-  | "matters"
-  | "resources"
-  | "companys"
-  | "persons"
-  | "setting"
-  | "mail"
-  | "account"
-  | null;
-
 export const initialState: State = {
   admin: null,
 
-  index: { page: "companys", edit: null },
+  index: "companys",
 
   search: {
     value: null,
