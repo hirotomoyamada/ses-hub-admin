@@ -18,6 +18,7 @@ import { Resume } from "./components/resume/Resume";
 import { Company, Person } from "types/post";
 import { Index } from "features/root/initialState";
 import { HandleIndex, HandleOpen, Type } from "hooks/useSideFetch";
+import { useNavigate } from "react-router-dom";
 
 interface PropType {
   user: Company | Person;
@@ -36,20 +37,12 @@ export const Data: React.FC<PropType> = ({
   target,
   handleIndex,
 }) => {
+  const navigate = useNavigate();
   const fetch = useSelector(rootSlice.load).list;
 
   const handleChange = (): void => {
     handleIndex("payment" in user ? "companys" : "persons");
-
-    // dispatch(
-    //   userSlice.selectUser(
-    //     index === "matters" || index === "resources"
-    //       ? user
-    //       : "parent" in user && user?.parent
-    //       ? user?.parent
-    //       : user
-    //   )
-    // );
+    navigate(`/${"payment" in user ? "companys" : "persons"}/${user.uid}`);
   };
 
   return (
