@@ -1,7 +1,6 @@
 import { useApp } from "hooks/useApp";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth } from "pages/auth/Auth";
-import { Admin } from "pages/admin/Admin";
 import { Load } from "components/load/Load";
 import { Announce } from "components/announce/Announce";
 import { NotSupported } from "pages/notSupported/NotSupported";
@@ -12,6 +11,8 @@ import { Account } from "pages/account/Account";
 import { AdminProvider } from "components/provider/admin/AdminProvider";
 import { User } from "pages/user/User";
 import { Post } from "pages/post/Post";
+import { DashBoard } from "pages/dashboard/DashBoard";
+import { Modal } from "components/modal/Modal";
 
 const App: React.FC = () => {
   const [admin, support] = useApp();
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       return (
         <BrowserRouter>
           <Announce />
+          <Modal />
           <Load />
 
           {(() => {
@@ -29,7 +31,7 @@ const App: React.FC = () => {
                 return (
                   <AdminProvider>
                     <Routes>
-                      <Route index element={<Admin />} />
+                      <Route index element={<DashBoard />} />
                       <Route path="/setting" element={<Setting />} />
                       <Route path="/mail" element={<Mail />} />
                       <Route path="/account" element={<Account />} />
