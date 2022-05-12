@@ -8,6 +8,7 @@ import { Company, Person } from "types/post";
 
 import { Posts } from "features/user/initialState";
 import { Index } from "features/root/initialState";
+import { useLocation } from "react-router-dom";
 
 export type Type =
   | "data"
@@ -39,10 +40,11 @@ export const useSideFetch = (
   handleIndex: HandleIndex
 ] => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const posts = useSelector(userSlice.posts);
-
-  const [type, setType] = useState<Type>("data");
+  const state = location?.state as { type: Type } | undefined;
+  const [type, setType] = useState<Type>(state?.type || "data");
 
   const handleOpen: HandleOpen = (arg) => {
     if (!arg.index) {
@@ -70,10 +72,15 @@ export const useSideFetch = (
   };
 
   useEffect(() => {
-    return () => {
-      setType("data");
-    };
-  }, [user]);
+    const pathname = location.pathname.slice(1);
+    const index = pathname.substring(
+      0,
+      pathname.indexOf("/") >= 0 ? pathname.indexOf("/") : undefined
+    );
+
+    if (state?.type)
+      handleIndex(index as "matters" | "resources" | "companys" | "persons");
+  }, [state]);
 
   useEffect(() => {
     if (type !== "data") {

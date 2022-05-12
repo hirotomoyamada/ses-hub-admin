@@ -48,8 +48,17 @@ export const Post: React.FC<PropType> = ({ index }) => {
   }, [index, objectID]);
 
   useEffect(() => {
-    if ("uid" in post && post.uid !== user.uid)
+    const { state } = location;
+    const disabled = (state as { disabled: boolean } | undefined)?.disabled;
+
+    if (
+      (!("uid" in user) || !disabled) &&
+      "uid" in post &&
+      post.uid !== user.uid
+    ) {
+      dispatch(userSlice.resetUser());
       dispatch(fetchUser({ index: "companys", uid: post.uid }));
+    }
   }, [post]);
 
   useEffect(() => {
@@ -109,6 +118,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
     }
 
     dispatch(postSlice.deletePost({ index: index, post: post }));
+    dispatch(rootSlice.handleModal());
     handleClose();
   };
 

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { extractPosts } from "features/user/actions";
 import * as userSlice from "../features/user/userSlice";
@@ -27,6 +28,8 @@ export const useSideScrollFetch = (
   }
 ] => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const state = location?.state as { type: Type } | undefined;
 
   const hit = useSelector(userSlice.hit);
 
@@ -38,7 +41,9 @@ export const useSideScrollFetch = (
   const [intersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
-    inner.current && inner.current.scrollTo(0, 0);
+    if (!state?.type && inner.current) {
+      inner.current.scrollTo(0, 0);
+    }
   }, [target, type, index, inner]);
 
   useEffect(() => {

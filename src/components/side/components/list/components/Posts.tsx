@@ -29,6 +29,7 @@ export const Posts: React.FC<PropType> = ({ posts, target, index }) => {
                   }
                   index={index}
                   post={post}
+                  target={target}
                   min
                 />
               )
@@ -43,6 +44,7 @@ export const Posts: React.FC<PropType> = ({ posts, target, index }) => {
                   key={"objectID" in post ? post.objectID : i}
                   index={index}
                   post={post}
+                  target={target}
                   min
                 />
               )
@@ -56,6 +58,7 @@ export const Posts: React.FC<PropType> = ({ posts, target, index }) => {
                   key={"uid" in post ? post.uid : i}
                   index={"companys"}
                   post={post}
+                  target={target}
                   min
                 />
               )
@@ -74,6 +77,7 @@ export const Posts: React.FC<PropType> = ({ posts, target, index }) => {
                   key={"uid" in post ? post.uid : i}
                   index={"companys"}
                   post={post}
+                  target={target}
                   min
                 />
               )
@@ -95,6 +99,7 @@ export const Posts: React.FC<PropType> = ({ posts, target, index }) => {
                       : i
                   }
                   index={"matters"}
+                  target={target}
                   post={post}
                   min
                 />
