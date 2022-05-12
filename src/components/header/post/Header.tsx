@@ -1,5 +1,7 @@
 import styles from "./Header.module.scss";
 import { useFormContext } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import * as rootSlice from "features/root/rootSlice";
 
 interface PropType {
   handleClose: () => void;
@@ -7,6 +9,7 @@ interface PropType {
 }
 
 export const Header: React.FC<PropType> = ({ handleClose, handleDelete }) => {
+  const dispatch = useDispatch();
   const { register } = useFormContext();
 
   return (
@@ -44,12 +47,20 @@ export const Header: React.FC<PropType> = ({ handleClose, handleDelete }) => {
         <button
           type="button"
           className={styles.header_delete}
-          onClick={handleDelete}
+          onClick={() =>
+            dispatch(
+              rootSlice.handleModal({
+                type: "delete",
+                text: "投稿",
+                delete: () => handleDelete(),
+              })
+            )
+          }
         >
           削除
         </button>
 
-        <button className={styles.header_submit} type="submit">
+        <button className={styles.header_submit} type="submit" form="post">
           編集
         </button>
       </div>
