@@ -35,6 +35,7 @@ export const fetchUser = (
 
 const company = (state: State, data: Company): void => {
   (state.user as Company).uid = data.uid;
+  (state.user as Company).type = data.type;
   (state.user as Company).icon = data.icon;
   (state.user as Company).cover = data.cover;
   (state.user as Company).status = data.status;
@@ -255,27 +256,7 @@ export const resetUser = (
   if (!action.payload && typeof action.payload !== "number") {
     state.user = {};
 
-    state.posts = {
-      follows: [],
-      posts: {
-        matters: [],
-        resources: [],
-      },
-      likes: {
-        matters: [],
-        resources: [],
-        persons: [],
-      },
-      outputs: {
-        matters: [],
-        resources: [],
-      },
-      entries: {
-        matters: [],
-        resources: [],
-        persons: [],
-      },
-    } as unknown as Posts["company"];
+    state.posts = {};
 
     state.hit = {
       posts: 0,

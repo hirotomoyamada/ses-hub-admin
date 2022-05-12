@@ -9,6 +9,14 @@ export type Index =
   | "hold"
   | "disable";
 
+export interface Modal {
+  type?: string;
+  text?: string;
+  open?: boolean;
+  delete?: () => void;
+  close?: () => void;
+}
+
 export interface State {
   admin: string | null;
 
@@ -26,7 +34,7 @@ export interface State {
     freelanceDirect: Data | unknown;
   };
 
-  modal: boolean;
+  modal: Modal;
 
   load: {
     root: boolean;
@@ -57,7 +65,10 @@ export const initialState: State = {
     freelanceDirect: {},
   },
 
-  modal: false,
+  modal: {
+    type: undefined,
+    open: false,
+  },
 
   load: {
     root: true,

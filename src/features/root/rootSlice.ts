@@ -5,7 +5,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { RootState } from "app/store";
-import { Index, initialState, State } from "features/root/initialState";
+import { Index, initialState, Modal, State } from "features/root/initialState";
 import * as actions from "features/root/actions";
 import * as reducers from "features/root/reducers";
 import { Data } from "types/auth";
@@ -32,7 +32,7 @@ export const rootSlice = createSlice({
       reducers.index(state, action),
     handleSearch: (state, action: PayloadAction<Search | undefined>) =>
       reducers.search(state, action),
-    handleModal: (state, action: PayloadAction<boolean>) =>
+    handleModal: (state, action: PayloadAction<Modal | undefined>) =>
       reducers.modal(state, action),
     handleAnnounce: (state, action: PayloadAction<Announce | undefined>) =>
       reducers.announce(state, action),

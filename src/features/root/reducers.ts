@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { initialState, Index, State } from "features/root/initialState";
+import { initialState, Index, State, Modal } from "features/root/initialState";
 import { EditData, Login, SendMail, UpdateNotice } from "./actions";
 import { Announce, Search } from "./rootSlice";
 
@@ -58,13 +58,22 @@ export const search = (
   }
 };
 
-export const modal = (state: State, action: PayloadAction<boolean>): void => {
-  if (action.payload) {
-    state.modal = true;
-    document.body.classList.add("lock");
+export const modal = (
+  state: State,
+  action: PayloadAction<Modal | undefined>
+): void => {
+  if (action?.payload) {
+    state.modal.type = action.payload.type;
+    state.modal.text = action.payload.text;
+    state.modal.close = action.payload.close;
+    state.modal.delete = action.payload.delete;
+    state.modal.open = true;
   } else {
-    state.modal = false;
-    document.body.classList.remove("lock");
+    state.modal.type = undefined;
+    state.modal.text = undefined;
+    state.modal.close = undefined;
+    state.modal.delete = undefined;
+    state.modal.open = false;
   }
 };
 
