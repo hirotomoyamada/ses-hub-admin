@@ -61,6 +61,7 @@ export const Header: React.FC<PropType> = ({ index }) => {
     dispatch(rootSlice.handleSearch({ target, type }));
     setOpen(!open);
   };
+
   const handleAttribuleChange = (filter: string): void => {
     window.scrollTo(0, 0);
     dispatch(rootSlice.handleSearch({ filter: filter }));
