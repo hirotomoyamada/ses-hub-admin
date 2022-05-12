@@ -1,0 +1,17 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.header {
+  border-bottom: 1px solid $bdr_clr;
+  background: $base_clr;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 0 16px 0 8px;
+}
