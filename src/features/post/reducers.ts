@@ -51,6 +51,19 @@ export const resetPost = (): State => {
 };
 
 export const editPost = (state: State, action: PayloadAction<Post>): void => {
+  const editPost: HttpsCallable<
+    {
+      index: "matters" | "resources";
+      post: Matter | Resource;
+    },
+    unknown
+  > = httpsCallable(functions, "admin-editPost");
+
+  void editPost({
+    index: action.payload.index,
+    post: action.payload.post,
+  });
+
   if (action.payload.index === "matters") {
     const post = state.posts.matters.find(
       (post) => post?.objectID === action.payload.post.objectID
@@ -130,19 +143,6 @@ export const editPost = (state: State, action: PayloadAction<Post>): void => {
     post.memo = (action.payload.post as Resource).memo;
     post.updateAt = (action.payload.post as Resource).updateAt;
   }
-
-  const editPost: HttpsCallable<
-    {
-      index: "matters" | "resources";
-      post: Matter | Resource;
-    },
-    unknown
-  > = httpsCallable(functions, "admin-editPost");
-
-  void editPost({
-    index: action.payload.index,
-    post: action.payload.post,
-  });
 };
 
 export const deletePost = (state: State, action: PayloadAction<Post>): void => {
