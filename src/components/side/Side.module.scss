@@ -31,4 +31,12 @@ $width: responsive-width(pc);
       }
     }
   }
+
+  &_fetch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-left: 1px solid $bdr_clr;
+  }
 }

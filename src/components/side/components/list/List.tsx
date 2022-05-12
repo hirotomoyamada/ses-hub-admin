@@ -23,7 +23,7 @@ interface PropType {
   handleOpen: Side.HandleOpen;
   handleIndex: Side.HandleIndex;
 }
-useSideScrollFetch;
+
 export const List: React.FC<PropType> = ({
   type,
   posts,

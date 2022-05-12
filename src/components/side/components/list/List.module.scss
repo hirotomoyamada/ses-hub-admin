@@ -16,11 +16,6 @@ $width: responsive-width(pc);
     flex-direction: column;
     overflow-y: scroll;
 
-    animation-name: fadeIn;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-
     &_single {
       padding-top: 0;
     }
@@ -30,11 +25,6 @@ $width: responsive-width(pc);
       display: flex;
       justify-content: center;
       align-items: center;
-
-      animation-name: fadeIn;
-      animation-duration: 0.4s;
-      animation-fill-mode: forwards;
-      animation-timing-function: ease-out;
 
       &_message {
         font-size: auto-clamp(13px, 14px);
@@ -46,11 +36,6 @@ $width: responsive-width(pc);
       display: flex;
       justify-content: center;
       padding: 32px 0;
-
-      animation-name: fadeIn;
-      animation-duration: 0.4s;
-      animation-fill-mode: forwards;
-      animation-timing-function: ease-out;
 
       &_none {
         display: none;
