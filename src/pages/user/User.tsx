@@ -42,11 +42,9 @@ export const User: React.FC<PropType> = ({ index }) => {
   });
 
   useEffect(() => {
-    if (uid) dispatch(fetchUser({ index, uid }));
+    dispatch(userSlice.resetUser());
 
-    return () => {
-      dispatch(userSlice.resetUser());
-    };
+    if (uid) dispatch(fetchUser({ index, uid }));
   }, [index, uid]);
 
   useEffect(() => {
