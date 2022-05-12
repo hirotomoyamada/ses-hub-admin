@@ -2,29 +2,38 @@ import styles from "./Modal.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateNotice } from "features/root/actions";
 import * as rootSlice from "features/root/rootSlice";
 
-import { Index } from "features/root/initialState";
+import { Delete } from "./components/delete/Delete";
 
-interface PropType {
-  index: Index;
-}
-
-export const Modal: React.FC<PropType> = ({ index }) => {
+export const Modal: React.FC = () => {
   const dispatch = useDispatch();
-  const open = useSelector(rootSlice.modal);
+  const modal = useSelector(rootSlice.modal);
 
   const handleClose = (): void => {
-    dispatch(rootSlice.handleModal(false));
-    dispatch(updateNotice(index));
+    dispatch(rootSlice.handleModal());
   };
 
   return (
-    <div
-      className={`${styles.modal} ${
-        open ? styles.modal_open : styles.modal_close
-      }`}
-    ></div>
+    <div className={`${modal.open ? styles.open : styles.close}`}>
+      <div className={styles.overlay}></div>
+      <div className={`${styles.modal}`}>
+        {(() => {
+          switch (modal.type) {
+            case "delete":
+              return (
+                <Delete
+                  text={modal.text}
+                  close={modal.close}
+                  handleClose={handleClose}
+                  handleDelete={modal.delete}
+                />
+              );
+            default:
+              return <></>;
+          }
+        })()}
+      </div>
+    </div>
   );
 };
