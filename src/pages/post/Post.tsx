@@ -102,7 +102,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
     if (!edit) {
       dispatch(
         rootSlice.handleAnnounce({
-          error: "プロフィールの編集に失敗しました",
+          error: "投稿の編集に失敗しました",
         })
       );
 

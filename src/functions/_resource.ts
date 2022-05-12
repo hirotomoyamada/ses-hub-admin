@@ -88,7 +88,7 @@ export const edit = (
     },
     costs: {
       min: data.costs.min ? Number(data.costs.min) : null,
-      max: data.costs.min ? Number(data.costs.max) : null,
+      max: data.costs.max ? Number(data.costs.max) : null,
       contract: data.costs.contract ? Number(data.costs.contract) : null,
       display: data.costs.display,
       type: data.costs.type,
