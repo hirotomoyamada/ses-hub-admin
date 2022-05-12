@@ -19,6 +19,12 @@ $width: responsive-width(pc);
 
   background: $base_clr;
 
+  transition: all 0.4s;
+
+  &_current {
+    background: $acnt_bg_clr;
+  }
+
   &_header {
     display: flex;
     justify-content: space-between;
