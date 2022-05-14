@@ -17,6 +17,29 @@ export interface Modal {
   close?: () => void;
 }
 
+export type Activity = {
+  key:
+    | "login"
+    | "posts"
+    | "histories"
+    | "likes"
+    | "outputs"
+    | "entries"
+    | "follows";
+  label: string;
+  active?: number | null;
+  trialing?: number | null;
+  canceled?: number | null;
+  person?: number | null;
+  log: {
+    label: string;
+    active?: number | null;
+    trialing?: number | null;
+    canceled?: number | null;
+    person?: number | null;
+  }[];
+};
+
 export interface State {
   admin: string | null;
 
@@ -46,6 +69,8 @@ export interface State {
     success?: string;
     error?: string;
   };
+
+  activity: Activity[];
 }
 
 export const initialState: State = {
@@ -80,4 +105,6 @@ export const initialState: State = {
     success: undefined,
     error: undefined,
   },
+
+  activity: [],
 };

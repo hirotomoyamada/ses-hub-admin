@@ -1,6 +1,12 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { initialState, Index, State, Modal } from "features/root/initialState";
-import { EditData, Login, SendMail, UpdateNotice } from "./actions";
+import {
+  EditData,
+  FetchActivity,
+  Login,
+  SendMail,
+  UpdateNotice,
+} from "./actions";
 import { Announce, Search } from "./rootSlice";
 
 export const login = (state: State, action: PayloadAction<Login>): void => {
@@ -145,4 +151,11 @@ export const updateNotice = (
       [index]: action.payload[index as keyof UpdateNotice],
     });
   }
+};
+
+export const fetchActivity = (
+  state: State,
+  action: PayloadAction<FetchActivity["data"]>
+): void => {
+  state.activity = action.payload;
 };
