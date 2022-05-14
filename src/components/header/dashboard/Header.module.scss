@@ -9,9 +9,98 @@ $width: responsive-width(pc);
   background: $base_clr;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 16px;
 
   padding: 0 16px 0 8px;
+}
+
+.sort {
+  display: grid;
+  grid-template-columns: 80px auto 80px 80px;
+  gap: 4px;
+  background: $bg_clr;
+  width: 376px;
+  height: 32px;
+  border-radius: 20px;
+  padding: 3px;
+  border: 1px solid $bdr_clr;
+
+  font-size: auto-clamp(11px, 12px);
+
+  animation-name: fadeIn;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+
+  &_btn {
+    cursor: pointer;
+    color: $sub_clr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+    &_active {
+      color: $base_clr;
+      background: $acnt_clr;
+    }
+
+    &_trialing {
+      color: $base_clr;
+      background: $add_clr;
+    }
+
+    &_canceled {
+      color: $base_clr;
+      background: $promo_clr;
+    }
+
+    &_person {
+      color: $base_clr;
+      background: $icn_clr;
+    }
+
+    &_disabled {
+      pointer-events: none;
+    }
+  }
+}
+
+.span {
+  position: relative;
+
+  &_select {
+    background: $base_clr;
+    border: 1px solid $bdr_clr;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 72px;
+    height: 32px;
+    padding: 0 12px;
+
+    color: $icn_clr;
+    font-size: auto-clamp(11px, 12px);
+
+    animation-name: fadeIn;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+  }
+
+  &_icon {
+    position: absolute;
+    right: 12px;
+    top: 7px;
+
+    color: $icn_clr;
+    font-size: 16px !important;
+
+    pointer-events: none;
+  }
 }
