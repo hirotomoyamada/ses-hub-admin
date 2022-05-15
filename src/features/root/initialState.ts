@@ -17,28 +17,38 @@ export interface Modal {
   close?: () => void;
 }
 
-export type Activity = {
-  key:
-    | "login"
-    | "posts"
-    | "histories"
-    | "likes"
-    | "outputs"
-    | "entries"
-    | "follows";
-  label: string;
-  active?: number | null;
-  trialing?: number | null;
-  canceled?: number | null;
-  person?: number | null;
-  log: {
-    label: string;
-    active?: number | null;
-    trialing?: number | null;
-    canceled?: number | null;
-    person?: number | null;
-  }[];
-};
+export type Activity =
+  | {
+      key:
+        | "login"
+        | "posts"
+        | "histories"
+        | "likes"
+        | "outputs"
+        | "entries"
+        | "follows";
+      label: string;
+      active?: number | null;
+      trialing?: number | null;
+      canceled?: number | null;
+      person?: number | null;
+      log: {
+        label: string;
+        active?: number | null;
+        trialing?: number | null;
+        canceled?: number | null;
+        person?: number | null;
+      }[];
+    }
+  | {
+      key: "posts" | "position" | "distribution" | "approval" | "sex" | "age";
+      label: string;
+      active?: number;
+      log: {
+        label: string | number;
+        active?: number;
+      }[];
+    };
 
 export interface State {
   admin: string | null;

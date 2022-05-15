@@ -136,7 +136,10 @@ export const updateAccount = createAsyncThunk(
 );
 
 export type FetchActivity = {
-  arg: { span: "total" | "day" | "week" | "month" };
+  arg: {
+    index?: "matters" | "resources";
+    span: "total" | "day" | "week" | "month";
+  };
 
   data: Activity[];
 };
@@ -144,13 +147,24 @@ export type FetchActivity = {
 export const fetchActivity = createAsyncThunk(
   "root/fetchActivity",
   async (arg: FetchActivity["arg"]): Promise<FetchActivity["data"]> => {
-    const updateAccount: HttpsCallable<
-      FetchActivity["arg"],
-      FetchActivity["data"]
-    > = httpsCallable(functions, "admin-fetchActivity");
+    if (!("index" in arg)) {
+      const fetchUserActivity: HttpsCallable<
+        FetchActivity["arg"],
+        FetchActivity["data"]
+      > = httpsCallable(functions, "admin-fetchUserActivity");
 
-    const { data } = await updateAccount(arg);
+      const { data } = await fetchUserActivity(arg);
 
-    return data;
+      return data;
+    } else {
+      const fetchPostActivity: HttpsCallable<
+        FetchActivity["arg"],
+        FetchActivity["data"]
+      > = httpsCallable(functions, "admin-fetchPostActivity");
+
+      const { data } = await fetchPostActivity(arg);
+
+      return data;
+    }
   }
 );
