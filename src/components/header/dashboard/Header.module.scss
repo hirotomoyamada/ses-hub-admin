@@ -1,5 +1,6 @@
 @import "styles/config";
 @import "styles/function";
+@import "styles/animation";
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -9,11 +10,16 @@ $width: responsive-width(pc);
   background: $base_clr;
 
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: 16px;
 
-  padding: 0 16px 0 8px;
+  padding: 0 16px;
+
+  &_wrap {
+    display: flex;
+    gap: 16px;
+  }
 }
 
 .sort {
@@ -23,16 +29,16 @@ $width: responsive-width(pc);
   background: $bg_clr;
   width: 376px;
   height: 32px;
-  border-radius: 20px;
-  padding: 3px;
+  border-radius: 16px;
+  padding: 3px 3px 2px 3px;
   border: 1px solid $bdr_clr;
 
   font-size: auto-clamp(11px, 12px);
 
-  animation-name: fadeIn;
-  animation-duration: 0.7s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out;
+  &_page {
+    grid-template-columns: repeat(3, 1fr);
+    width: 192px;
+  }
 
   &_btn {
     cursor: pointer;
@@ -41,6 +47,15 @@ $width: responsive-width(pc);
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    padding-top: 1px;
+
+    transition: all 0.4s;
+
+    &_current {
+      color: $base_clr;
+      background: $acnt_clr;
+      pointer-events: none;
+    }
 
     &_active {
       color: $base_clr;
@@ -86,11 +101,6 @@ $width: responsive-width(pc);
 
     color: $icn_clr;
     font-size: auto-clamp(11px, 12px);
-
-    animation-name: fadeIn;
-    animation-duration: 0.7s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
   }
 
   &_icon {
