@@ -79,6 +79,10 @@ $width: responsive-width(pc);
         color: $acnt_clr;
       }
     }
+
+    &_count {
+      color: $sub_clr;
+    }
   }
 
   &_footer {

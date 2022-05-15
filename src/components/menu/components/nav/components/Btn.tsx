@@ -60,11 +60,15 @@ export const Btn: React.FC<PropType> = ({ index, icon, text }) => {
         <span>{text}</span>
 
         {(index === "matters" || index === "resources") && (
-          <span>(&nbsp;{posts?.[index].total}件&nbsp;)</span>
+          <span className={styles.menu_nav_count}>
+            (&nbsp;{posts?.[index].total}件&nbsp;)
+          </span>
         )}
 
         {(index === "companys" || index === "persons") && (
-          <span>(&nbsp;{posts?.[index].total}人&nbsp;)</span>
+          <span className={styles.menu_nav_count}>
+            (&nbsp;{posts?.[index].total}人&nbsp;)
+          </span>
         )}
       </button>
     </li>
