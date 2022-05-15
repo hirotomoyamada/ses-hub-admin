@@ -4,16 +4,17 @@ import { Header } from "./components/Header";
 import { Btn } from "./components/Btn";
 import { Link } from "./components/Link";
 
-import { faServer } from "@fortawesome/free-solid-svg-icons";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { faDatabase } from "@fortawesome/free-solid-svg-icons";
-import { faAt } from "@fortawesome/free-solid-svg-icons";
-import { faAlgolia } from "@fortawesome/free-brands-svg-icons";
-import { faCcStripe } from "@fortawesome/free-brands-svg-icons";
-import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faServer,
+  faCog,
+  faDatabase,
+  faAt,
+  faHome,
+  faUser,
+  faPaperPlane,
+  faSlidersH,
+} from "@fortawesome/free-solid-svg-icons";
+import { faAlgolia, faCcStripe } from "@fortawesome/free-brands-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export const Nav: React.FC = () => {
