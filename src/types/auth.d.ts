@@ -28,3 +28,25 @@ export interface Data {
     updateAt: number;
   };
 }
+
+export interface Posts {
+  matters: {
+    total: number;
+    private: number;
+  };
+
+  resources: {
+    total: number;
+    private: number;
+  };
+
+  companys: {
+    total: number;
+    hold: number;
+  };
+
+  persons: {
+    total: number;
+    hold: number;
+  };
+}

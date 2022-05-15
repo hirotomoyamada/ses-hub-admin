@@ -27,6 +27,7 @@ export const Btn: React.FC<PropType> = ({ index, icon, text }) => {
   const navigate = useNavigate();
   const user = useSelector(userSlice.user);
   const rootIndex = useSelector(rootSlice.index);
+  const posts = useSelector(rootSlice.posts);
   const pathname = useLocation().pathname.slice(1);
   const page = pathname.substring(
     0,
@@ -56,8 +57,15 @@ export const Btn: React.FC<PropType> = ({ index, icon, text }) => {
           }
           className={styles.menu_nav_icon}
         />
+        <span>{text}</span>
 
-        {text}
+        {(index === "matters" || index === "resources") && (
+          <span>(&nbsp;{posts?.[index].total}件&nbsp;)</span>
+        )}
+
+        {(index === "companys" || index === "persons") && (
+          <span>(&nbsp;{posts?.[index].total}人&nbsp;)</span>
+        )}
       </button>
     </li>
   );

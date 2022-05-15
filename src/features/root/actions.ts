@@ -2,13 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { functions, db } from "libs/firebase";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
-import { Data } from "types/auth";
+import { Data, Posts } from "types/auth";
 import { Activity } from "./initialState";
 
 export interface Login {
   uid: string;
-  seshub: Data;
-  freelanceDirect: Data;
+  data: { seshub: Data; freelanceDirect: Data };
+  posts: Posts;
 }
 
 export const login = createAsyncThunk(

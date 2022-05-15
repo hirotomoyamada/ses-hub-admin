@@ -137,6 +137,7 @@ export const data = (
   state: RootState
 ): { seshub: Data; freelanceDirect: Data } =>
   state.root.data as { seshub: Data; freelanceDirect: Data };
+export const posts = (state: RootState): State["posts"] => state.root.posts;
 export const search = (state: RootState): State["search"] => state.root.search;
 export const modal = (state: RootState): State["modal"] => state.root.modal;
 export const load = (state: RootState): State["load"] => state.root.load;

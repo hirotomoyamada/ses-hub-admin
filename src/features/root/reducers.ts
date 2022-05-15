@@ -11,10 +11,8 @@ import { Announce, Search } from "./rootSlice";
 
 export const login = (state: State, action: PayloadAction<Login>): void => {
   state.admin = action.payload.uid;
-  state.data = {
-    seshub: action.payload.seshub,
-    freelanceDirect: action.payload.freelanceDirect,
-  };
+  state.data = action.payload.data;
+  state.posts = action.payload.posts;
 
   state.load.root = false;
 };
@@ -102,6 +100,8 @@ export const editData = (
   state: State,
   action: PayloadAction<EditData>
 ): void => {
+  if (!state.data) return;
+
   const index =
     action.payload.index === "companys" ? "seshub" : "freelanceDirect";
 
@@ -146,6 +146,8 @@ export const updateNotice = (
   state: State,
   action: PayloadAction<UpdateNotice>
 ): void => {
+  if (!state.data) return;
+
   for (const index of Object.keys(state.data)) {
     Object.assign(state.data, {
       [index]: action.payload[index as keyof UpdateNotice],

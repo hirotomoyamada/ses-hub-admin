@@ -1,4 +1,4 @@
-import { Data } from "types/auth";
+import { Data, Posts } from "types/auth";
 
 export type Index =
   | "matters"
@@ -52,10 +52,14 @@ export interface State {
     filter: string | null;
   };
 
-  data: {
-    seshub: Data | unknown;
-    freelanceDirect: Data | unknown;
-  };
+  data:
+    | {
+        seshub: Data;
+        freelanceDirect: Data;
+      }
+    | undefined;
+
+  posts: Posts | undefined;
 
   modal: Modal;
 
@@ -85,10 +89,9 @@ export const initialState: State = {
     filter: "all",
   },
 
-  data: {
-    seshub: {},
-    freelanceDirect: {},
-  },
+  data: undefined,
+
+  posts: undefined,
 
   modal: {
     type: undefined,
