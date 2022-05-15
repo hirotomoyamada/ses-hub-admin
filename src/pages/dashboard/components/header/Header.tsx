@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./Chart.module.scss";
+import styles from "./Header.module.scss";
 
 import CountUp from "react-countup";
 
-import { Sort } from "../DashBoard";
+import { Sort } from "../../DashBoard";
 import { Activity } from "features/root/initialState";
 
 interface PropType {
@@ -15,17 +15,17 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
   return (
     <div
       className={`
-        ${`${styles.chart_container} ${styles.chart_container_header}`}
+        ${`${styles.header}`}
       `}
     >
-      <p className={styles.chart_ttl}>{data?.label}</p>
+      <p className={styles.header_ttl}>{data?.label}</p>
 
-      <div className={styles.chart_wrap}>
+      <div className={styles.header_wrap}>
         {sort.active &&
           data.active !== null &&
           !isNaN(Number(data?.active)) && (
             <CountUp
-              className={`${styles.chart_total}`}
+              className={`${styles.header_total}`}
               style={{ color: "#49b657" }}
               start={0}
               end={data.active || 0}
@@ -39,7 +39,7 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
           data.trialing !== null &&
           !isNaN(Number(data.trialing)) && (
             <CountUp
-              className={`${styles.chart_total}`}
+              className={`${styles.header_total}`}
               style={{ color: "#1d9bf0" }}
               start={0}
               end={data.trialing || 0}
@@ -53,7 +53,7 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
           data.canceled !== null &&
           !isNaN(Number(data.canceled)) && (
             <CountUp
-              className={`${styles.chart_total}`}
+              className={`${styles.header_total}`}
               style={{ color: "#ff9900" }}
               start={0}
               end={data.canceled || 0}
@@ -65,7 +65,7 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
 
         {sort.person && data.person !== null && !isNaN(Number(data.person)) && (
           <CountUp
-            className={`${styles.chart_total}`}
+            className={`${styles.header_total}`}
             style={{ color: "#515a74" }}
             start={0}
             end={data.person || 0}

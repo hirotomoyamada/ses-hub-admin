@@ -1,5 +1,6 @@
 @import "styles/config";
 @import "styles/function";
+@import "styles/animation";
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -23,7 +24,7 @@ $width: responsive-width(pc);
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 
-  &_login {
+  &_pickup {
     grid-column: 1 / 4;
 
     @media (max-width: responsive-width(miniPc)) {
@@ -33,53 +34,5 @@ $width: responsive-width(pc);
     @media (max-width: responsive-width(tb)) {
       grid-column: 1 / 2;
     }
-  }
-
-  &_container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    &_header {
-      margin-bottom: 32px;
-    }
-
-    &_footer {
-      padding-top: 16px;
-      border-top: 1px solid $bdr_clr;
-    }
-  }
-
-  &_wrap {
-    display: flex;
-    gap: 8px;
-  }
-
-  &_ttl {
-    color: $icn_clr;
-  }
-
-  &_total {
-    text-align: right;
-    font-size: auto-clamp(16px, 24px);
-    font-weight: bold;
-    letter-spacing: 0.8px;
-
-    display: flex;
-    gap: 8px;
-
-    &:not(:first-child) {
-      &:before {
-        content: "/";
-        color: $sub_clr;
-        opacity: 0.4;
-      }
-    }
-  }
-
-  &_day {
-    font-size: 14px;
-    color: $sub_clr;
   }
 }

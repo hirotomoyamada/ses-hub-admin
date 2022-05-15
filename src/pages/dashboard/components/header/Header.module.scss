@@ -1,0 +1,41 @@
+@import "styles/config";
+@import "styles/function";
+
+// ページのレスポンシブ設定
+$width: responsive-width(pc);
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 32px;
+
+  &_wrap {
+    display: flex;
+    gap: 8px;
+  }
+
+  &_ttl {
+    color: $icn_clr;
+  }
+
+  &_total {
+    text-align: right;
+    font-size: auto-clamp(16px, 24px);
+    font-weight: bold;
+    letter-spacing: 0.8px;
+
+    display: flex;
+    gap: 8px;
+
+    &:not(:first-child) {
+      &:before {
+        content: "/";
+        color: $sub_clr;
+        opacity: 0.4;
+      }
+    }
+  }
+}
