@@ -7,8 +7,8 @@ import { Sort } from "../../DashBoard";
 import { Activity } from "features/root/initialState";
 
 interface PropType {
-  sort: Sort;
   data: Activity;
+  sort?: Sort;
 }
 
 export const Header: React.FC<PropType> = ({ sort, data }) => {
@@ -21,7 +21,19 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
       <p className={styles.header_ttl}>{data?.label}</p>
 
       <div className={styles.header_wrap}>
-        {sort.active &&
+        {!sort && data.active !== null && !isNaN(Number(data?.active)) && (
+          <CountUp
+            className={`${styles.header_total}`}
+            style={{ color: "#49b657" }}
+            start={0}
+            end={data.active || 0}
+            separator=","
+            duration={1.5}
+            useEasing={true}
+          />
+        )}
+
+        {sort?.active &&
           data.active !== null &&
           !isNaN(Number(data?.active)) && (
             <CountUp
@@ -35,7 +47,8 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
             />
           )}
 
-        {sort.trialing &&
+        {sort?.trialing &&
+          "trialing" in data &&
           data.trialing !== null &&
           !isNaN(Number(data.trialing)) && (
             <CountUp
@@ -49,7 +62,8 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
             />
           )}
 
-        {sort.canceled &&
+        {sort?.canceled &&
+          "canceled" in data &&
           data.canceled !== null &&
           !isNaN(Number(data.canceled)) && (
             <CountUp
@@ -63,17 +77,20 @@ export const Header: React.FC<PropType> = ({ sort, data }) => {
             />
           )}
 
-        {sort.person && data.person !== null && !isNaN(Number(data.person)) && (
-          <CountUp
-            className={`${styles.header_total}`}
-            style={{ color: "#515a74" }}
-            start={0}
-            end={data.person || 0}
-            separator=","
-            duration={1.5}
-            useEasing={true}
-          />
-        )}
+        {sort?.person &&
+          "person" in data &&
+          data.person !== null &&
+          !isNaN(Number(data.person)) && (
+            <CountUp
+              className={`${styles.header_total}`}
+              style={{ color: "#515a74" }}
+              start={0}
+              end={data.person || 0}
+              separator=","
+              duration={1.5}
+              useEasing={true}
+            />
+          )}
       </div>
     </div>
   );

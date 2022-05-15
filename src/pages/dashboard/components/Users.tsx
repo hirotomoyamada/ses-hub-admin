@@ -41,9 +41,30 @@ export const Users: React.FC<PropType> = ({
             <Header data={data} sort={sort} />
 
             <LineChart
-              width={width}
+              width={
+                data.key !== "login"
+                  ? width
+                  : (width + (columns !== 1 ? (columns === 3 ? 32 : 24) : 0)) *
+                    columns
+              }
+              formatter={(value: number, name: string) => [
+                value,
+                (() => {
+                  switch (name) {
+                    case "active":
+                      return "レギュラー　　　　";
+                    case "trialing":
+                      return "フリートライアル　";
+                    case "canceled":
+                      return "リミテッド　　　　";
+                    case "person":
+                      return "エンジニア　　　　";
+                    default:
+                      return "";
+                  }
+                })(),
+              ]}
               height={height}
-              columns={columns}
               data={data}
               sort={sort}
             />

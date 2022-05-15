@@ -8,28 +8,20 @@ import { Sort } from "../DashBoard";
 interface PropType {
   width: number;
   height: number;
-  columns: number;
   data: Activity;
-  sort: Sort;
+  sort?: Sort;
+  formatter?: (value: number, name: string) => (string | number)[];
 }
 
 export const LineChart: React.FC<PropType> = ({
   width,
   height,
-  columns,
   data,
   sort,
+  formatter,
 }) => {
   return (
-    <LC
-      width={
-        data.key !== "login"
-          ? width
-          : (width + (columns !== 1 ? (columns === 3 ? 32 : 24) : 0)) * columns
-      }
-      height={height}
-      data={[...data.log].reverse() || []}
-    >
+    <LC width={width} height={height} data={[...data.log].reverse() || []}>
       <XAxis dataKey="label" hide />
 
       <Tooltip
@@ -50,26 +42,10 @@ export const LineChart: React.FC<PropType> = ({
         labelStyle={{
           fontWeight: "bold",
         }}
-        formatter={(value: number, name: string) => [
-          value,
-          (() => {
-            switch (name) {
-              case "active":
-                return "レギュラー　　　　";
-              case "trialing":
-                return "フリートライアル　";
-              case "canceled":
-                return "リミテッド　　　　";
-              case "person":
-                return "エンジニア　　　　";
-              default:
-                return "";
-            }
-          })(),
-        ]}
+        formatter={formatter}
       />
 
-      {sort.active && (
+      {!sort && (
         <Line
           type="linear"
           dataKey="active"
@@ -78,7 +54,16 @@ export const LineChart: React.FC<PropType> = ({
         />
       )}
 
-      {sort.trialing && (
+      {sort?.active && (
+        <Line
+          type="linear"
+          dataKey="active"
+          stroke={"#49b657"}
+          animationEasing="ease-in-out"
+        />
+      )}
+
+      {sort?.trialing && (
         <Line
           type="linear"
           dataKey="trialing"
@@ -87,7 +72,7 @@ export const LineChart: React.FC<PropType> = ({
         />
       )}
 
-      {sort.canceled && (
+      {sort?.canceled && (
         <Line
           type="linear"
           dataKey="canceled"
@@ -96,7 +81,7 @@ export const LineChart: React.FC<PropType> = ({
         />
       )}
 
-      {sort.person && (
+      {sort?.person && (
         <Line
           type="linear"
           dataKey="person"
