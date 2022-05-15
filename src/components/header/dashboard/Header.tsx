@@ -1,13 +1,13 @@
 import styles from "./Header.module.scss";
 import * as DashBoard from "pages/dashboard/DashBoard";
 
-import { Page } from "./components/Page";
+import { Index } from "./components/Index";
 import { Span } from "./components/Span";
 import { Sort } from "./components/Sort";
 
 interface PropType {
-  page: DashBoard.Page;
-  setPage: React.Dispatch<React.SetStateAction<DashBoard.Page>>;
+  index: DashBoard.Index;
+  setIndex: React.Dispatch<React.SetStateAction<DashBoard.Index>>;
   sort: DashBoard.Sort;
   setSort: React.Dispatch<React.SetStateAction<DashBoard.Sort>>;
   span: DashBoard.Span;
@@ -15,8 +15,8 @@ interface PropType {
 }
 
 export const Header: React.FC<PropType> = ({
-  page,
-  setPage,
+  index,
+  setIndex,
   sort,
   setSort,
   span,
@@ -24,10 +24,10 @@ export const Header: React.FC<PropType> = ({
 }) => {
   return (
     <div className={styles.header}>
-      <Page {...{ page, setPage }} />
+      <Index {...{ index, setIndex }} />
 
       <div className={styles.header_wrap}>
-        {page === "users" && <Sort {...{ sort, setSort }} />}
+        {index === "users" && <Sort {...{ sort, setSort }} />}
 
         <Span {...{ span, setSpan }} />
       </div>

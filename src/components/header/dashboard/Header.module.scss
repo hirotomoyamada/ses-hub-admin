@@ -35,7 +35,7 @@ $width: responsive-width(pc);
 
   font-size: auto-clamp(11px, 12px);
 
-  &_page {
+  &_index {
     grid-template-columns: repeat(3, 1fr);
     width: 192px;
   }

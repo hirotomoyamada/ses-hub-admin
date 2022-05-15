@@ -4,20 +4,20 @@ import styles from "../Header.module.scss";
 import * as DashBoard from "pages/dashboard/DashBoard";
 
 interface PropType {
-  page: DashBoard.Page;
-  setPage: React.Dispatch<React.SetStateAction<DashBoard.Page>>;
+  index: DashBoard.Index;
+  setIndex: React.Dispatch<React.SetStateAction<DashBoard.Index>>;
 }
 
-export const Page: React.FC<PropType> = ({ page, setPage }) => {
+export const Index: React.FC<PropType> = ({ index, setIndex }) => {
   return (
-    <div className={`${styles.sort} ${styles.sort_page}`}>
+    <div className={`${styles.sort} ${styles.sort_index}`}>
       <button
         type="button"
         className={`
           ${styles.sort_btn}
-          ${page === "users" && styles.sort_btn_current}
+          ${index === "users" && styles.sort_btn_current}
         `}
-        onClick={() => setPage("users")}
+        onClick={() => setIndex("users")}
       >
         ユーザー
       </button>
@@ -26,9 +26,9 @@ export const Page: React.FC<PropType> = ({ page, setPage }) => {
         type="button"
         className={`
           ${styles.sort_btn}
-          ${page === "matters" && styles.sort_btn_current}
+          ${index === "matters" && styles.sort_btn_current}
         `}
-        onClick={() => setPage("matters")}
+        onClick={() => setIndex("matters")}
       >
         案件
       </button>
@@ -37,9 +37,9 @@ export const Page: React.FC<PropType> = ({ page, setPage }) => {
         type="button"
         className={`
           ${styles.sort_btn}
-          ${page === "resources" && styles.sort_btn_current}
+          ${index === "resources" && styles.sort_btn_current}
         `}
-        onClick={() => setPage("resources")}
+        onClick={() => setIndex("resources")}
       >
         人材
       </button>

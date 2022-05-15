@@ -8,7 +8,9 @@ import * as rootSlice from "features/root/rootSlice";
 import { fetchActivity } from "features/root/actions";
 import { PageProvider } from "components/provider/page/PageProvider";
 import { Header } from "components/header/dashboard/Header";
-import { Chart } from "./components/Chart";
+import { Users } from "./components/Users";
+import { Matters } from "./components/Matters";
+import { Resources } from "./components/Resources";
 
 export type Span = "total" | "day" | "week" | "month";
 
@@ -19,11 +21,14 @@ export type Sort = {
   person: boolean;
 };
 
+export type Index = "users" | "matters" | "resources";
+
 export const DashBoard: React.FC = () => {
   const dispatch = useDispatch();
   const [ref, width, height, columns] = useChart();
   const fetch = useSelector(rootSlice.load).list;
   const activity = useSelector(rootSlice.activity);
+  const [index, setIndex] = useState<Index>("users");
   const [span, setSpan] = useState<Span>("day");
   const [sort, setSort] = useState<Sort>({
     active: true,
@@ -33,30 +38,46 @@ export const DashBoard: React.FC = () => {
   });
 
   useEffect(() => {
-    dispatch(fetchActivity({ span }));
-  }, [dispatch, span]);
+    if (index === "users") {
+      dispatch(fetchActivity({ span }));
+    } else {
+      dispatch(fetchActivity({ index, span }));
+    }
+  }, [dispatch, span, index]);
 
   return (
-    <PageProvider header={<Header {...{ span, setSpan, sort, setSort }} />}>
-      {!fetch ? (
-        <div className={styles.dashboard} ref={ref}>
-          {activity.map((data, i) => (
-            <Chart
-              key={i}
-              width={width}
-              height={height}
-              columns={columns}
-              data={data}
-              sort={sort}
-              span={span}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className={styles.dashboard_fetch}>
-          <Oval color="#49b757" height={56} width={56} />
-        </div>
-      )}
+    <PageProvider
+      header={<Header {...{ index, setIndex, span, setSpan, sort, setSort }} />}
+    >
+      <div
+        className={`${styles.dashboard} ${fetch && styles.dashboard_fetch}`}
+        ref={ref}
+      >
+        {(() => {
+          switch (true) {
+            case fetch:
+              return <Oval color="#49b757" height={56} width={56} />;
+
+            case index === "users":
+              return (
+                <Users {...{ activity, width, height, columns, sort, span }} />
+              );
+
+            case index === "matters":
+              return (
+                <Matters {...{ activity, width, height, columns, span }} />
+              );
+
+            case index === "resources":
+              return (
+                <Resources {...{ activity, width, height, columns, span }} />
+              );
+
+            default:
+              return <></>;
+          }
+        })()}
+      </div>
     </PageProvider>
   );
 };
