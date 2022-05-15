@@ -19,6 +19,8 @@ export const Link: React.FC<PropType> = ({ text, icon }) => {
             ? "https://www.algolia.com/apps/86KURAOCRS/dashboard"
             : text === "Stripe"
             ? "https://dashboard.stripe.com/dashboard"
+            : text === "Bitly"
+            ? "https://app.bitly.com/Bm2sjXlKM6N/bitlinks/38jt56Y"
             : "https://app.sendgrid.com/"
         }
         className={styles.menu_nav_btn}

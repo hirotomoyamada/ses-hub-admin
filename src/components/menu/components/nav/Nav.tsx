@@ -13,6 +13,7 @@ import {
   faUser,
   faPaperPlane,
   faSlidersH,
+  faLink,
 } from "@fortawesome/free-solid-svg-icons";
 import { faAlgolia, faCcStripe } from "@fortawesome/free-brands-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -42,6 +43,7 @@ export const Nav: React.FC = () => {
         <Link icon={faAlgolia as IconProp} text="Algolia" />
         <Link icon={faCcStripe as IconProp} text="Stripe" />
         <Link icon={faAt as IconProp} text="SendGrid" />
+        <Link icon={faLink as IconProp} text="Bitly" />
       </div>
 
       <div className={styles.menu_nav_wrap}>
