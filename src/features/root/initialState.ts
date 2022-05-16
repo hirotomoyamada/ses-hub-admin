@@ -47,6 +47,7 @@ export type Activity =
       log: {
         label: string | number;
         active?: number;
+        ratio?: number;
       }[];
     };
 
