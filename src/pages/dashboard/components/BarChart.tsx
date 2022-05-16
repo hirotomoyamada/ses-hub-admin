@@ -26,7 +26,7 @@ export const BarChart: React.FC<PropType> = ({ width, data }) => {
         height={34 * data.log.length}
         data={data?.log || []}
       >
-        <XAxis type="number" domain={[0, "dataMax"]} hide />
+        <XAxis type="number" domain={[0, 1]} hide />
         <YAxis type="category" dataKey="label" hide />
 
         <Tooltip
@@ -48,11 +48,17 @@ export const BarChart: React.FC<PropType> = ({ width, data }) => {
           labelStyle={{
             fontWeight: "bold",
           }}
-          formatter={(value: number) => [value, ""]}
+          formatter={(
+            _value: unknown,
+            _name: unknown,
+            { payload }: { payload: Activity["log"][number] }
+          ) => {
+            return [payload.active, ""];
+          }}
         />
 
         <Bar
-          dataKey="active"
+          dataKey="ratio"
           barSize={26}
           fill={"#49b6573b"}
           animationDuration={1580}
@@ -63,6 +69,34 @@ export const BarChart: React.FC<PropType> = ({ width, data }) => {
             position="insideLeft"
             fill="#515a74"
             fontSize="14px"
+            content={({ x, y, width, height, offset, value }) => {
+              const log = (data.log as { label: string; ratio: number }[]).find(
+                (log) => log.label === value
+              );
+
+              return (
+                <text
+                  x={x}
+                  y={y}
+                  width={width}
+                  height={height}
+                  fill="#515a74"
+                  font-size="14px"
+                  offset={offset}
+                  text-anchor="start"
+                >
+                  <tspan x="12" dy="18">
+                    {value}
+
+                    <tspan fontWeight="bold">
+                      {"　"}
+                      {((log?.ratio || 0) * 100).toFixed(1)}
+                      {" %"}
+                    </tspan>
+                  </tspan>
+                </text>
+              );
+            }}
           />
         </Bar>
       </BC>
