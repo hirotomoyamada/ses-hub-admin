@@ -10,7 +10,7 @@ import * as functions from "functions";
 import { Matter, Resource } from "types/post";
 import * as Item from "./components/Item";
 import { PageProvider } from "components/provider/page/PageProvider";
-import { fetchPost } from "features/post/actions";
+import { deletePost, editPost, fetchPost } from "features/post/actions";
 import { fetchUser } from "features/user/actions";
 import { Oval } from "react-loader-spinner";
 import * as userSlice from "features/user/userSlice";
@@ -109,7 +109,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
       return;
     }
 
-    dispatch(postSlice.editPost({ index: index, post: edit }));
+    dispatch(editPost({ index, post: edit }));
   };
 
   const handleDelete = (): void => {
@@ -117,9 +117,8 @@ export const Post: React.FC<PropType> = ({ index }) => {
       return;
     }
 
-    dispatch(postSlice.deletePost({ index: index, post: post }));
+    dispatch(deletePost({ index, post, handleClose }));
     dispatch(rootSlice.handleModal());
-    handleClose();
   };
 
   return (

@@ -2,6 +2,43 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { functions } from "libs/firebase";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { Matter, Resource, Company, Person } from "types/post";
+import { Post } from "features/post/postSlice";
+
+export const editPost = createAsyncThunk(
+  "post/editPost",
+  async (arg: Post): Promise<Post> => {
+    const editPost: HttpsCallable<Post, unknown> = httpsCallable(
+      functions,
+      "admin-editPost"
+    );
+
+    await editPost({
+      index: arg.index,
+      post: arg.post,
+    });
+
+    return arg;
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  "post/deletePost",
+  async (
+    arg: Post & { handleClose: () => void }
+  ): Promise<Post & { handleClose: () => void }> => {
+    const deletePost: HttpsCallable<Post, unknown> = httpsCallable(
+      functions,
+      "admin-deletePost"
+    );
+
+    await deletePost({
+      index: arg.index,
+      post: arg.post,
+    });
+
+    return arg;
+  }
+);
 
 export interface FetchPost {
   arg: {

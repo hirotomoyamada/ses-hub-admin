@@ -19,8 +19,6 @@ export const userSlice = createSlice({
   reducers: {
     selectUser: (state, action: PayloadAction<Company | Person>) =>
       reducers.selectUser(state, action),
-    editUser: (state, action: PayloadAction<User>) =>
-      reducers.editUser(state, action),
     resetUser: (state, action: PayloadAction<number | undefined>) =>
       reducers.resetUser(state, action),
     deleteResume: (state, action: PayloadAction<string>) =>
@@ -28,6 +26,10 @@ export const userSlice = createSlice({
   },
 
   extraReducers: (builder) => {
+    builder.addCase(actions.editUser.fulfilled, (state, action) =>
+      reducers.editUser(state, action)
+    );
+
     builder.addCase(actions.fetchUser.fulfilled, (state, action) =>
       reducers.fetchUser(state, action)
     );
@@ -38,12 +40,6 @@ export const userSlice = createSlice({
 
     builder.addCase(actions.uploadResume.fulfilled, (state, action) =>
       reducers.uploadResume(state, action)
-    );
-
-    builder.addMatcher(
-      (action: PayloadAction) => action.type.endsWith("/handleModal"),
-      (state, action: PayloadAction<boolean>) =>
-        reducers.resetUser(state, action)
     );
 
     builder.addMatcher(
@@ -58,8 +54,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { selectUser, editUser, resetUser, deleteResume } =
-  userSlice.actions;
+export const { selectUser, resetUser, deleteResume } = userSlice.actions;
 
 export const user = (state: RootState): Company | Person =>
   state.user.user as Company | Person;

@@ -64,7 +64,7 @@ export const search = (
 
 export const modal = (
   state: State,
-  action: PayloadAction<Modal | undefined>
+  action?: PayloadAction<Modal | undefined>
 ): void => {
   if (action?.payload) {
     state.modal.type = action.payload.type;

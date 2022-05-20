@@ -64,6 +64,8 @@ $width: responsive-width(pc);
     border-radius: 20px;
     text-align: center;
 
+    transition: all 0.4s;
+
     &:hover {
       opacity: 0.8;
     }
@@ -76,6 +78,8 @@ $width: responsive-width(pc);
     color: $base_clr;
     border-radius: 20px;
     text-align: center;
+
+    transition: all 0.4s;
 
     &:hover {
       opacity: 0.8;

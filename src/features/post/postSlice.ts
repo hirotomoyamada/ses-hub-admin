@@ -19,13 +19,15 @@ export const postSlice = createSlice({
   reducers: {
     selectPost: (state, action: PayloadAction<Post["post"] | unknown>) =>
       reducers.selectPost(state, action),
-    editPost: (state, action: PayloadAction<Post>) =>
-      reducers.editPost(state, action),
-    deletePost: (state, action: PayloadAction<Post>) =>
-      reducers.deletePost(state, action),
   },
 
   extraReducers: (builder): void => {
+    builder.addCase(actions.editPost.fulfilled, (state, action) =>
+      reducers.editPost(state, action)
+    );
+    builder.addCase(actions.deletePost.fulfilled, (state, action) =>
+      reducers.deletePost(state, action)
+    );
     builder.addCase(actions.fetchPost.fulfilled, (state, action) =>
       reducers.fetchPost(state, action)
     );
@@ -53,7 +55,7 @@ export const postSlice = createSlice({
   },
 });
 
-export const { selectPost, editPost, deletePost } = postSlice.actions;
+export const { selectPost } = postSlice.actions;
 
 export const posts = (state: RootState): State["posts"] => state.post.posts;
 export const post = (state: RootState): Matter | Resource =>

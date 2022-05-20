@@ -71,6 +71,9 @@ export const rootSlice = createSlice({
       (state, action: ArgAction<{ fetch: boolean }>) => {
         if (
           action.meta.arg.fetch ||
+          action.type.includes("/editUser") ||
+          action.type.includes("/editPost") ||
+          action.type.includes("/deletePost") ||
           action.type.includes("/editData") ||
           action.type.includes("/sendMail") ||
           action.type.includes("/updateAccount")
@@ -108,16 +111,18 @@ export const rootSlice = createSlice({
 
     builder.addMatcher(
       (action: PayloadAction) =>
-        action.type.endsWith("/editPost") || action.type.endsWith("/editUser"),
+        action.type.endsWith("/editPost/fulfilled") ||
+        action.type.endsWith("/editUser/fulfilled"),
       (state) => {
         state.announce.success = "編集しました";
       }
     );
 
     builder.addMatcher(
-      (action: PayloadAction) => action.type.endsWith("/deletePost"),
-      (state) => {
+      (action: PayloadAction) => action.type.endsWith("/deletePost/fulfilled"),
+      (state, action: PayloadAction<{ handleClose: () => void }>) => {
         state.announce.success = "削除しました";
+        action.payload.handleClose();
       }
     );
   },

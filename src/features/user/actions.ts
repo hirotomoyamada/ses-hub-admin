@@ -2,6 +2,24 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { functions } from "libs/firebase";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { Matter, Resource, Company, Person } from "types/post";
+import { User } from "features/user/userSlice";
+
+export const editUser = createAsyncThunk(
+  "user/editUser",
+  async (arg: User): Promise<User> => {
+    const editUser: HttpsCallable<
+      { index: User["index"]; user: User["user"] },
+      unknown
+    > = httpsCallable(functions, "admin-editUser");
+
+    await editUser({
+      index: arg.index,
+      user: arg.user,
+    });
+
+    return arg;
+  }
+);
 
 export interface FetchUser {
   arg: {

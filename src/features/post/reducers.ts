@@ -1,7 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { initialState, State } from "features/post/initialState";
-import { functions } from "libs/firebase";
-import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { Matter, Resource, Company, Person } from "types/post";
 import { FetchPost, FetchPosts } from "./actions";
 import { Post } from "features/post/postSlice";
@@ -51,19 +49,6 @@ export const resetPost = (): State => {
 };
 
 export const editPost = (state: State, action: PayloadAction<Post>): void => {
-  const editPost: HttpsCallable<
-    {
-      index: "matters" | "resources";
-      post: Matter | Resource;
-    },
-    unknown
-  > = httpsCallable(functions, "admin-editPost");
-
-  void editPost({
-    index: action.payload.index,
-    post: action.payload.post,
-  });
-
   if (action.payload.index === "matters") {
     const post = state.posts.matters.find(
       (post) => post?.objectID === action.payload.post.objectID
@@ -157,19 +142,6 @@ export const deletePost = (state: State, action: PayloadAction<Post>): void => {
       (post) => post?.objectID !== action.payload.post.objectID
     );
   }
-
-  const deletePost: HttpsCallable<
-    {
-      index: "matters" | "resources";
-      post: Matter | Resource;
-    },
-    unknown
-  > = httpsCallable(functions, "admin-deletePost");
-
-  void deletePost({
-    index: action.payload.index,
-    post: action.payload.post,
-  });
 };
 
 export const editUser = (state: State, action: PayloadAction<User>): void => {

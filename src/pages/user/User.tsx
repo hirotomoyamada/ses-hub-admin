@@ -12,7 +12,7 @@ import { Form } from "./components/form/Form";
 import * as functions from "functions";
 import { Company, Person } from "types/post";
 import { PageProvider } from "components/provider/page/PageProvider";
-import { fetchUser } from "features/user/actions";
+import { fetchUser, editUser } from "features/user/actions";
 
 interface PropType {
   index: "companys" | "persons";
@@ -132,9 +132,7 @@ export const User: React.FC<PropType> = ({ index }) => {
       return;
     }
 
-    dispatch(
-      userSlice.editUser({ index: index, user: profile, filter: filter })
-    );
+    dispatch(editUser({ index: index, user: profile, filter: filter }));
   };
 
   return (
