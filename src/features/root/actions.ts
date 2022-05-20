@@ -3,7 +3,7 @@ import { functions, db } from "libs/firebase";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { httpsCallable, HttpsCallable } from "firebase/functions";
 import { Data, Posts } from "types/auth";
-import { Activity } from "./initialState";
+import { Analytics } from "./initialState";
 
 export interface Login {
   uid: string;
@@ -135,34 +135,34 @@ export const updateAccount = createAsyncThunk(
   }
 );
 
-export type FetchActivity = {
+export type FetchDashBoard = {
   arg: {
     index?: "matters" | "resources";
     span: "total" | "day" | "week" | "month";
   };
 
-  data: Activity[];
+  data: Analytics[];
 };
 
-export const fetchActivity = createAsyncThunk(
-  "root/fetchActivity",
-  async (arg: FetchActivity["arg"]): Promise<FetchActivity["data"]> => {
+export const fetchDashBoard = createAsyncThunk(
+  "root/fetchDashBoard",
+  async (arg: FetchDashBoard["arg"]): Promise<FetchDashBoard["data"]> => {
     if (!("index" in arg)) {
-      const fetchUserActivity: HttpsCallable<
-        FetchActivity["arg"],
-        FetchActivity["data"]
-      > = httpsCallable(functions, "admin-fetchUserActivity");
+      const fetchUserDashBoard: HttpsCallable<
+        FetchDashBoard["arg"],
+        FetchDashBoard["data"]
+      > = httpsCallable(functions, "admin-fetchUserDashBoard");
 
-      const { data } = await fetchUserActivity(arg);
+      const { data } = await fetchUserDashBoard(arg);
 
       return data;
     } else {
-      const fetchPostActivity: HttpsCallable<
-        FetchActivity["arg"],
-        FetchActivity["data"]
-      > = httpsCallable(functions, "admin-fetchPostActivity");
+      const fetchPostDashBoard: HttpsCallable<
+        FetchDashBoard["arg"],
+        FetchDashBoard["data"]
+      > = httpsCallable(functions, "admin-fetchPostDashBoard");
 
-      const { data } = await fetchPostActivity(arg);
+      const { data } = await fetchPostDashBoard(arg);
 
       return data;
     }

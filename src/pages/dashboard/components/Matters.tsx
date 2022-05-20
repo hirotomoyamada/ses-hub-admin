@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Chart.module.scss";
-import { Activity } from "features/root/initialState";
+import { Analytics } from "features/root/initialState";
 import { Span } from "../DashBoard";
 
 import { Header } from "./header/Header";
@@ -9,7 +9,7 @@ import { LineChart } from "./LineChart";
 import { BarChart } from "./BarChart";
 
 interface PropType {
-  activity: Activity[];
+  analytics: Analytics[];
   width: number;
   height: number;
   columns: number;
@@ -17,7 +17,7 @@ interface PropType {
 }
 
 export const Matters: React.FC<PropType> = ({
-  activity,
+  analytics,
   width,
   height,
   columns,
@@ -25,7 +25,7 @@ export const Matters: React.FC<PropType> = ({
 }) => {
   return (
     <>
-      {activity.map((data, i) => {
+      {analytics.map((data, i) => {
         return (
           <div
             key={i}

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import styles from "./Chart.module.scss";
-import { Activity } from "features/root/initialState";
+import { Analytics } from "features/root/initialState";
 import { Sort, Span } from "../DashBoard";
 
 import { Header } from "./header/Header";
@@ -8,7 +8,7 @@ import { Footer } from "./footer/Footer";
 import { LineChart } from "./LineChart";
 
 interface PropType {
-  activity: Activity[];
+  analytics: Analytics[];
   width: number;
   height: number;
   columns: number;
@@ -17,7 +17,7 @@ interface PropType {
 }
 
 export const Users: React.FC<PropType> = ({
-  activity,
+  analytics,
   width,
   height,
   columns,
@@ -26,7 +26,7 @@ export const Users: React.FC<PropType> = ({
 }) => {
   return (
     <>
-      {activity.map((data, i) => {
+      {analytics.map((data, i) => {
         if (!sort.active && !sort.trialing && !sort.canceled && sort.person)
           if (data.key === "posts" || data.key === "outputs")
             return <Fragment key={i}></Fragment>;

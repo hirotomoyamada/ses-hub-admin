@@ -5,7 +5,7 @@ import { Oval } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useChart } from "hooks/useChart";
 import * as rootSlice from "features/root/rootSlice";
-import { fetchActivity } from "features/root/actions";
+import { fetchDashBoard } from "features/root/actions";
 import { PageProvider } from "components/provider/page/PageProvider";
 import { Header } from "components/header/dashboard/Header";
 import { Users } from "./components/Users";
@@ -27,7 +27,7 @@ export const DashBoard: React.FC = () => {
   const dispatch = useDispatch();
   const [ref, width, height, columns] = useChart();
   const fetch = useSelector(rootSlice.load).list;
-  const activity = useSelector(rootSlice.activity);
+  const analytics = useSelector(rootSlice.analytics);
   const [index, setIndex] = useState<Index>("users");
   const [span, setSpan] = useState<Span>("day");
   const [sort, setSort] = useState<Sort>({
@@ -39,9 +39,9 @@ export const DashBoard: React.FC = () => {
 
   useEffect(() => {
     if (index === "users") {
-      dispatch(fetchActivity({ span }));
+      dispatch(fetchDashBoard({ span }));
     } else {
-      dispatch(fetchActivity({ index, span }));
+      dispatch(fetchDashBoard({ index, span }));
     }
   }, [dispatch, span, index]);
 
@@ -60,17 +60,17 @@ export const DashBoard: React.FC = () => {
 
             case index === "users":
               return (
-                <Users {...{ activity, width, height, columns, sort, span }} />
+                <Users {...{ analytics, width, height, columns, sort, span }} />
               );
 
             case index === "matters":
               return (
-                <Matters {...{ activity, width, height, columns, span }} />
+                <Matters {...{ analytics, width, height, columns, span }} />
               );
 
             case index === "resources":
               return (
-                <Resources {...{ activity, width, height, columns, span }} />
+                <Resources {...{ analytics, width, height, columns, span }} />
               );
 
             default:

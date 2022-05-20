@@ -62,8 +62,8 @@ export const rootSlice = createSlice({
     builder.addCase(actions.updateNotice.fulfilled, (state, action) =>
       reducers.updateNotice(state, action)
     );
-    builder.addCase(actions.fetchActivity.fulfilled, (state, action) =>
-      reducers.fetchActivity(state, action)
+    builder.addCase(actions.fetchDashBoard.fulfilled, (state, action) =>
+      reducers.fetchDashBoard(state, action)
     );
 
     builder.addMatcher(
@@ -143,7 +143,7 @@ export const modal = (state: RootState): State["modal"] => state.root.modal;
 export const load = (state: RootState): State["load"] => state.root.load;
 export const announce = (state: RootState): State["announce"] =>
   state.root.announce;
-export const activity = (state: RootState): State["activity"] =>
-  state.root.activity;
+export const analytics = (state: RootState): State["analytics"] =>
+  state.root.analytics;
 
 export default rootSlice.reducer;

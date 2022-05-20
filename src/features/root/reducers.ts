@@ -2,7 +2,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { initialState, Index, State, Modal } from "features/root/initialState";
 import {
   EditData,
-  FetchActivity,
+  FetchDashBoard,
   Login,
   SendMail,
   UpdateNotice,
@@ -155,9 +155,9 @@ export const updateNotice = (
   }
 };
 
-export const fetchActivity = (
+export const fetchDashBoard = (
   state: State,
-  action: PayloadAction<FetchActivity["data"]>
+  action: PayloadAction<FetchDashBoard["data"]>
 ): void => {
-  state.activity = action.payload;
+  state.analytics = action.payload;
 };

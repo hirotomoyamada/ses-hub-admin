@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./Footer.module.scss";
 
 import { Span } from "../../DashBoard";
-import { Activity } from "features/root/initialState";
+import { Analytics } from "features/root/initialState";
 
 interface PropType {
   span?: Span;
-  data?: Activity;
+  data?: Analytics;
   bar?: boolean;
 }
 

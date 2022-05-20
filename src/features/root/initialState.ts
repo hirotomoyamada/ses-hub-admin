@@ -17,7 +17,7 @@ export interface Modal {
   close?: () => void;
 }
 
-export type Activity =
+export type Analytics =
   | {
       key:
         | "login"
@@ -85,7 +85,7 @@ export interface State {
     error?: string;
   };
 
-  activity: Activity[];
+  analytics: Analytics[];
 }
 
 export const initialState: State = {
@@ -120,5 +120,5 @@ export const initialState: State = {
     error: undefined,
   },
 
-  activity: [],
+  analytics: [],
 };

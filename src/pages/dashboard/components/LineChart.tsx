@@ -2,13 +2,13 @@ import React from "react";
 
 import { LineChart as LC, Line, XAxis, Tooltip } from "recharts";
 
-import { Activity } from "features/root/initialState";
+import { Analytics } from "features/root/initialState";
 import { Sort } from "../DashBoard";
 
 interface PropType {
   width: number;
   height: number;
-  data: Activity;
+  data: Analytics;
   sort?: Sort;
   formatter?: (value: number, name: string) => (string | number)[];
 }

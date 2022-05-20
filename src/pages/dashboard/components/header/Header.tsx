@@ -4,10 +4,10 @@ import styles from "./Header.module.scss";
 import CountUp from "react-countup";
 
 import { Sort } from "../../DashBoard";
-import { Activity } from "features/root/initialState";
+import { Analytics } from "features/root/initialState";
 
 interface PropType {
-  data: Activity;
+  data: Analytics;
   sort?: Sort;
 }
 

@@ -9,11 +9,11 @@ import {
   LabelList,
 } from "recharts";
 
-import { Activity } from "features/root/initialState";
+import { Analytics } from "features/root/initialState";
 
 interface PropType {
   width: number;
-  data: Activity;
+  data: Analytics;
 }
 
 export const BarChart: React.FC<PropType> = ({ width, data }) => {
@@ -51,7 +51,7 @@ export const BarChart: React.FC<PropType> = ({ width, data }) => {
           formatter={(
             _value: unknown,
             _name: unknown,
-            { payload }: { payload: Activity["log"][number] }
+            { payload }: { payload: Analytics["log"][number] }
           ) => {
             return [payload.active, ""];
           }}
