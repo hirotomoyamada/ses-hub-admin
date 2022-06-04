@@ -106,13 +106,19 @@ export const Payment: React.FC<PropType> = ({ user }) => {
         </span>
       </div>
 
-      {/* ver 2.X.X */}
-      {/* <div className={styles.data_item}>
-        <span className={styles.data_item_tag}>オプション</span>
+      <div className={styles.data_item}>
+        <span className={styles.data_item_tag}>Freelance Direct</span>
         <span className={styles.data_item_text}>
           {user?.payment?.option?.freelanceDirect ? "済" : "未"}
         </span>
-      </div> */}
+      </div>
+
+      <div className={styles.data_item}>
+        <span className={styles.data_item_tag}>アナリティクス</span>
+        <span className={styles.data_item_text}>
+          {user?.payment?.option?.analytics ? "済" : "未"}
+        </span>
+      </div>
     </div>
   );
 };

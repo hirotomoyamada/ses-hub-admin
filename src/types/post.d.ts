@@ -44,7 +44,7 @@ export interface Company {
     notice: boolean;
 
     id?: string;
-    option?: { freelanceDirect?: boolean };
+    option?: { [key: string]: boolean };
     link?: string;
     cancel?: boolean;
     load?: boolean;

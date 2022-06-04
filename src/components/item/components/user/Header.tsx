@@ -83,13 +83,21 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
         )}
 
         {/* ver 2.X.X */}
-        {/* {!min && post?.payment?.option?.freelanceDirect && (
+        {/* {!min && (post as Company)?.payment?.option?.freelanceDirect && (
           <div
             className={`${styles.item_category} ${styles.item_category_trialing}`}
           >
-            <span>オプション</span>
+            <span>Freelance Direct</span>
           </div>
         )} */}
+
+        {!min && (post as Company)?.payment?.option?.analytics && (
+          <div
+            className={`${styles.item_category} ${styles.item_category_parent}`}
+          >
+            <span>アナリティクス</span>
+          </div>
+        )}
 
         {!min && (post as Person)?.state && (
           <div
