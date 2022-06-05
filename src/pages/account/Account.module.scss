@@ -6,6 +6,7 @@ $width: responsive-width(pc);
 
 .account {
   position: relative;
+  overflow-y: scroll;
 
   padding: 32px;
 

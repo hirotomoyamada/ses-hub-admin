@@ -37,9 +37,23 @@ export const Toggle: React.FC<PropType> = ({ i, account }) => {
     );
 
     setValue(
-      `account[${i}].option`,
-      account?.payment?.option
-        ? account?.payment?.option?.freelanceDirect
+      `account[${i}].freelanceDirect`,
+      typeof account?.payment?.option?.freelanceDirect === "boolean"
+        ? account.payment.option.freelanceDirect
+          ? "enable"
+          : "disable"
+        : "none",
+      {
+        shouldValidate: true,
+        shouldDirty: true,
+      }
+    );
+
+    setValue(
+      `account[${i}].analytics`,
+      typeof account?.payment?.option?.analytics === "boolean" &&
+        account?.type === "individual"
+        ? account.payment.option.analytics
           ? "enable"
           : "disable"
         : "none",
@@ -58,7 +72,9 @@ export const Toggle: React.FC<PropType> = ({ i, account }) => {
         <Parent i={i} account={account} />
       )}
 
-      <Option i={i} account={account} />
+      <Option i={i} type="freelanceDirect" account={account} />
+
+      <Option i={i} type="analytics" account={account} />
     </div>
   );
 };

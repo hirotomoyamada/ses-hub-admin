@@ -47,7 +47,11 @@ export const Input: React.FC<PropType> = ({ i, index }) => {
       shouldValidate: true,
       shouldDirty: true,
     });
-    setValue(`account.${i}.option`, "none", {
+    setValue(`account.${i}.freelanceDirect`, "none", {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+    setValue(`account.${i}.analytics`, "none", {
       shouldValidate: true,
       shouldDirty: true,
     });

@@ -118,7 +118,8 @@ export type UpdateAccount = {
   uid: string;
   status: string;
   account?: number;
-  option?: string;
+  freelanceDirect?: string;
+  analytics?: string;
 }[];
 
 export const updateAccount = createAsyncThunk(

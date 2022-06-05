@@ -5,6 +5,80 @@
 $width: responsive-width(pc);
 
 .toggle {
+  position: relative;
+  background: $bg_clr;
+  width: 160px;
+  height: 40px;
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid $bdr_clr;
+
+  font-size: auto-clamp(11px, 12px);
+
+  &_disable {
+    pointer-events: none;
+  }
+
+  &_btn {
+    width: 100%;
+    color: $sub_clr;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    line-height: 32px;
+
+    transition: all 0.4s;
+
+    &_active {
+      background: $acnt_clr;
+      color: $base_clr;
+    }
+
+    &_trialing {
+      background: $add_clr;
+      color: $base_clr;
+    }
+
+    &_canceled {
+      background: $promo_clr;
+      color: $base_clr;
+    }
+
+    &_enable {
+      background: $acnt_clr;
+      color: $base_clr;
+    }
+
+    &_disable {
+      background: $remove_clr;
+      color: $base_clr;
+    }
+
+    &_none {
+      background: $sub_clr;
+      color: $base_clr;
+    }
+  }
+
+  &_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.modal {
+  position: absolute;
+  left: -1px;
+  bottom: -49px;
+  z-index: 9999;
+  box-shadow: 3px 3px 8px $shdw_clr;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
@@ -12,16 +86,20 @@ $width: responsive-width(pc);
   width: 270px;
   height: 40px;
   border-radius: 8px;
-  font-size: auto-clamp(11px, 12px);
   padding: 3px;
   border: 1px solid $bdr_clr;
 
-  &_parent {
-    grid-template-columns: repeat(5, 1fr);
+  &_option {
+    left: auto;
+    right: -1px;
   }
 
-  &_notFound {
-    pointer-events: none;
+  &_none {
+    display: none;
+  }
+
+  &_parent {
+    grid-template-columns: repeat(5, 1fr);
   }
 
   input {

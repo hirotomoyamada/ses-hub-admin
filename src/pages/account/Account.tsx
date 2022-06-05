@@ -12,7 +12,7 @@ import { Input } from "./components/input/Input";
 import { Toggle } from "./components/toggle/Toggle";
 import { Profile } from "./components/profile/Profile";
 
-import { updateAccount } from "features/root/actions";
+import { updateAccount, UpdateAccount } from "features/root/actions";
 import { Accounts } from "features/user/initialState";
 import { Company } from "types/post";
 import { PageProvider } from "components/provider/page/PageProvider";
@@ -20,7 +20,12 @@ import { Header } from "components/header/setting/Header";
 import { Index } from "features/root/initialState";
 
 export type Data = {
-  account: { uid: string; status: string; option: string }[];
+  account: {
+    uid: string;
+    status: string;
+    freelanceDirect: string;
+    analytics: string;
+  }[];
 };
 
 export const Account: React.FC = () => {
@@ -35,42 +40,37 @@ export const Account: React.FC = () => {
     if (index !== "companys") dispatch(rootSlice.handleIndex("companys"));
   }, [index]);
 
-  const handleEdit: SubmitHandler<Data> = (data): void => {
-    const array = data.account
+  const handleEdit: SubmitHandler<Data> = ({ account }): void => {
+    const data = account
       .filter(
-        (account, index) =>
-          account.uid &&
+        ({ uid }, index) =>
+          uid &&
           accounts?.[index] &&
           "type" in (accounts[index] as Company) &&
           (accounts[index] as Company).type !== "child"
       )
-      .map((account) =>
-        account.option !== "none"
-          ? isNaN(Number(account.status))
-            ? {
-                uid: account.uid,
-                status: account.status,
-                option: account.option,
-              }
-            : {
-                uid: account.uid,
-                status: "active",
-                account: Number(account.status),
-                option: account.option,
-              }
-          : isNaN(Number(account.status))
-          ? {
-              uid: account.uid,
-              status: account.status,
-            }
-          : {
-              uid: account.uid,
-              status: "active",
-              account: Number(account.status),
-            }
-      );
+      .map(({ uid, status, freelanceDirect, analytics }) => {
+        const data: UpdateAccount[number] = {
+          uid,
+          status: isNaN(Number(status)) ? status : "active",
+        };
 
-    array.length && dispatch(updateAccount(array));
+        if (!isNaN(Number(status))) {
+          data.account = Number(status);
+        }
+
+        if (freelanceDirect !== "none") {
+          data.freelanceDirect = freelanceDirect;
+        }
+
+        if (analytics !== "none") {
+          data.analytics = analytics;
+        }
+
+        return data;
+      });
+
+    data.length && dispatch(updateAccount(data));
   };
 
   return (
@@ -81,7 +81,7 @@ export const Account: React.FC = () => {
           className={styles.account}
           onSubmit={methods.handleSubmit(handleEdit)}
         >
-          <Tag />
+          <Tag accounts={accounts} />
           <Main index={index} accounts={accounts} display={display} />
 
           {display < 20 && (

@@ -295,9 +295,15 @@ export const updateAccount = (
     if (target) {
       target.payment.status = user.status;
 
-      if (user.option) {
+      if (user.freelanceDirect) {
         target.payment.option = {
-          freelanceDirect: user.option === "enable" ? true : false,
+          freelanceDirect: user.freelanceDirect === "enable" ? true : false,
+        };
+      }
+
+      if (user.analytics) {
+        target.payment.option = {
+          analytics: user.analytics === "enable" ? true : false,
         };
       }
 
@@ -326,9 +332,15 @@ const updateChildren = ({
     if (target) {
       target.payment.status = user.status;
 
-      if (user.option) {
+      if (user.freelanceDirect) {
         target.payment.option = {
-          freelanceDirect: user.option === "enable" ? true : false,
+          freelanceDirect: user.freelanceDirect === "enable" ? true : false,
+        };
+      }
+
+      if (user.analytics) {
+        target.payment.option = {
+          analytics: user.analytics === "enable" ? true : false,
         };
       }
     }

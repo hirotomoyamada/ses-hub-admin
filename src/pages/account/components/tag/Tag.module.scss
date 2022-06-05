@@ -8,8 +8,12 @@ $width: responsive-width(pc);
   padding-bottom: 16px;
 
   display: grid;
-  grid-template-columns: 1fr 270px 270px;
+  grid-template-columns: 1fr 160px 160px 160px;
   gap: 8px;
   color: $icn_clr;
   font-weight: bold;
+
+  li {
+    margin-left: 4px;
+  }
 }
