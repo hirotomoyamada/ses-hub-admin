@@ -47,7 +47,7 @@ export const defaultValues = (post: Resource): NestedPartial<Data> => {
       max: post?.costs?.max ? post?.costs?.max : null,
       contract: post?.costs?.contract ? post?.costs?.contract : null,
       display: post?.costs?.display,
-      type: post?.costs?.type,
+      type: "応談",
     },
     handles: post.handles?.length
       ? post.handles.map((value) => ({

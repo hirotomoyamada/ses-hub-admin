@@ -4,7 +4,11 @@ import root from "../Post.module.scss";
 import { useFormContext } from "react-hook-form";
 import { Data } from "pages/post/Post";
 
-export const Costs: React.FC = () => {
+interface PropType {
+  index: "matters" | "resources";
+}
+
+export const Costs: React.FC<PropType> = ({ index }) => {
   const {
     register,
     watch,
@@ -126,8 +130,10 @@ export const Costs: React.FC = () => {
                 },
               })}
             >
-              <option value={"スキル見合"}>スキル見合</option>
-              <option value={"上振れ"}>上振れ</option>
+              {index === "matters" && (
+                <option value={"スキル見合"}>スキル見合</option>
+              )}
+              {index === "matters" && <option value={"上振れ"}>上振れ</option>}
               <option value={"応談"}>応談</option>
             </select>
 

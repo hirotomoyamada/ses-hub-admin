@@ -180,7 +180,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
 
                       <Item.Interviews />
 
-                      <Item.Costs />
+                      <Item.Costs index={index} />
 
                       <div className={styles.post_grid}>
                         <Item.Adjustment />
@@ -223,7 +223,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
                         <Item.Period index={index} />
                       </div>
 
-                      <Item.Costs />
+                      <Item.Costs index={index} />
 
                       <div className={styles.post_col}>
                         <span className={styles.post_tag}>開発環境</span>
