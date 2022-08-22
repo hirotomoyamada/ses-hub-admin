@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./PageProvider.module.scss";
+import React from 'react';
+import styles from './PageProvider.module.scss';
 
-import { Fetch } from "components/load/Load";
-import { Side } from "components/side/Side";
+import { Fetch } from 'components/load/Load';
+import { Side } from 'components/side/Side';
 
 interface PropType {
   header?: JSX.Element;
@@ -21,7 +21,7 @@ export const PageProvider: React.FC<PropType> = ({
       <div className={`${styles.page_inner} ${!header && styles.page_single}`}>
         {header}
 
-        {children}
+        <div className={styles.page_scroll}>{children}</div>
       </div>
 
       {side && <Side />}

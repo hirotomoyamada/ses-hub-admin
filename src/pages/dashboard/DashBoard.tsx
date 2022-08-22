@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import styles from "./DashBoard.module.scss";
-import { Oval } from "react-loader-spinner";
+import { useEffect, useState } from 'react';
+import styles from './DashBoard.module.scss';
+import { Oval } from 'react-loader-spinner';
 
-import { useDispatch, useSelector } from "react-redux";
-import { useChart } from "hooks/useChart";
-import * as rootSlice from "features/root/rootSlice";
-import { fetchDashBoard } from "features/root/actions";
-import { PageProvider } from "components/provider/page/PageProvider";
-import { Header } from "components/header/dashboard/Header";
-import { Users } from "./components/Users";
-import { Matters } from "./components/Matters";
-import { Resources } from "./components/Resources";
+import { useDispatch, useSelector } from 'react-redux';
+import { useChart } from 'hooks/useChart';
+import * as rootSlice from 'features/root/rootSlice';
+import { fetchDashBoard } from 'features/root/actions';
+import { PageProvider } from 'components/provider/page/PageProvider';
+import { Header } from 'components/header/dashboard/Header';
+import { Users } from './components/Users';
+import { Matters } from './components/Matters';
+import { Resources } from './components/Resources';
 
-export type Span = "total" | "day" | "week" | "month";
+export type Span = 'total' | 'day' | 'week' | 'month';
 
 export type Sort = {
   active: boolean;
@@ -21,15 +21,15 @@ export type Sort = {
   person: boolean;
 };
 
-export type Index = "users" | "matters" | "resources";
+export type Index = 'users' | 'matters' | 'resources';
 
 export const DashBoard: React.FC = () => {
   const dispatch = useDispatch();
   const [ref, width, height, columns] = useChart();
   const fetch = useSelector(rootSlice.load).list;
   const analytics = useSelector(rootSlice.analytics);
-  const [index, setIndex] = useState<Index>("users");
-  const [span, setSpan] = useState<Span>("day");
+  const [index, setIndex] = useState<Index>('users');
+  const [span, setSpan] = useState<Span>('day');
   const [sort, setSort] = useState<Sort>({
     active: true,
     trialing: true,
@@ -38,7 +38,7 @@ export const DashBoard: React.FC = () => {
   });
 
   useEffect(() => {
-    if (index === "users") {
+    if (index === 'users') {
       dispatch(fetchDashBoard({ span }));
     } else {
       dispatch(fetchDashBoard({ index, span }));
@@ -58,17 +58,17 @@ export const DashBoard: React.FC = () => {
             case fetch:
               return <Oval color="#49b757" height={56} width={56} />;
 
-            case index === "users":
+            case index === 'users':
               return (
                 <Users {...{ analytics, width, height, columns, sort, span }} />
               );
 
-            case index === "matters":
+            case index === 'matters':
               return (
                 <Matters {...{ analytics, width, height, columns, span }} />
               );
 
-            case index === "resources":
+            case index === 'resources':
               return (
                 <Resources {...{ analytics, width, height, columns, span }} />
               );

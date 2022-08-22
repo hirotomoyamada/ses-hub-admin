@@ -1,6 +1,6 @@
-@import "styles/config";
-@import "styles/function";
-@import "styles/animation";
+@import 'styles/config';
+@import 'styles/function';
+@import 'styles/animation';
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -13,11 +13,14 @@ $width: responsive-width(pc);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 48px calc(100vh - 48px);
-    overflow: scroll;
 
     &_single {
       grid-template-rows: 100vh;
     }
+  }
+
+  &_scroll {
+    overflow-y: scroll;
   }
 
   &_side {
