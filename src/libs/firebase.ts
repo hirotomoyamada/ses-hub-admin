@@ -1,19 +1,19 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   Auth,
   getAuth,
   GoogleAuthProvider,
   TwitterAuthProvider,
   GithubAuthProvider,
-} from "firebase/auth";
+} from 'firebase/auth';
 import {
   Firestore,
   getFirestore,
   FirestoreDataConverter,
   QueryDocumentSnapshot,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
-import { getFunctions } from "firebase/functions";
+import { getFunctions } from 'firebase/functions';
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -27,7 +27,7 @@ const app = initializeApp({
 
 export const auth = ((): Auth => getAuth())();
 export const db = ((): Firestore => getFirestore())();
-export const functions = getFunctions(app, "asia-northeast1");
+export const functions = getFunctions(app, 'asia-northeast1');
 export const providerGoogle = new GoogleAuthProvider();
 export const providerTwitter = new TwitterAuthProvider();
 export const providerGithub = new GithubAuthProvider();
