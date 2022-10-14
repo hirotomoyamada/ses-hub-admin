@@ -1,8 +1,8 @@
-import styles from "./Item.module.scss";
-import root from "../Post.module.scss";
+import styles from './Item.module.scss';
+import root from '../Post.module.scss';
 
-import { useFormContext } from "react-hook-form";
-import { Data } from "pages/post/Post";
+import { useFormContext } from 'react-hook-form';
+import { Data } from 'pages/post/Post';
 
 export const Position: React.FC = () => {
   const {
@@ -19,13 +19,16 @@ export const Position: React.FC = () => {
             className={`${styles.item_input} ${
               errors.position && styles.item_input_error
             }`}
-            {...register("position", {
+            {...register('position', {
               required: {
                 value: true,
-                message: "ポジションを選択してください",
+                message: 'ポジションを選択してください',
               },
             })}
           >
+            <option hidden value="">
+              -
+            </option>
             <option value="フロントエンドエンジニア">
               フロントエンドエンジニア
             </option>

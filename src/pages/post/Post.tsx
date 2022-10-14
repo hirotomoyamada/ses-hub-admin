@@ -1,22 +1,22 @@
-import styles from "./Post.module.scss";
-import { useEffect } from "react";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import * as postSlice from "features/post/postSlice";
-import * as rootSlice from "features/root/rootSlice";
-import { Header } from "components/header/post/Header";
-import * as functions from "functions";
-import { Matter, Resource } from "types/post";
-import * as Item from "./components/Item";
-import { PageProvider } from "components/provider/page/PageProvider";
-import { deletePost, editPost, fetchPost } from "features/post/actions";
-import { fetchUser } from "features/user/actions";
-import { Oval } from "react-loader-spinner";
-import * as userSlice from "features/user/userSlice";
+import styles from './Post.module.scss';
+import { useEffect } from 'react';
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import * as postSlice from 'features/post/postSlice';
+import * as rootSlice from 'features/root/rootSlice';
+import { Header } from 'components/header/post/Header';
+import * as functions from 'functions';
+import { Matter, Resource } from 'types/post';
+import * as Item from './components/Item';
+import { PageProvider } from 'components/provider/page/PageProvider';
+import { deletePost, editPost, fetchPost } from 'features/post/actions';
+import { fetchUser } from 'features/user/actions';
+import { Oval } from 'react-loader-spinner';
+import * as userSlice from 'features/user/userSlice';
 
 interface PropType {
-  index: "matters" | "resources";
+  index: 'matters' | 'resources';
 }
 
 export type Data = functions.matter.Data | functions.resource.Data;
@@ -32,9 +32,9 @@ export const Post: React.FC<PropType> = ({ index }) => {
 
   const methods = useForm<Data>({
     defaultValues:
-      index === "matters"
+      index === 'matters'
         ? functions.matter.defaultValues(post as Matter)
-        : index === "resources"
+        : index === 'resources'
         ? functions.resource.defaultValues(post as Resource)
         : undefined,
   });
@@ -52,29 +52,29 @@ export const Post: React.FC<PropType> = ({ index }) => {
     const disabled = (state as { disabled: boolean } | undefined)?.disabled;
 
     if (
-      (!("uid" in user) || !disabled) &&
-      "uid" in post &&
+      (!('uid' in user) || !disabled) &&
+      'uid' in post &&
       post.uid !== user.uid
     ) {
       dispatch(userSlice.resetUser());
-      dispatch(fetchUser({ index: "companys", uid: post.uid }));
+      dispatch(fetchUser({ index: 'companys', uid: post.uid }));
     }
   }, [post]);
 
   useEffect(() => {
     methods.reset(
-      index === "matters"
+      index === 'matters'
         ? functions.matter.defaultValues(post as Matter)
-        : index === "resources"
+        : index === 'resources'
         ? functions.resource.defaultValues(post as Resource)
-        : undefined
+        : undefined,
     );
   }, [index, methods, post]);
 
   const handleClose = () => {
     const { key } = location;
 
-    if (key !== "default") {
+    if (key !== 'default') {
       navigate(-1);
     } else {
       navigate(`/${index}`);
@@ -82,17 +82,17 @@ export const Post: React.FC<PropType> = ({ index }) => {
   };
 
   const handleEdit: SubmitHandler<Data> = (data): void => {
-    if (index !== "matters" && index !== "resources") {
+    if (index !== 'matters' && index !== 'resources') {
       return;
     }
 
     const edit: Matter | Resource | undefined =
-      index === "matters" && "title" in data
+      index === 'matters' && 'title' in data
         ? {
             ...post,
             ...functions.matter.edit(data),
           }
-        : index === "resources" && "roman" in data
+        : index === 'resources' && 'roman' in data
         ? {
             ...post,
             ...functions.resource.edit(data),
@@ -102,8 +102,8 @@ export const Post: React.FC<PropType> = ({ index }) => {
     if (!edit) {
       dispatch(
         rootSlice.handleAnnounce({
-          error: "投稿の編集に失敗しました",
-        })
+          error: '投稿の編集に失敗しました',
+        }),
       );
 
       return;
@@ -113,7 +113,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
   };
 
   const handleDelete = (): void => {
-    if (index !== "matters" && index !== "resources") {
+    if (index !== 'matters' && index !== 'resources') {
       return;
     }
 
@@ -129,7 +129,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
         }
         side
       >
-        {"objectID" in post ? (
+        {'objectID' in post ? (
           <form
             id="post"
             className={styles.post}
@@ -137,7 +137,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
           >
             {(() => {
               switch (index) {
-                case "matters":
+                case 'matters':
                   return (
                     <>
                       <Item.Status />
@@ -194,7 +194,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
                     </>
                   );
 
-                case "resources":
+                case 'resources':
                   return (
                     <>
                       <Item.Status />
