@@ -1,13 +1,13 @@
-import { PayloadAction } from "@reduxjs/toolkit";
-import { initialState, Index, State, Modal } from "features/root/initialState";
+import { PayloadAction } from '@reduxjs/toolkit';
+import { initialState, Index, State, Modal } from 'features/root/initialState';
 import {
   EditData,
   FetchDashBoard,
   Login,
   SendMail,
   UpdateNotice,
-} from "./actions";
-import { Announce, Search } from "./rootSlice";
+} from './actions';
+import { Announce, Search } from './rootSlice';
 
 export const login = (state: State, action: PayloadAction<Login>): void => {
   state.admin = action.payload.uid;
@@ -31,13 +31,13 @@ export const index = (state: State, action: PayloadAction<Index>): void => {
     state.search.target = null;
     state.search.type = null;
     state.search.value = null;
-    state.search.filter = "all";
+    state.search.filter = 'all';
   }
 };
 
 export const search = (
   state: State,
-  action: PayloadAction<Search | undefined>
+  action: PayloadAction<Search | undefined>,
 ): void => {
   if (!action.payload) {
     state.search.value = null;
@@ -58,13 +58,13 @@ export const search = (
   if (action?.payload?.filter) {
     state.search.filter = action.payload.filter;
   } else {
-    state.search.filter = "all";
+    state.search.filter = 'all';
   }
 };
 
 export const modal = (
   state: State,
-  action?: PayloadAction<Modal | undefined>
+  action?: PayloadAction<Modal | undefined>,
 ): void => {
   if (action?.payload) {
     state.modal.type = action.payload.type;
@@ -83,7 +83,7 @@ export const modal = (
 
 export const announce = (
   state: State,
-  action: PayloadAction<Announce | undefined>
+  action: PayloadAction<Announce | undefined>,
 ): void => {
   if (action.payload?.success || action.payload?.error) {
     state.announce.success = action.payload.success;
@@ -98,12 +98,12 @@ export const announce = (
 
 export const editData = (
   state: State,
-  action: PayloadAction<EditData>
+  action: PayloadAction<EditData>,
 ): void => {
   if (!state.data) return;
 
   const index =
-    action.payload.index === "companys" ? "seshub" : "freelanceDirect";
+    action.payload.index === 'companys' ? 'seshub' : 'freelanceDirect';
 
   Object.assign(state.data[index], {
     information: action.payload.information,
@@ -111,18 +111,18 @@ export const editData = (
     maintenance: action.payload.maintenance,
   });
 
-  state.announce.success = "編集しました";
+  state.announce.success = '編集しました';
   state.load.fetch = false;
 };
 
 export const sendMail = (
   state: State,
-  action: PayloadAction<SendMail>
+  action: PayloadAction<SendMail>,
 ): void => {
   const index =
-    action.payload.index === "companys" ? "seshub" : "freelanceDirect";
+    action.payload.index === 'companys' ? 'seshub' : 'freelanceDirect';
 
-  Object.assign(state.data, {
+  Object.assign(state.data ?? {}, {
     [index]: {
       mail: {
         title: action.payload.title,
@@ -133,18 +133,18 @@ export const sendMail = (
     },
   });
 
-  state.announce.success = "送信しました";
+  state.announce.success = '送信しました';
   state.load.fetch = false;
 };
 
 export const updateAccount = (state: State): void => {
-  state.announce.success = "編集しました";
+  state.announce.success = '編集しました';
   state.load.fetch = false;
 };
 
 export const updateNotice = (
   state: State,
-  action: PayloadAction<UpdateNotice>
+  action: PayloadAction<UpdateNotice>,
 ): void => {
   if (!state.data) return;
 
@@ -157,7 +157,7 @@ export const updateNotice = (
 
 export const fetchDashBoard = (
   state: State,
-  action: PayloadAction<FetchDashBoard["data"]>
+  action: PayloadAction<FetchDashBoard['data']>,
 ): void => {
   state.analytics = action.payload;
 };
