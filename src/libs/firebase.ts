@@ -11,6 +11,8 @@ import {
   getFirestore,
   FirestoreDataConverter,
   QueryDocumentSnapshot,
+  DocumentData,
+  SnapshotOptions,
 } from 'firebase/firestore';
 
 import { getFunctions } from 'firebase/functions';
@@ -33,6 +35,9 @@ export const providerTwitter = new TwitterAuthProvider();
 export const providerGithub = new GithubAuthProvider();
 
 export const converter = <T>(): FirestoreDataConverter<T> => ({
-  toFirestore: (doc: T) => doc,
-  fromFirestore: (doc: QueryDocumentSnapshot<T>, op) => doc.data(op),
+  toFirestore: (doc: T) => doc as DocumentData,
+  fromFirestore: (
+    doc: QueryDocumentSnapshot<DocumentData>,
+    op: SnapshotOptions | undefined,
+  ) => doc.data(op) as T,
 });
