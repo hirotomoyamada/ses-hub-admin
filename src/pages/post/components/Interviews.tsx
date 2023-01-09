@@ -7,8 +7,11 @@ import { Data } from 'functions/_matter';
 export const Interviews: React.FC = () => {
   const {
     register,
+    watch,
     formState: { errors },
   } = useFormContext<Data>();
+
+  console.log(watch('interviews.setting'));
 
   return (
     <div className={`${root.post_grid} ${root.post_grid_mid}`}>
@@ -32,7 +35,9 @@ export const Interviews: React.FC = () => {
             </select>
 
             {errors?.interviews?.type?.message && (
-              <span>{errors.interviews.type.message}</span>
+              <span className={styles.item_error}>
+                {errors.interviews.type.message}
+              </span>
             )}
           </div>
           <div className={`${styles.item} ${styles.item_select}`}>
@@ -52,7 +57,9 @@ export const Interviews: React.FC = () => {
             </select>
 
             {errors?.interviews?.count?.message && (
-              <span>{errors.interviews.count.message}</span>
+              <span className={styles.item_error}>
+                {errors.interviews.count.message}
+              </span>
             )}
           </div>
         </div>
@@ -80,7 +87,9 @@ export const Interviews: React.FC = () => {
           </select>
 
           {errors?.interviews?.setting?.message && (
-            <span>{errors.interviews.setting.message}</span>
+            <span className={styles.item_error}>
+              {errors.interviews.setting.message}
+            </span>
           )}
         </div>
       </div>

@@ -83,7 +83,7 @@ export interface Person {
     month: number | null;
   };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -128,7 +128,7 @@ export interface Matter {
     month: number;
   };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -146,6 +146,7 @@ export interface Matter {
   interviews: {
     type: string;
     count: string;
+    setting: string;
   };
   remote: string;
   distribution: string;
@@ -155,7 +156,7 @@ export interface Matter {
   createAt: number;
   updateAt?: number;
   status: string;
-  display: "public" | "private";
+  display: 'public' | 'private';
   memo: string;
   approval?: string;
   user?: {
@@ -192,7 +193,7 @@ export interface Resource {
     month: number;
   };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -206,7 +207,7 @@ export interface Resource {
   uid: string;
   createAt: number;
   updateAt?: number;
-  display: "public" | "private";
+  display: 'public' | 'private';
   status: string;
   memo: {
     name: string;
