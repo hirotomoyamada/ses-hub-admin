@@ -1,5 +1,5 @@
-@import "styles/config";
-@import "styles/function";
+@import 'styles/config';
+@import 'styles/function';
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -40,7 +40,7 @@ $width: responsive-width(pc);
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
       border-top: 8px solid $acnt_clr;
-      content: "";
+      content: '';
       position: absolute;
       right: 12px;
       top: 20px;
@@ -66,9 +66,15 @@ $width: responsive-width(pc);
     line-height: 48px;
   }
 
-  &_error {
+  &_desc {
     white-space: nowrap;
     color: $sub_clr;
+    font-size: auto-clamp(11px, 12px);
+  }
+
+  &_error {
+    white-space: nowrap;
+    color: $remove_clr;
     font-size: auto-clamp(11px, 12px);
   }
 
