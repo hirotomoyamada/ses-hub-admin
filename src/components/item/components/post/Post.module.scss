@@ -1,5 +1,5 @@
-@import "styles/config";
-@import "styles/function";
+@import 'styles/config';
+@import 'styles/function';
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -88,6 +88,12 @@ $width: responsive-width(pc);
       &_end {
         background: $sub_clr;
       }
+    }
+
+    &_industry {
+      border: 1px solid $icn_clr;
+      color: $icn_clr;
+      font-weight: bold;
     }
 
     &_position {
