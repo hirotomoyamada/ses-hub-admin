@@ -1,5 +1,5 @@
-import { Person } from "types/post";
-import { NestedPartial } from "types/utils";
+import { Person } from 'types/post';
+import { NestedPartial } from 'types/utils';
 
 export type Data = {
   status: string;
@@ -27,62 +27,113 @@ export type Data = {
   costs: {
     min: number | null;
     max: number | null;
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
   };
 };
 
+const positions = [
+  'フロントエンドエンジニア',
+  'バックエンドエンジニア',
+  'サーバーエンジニア',
+  'ブロックチェーンエンジニア',
+  'インフラエンジニア',
+  'データベースエンジニア',
+  'クラウドエジニア',
+  'ネットワークエンジニア',
+  'セキュリティエンジニア',
+  'リードエンジニア',
+  'システムエンジニア',
+  '社内SE',
+  'アプリエンジニア',
+  'iOSエンジニア',
+  'Androidエンジニア',
+  '機械学習エンジニア',
+  'AIエンジニア(人工知能)',
+  '汎用機エンジニア',
+  'マークアップエンジニア',
+  'テストエンジニア',
+  'テスター・デバッガー・QA',
+  '組み込み・制御',
+  'データサイエンティスト',
+  'PdM',
+  'PM/PL',
+  'PMO',
+  'VPoE',
+  'CRE',
+  'SRE',
+  'エンジニアリングマネージャー',
+  'SAP',
+  'プロデューサー',
+  'コンサルタント',
+  'マーケター',
+  'Webディレクター',
+  'Webプランナー',
+  'Webデザイナー',
+  'UI・UXデザイナー',
+  'グラフィックデザイナー',
+  '3Dデザイナー',
+  '2Dデザイナー',
+  'キャラクターデザイナー',
+  'イラストレーター',
+  'アートディレクター',
+  'ゲームプランナー',
+  'ゲームデザイナー',
+  'サポート',
+  'その他',
+];
+
 export const defaultValues = (user: Person): NestedPartial<Data> => {
   return {
-    status: user?.status,
-    icon: user?.icon ? user.icon : "icon0",
-    cover: user?.cover ? user.cover : "cover0",
-    state: user?.state,
-    nickName: user?.nickName,
-    name: user?.name,
-    body: user?.body,
-    age: user?.age,
-    sex: user?.sex,
-    position: user?.position,
-    location: user?.location,
-    handles: user?.handles?.length
-      ? user?.handles.map((value) => ({
+    status: user.status,
+    icon: user.icon ? user.icon : 'icon0',
+    cover: user.cover ? user.cover : 'cover0',
+    state: user.state,
+    nickName: user.nickName,
+    name: user.name,
+    body: user.body,
+    age: user.age,
+    sex: user.sex,
+    position: positions.includes(user.position) ? user.position : undefined,
+    location: user.location,
+    handles: user.handles?.length
+      ? user.handles.map((value) => ({
           handle: value,
         }))
-      : [{ handle: "" }, { handle: "" }, { handle: "" }, { handle: "" }],
-    tools: user?.tools?.length
-      ? user?.tools.map((value) => ({
+      : [{ handle: '' }, { handle: '' }, { handle: '' }, { handle: '' }],
+    tools: user.tools?.length
+      ? user.tools.map((value) => ({
           tool: value,
         }))
-      : [{ tool: "" }, { tool: "" }, { tool: "" }, { tool: "" }],
-    skills: user?.skills?.length
-      ? user?.skills.map((value) => ({
+      : [{ tool: '' }, { tool: '' }, { tool: '' }, { tool: '' }],
+    skills: user.skills?.length
+      ? user.skills.map((value) => ({
           skill: value,
         }))
-      : [{ skill: "" }, { skill: "" }, { skill: "" }],
-    urls: user?.urls?.length
-      ? user?.urls.map((value) => ({
+      : [{ skill: '' }, { skill: '' }, { skill: '' }],
+    urls: user.urls?.length
+      ? user.urls.map((value) => ({
           url: value,
         }))
-      : [{ url: "" }],
+      : [{ url: '' }],
     costs: {
-      min: user?.costs?.min ? user?.costs?.min : null,
-      max: user?.costs?.max ? user?.costs?.max : null,
-      display: user?.costs?.display,
-      type: user?.costs?.type,
+      min: user.costs?.min ? user.costs?.min : null,
+      max: user.costs?.max ? user.costs?.max : null,
+      display: user.costs?.display,
+      type: user.costs?.type,
     },
-    working: user?.working,
-    resident: user?.resident,
-    clothes: user?.clothes,
+    working: user.working,
+    resident: user.resident,
+    clothes: user.clothes,
     period: {
-      year: user?.period?.year,
-      month: user?.period?.month,
+      year: user.period?.year,
+      month: user.period?.month,
     },
   };
 };
 
 export const profile = (
-  data: Data
+  data: Data,
 ): {
   status: string;
   state: string;
@@ -109,7 +160,7 @@ export const profile = (
   costs: {
     min: number | null;
     max: number | null;
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
   };
 } => {
