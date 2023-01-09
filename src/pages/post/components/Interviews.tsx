@@ -7,11 +7,8 @@ import { Data } from 'functions/_matter';
 export const Interviews: React.FC = () => {
   const {
     register,
-    watch,
     formState: { errors },
   } = useFormContext<Data>();
-
-  console.log(watch('interviews.setting'));
 
   return (
     <div className={`${root.post_grid} ${root.post_grid_mid}`}>
