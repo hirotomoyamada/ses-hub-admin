@@ -4,6 +4,7 @@ import { NestedPartial } from 'types/utils';
 export type Data = {
   display: 'public' | 'private';
   status: string;
+  industry: string;
   position: string;
   body: string;
   period: { year: number; month: number };
@@ -37,6 +38,7 @@ export const defaultValues = (post: Matter): NestedPartial<Data> => {
     display: post?.display,
     title: post?.title,
     body: post?.body,
+    industry: post?.industry,
     position: post?.position,
     location: post?.location,
     period: {
@@ -89,6 +91,7 @@ export const edit = (
   return {
     display: data.display,
     title: data.title,
+    industry: data.industry,
     position: data.position,
     body: data.body,
     location: data.location,

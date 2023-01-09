@@ -127,14 +127,12 @@ export const Post: React.FC<PropType> = ({ index }) => {
         header={
           <Header handleClose={handleClose} handleDelete={handleDelete} />
         }
-        side
-      >
+        side>
         {'objectID' in post ? (
           <form
             id="post"
             className={styles.post}
-            onSubmit={methods.handleSubmit(handleEdit)}
-          >
+            onSubmit={methods.handleSubmit(handleEdit)}>
             {(() => {
               switch (index) {
                 case 'matters':
@@ -142,7 +140,13 @@ export const Post: React.FC<PropType> = ({ index }) => {
                     <>
                       <Item.Status />
                       <Item.Title />
-                      <Item.Position />
+
+                      <div
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}>
+                        <Item.Industry />
+                        <Item.Position />
+                      </div>
+
                       <Item.Body index={index} />
 
                       <div className={styles.post_grid}>
@@ -152,8 +156,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
                       </div>
 
                       <div
-                        className={`${styles.post_grid} ${styles.post_grid_mid}`}
-                      >
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}>
                         <Item.Period index={index} />
                         <Item.Times />
                       </div>
@@ -202,11 +205,9 @@ export const Post: React.FC<PropType> = ({ index }) => {
                       <Item.Position />
 
                       <div
-                        className={`${styles.post_grid} ${styles.post_grid_mid}`}
-                      >
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}>
                         <div
-                          className={`${styles.post_grid} ${styles.post_grid_half}`}
-                        >
+                          className={`${styles.post_grid} ${styles.post_grid_half}`}>
                           <Item.Sex />
                           <Item.Age />
                         </div>
