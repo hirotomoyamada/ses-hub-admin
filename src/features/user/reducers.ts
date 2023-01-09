@@ -1,29 +1,29 @@
-import { PayloadAction } from "@reduxjs/toolkit";
-import { State, Posts } from "features/user/initialState";
-import { functions } from "libs/firebase";
-import { httpsCallable, HttpsCallable } from "firebase/functions";
-import { Post } from "features/post/postSlice";
-import { ExtractPosts, FetchUser } from "features/user/actions";
-import { User } from "features/user/userSlice";
-import { Matter, Resource, Company, Person } from "types/post";
+import { PayloadAction } from '@reduxjs/toolkit';
+import { State, Posts } from 'features/user/initialState';
+import { functions } from 'libs/firebase';
+import { httpsCallable, HttpsCallable } from 'firebase/functions';
+import { Post } from 'features/post/postSlice';
+import { ExtractPosts, FetchUser } from 'features/user/actions';
+import { User } from 'features/user/userSlice';
+import { Matter, Resource, Company, Person } from 'types/post';
 
 export const fetchUser = (
   state: State,
-  action: PayloadAction<FetchUser["data"]>
+  action: PayloadAction<FetchUser['data']>,
 ): void => {
   if (!action.payload.type) {
-    if (action.payload.index === "companys") {
+    if (action.payload.index === 'companys') {
       company(state, action.payload.user as Company);
     }
 
-    if (action.payload.index === "persons") {
+    if (action.payload.index === 'persons') {
       person(state, action.payload.user as Person);
     }
   }
 
   if (
-    action.payload.type === "accounts" &&
-    typeof action.payload.i === "number"
+    action.payload.type === 'accounts' &&
+    typeof action.payload.i === 'number'
   ) {
     if (action.payload.user) {
       state.accounts[action.payload.i] = action.payload.user as Company;
@@ -50,6 +50,7 @@ const company = (state: State, data: Company): void => {
   (state.user as Company).person = data.person;
   (state.user as Company).position = data.position;
   (state.user as Company).body = data.body;
+  (state.user as Company).invoice = data.invoice;
   (state.user as Company).more = data.more;
   (state.user as Company).region = data.region;
   (state.user as Company).postal = data.postal;
@@ -106,7 +107,7 @@ const company = (state: State, data: Company): void => {
       resources: [],
       persons: [],
     },
-  } as Posts["company"];
+  } as Posts['company'];
 };
 
 const person = (state: State, data: Person): void => {
@@ -165,11 +166,11 @@ const person = (state: State, data: Person): void => {
       hold: [],
       disable: [],
     },
-  } as Posts["person"];
+  } as Posts['person'];
 };
 
 export const editUser = (state: State, action: PayloadAction<User>): void => {
-  if (action.payload.index === "companys") {
+  if (action.payload.index === 'companys') {
     (state.user as Company).type = (action.payload.user as Company).type;
     (state.user as Company).icon = (action.payload.user as Company).icon;
     (state.user as Company).cover = (action.payload.user as Company).cover;
@@ -180,6 +181,7 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
     (state.user as Company).name = (action.payload.user as Company).name;
     (state.user as Company).person = (action.payload.user as Company).person;
     (state.user as Company).body = (action.payload.user as Company).body;
+    (state.user as Company).invoice = (action.payload.user as Company).invoice;
     (state.user as Company).more = (action.payload.user as Company).more;
     (state.user as Company).region = (action.payload.user as Company).region;
     (state.user as Company).postal = (action.payload.user as Company).postal;
@@ -194,7 +196,7 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
     };
   }
 
-  if (action.payload.index === "persons") {
+  if (action.payload.index === 'persons') {
     (state.user as Person).icon = (action.payload.user as Person).icon;
     (state.user as Person).cover = (action.payload.user as Person).cover;
     (state.user as Person).status = (action.payload.user as Person).status;
@@ -217,7 +219,7 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
       type: (action.payload.user as Person).costs.type,
     };
     (state.user as Person).working = Number(
-      (action.payload.user as Person).working
+      (action.payload.user as Person).working,
     );
     (state.user as Person).resident = (action.payload.user as Person).resident;
     (state.user as Person).clothes = (action.payload.user as Person).clothes;
@@ -230,11 +232,11 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
 
   const editUser: HttpsCallable<
     {
-      index: "companys" | "persons";
+      index: 'companys' | 'persons';
       user: Company | Person;
     },
     unknown
-  > = httpsCallable(functions, "admin-editUser");
+  > = httpsCallable(functions, 'admin-editUser');
 
   void editUser({
     index: action.payload.index,
@@ -244,16 +246,16 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
 
 export const selectUser = (
   state: State,
-  action: PayloadAction<Company | Person>
+  action: PayloadAction<Company | Person>,
 ): void => {
   state.user = action.payload;
 };
 
 export const resetUser = (
   state: State,
-  action: PayloadAction<number | undefined | boolean>
+  action: PayloadAction<number | undefined | boolean>,
 ): void => {
-  if (!action.payload && typeof action.payload !== "number") {
+  if (!action.payload && typeof action.payload !== 'number') {
     state.user = {};
 
     state.posts = {};
@@ -265,45 +267,45 @@ export const resetUser = (
     };
 
     state.accounts = [];
-  } else if (typeof action.payload === "number") {
+  } else if (typeof action.payload === 'number') {
     state.accounts[action.payload] = null;
   }
 };
 
 export const uploadResume = (
   state: State,
-  action: PayloadAction<string>
+  action: PayloadAction<string>,
 ): void => {
   (state.user as Person).resume.url = action.payload;
 };
 
 export const deleteResume = (
   state: State,
-  action: PayloadAction<string>
+  action: PayloadAction<string>,
 ): void => {
   (state.user as Person).resume.key = null;
   (state.user as Person).resume.url = null;
 
   const deleteResume: HttpsCallable<string, unknown> = httpsCallable(
     functions,
-    "admin-deleteResume"
+    'admin-deleteResume',
   );
 
   void deleteResume(action.payload);
 };
 
 export const editPost = (state: State, action: PayloadAction<Post>): void => {
-  if ("posts" in state.posts) {
+  if ('posts' in state.posts) {
     for (const i in state.posts) {
-      const key = i as keyof Posts["company"];
+      const key = i as keyof Posts['company'];
 
-      if (key === "follows" || key === "children") {
+      if (key === 'follows' || key === 'children') {
         continue;
       }
 
-      if (action.payload.index === "matters") {
+      if (action.payload.index === 'matters') {
         const post = state.posts[key].matters.find(
-          (post) => post?.objectID === action.payload.post.objectID
+          (post) => post?.objectID === action.payload.post.objectID,
         );
 
         if (!post) {
@@ -342,9 +344,9 @@ export const editPost = (state: State, action: PayloadAction<Post>): void => {
         post.updateAt = (action.payload.post as Matter).updateAt;
       }
 
-      if (action.payload.index === "resources") {
+      if (action.payload.index === 'resources') {
         const post = state.posts[key].resources.find(
-          (post) => post?.objectID === action.payload.post.objectID
+          (post) => post?.objectID === action.payload.post.objectID,
         );
 
         if (!post) {
@@ -384,23 +386,23 @@ export const editPost = (state: State, action: PayloadAction<Post>): void => {
 };
 
 export const deletePost = (state: State, action: PayloadAction<Post>): void => {
-  if ("posts" in state.posts) {
+  if ('posts' in state.posts) {
     for (const i in state.posts) {
-      const key = i as keyof Posts["company"];
+      const key = i as keyof Posts['company'];
 
-      if (key === "follows" || key === "children") {
+      if (key === 'follows' || key === 'children') {
         continue;
       }
 
-      if (action.payload.index === "matters") {
+      if (action.payload.index === 'matters') {
         state.posts[key].matters = state.posts[key].matters.filter(
-          (post) => post?.objectID !== action.payload.post.objectID
+          (post) => post?.objectID !== action.payload.post.objectID,
         );
       }
 
-      if (action.payload.index === "resources") {
+      if (action.payload.index === 'resources') {
         state.posts[key].resources = state.posts[key].resources.filter(
-          (post) => post?.objectID !== action.payload.post.objectID
+          (post) => post?.objectID !== action.payload.post.objectID,
         );
       }
     }
@@ -409,12 +411,12 @@ export const deletePost = (state: State, action: PayloadAction<Post>): void => {
 
 export const extractPosts = (
   state: State,
-  action: PayloadAction<ExtractPosts["data"]>
+  action: PayloadAction<ExtractPosts['data']>,
 ): void => {
-  if ("posts" in state.posts) {
-    const type = action.payload.type as keyof Posts["company"];
+  if ('posts' in state.posts) {
+    const type = action.payload.type as keyof Posts['company'];
 
-    if (type === "follows" || type === "children") {
+    if (type === 'follows' || type === 'children') {
       if (
         action.payload.hit.currentPage !== 0 &&
         action.payload.hit.pages > 1
@@ -428,7 +430,7 @@ export const extractPosts = (
       }
     } else {
       const index = action.payload.index;
-      if (index === "matters") {
+      if (index === 'matters') {
         if (
           action.payload.hit.currentPage !== 0 &&
           action.payload.hit.pages > 1
@@ -442,7 +444,7 @@ export const extractPosts = (
         }
       }
 
-      if (index === "resources") {
+      if (index === 'resources') {
         if (
           action.payload.hit.currentPage !== 0 &&
           action.payload.hit.pages > 1
@@ -456,7 +458,7 @@ export const extractPosts = (
         }
       }
 
-      if (index === "persons" && (type === "likes" || type === "entries")) {
+      if (index === 'persons' && (type === 'likes' || type === 'entries')) {
         if (
           action.payload.hit.currentPage !== 0 &&
           action.payload.hit.pages > 1
@@ -472,11 +474,11 @@ export const extractPosts = (
     }
   }
 
-  if ("requests" in state.posts) {
-    const type = action.payload.type as keyof Posts["person"];
+  if ('requests' in state.posts) {
+    const type = action.payload.type as keyof Posts['person'];
 
-    if (type !== "requests") {
-      if (type !== "follows") {
+    if (type !== 'requests') {
+      if (type !== 'follows') {
         if (
           action.payload.hit.currentPage !== 0 &&
           action.payload.hit.pages > 1
@@ -504,7 +506,7 @@ export const extractPosts = (
     } else {
       const index = action.payload.index;
 
-      if (index === "enable" || index === "hold" || index === "disable") {
+      if (index === 'enable' || index === 'hold' || index === 'disable') {
         if (
           action.payload.hit.currentPage !== 0 &&
           action.payload.hit.pages > 1
