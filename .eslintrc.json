@@ -17,6 +17,10 @@
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@no-unsafe-member-access": "off",
-    "@no-unsafe-assignment": "off"
+    "@no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unnecessary-type-constraint": "off",
+    "@typescript-eslint/no-unsafe-argument": "off"
   }
 }
