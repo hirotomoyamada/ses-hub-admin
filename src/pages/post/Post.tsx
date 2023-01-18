@@ -177,7 +177,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
                       </div>
 
                       <div className={styles.post_col}>
-                        <span className={styles.post_tag}>尚可</span>
+                        <span className={styles.post_tag}>歓迎</span>
                         <Item.Perfers />
                       </div>
 
