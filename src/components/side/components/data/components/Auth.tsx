@@ -18,8 +18,6 @@ export const Auth: React.FC<PropType> = ({ index, user }) => {
     setTimeout(() => setCopy(false), 2000);
   };
 
-  console.log(index);
-
   return (
     <div className={styles.data_col}>
       <div className={styles.data_item}>
