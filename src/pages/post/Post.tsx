@@ -167,6 +167,10 @@ export const Post: React.FC<PropType> = ({ index }) => {
                         <div>
                           <Item.Handles index={index} />
                           <Item.Tools index={index} />
+
+                          <span className={styles.post_desc}>
+                            &nbsp;※&nbsp;言語・フレームワーク・ツールが該当しない場合は、下記&nbsp;備考&nbsp;欄にご記載ください
+                          </span>
                         </div>
                       </div>
 
@@ -232,6 +236,10 @@ export const Post: React.FC<PropType> = ({ index }) => {
                         <div>
                           <Item.Handles index={index} />
                           <Item.Tools index={index} />
+
+                          <span className={styles.post_desc}>
+                            &nbsp;※&nbsp;言語・フレームワーク・ツールが該当しない場合は、下記&nbsp;備考&nbsp;欄にご記載ください
+                          </span>
                         </div>
                       </div>
 
