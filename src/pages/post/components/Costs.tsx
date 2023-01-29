@@ -1,11 +1,11 @@
-import styles from "./Item.module.scss";
-import root from "../Post.module.scss";
+import styles from './Item.module.scss';
+import root from '../Post.module.scss';
 
-import { useFormContext } from "react-hook-form";
-import { Data } from "pages/post/Post";
+import { useFormContext } from 'react-hook-form';
+import { Data } from 'pages/post/Post';
 
 interface PropType {
-  index: "matters" | "resources";
+  index: 'matters' | 'resources';
 }
 
 export const Costs: React.FC<PropType> = ({ index }) => {
@@ -15,8 +15,8 @@ export const Costs: React.FC<PropType> = ({ index }) => {
     formState: { errors },
   } = useFormContext<Data>();
 
-  const display = watch("costs.display");
-  const min = watch("costs.min");
+  const display = watch('costs.display');
+  const min = watch('costs.min');
 
   return (
     <div className={`${root.post_grid} ${root.post_grid_mid}`}>
@@ -27,15 +27,15 @@ export const Costs: React.FC<PropType> = ({ index }) => {
             type="radio"
             id="costsDisplay1"
             value="private"
-            {...register("costs.display")}
+            {...register('costs.display')}
           />
           <input
             type="radio"
             id="costsDisplay2"
             value="public"
-            {...register("costs.display")}
+            {...register('costs.display')}
           />
-          {display === "public" ? (
+          {display === 'public' ? (
             <label className={root.post_tag_display} htmlFor="costsDisplay1">
               &nbsp;※&nbsp;表示したくありませんか？
             </label>
@@ -46,7 +46,7 @@ export const Costs: React.FC<PropType> = ({ index }) => {
           )}
         </span>
 
-        {display === "public" ? (
+        {display === 'public' ? (
           <>
             <div className={`${root.post_grid} ${root.post_grid_costs}`}>
               <div className={`${styles.item} ${styles.item_cost}`}>
@@ -56,14 +56,14 @@ export const Costs: React.FC<PropType> = ({ index }) => {
                     styles.item_input_center
                   } ${errors.costs?.min && styles.item_input_error}`}
                   type="number"
-                  {...register("costs.min", {
+                  {...register('costs.min', {
                     pattern: {
                       value: /^\d/,
-                      message: "半角数字で入力してください",
+                      message: '半角数字で入力してください',
                     },
                     maxLength: {
                       value: 3,
-                      message: "3文字以内で入力してください",
+                      message: '3文字以内で入力してください',
                     },
                   })}
                 />
@@ -78,18 +78,18 @@ export const Costs: React.FC<PropType> = ({ index }) => {
                     styles.item_input_center
                   } ${errors.costs?.max && styles.item_input_error}`}
                   type="number"
-                  {...register("costs.max", {
+                  {...register('costs.max', {
                     required: {
                       value: true,
-                      message: "最大値を入力してください",
+                      message: '最大値を入力してください',
                     },
                     pattern: {
                       value: /^\d/,
-                      message: "半角数字で入力してください",
+                      message: '半角数字で入力してください',
                     },
                     maxLength: {
                       value: 3,
-                      message: "3文字以内で入力してください",
+                      message: '3文字以内で入力してください',
                     },
                     validate: {
                       max: (max) => Number(max) > Number(min),
@@ -111,7 +111,7 @@ export const Costs: React.FC<PropType> = ({ index }) => {
               </span>
             )}
 
-            {errors?.costs?.max?.type === "max" && (
+            {errors?.costs?.max?.type === 'max' && (
               <span className={styles.item_error}>
                 正しい数値を入力してください
               </span>
@@ -123,18 +123,17 @@ export const Costs: React.FC<PropType> = ({ index }) => {
               className={`${styles.item_input} ${
                 errors.costs?.type && styles.item_input_error
               }`}
-              {...register("costs.type", {
+              {...register('costs.type', {
                 required: {
                   value: true,
-                  message: "項目を選択してください",
+                  message: '項目を選択してください',
                 },
-              })}
-            >
-              {index === "matters" && (
-                <option value={"スキル見合"}>スキル見合</option>
+              })}>
+              {index === 'matters' && (
+                <option value={'スキル見合'}>スキル見合</option>
               )}
-              {index === "matters" && <option value={"上振れ"}>上振れ</option>}
-              <option value={"応談"}>応談</option>
+              {index === 'matters' && <option value={'上振れ'}>上振れ</option>}
+              <option value={'応談'}>応談</option>
             </select>
 
             {errors.costs?.type?.message && (
@@ -149,7 +148,7 @@ export const Costs: React.FC<PropType> = ({ index }) => {
       <div className={root.post_col}>
         <span className={root.post_tag}>
           請負単価
-          <span className={styles.item_error}>
+          <span className={styles.item_desc}>
             &nbsp;※&nbsp;検索に表示されません
           </span>
         </span>
@@ -161,14 +160,14 @@ export const Costs: React.FC<PropType> = ({ index }) => {
                 errors.costs?.contract && styles.item_input_error
               }`}
               type="number"
-              {...register("costs.contract", {
+              {...register('costs.contract', {
                 pattern: {
                   value: /^\d/,
-                  message: "半角数字で入力してください",
+                  message: '半角数字で入力してください',
                 },
                 maxLength: {
                   value: 3,
-                  message: "3文字以内で入力してください",
+                  message: '3文字以内で入力してください',
                 },
               })}
             />

@@ -1,6 +1,6 @@
-@import "styles/config";
-@import "styles/function";
-@import "styles/animation";
+@import 'styles/config';
+@import 'styles/function';
+@import 'styles/animation';
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -39,6 +39,18 @@ $width: responsive-width(pc);
     &_display {
       color: $add_clr;
       font-size: auto-clamp(11px, 12px);
+    }
+  }
+
+  &_desc {
+    display: inline-block;
+    color: $sub_clr;
+    font-size: 12px;
+    margin-top: 16px;
+
+    @media (max-width: responsive-width(sp)) {
+      font-size: 10px;
+      margin-top: 12px;
     }
   }
 

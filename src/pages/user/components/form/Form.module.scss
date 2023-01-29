@@ -1,6 +1,6 @@
-@import "styles/config";
-@import "styles/function";
-@import "styles/animation";
+@import 'styles/config';
+@import 'styles/function';
+@import 'styles/animation';
 
 // ページのレスポンシブ設定
 $width: responsive-width(pc);
@@ -48,6 +48,10 @@ $width: responsive-width(pc);
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
+
+    &_nowrap {
+      flex-wrap: nowrap;
+    }
   }
 
   &_grid {
@@ -90,7 +94,7 @@ $width: responsive-width(pc);
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
       border-top: 8px solid $acnt_clr;
-      content: "";
+      content: '';
       position: absolute;
       right: 12px;
       top: 20px;
@@ -134,7 +138,7 @@ $width: responsive-width(pc);
   &_error {
     display: block;
     white-space: pre;
-    color: $sub_clr;
+    color: $remove_clr;
     font-size: auto-clamp(11px, 12px);
     margin-top: 8px;
   }
@@ -226,7 +230,7 @@ $width: responsive-width(pc);
     }
 
     &:after {
-      content: "";
+      content: '';
       display: block;
       width: 100%;
       height: 1px;
@@ -257,7 +261,7 @@ $width: responsive-width(pc);
         cursor: pointer;
 
         &:before {
-          content: "";
+          content: '';
           display: block;
           width: 19px;
           height: 19px;
@@ -402,6 +406,55 @@ $width: responsive-width(pc);
       &_linkedIn {
         color: $linkedIn_clr;
       }
+    }
+  }
+}
+
+.autocomplete {
+  position: relative;
+
+  &_menu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    z-index: 99;
+
+    width: 100%;
+    max-height: 240px;
+    overflow-y: scroll;
+    background: $base_clr;
+    border: 1px solid $bdr_clr;
+    padding: 8px 0;
+    border-radius: 8px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    @media (max-width: responsive-width(sp)) {
+      top: 40px;
+      padding: 4px 0;
+    }
+  }
+
+  &_item {
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: all 0.4s;
+
+    &:hover {
+      background: $bg_clr;
+    }
+
+    @media (max-width: responsive-width(sp)) {
+      padding: 4px 12px;
+    }
+  }
+
+  &_not_found {
+    color: $sub_clr;
+    padding: 8px 16px;
+
+    @media (max-width: responsive-width(sp)) {
+      padding: 4px 12px;
     }
   }
 }

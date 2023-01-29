@@ -1,14 +1,15 @@
-import { Matter } from "types/post";
-import { NestedPartial } from "types/utils";
+import { Matter } from 'types/post';
+import { NestedPartial } from 'types/utils';
 
 export type Data = {
-  display: "public" | "private";
+  display: 'public' | 'private';
   status: string;
+  industry: string;
   position: string;
   body: string;
   period: { year: number; month: number };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -24,7 +25,7 @@ export type Data = {
   requires: { require: string }[];
   prefers: { prefer: string }[];
   adjustment: string;
-  interviews: { type: string; count: string };
+  interviews: { type: string; count: string; setting: string };
   times: { start: string; end: string };
   remote: string;
   distribution: string;
@@ -32,12 +33,64 @@ export type Data = {
   approval: string;
 };
 
+const positions = [
+  'フロントエンドエンジニア',
+  'バックエンドエンジニア',
+  'サーバーエンジニア',
+  'ブロックチェーンエンジニア',
+  'インフラエンジニア',
+  'データベースエンジニア',
+  'クラウドエンジニア',
+  'ネットワークエンジニア',
+  'セキュリティエンジニア',
+  'リードエンジニア',
+  'システムエンジニア',
+  '社内SE',
+  'アプリエンジニア',
+  'iOSエンジニア',
+  'Androidエンジニア',
+  '機械学習エンジニア',
+  'AIエンジニア(人工知能)',
+  '汎用機エンジニア',
+  'マークアップエンジニア',
+  'テストエンジニア',
+  'テスター・デバッガー・QA',
+  '組み込み・制御',
+  'データサイエンティスト',
+  'PdM',
+  'PM/PL',
+  'PMO',
+  'VPoE',
+  'CRE',
+  'SRE',
+  'エンジニアリングマネージャー',
+  'SAP',
+  'プロデューサー',
+  'コンサルタント',
+  'マーケター',
+  'Webディレクター',
+  'Webプランナー',
+  'Webデザイナー',
+  'UI・UXデザイナー',
+  'グラフィックデザイナー',
+  '3Dデザイナー',
+  '2Dデザイナー',
+  'キャラクターデザイナー',
+  'イラストレーター',
+  'アートディレクター',
+  'ゲームプランナー',
+  'ゲームデザイナー',
+  'サポート',
+  'その他',
+];
+
 export const defaultValues = (post: Matter): NestedPartial<Data> => {
   return {
     display: post?.display,
     title: post?.title,
     body: post?.body,
-    position: post?.position,
+    industry: post?.industry,
+    position: positions.includes(post.position) ? post?.position : undefined,
     location: post?.location,
     period: {
       year: post?.period?.year,
@@ -54,29 +107,29 @@ export const defaultValues = (post: Matter): NestedPartial<Data> => {
       ? post.handles.map((value) => ({
           handle: value,
         }))
-      : [{ handle: "" }],
+      : [{ handle: '' }],
     tools: post.tools?.length
       ? post.tools.map((value) => ({
           tool: value,
         }))
-      : [{ tool: "" }],
+      : [{ tool: '' }],
     requires: post.requires?.length
       ? post.requires.map((value) => ({
           require: value,
         }))
-      : [{ require: "" }],
+      : [{ require: '' }],
     prefers: post.prefers?.length
       ? post.prefers.map((value) => ({
           prefer: value,
         }))
-      : [{ prefer: "" }],
+      : [{ prefer: '' }],
     adjustment: post?.adjustment,
     interviews: post?.interviews,
     times: post?.times,
     remote: post?.remote,
     distribution: post?.distribution,
     span: post?.span,
-    approval: post?.approval ? post?.approval : "不明",
+    approval: post?.approval ? post?.approval : '不明',
     note: post?.note,
     status: post?.status,
     memo: post?.memo,
@@ -84,11 +137,12 @@ export const defaultValues = (post: Matter): NestedPartial<Data> => {
 };
 
 export const edit = (
-  data: Data
-): Omit<Matter, "objectID" | "uid" | "createAt"> => {
+  data: Data,
+): Omit<Matter, 'objectID' | 'uid' | 'createAt'> => {
   return {
     display: data.display,
     title: data.title,
+    industry: data.industry,
     position: data.position,
     body: data.body,
     location: data.location,

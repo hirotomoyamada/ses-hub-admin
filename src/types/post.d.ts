@@ -9,6 +9,7 @@ export interface Company {
   name: string;
   person: string | null;
   body: string | null;
+  invoice: { type: string; no: string | undefined } | null;
   position: string | null;
   postal: string | null;
   address: string | null;
@@ -83,7 +84,7 @@ export interface Person {
     month: number | null;
   };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -117,6 +118,7 @@ export interface Person {
 export interface Matter {
   objectID: string;
   title: string;
+  industry: string;
   position: string;
   body: string;
   location: {
@@ -128,7 +130,7 @@ export interface Matter {
     month: number;
   };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -146,6 +148,7 @@ export interface Matter {
   interviews: {
     type: string;
     count: string;
+    setting: string;
   };
   remote: string;
   distribution: string;
@@ -155,7 +158,7 @@ export interface Matter {
   createAt: number;
   updateAt?: number;
   status: string;
-  display: "public" | "private";
+  display: 'public' | 'private';
   memo: string;
   approval?: string;
   user?: {
@@ -192,7 +195,7 @@ export interface Resource {
     month: number;
   };
   costs: {
-    display: "public" | "private";
+    display: 'public' | 'private';
     type: string;
     min: number | null;
     max: number | null;
@@ -206,7 +209,7 @@ export interface Resource {
   uid: string;
   createAt: number;
   updateAt?: number;
-  display: "public" | "private";
+  display: 'public' | 'private';
   status: string;
   memo: {
     name: string;

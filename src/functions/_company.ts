@@ -1,5 +1,5 @@
-import { Company } from "types/post";
-import { NestedPartial } from "types/utils";
+import { Company } from 'types/post';
+import { NestedPartial } from 'types/utils';
 
 export type Data = {
   type: string;
@@ -9,6 +9,7 @@ export type Data = {
   icon: string;
   cover: string;
   body: string | null;
+  invoice: { type: string; no: string | undefined };
   more: string[];
   region: string[];
   postal: string | null;
@@ -27,11 +28,12 @@ export const defaultValues = (user: Company): NestedPartial<Data> => {
   return {
     type: user?.type,
     status: user?.status,
-    icon: user?.icon ? user.icon : "icon0",
-    cover: user?.cover ? user.cover : "cover0",
+    icon: user?.icon ? user.icon : 'icon0',
+    cover: user?.cover ? user.cover : 'cover0',
     name: user?.name,
     person: user?.person,
     body: user?.body,
+    invoice: user?.invoice ?? undefined,
     tel: user?.tel,
     postal: user?.postal,
     address: user?.address,
@@ -43,7 +45,7 @@ export const defaultValues = (user: Company): NestedPartial<Data> => {
 };
 
 export const profile = (
-  data: Data
+  data: Data,
 ): {
   type: string;
   status: string;
@@ -52,6 +54,7 @@ export const profile = (
   icon: string;
   cover: string;
   body: string | null;
+  invoice: { type: string; no: string | undefined } | null;
   more: string[];
   region: string[];
   postal: string | null;
@@ -72,6 +75,7 @@ export const profile = (
     cover: data.cover,
     name: data.name,
     person: data.person,
+    invoice: data.invoice,
     body: data.body,
     tel: data.tel,
     postal: data.postal,

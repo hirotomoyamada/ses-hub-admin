@@ -127,14 +127,12 @@ export const Post: React.FC<PropType> = ({ index }) => {
         header={
           <Header handleClose={handleClose} handleDelete={handleDelete} />
         }
-        side
-      >
+        side>
         {'objectID' in post ? (
           <form
             id="post"
             className={styles.post}
-            onSubmit={methods.handleSubmit(handleEdit)}
-          >
+            onSubmit={methods.handleSubmit(handleEdit)}>
             {(() => {
               switch (index) {
                 case 'matters':
@@ -142,7 +140,13 @@ export const Post: React.FC<PropType> = ({ index }) => {
                     <>
                       <Item.Status />
                       <Item.Title />
-                      <Item.Position />
+
+                      <div
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}>
+                        <Item.Industry />
+                        <Item.Position />
+                      </div>
+
                       <Item.Body index={index} />
 
                       <div className={styles.post_grid}>
@@ -152,8 +156,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
                       </div>
 
                       <div
-                        className={`${styles.post_grid} ${styles.post_grid_mid}`}
-                      >
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}>
                         <Item.Period index={index} />
                         <Item.Times />
                       </div>
@@ -164,6 +167,10 @@ export const Post: React.FC<PropType> = ({ index }) => {
                         <div>
                           <Item.Handles index={index} />
                           <Item.Tools index={index} />
+
+                          <span className={styles.post_desc}>
+                            &nbsp;※&nbsp;言語・フレームワーク・ツールが該当しない場合は、下記&nbsp;備考&nbsp;欄にご記載ください
+                          </span>
                         </div>
                       </div>
 
@@ -174,7 +181,7 @@ export const Post: React.FC<PropType> = ({ index }) => {
                       </div>
 
                       <div className={styles.post_col}>
-                        <span className={styles.post_tag}>尚可</span>
+                        <span className={styles.post_tag}>歓迎</span>
                         <Item.Perfers />
                       </div>
 
@@ -202,11 +209,9 @@ export const Post: React.FC<PropType> = ({ index }) => {
                       <Item.Position />
 
                       <div
-                        className={`${styles.post_grid} ${styles.post_grid_mid}`}
-                      >
+                        className={`${styles.post_grid} ${styles.post_grid_mid}`}>
                         <div
-                          className={`${styles.post_grid} ${styles.post_grid_half}`}
-                        >
+                          className={`${styles.post_grid} ${styles.post_grid_half}`}>
                           <Item.Sex />
                           <Item.Age />
                         </div>
@@ -231,6 +236,10 @@ export const Post: React.FC<PropType> = ({ index }) => {
                         <div>
                           <Item.Handles index={index} />
                           <Item.Tools index={index} />
+
+                          <span className={styles.post_desc}>
+                            &nbsp;※&nbsp;言語・フレームワーク・ツールが該当しない場合は、下記&nbsp;備考&nbsp;欄にご記載ください
+                          </span>
                         </div>
                       </div>
 

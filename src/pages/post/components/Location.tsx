@@ -1,8 +1,8 @@
-import styles from "./Item.module.scss";
-import root from "../Post.module.scss";
+import styles from './Item.module.scss';
+import root from '../Post.module.scss';
 
-import { useFormContext } from "react-hook-form";
-import { Data } from "functions/_matter";
+import { useFormContext } from 'react-hook-form';
+import { Data } from 'functions/_matter';
 
 export const AreaLocation: React.FC = () => {
   const {
@@ -18,13 +18,12 @@ export const AreaLocation: React.FC = () => {
           className={`${styles.item_input} ${
             errors.location?.area && styles.item_input_error
           }`}
-          {...register("location.area", {
+          {...register('location.area', {
             required: {
               value: true,
-              message: "場所を選択してください",
+              message: '場所を選択してください',
             },
-          })}
-        >
+          })}>
           <option value="渋谷区">渋谷区</option>
           <option value="新宿区">新宿区</option>
           <option value="千代田区">千代田区</option>
@@ -48,6 +47,7 @@ export const AreaLocation: React.FC = () => {
           <option value="練馬区">練馬区</option>
           <option value="葛飾区">葛飾区</option>
           <option value="江戸川区">江戸川区</option>
+          <option value="23区内">23区内</option>
           <option value="23区外">23区外</option>
           <option value="神奈川県">神奈川県</option>
           <option value="千葉県">千葉県</option>
@@ -89,14 +89,14 @@ export const PlaceLocation: React.FC = () => {
           className={`${styles.item_input} ${
             errors.location?.place && styles.item_input_error
           }`}
-          {...register("location.place", {
+          {...register('location.place', {
             pattern: {
               value: /^\S+/,
-              message: "先頭にスペースは使えません",
+              message: '先頭にスペースは使えません',
             },
             maxLength: {
               value: 16,
-              message: "16文字以内で入力してください",
+              message: '16文字以内で入力してください',
             },
           })}
         />
