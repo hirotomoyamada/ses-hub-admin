@@ -41,6 +41,7 @@ const company = (state: State, data: Company): void => {
   (state.user as Company).status = data.status;
   (state.user as Company).payment = data.payment;
   (state.user as Company).agree = data.agree;
+  (state.user as Company).remind = data.remind;
   (state.user as Company).provider = data.provider;
   (state.user as Company).createAt = data.createAt;
   (state.user as Company).updateAt = data.updateAt;
