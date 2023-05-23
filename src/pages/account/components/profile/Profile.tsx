@@ -1,12 +1,12 @@
-import styles from "./Profile.module.scss";
+import styles from './Profile.module.scss';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
-import { Accounts } from "features/user/initialState";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { Accounts } from 'features/user/initialState';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface PropType {
   account: Accounts[number];
@@ -17,45 +17,43 @@ export const Profile: React.FC<PropType> = ({ account }) => {
     account.uid ? (
       <div
         className={`
-        ${styles.profile} 
-        ${account?.type === "parent" && styles.profile_parent} 
+        ${styles.profile}
+        ${account?.type === 'parent' && styles.profile_parent}
         ${
-          (account?.type === "child" || account?.payment?.price) &&
+          (account?.type === 'child' || account?.payment?.price) &&
           styles.profile_error
         }
-      `}
-      >
-        {(account?.type === "child" || account?.payment?.price) && (
+      `}>
+        {(account?.type === 'child' || account?.payment?.price) && (
           <div className={styles.profile_wrap}>
             <FontAwesomeIcon
               icon={faExclamationCircle as IconProp}
               className={`${styles.profile_icon} ${
-                (account?.type === "child" || account?.payment?.price) &&
+                (account?.type === 'child' || account?.payment?.price) &&
                 styles.profile_icon_error
               }`}
             />
             <span
               className={
-                account?.type === "child" || account?.payment?.price
+                account?.type === 'child' || account?.payment?.price
                   ? styles.profile_error_desc
                   : undefined
-              }
-            >
-              {account?.type !== "child"
-                ? "このアカウントは、現在プランを契約中のためプランやオプションの編集できません。"
-                : "このアカウントは、子アカウントのため編集できません"}
+              }>
+              {account?.type !== 'child'
+                ? 'このアカウントは、現在プランを契約中のためプランやオプションの編集できません。'
+                : 'このアカウントは、子アカウントのため編集できません'}
             </span>
           </div>
         )}
 
-        {account?.type === "parent" && !account?.payment?.price && (
+        {account?.type === 'parent' && !account?.payment?.price && (
           <div className={styles.profile_wrap}>
             <FontAwesomeIcon
               icon={faExclamationCircle as IconProp}
               className={`${styles.profile_icon}`}
             />
 
-            <span>このアカウントは、法人アカウントです</span>
+            <span>このアカウントは、グループアカウントです</span>
 
             {account?.payment?.children?.length ? (
               <span>
@@ -73,7 +71,7 @@ export const Profile: React.FC<PropType> = ({ account }) => {
           </div>
         )}
 
-        {account?.type === "parent" && !account?.payment?.price && (
+        {account?.type === 'parent' && !account?.payment?.price && (
           <div className={styles.profile_wrap}>
             <FontAwesomeIcon
               icon={faExclamationCircle as IconProp}
@@ -81,8 +79,8 @@ export const Profile: React.FC<PropType> = ({ account }) => {
             />
             <span className={styles.profile_error_desc}>
               {account?.payment?.children?.length
-                ? "このアカウントを編集すると、保有するグループアカウントも反映されます"
-                : "このアカウントは、グループアカウントを保有していません"}
+                ? 'このアカウントを編集すると、保有するグループアカウントも反映されます'
+                : 'このアカウントは、グループアカウントを保有していません'}
             </span>
           </div>
         )}
@@ -92,18 +90,17 @@ export const Profile: React.FC<PropType> = ({ account }) => {
             <FontAwesomeIcon
               icon={faUser as IconProp}
               className={`${styles.profile_icon} ${
-                account?.type === "child" || account?.payment?.price
+                account?.type === 'child' || account?.payment?.price
                   ? styles.profile_icon_error
                   : undefined
               }`}
             />
             <span
               className={
-                account?.type === "child" || account?.payment?.price
+                account?.type === 'child' || account?.payment?.price
                   ? styles.profile_error_desc
                   : undefined
-              }
-            >
+              }>
               {account?.name}&nbsp;{account?.person}
             </span>
           </div>
@@ -112,17 +109,16 @@ export const Profile: React.FC<PropType> = ({ account }) => {
             <FontAwesomeIcon
               icon={faEnvelope as IconProp}
               className={`${styles.profile_icon} ${
-                (account?.type === "child" || account?.payment?.price) &&
+                (account?.type === 'child' || account?.payment?.price) &&
                 styles.profile_icon_error
               }`}
             />
             <span
               className={
-                account?.type === "child" || account?.payment?.price
+                account?.type === 'child' || account?.payment?.price
                   ? styles.profile_error_desc
                   : undefined
-              }
-            >
+              }>
               {account?.email}
             </span>
           </div>
@@ -132,17 +128,16 @@ export const Profile: React.FC<PropType> = ({ account }) => {
               <FontAwesomeIcon
                 icon={faPhoneAlt as IconProp}
                 className={`${styles.profile_icon} ${
-                  (account?.type === "child" || account?.payment?.price) &&
+                  (account?.type === 'child' || account?.payment?.price) &&
                   styles.profile_icon_error
                 }`}
               />
               <span
                 className={
-                  account?.type === "child" || account?.payment?.price
+                  account?.type === 'child' || account?.payment?.price
                     ? styles.profile_error_desc
                     : undefined
-                }
-              >
+                }>
                 {account?.tel}
               </span>
             </div>

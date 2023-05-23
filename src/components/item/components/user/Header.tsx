@@ -1,8 +1,8 @@
-import { Company, Person } from "types/post";
-import styles from "./User.module.scss";
+import { Company, Person } from 'types/post';
+import styles from './User.module.scss';
 
 interface PropType {
-  index: "companys" | "persons";
+  index: 'companys' | 'persons';
   post: Company | Person;
   min?: boolean;
 }
@@ -16,7 +16,7 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
         {(post as Company)?.person ? (
           <span>{(post as Company).person}</span>
         ) : (
-          (post as Company)?.type === "child" && (
+          (post as Company)?.type === 'child' && (
             <span className={styles.item_none}>未設定</span>
           )
         )}
@@ -30,35 +30,34 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
             className={`${styles.item_category} ${
               styles.item_category_position
             } ${
-              (post as Company)?.type === "parent" &&
+              (post as Company)?.type === 'parent' &&
               styles.item_category_parent
             } ${
-              (post as Company)?.type === "child" && styles.item_category_child
+              (post as Company)?.type === 'child' && styles.item_category_child
             } ${
-              index === "companys" &&
+              index === 'companys' &&
               !(post as Company)?.payment?.price &&
-              (post as Company)?.payment?.status !== "canceled" &&
+              (post as Company)?.payment?.status !== 'canceled' &&
               // ver 2.X.X
               // (post?.payment?.status !== "canceled" ||
               //   post?.payment?.option?.freelanceDirect) &&
               styles.item_category_extra
-            }`}
-          >
+            }`}>
             <span>
-              {index === "companys" &&
+              {index === 'companys' &&
               !(post as Company)?.payment?.price &&
-              (post as Company)?.payment?.status !== "canceled"
+              (post as Company)?.payment?.status !== 'canceled'
                 ? // ver 2.X.X
                   // (post?.payment?.status !== "canceled" ||
                   // post?.payment?.option?.freelanceDirect)
-                  "エキストラ"
-                : (post as Company)?.type !== "parent"
-                ? (post as Company)?.type === "child"
-                  ? "法人\n(\n子アカウント\n)"
+                  'エキストラ'
+                : (post as Company)?.type !== 'parent'
+                ? (post as Company)?.type === 'child'
+                  ? 'グループ\n(\nサブ\n)'
                   : post?.position
                   ? post?.position
-                  : "未設定"
-                : "法人\n(\n親アカウント\n)"}
+                  : '未設定'
+                : 'グループ\n(\nメイン\n)'}
             </span>
           </div>
         )}
@@ -66,18 +65,17 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
         {!min && (post as Company)?.payment && (
           <div
             className={`${styles.item_category} ${
-              (post as Company)?.payment?.status === "active"
+              (post as Company)?.payment?.status === 'active'
                 ? styles.item_category_active
-                : (post as Company)?.payment?.status === "trialing" &&
+                : (post as Company)?.payment?.status === 'trialing' &&
                   styles.item_category_trialing
-            }`}
-          >
+            }`}>
             <span>
-              {(post as Company)?.payment?.status === "active"
-                ? "レギュラー"
-                : (post as Company)?.payment?.status === "trialing"
-                ? "フリートライアル"
-                : "リミテッド"}
+              {(post as Company)?.payment?.status === 'active'
+                ? 'レギュラー'
+                : (post as Company)?.payment?.status === 'trialing'
+                ? 'フリートライアル'
+                : 'リミテッド'}
             </span>
           </div>
         )}
@@ -93,8 +91,7 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
 
         {!min && (post as Company)?.payment?.option?.analytics && (
           <div
-            className={`${styles.item_category} ${styles.item_category_parent}`}
-          >
+            className={`${styles.item_category} ${styles.item_category_parent}`}>
             <span>アナリティクス</span>
           </div>
         )}
@@ -102,14 +99,13 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
         {!min && (post as Person)?.state && (
           <div
             className={`${styles.item_category} ${styles.item_category_state} ${
-              ((post as Person)?.state === "確定" ||
-                (post as Person)?.state === "商談中" ||
-                (post as Person)?.state === "情報収集中") &&
+              ((post as Person)?.state === '確定' ||
+                (post as Person)?.state === '商談中' ||
+                (post as Person)?.state === '情報収集中') &&
               styles.item_category_disable
             } ${
-              (post as Person)?.state === "至急" && styles.item_category_hurry
-            }`}
-          >
+              (post as Person)?.state === '至急' && styles.item_category_hurry
+            }`}>
             <span>{(post as Person)?.state}</span>
           </div>
         )}
@@ -118,8 +114,7 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
           (post as Person).handles.slice(0, 3).map((handle, index) => (
             <div
               className={`${styles.item_category} ${styles.item_category_handle}`}
-              key={index}
-            >
+              key={index}>
               <span>{handle}</span>
             </div>
           ))}

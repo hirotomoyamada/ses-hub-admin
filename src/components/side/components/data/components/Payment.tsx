@@ -51,8 +51,8 @@ export const Payment: React.FC<PropType> = ({ user }) => {
           {user?.type === 'individual'
             ? '個人'
             : user?.type === 'parent'
-            ? '法人\n(\n親アカウント\n)'
-            : '法人\n(\n子アカウント\n)'}
+            ? 'グループ\n(\nメイン\n)'
+            : 'グループ\n(\nサブ\n)'}
         </span>
       </div>
 
