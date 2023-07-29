@@ -37,20 +37,16 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
             } ${
               index === 'companys' &&
               !(post as Company)?.payment?.price &&
-              (post as Company)?.payment?.status !== 'canceled' &&
-              // ver 2.X.X
-              // (post?.payment?.status !== "canceled" ||
-              //   post?.payment?.option?.freelanceDirect) &&
+              ((post as Company)?.payment?.status !== 'canceled' ||
+                (post as Company)?.payment?.option?.freelanceDirect) &&
               styles.item_category_extra
             }`}>
             <span>
               {index === 'companys' &&
               !(post as Company)?.payment?.price &&
-              (post as Company)?.payment?.status !== 'canceled'
-                ? // ver 2.X.X
-                  // (post?.payment?.status !== "canceled" ||
-                  // post?.payment?.option?.freelanceDirect)
-                  'エキストラ'
+              ((post as Company)?.payment?.status !== 'canceled' ||
+                (post as Company)?.payment?.option?.freelanceDirect)
+                ? 'エキストラ'
                 : (post as Company)?.type !== 'parent'
                 ? (post as Company)?.type === 'child'
                   ? 'グループ\n(\nサブ\n)'
