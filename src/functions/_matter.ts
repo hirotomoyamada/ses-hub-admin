@@ -59,7 +59,9 @@ const positions = [
   'データサイエンティスト',
   'PdM',
   'PM/PL',
+  'PM',
   'PMO',
+  'PMOサポート',
   'VPoE',
   'CRE',
   'SRE',
@@ -71,6 +73,7 @@ const positions = [
   'Webディレクター',
   'Webプランナー',
   'Webデザイナー',
+  'Webコーダー',
   'UI・UXデザイナー',
   'グラフィックデザイナー',
   '3Dデザイナー',
@@ -81,6 +84,11 @@ const positions = [
   'ゲームプランナー',
   'ゲームデザイナー',
   'サポート',
+  'キッティング',
+  'ヘルプデスク',
+  'IT事務',
+  '若手枠',
+  '未経験可',
   'その他',
 ];
 
@@ -136,9 +144,7 @@ export const defaultValues = (post: Matter): NestedPartial<Data> => {
   };
 };
 
-export const edit = (
-  data: Data,
-): Omit<Matter, 'objectID' | 'uid' | 'createAt'> => {
+export const edit = (data: Data): Omit<Matter, 'objectID' | 'uid' | 'createAt'> => {
   return {
     display: data.display,
     title: data.title,
@@ -159,16 +165,10 @@ export const edit = (
     },
     adjustment: data.adjustment,
     times: data.times,
-    handles: data.handles
-      .filter((array) => array.handle)
-      .map((array) => array.handle),
+    handles: data.handles.filter((array) => array.handle).map((array) => array.handle),
     tools: data.tools.filter((array) => array.tool).map((array) => array.tool),
-    requires: data.requires
-      .filter((array) => array.require)
-      .map((array) => array.require),
-    prefers: data.prefers
-      .filter((array) => array.prefer)
-      .map((array) => array.prefer),
+    requires: data.requires.filter((array) => array.require).map((array) => array.require),
+    prefers: data.prefers.filter((array) => array.prefer).map((array) => array.prefer),
     interviews: data.interviews,
     remote: data.remote,
     distribution: data.distribution,

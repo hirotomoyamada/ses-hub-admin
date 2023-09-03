@@ -67,6 +67,29 @@ const options = [
   { label: 'Microsoft Teams', value: 'Microsoft Teams' },
   { label: 'Excel', value: 'Excel' },
   { label: 'PowerPoint', value: 'PowerPoint' },
+  { label: 'MA', value: 'MA' },
+  { label: 'CI/CD', value: 'CI/CD' },
+  { label: 'X CODE', value: 'X CODE' },
+  { label: 'Terraform', value: 'Terraform' },
+  { label: 'WordPress', value: 'WordPress' },
+  { label: 'VMware', value: 'VMware' },
+  { label: 'vSphere', value: 'vSphere' },
+  { label: 'Apache', value: 'Apache' },
+  { label: 'Tomcat', value: 'Tomcat' },
+  { label: 'Postfix', value: 'Postfix' },
+  { label: 'ESXi', value: 'ESXi' },
+  { label: 'JP1', value: 'JP1' },
+  { label: 'ServiceNow', value: 'ServiceNow' },
+  { label: 'LANSCOPE', value: 'LANSCOPE' },
+  { label: 'Fortigate', value: 'Fortigate' },
+  { label: 'Paloalto', value: 'Paloalto' },
+  { label: 'Juniper', value: 'Juniper' },
+  { label: 'PowerBI', value: 'PowerBI' },
+  { label: 'PowerCenter', value: 'PowerCenter' },
+  { label: 'SKYSEA', value: 'SKYSEA' },
+  { label: 'TrendMicro', value: 'TrendMicro' },
+  { label: 'Android Studio', value: 'Android Studio' },
+  { label: 'Eclips', value: 'Eclips' },
 ];
 
 export const Tools: React.FC<PropType> = ({ index }) => {
@@ -99,7 +122,7 @@ export const Tools: React.FC<PropType> = ({ index }) => {
                   value={value}
                   onChange={onChange}
                   onBlur={onBlur}
-                  placeholder="ツール"
+                  placeholder='ツール'
                   error={!!errors.tools?.[i]?.tool}
                   options={options}
                 />
@@ -107,40 +130,34 @@ export const Tools: React.FC<PropType> = ({ index }) => {
                 <div className={styles.item_btn}>
                   {i !== 0 && (
                     <button
-                      type="button"
+                      type='button'
                       className={styles.item_btn_remove}
                       onClick={() => toolsRemove(i)}>
                       <RemoveIcon className={styles.item_btn_icon} />
                     </button>
                   )}
 
-                  {index === 'matters' &&
-                    i === toolsFields.length - 1 &&
-                    i < 4 && (
-                      <button
-                        type="button"
-                        className={styles.item_btn_add}
-                        onClick={() => toolsAppend({ tool: '' })}>
-                        <AddIcon className={styles.item_btn_icon} />
-                      </button>
-                    )}
+                  {index === 'matters' && i === toolsFields.length - 1 && i < 4 && (
+                    <button
+                      type='button'
+                      className={styles.item_btn_add}
+                      onClick={() => toolsAppend({ tool: '' })}>
+                      <AddIcon className={styles.item_btn_icon} />
+                    </button>
+                  )}
 
-                  {index === 'resources' &&
-                    i === toolsFields.length - 1 &&
-                    i < 9 && (
-                      <button
-                        type="button"
-                        className={styles.item_btn_add}
-                        onClick={() => toolsAppend({ tool: '' })}>
-                        <AddIcon className={styles.item_btn_icon} />
-                      </button>
-                    )}
+                  {index === 'resources' && i === toolsFields.length - 1 && i < 9 && (
+                    <button
+                      type='button'
+                      className={styles.item_btn_add}
+                      onClick={() => toolsAppend({ tool: '' })}>
+                      <AddIcon className={styles.item_btn_icon} />
+                    </button>
+                  )}
                 </div>
 
                 {errors?.tools?.[i]?.tool?.message && (
-                  <span className={styles.item_error}>
-                    {errors.tools[i].tool?.message}
-                  </span>
+                  <span className={styles.item_error}>{errors.tools[i].tool?.message}</span>
                 )}
               </div>
             )}

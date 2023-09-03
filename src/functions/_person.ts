@@ -58,7 +58,9 @@ const positions = [
   'データサイエンティスト',
   'PdM',
   'PM/PL',
+  'PM',
   'PMO',
+  'PMOサポート',
   'VPoE',
   'CRE',
   'SRE',
@@ -70,6 +72,7 @@ const positions = [
   'Webディレクター',
   'Webプランナー',
   'Webデザイナー',
+  'Webコーダー',
   'UI・UXデザイナー',
   'グラフィックデザイナー',
   '3Dデザイナー',
@@ -80,6 +83,11 @@ const positions = [
   'ゲームプランナー',
   'ゲームデザイナー',
   'サポート',
+  'キッティング',
+  'ヘルプデスク',
+  'IT事務',
+  '若手枠',
+  '未経験可',
   'その他',
 ];
 
@@ -176,13 +184,9 @@ export const profile = (
     sex: data.sex,
     position: data.position,
     location: data.location,
-    handles: data.handles
-      .filter((array) => array.handle)
-      .map((array) => array.handle),
+    handles: data.handles.filter((array) => array.handle).map((array) => array.handle),
     tools: data.tools.filter((array) => array.tool).map((array) => array.tool),
-    skills: data.skills
-      .filter((array) => array.skill)
-      .map((array) => array.skill),
+    skills: data.skills.filter((array) => array.skill).map((array) => array.skill),
     urls: data.urls.filter((array) => array.url).map((array) => array.url),
     costs: {
       min: data.costs.min ? Number(data.costs.min) : null,
