@@ -1,5 +1,5 @@
-import { Accounts } from "features/user/initialState";
-import styles from "./Tag.module.scss";
+import { Accounts } from 'features/user/initialState';
+import styles from './Tag.module.scss';
 
 interface PropType {
   accounts: Accounts;
@@ -14,7 +14,6 @@ export const Tag: React.FC<PropType> = ({ accounts }) => {
         <>
           <li>プラン</li>
           <li>Freelance Direct</li>
-          <li>アナリティクス</li>
         </>
       ) : (
         <></>

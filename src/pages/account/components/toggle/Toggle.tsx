@@ -1,12 +1,12 @@
-import root from "../../Account.module.scss";
+import root from '../../Account.module.scss';
 
-import { useEffect } from "react";
-import { useFormContext } from "react-hook-form";
+import { useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
 
-import { Individual } from "./components/Individual";
-import { Parent } from "./components/Parent";
-import { Option } from "./components/Option";
-import { Accounts } from "features/user/initialState";
+import { Individual } from './components/Individual';
+import { Parent } from './components/Parent';
+import { Option } from './components/Option';
+import { Accounts } from 'features/user/initialState';
 
 interface PropType {
   i: number;
@@ -23,58 +23,40 @@ export const Toggle: React.FC<PropType> = ({ i, account }) => {
 
     setValue(
       `account[${i}].status`,
-      account?.type !== "child"
-        ? account?.type === "parent" &&
-          account?.payment?.account &&
-          account.payment.account > 0
+      account?.type !== 'child'
+        ? account?.type === 'parent' && account?.payment?.account && account.payment.account > 0
           ? String(account?.payment?.account)
           : account?.payment?.status
-        : "canceled",
+        : 'canceled',
       {
         shouldValidate: true,
         shouldDirty: true,
-      }
+      },
     );
 
     setValue(
       `account[${i}].freelanceDirect`,
-      typeof account?.payment?.option?.freelanceDirect === "boolean"
+      typeof account?.payment?.option?.freelanceDirect === 'boolean'
         ? account.payment.option.freelanceDirect
-          ? "enable"
-          : "disable"
-        : "none",
+          ? 'enable'
+          : 'disable'
+        : 'none',
       {
         shouldValidate: true,
         shouldDirty: true,
-      }
-    );
-
-    setValue(
-      `account[${i}].analytics`,
-      typeof account?.payment?.option?.analytics === "boolean" &&
-        account?.type === "individual"
-        ? account.payment.option.analytics
-          ? "enable"
-          : "disable"
-        : "none",
-      {
-        shouldValidate: true,
-        shouldDirty: true,
-      }
+      },
     );
   }, [account]);
 
   return (
     <div className={root.account_wrap}>
-      {!account?.uid || account?.type === "individual" ? (
+      {!account?.uid || account?.type === 'individual' ? (
         <Individual i={i} account={account} />
       ) : (
         <Parent i={i} account={account} />
       )}
 
-      <Option i={i} type="freelanceDirect" account={account} />
-
-      <Option i={i} type="analytics" account={account} />
+      <Option i={i} type='freelanceDirect' account={account} />
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styles from "../Toggle.module.scss";
-import { useFormContext } from "react-hook-form";
-import { Accounts } from "features/user/initialState";
+import React, { useState } from 'react';
+import styles from '../Toggle.module.scss';
+import { useFormContext } from 'react-hook-form';
+import { Accounts } from 'features/user/initialState';
 
 interface PropType {
   i: number;
-  type: "freelanceDirect" | "analytics";
+  type: 'freelanceDirect';
   account: Accounts[number];
 }
 
@@ -19,106 +19,86 @@ export const Option: React.FC<PropType> = ({ i, type, account }) => {
   return account?.uid ? (
     <div
       className={`
-        ${styles.toggle} 
+        ${styles.toggle}
         ${
-          ((type === "analytics" && account?.type !== "individual") ||
-            !account?.uid ||
-            account?.payment?.price ||
-            account?.type === "child") &&
+          (!account?.uid || account?.payment?.price || account?.type === 'child') &&
           styles.toggle_disable
         }
-      `}
-    >
-      {open && (
-        <div
-          className={styles.toggle_overlay}
-          onClick={() => setOpen(false)}
-        ></div>
-      )}
+      `}>
+      {open && <div className={styles.toggle_overlay} onClick={() => setOpen(false)}></div>}
 
       <button
-        type="button"
+        type='button'
         onClick={() => setOpen(true)}
         className={`
           ${styles.toggle_btn}
-          ${value === "enable" && styles.toggle_btn_enable}
-          ${value === "disable" && styles.toggle_btn_disable}
-        `}
-      >
+          ${value === 'enable' && styles.toggle_btn_enable}
+          ${value === 'disable' && styles.toggle_btn_disable}
+        `}>
         {(() => {
           switch (value) {
-            case "enable":
-              return "有効";
+            case 'enable':
+              return '有効';
 
-            case "disable":
-              return "無効";
+            case 'disable':
+              return '無効';
 
             default:
-              return "選択しない";
+              return '選択しない';
           }
         })()}
       </button>
 
       <div
         className={`
-          ${styles.modal} 
-          ${styles.modal_option} 
+          ${styles.modal}
+          ${styles.modal_option}
           ${!open && styles.modal_none}
-        `}
-      >
+        `}>
         <input
-          type="radio"
+          type='radio'
           id={`enable${i}${type}`}
-          value="enable"
+          value='enable'
           {...register(`account[${i}].${type}`)}
         />
         <label
           className={`
-            ${styles.modal_btn} 
-            ${styles.modal_enable} 
-            ${
-              (account?.payment?.price || account?.type === "child") &&
-              styles.modal_none
-            }
+            ${styles.modal_btn}
+            ${styles.modal_enable}
+            ${(account?.payment?.price || account?.type === 'child') && styles.modal_none}
           `}
-          htmlFor={`enable${i}${type}`}
-        >
+          htmlFor={`enable${i}${type}`}>
           有効
         </label>
 
         <input
-          type="radio"
+          type='radio'
           id={`disable${i}${type}`}
-          value="disable"
+          value='disable'
           {...register(`account[${i}].${type}`)}
         />
         <label
           className={`
-            ${styles.modal_btn} 
-            ${styles.modal_disable} 
-            ${
-              (account?.payment?.price || account?.type === "child") &&
-              styles.modal_none
-            }
+            ${styles.modal_btn}
+            ${styles.modal_disable}
+            ${(account?.payment?.price || account?.type === 'child') && styles.modal_none}
           `}
-          htmlFor={`disable${i}${type}`}
-        >
+          htmlFor={`disable${i}${type}`}>
           無効
         </label>
 
         <input
-          type="radio"
+          type='radio'
           id={`none${i}${type}`}
-          value="none"
+          value='none'
           {...register(`account[${i}].${type}`)}
         />
         <label
           className={`
-            ${styles.modal_btn} 
+            ${styles.modal_btn}
             ${styles.toggle_none}
           `}
-          htmlFor={`none${i}${type}`}
-        >
+          htmlFor={`none${i}${type}`}>
           選択しない
         </label>
       </div>

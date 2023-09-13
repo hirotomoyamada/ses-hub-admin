@@ -1,9 +1,9 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { functions, db } from "libs/firebase";
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
-import { httpsCallable, HttpsCallable } from "firebase/functions";
-import { Data, Posts } from "types/auth";
-import { Analytics } from "./initialState";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { functions, db } from 'libs/firebase';
+import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
+import { httpsCallable, HttpsCallable } from 'firebase/functions';
+import { Data, Posts } from 'types/auth';
+import { Analytics } from './initialState';
 
 export interface Login {
   uid: string;
@@ -12,41 +12,34 @@ export interface Login {
 }
 
 export const login = createAsyncThunk(
-  "root/login",
+  'root/login',
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async (_arg: unknown): Promise<Login> => {
-    const login: HttpsCallable<unknown, Login> = httpsCallable(
-      functions,
-      "admin-login"
-    );
+    const login: HttpsCallable<unknown, Login> = httpsCallable(functions, 'admin-login');
 
     const { data } = await login();
 
     return data;
-  }
+  },
 );
 
-export interface EditData
-  extends Pick<Data, "information" | "agree" | "maintenance"> {
-  index: "companys" | "persons";
+export interface EditData extends Pick<Data, 'information' | 'agree' | 'maintenance'> {
+  index: 'companys' | 'persons';
 }
 
 export const editData = createAsyncThunk(
-  "root/editData",
+  'root/editData',
   async (arg: EditData): Promise<EditData> => {
-    const editData: HttpsCallable<EditData, EditData> = httpsCallable(
-      functions,
-      "admin-editData"
-    );
+    const editData: HttpsCallable<EditData, EditData> = httpsCallable(functions, 'admin-editData');
 
     const { data } = await editData(arg);
 
     return data;
-  }
+  },
 );
 
 export interface SendMail {
-  index: "companys" | "persons";
+  index: 'companys' | 'persons';
   title: string;
   body: string;
   target: string | null;
@@ -54,14 +47,14 @@ export interface SendMail {
 }
 
 export const sendMail = createAsyncThunk(
-  "root/sendMail",
+  'root/sendMail',
   async (arg: SendMail): Promise<SendMail> => {
-    const sendMail: HttpsCallable = httpsCallable(functions, "admin-sendMail");
+    const sendMail: HttpsCallable = httpsCallable(functions, 'admin-sendMail');
 
     await sendMail(arg);
 
     return arg;
-  }
+  },
 );
 
 export interface UpdateNotice {
@@ -76,7 +69,7 @@ export interface UpdateNotice {
 }
 
 export const updateNotice = createAsyncThunk(
-  "root/updateNotice",
+  'root/updateNotice',
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async (_: unknown): Promise<UpdateNotice> => {
     const data: UpdateNotice = {
@@ -93,13 +86,9 @@ export const updateNotice = createAsyncThunk(
     for await (const index of Object.keys(data)) {
       for await (const key of Object.keys(data[index as keyof UpdateNotice])) {
         const q = query(
-          collection(db, index === "seshub" ? "companys" : "persons"),
-          where(
-            key === "application" ? key : "status",
-            "==",
-            key === "application" ? true : key
-          ),
-          orderBy("lastLogin", "desc")
+          collection(db, index === 'seshub' ? 'companys' : 'persons'),
+          where(key === 'application' ? key : 'status', '==', key === 'application' ? true : key),
+          orderBy('lastLogin', 'desc'),
         );
 
         const querySnapshot = await getDocs(q);
@@ -111,7 +100,7 @@ export const updateNotice = createAsyncThunk(
     }
 
     return data;
-  }
+  },
 );
 
 export type UpdateAccount = {
@@ -119,53 +108,48 @@ export type UpdateAccount = {
   status: string;
   account?: number;
   freelanceDirect?: string;
-  analytics?: string;
 }[];
 
 export const updateAccount = createAsyncThunk(
-  "root/updateUser",
+  'root/updateUser',
   async (arg: UpdateAccount): Promise<UpdateAccount> => {
     const updateAccount: HttpsCallable<UpdateAccount, unknown> = httpsCallable(
       functions,
-      "admin-updateAccount"
+      'admin-updateAccount',
     );
 
     await updateAccount(arg);
 
     return arg;
-  }
+  },
 );
 
 export type FetchDashBoard = {
   arg: {
-    index?: "matters" | "resources";
-    span: "total" | "day" | "week" | "month";
+    index?: 'matters' | 'resources';
+    span: 'total' | 'day' | 'week' | 'month';
   };
 
   data: Analytics[];
 };
 
 export const fetchDashBoard = createAsyncThunk(
-  "root/fetchDashBoard",
-  async (arg: FetchDashBoard["arg"]): Promise<FetchDashBoard["data"]> => {
-    if (!("index" in arg)) {
-      const fetchUserDashBoard: HttpsCallable<
-        FetchDashBoard["arg"],
-        FetchDashBoard["data"]
-      > = httpsCallable(functions, "admin-fetchUserDashBoard");
+  'root/fetchDashBoard',
+  async (arg: FetchDashBoard['arg']): Promise<FetchDashBoard['data']> => {
+    if (!('index' in arg)) {
+      const fetchUserDashBoard: HttpsCallable<FetchDashBoard['arg'], FetchDashBoard['data']> =
+        httpsCallable(functions, 'admin-fetchUserDashBoard');
 
       const { data } = await fetchUserDashBoard(arg);
 
       return data;
     } else {
-      const fetchPostDashBoard: HttpsCallable<
-        FetchDashBoard["arg"],
-        FetchDashBoard["data"]
-      > = httpsCallable(functions, "admin-fetchPostDashBoard");
+      const fetchPostDashBoard: HttpsCallable<FetchDashBoard['arg'], FetchDashBoard['data']> =
+        httpsCallable(functions, 'admin-fetchPostDashBoard');
 
       const { data } = await fetchPostDashBoard(arg);
 
       return data;
     }
-  }
+  },
 );

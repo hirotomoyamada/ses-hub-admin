@@ -16,25 +16,16 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
         {(post as Company)?.person ? (
           <span>{(post as Company).person}</span>
         ) : (
-          (post as Company)?.type === 'child' && (
-            <span className={styles.item_none}>未設定</span>
-          )
+          (post as Company)?.type === 'child' && <span className={styles.item_none}>未設定</span>
         )}
 
-        {(post as Person)?.nickName && (
-          <span>(&nbsp;{(post as Person).nickName}&nbsp;)</span>
-        )}
+        {(post as Person)?.nickName && <span>(&nbsp;{(post as Person).nickName}&nbsp;)</span>}
 
         {!min && (
           <div
-            className={`${styles.item_category} ${
-              styles.item_category_position
-            } ${
-              (post as Company)?.type === 'parent' &&
-              styles.item_category_parent
-            } ${
-              (post as Company)?.type === 'child' && styles.item_category_child
-            } ${
+            className={`${styles.item_category} ${styles.item_category_position} ${
+              (post as Company)?.type === 'parent' && styles.item_category_parent
+            } ${(post as Company)?.type === 'child' && styles.item_category_child} ${
               index === 'companys' &&
               !(post as Company)?.payment?.price &&
               ((post as Company)?.payment?.status !== 'canceled' ||
@@ -63,8 +54,7 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
             className={`${styles.item_category} ${
               (post as Company)?.payment?.status === 'active'
                 ? styles.item_category_active
-                : (post as Company)?.payment?.status === 'trialing' &&
-                  styles.item_category_trialing
+                : (post as Company)?.payment?.status === 'trialing' && styles.item_category_trialing
             }`}>
             <span>
               {(post as Company)?.payment?.status === 'active'
@@ -85,13 +75,6 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
           </div>
         )} */}
 
-        {!min && (post as Company)?.payment?.option?.analytics && (
-          <div
-            className={`${styles.item_category} ${styles.item_category_parent}`}>
-            <span>アナリティクス</span>
-          </div>
-        )}
-
         {!min && (post as Person)?.state && (
           <div
             className={`${styles.item_category} ${styles.item_category_state} ${
@@ -99,18 +82,14 @@ export const Header: React.FC<PropType> = ({ index, post, min }) => {
                 (post as Person)?.state === '商談中' ||
                 (post as Person)?.state === '情報収集中') &&
               styles.item_category_disable
-            } ${
-              (post as Person)?.state === '至急' && styles.item_category_hurry
-            }`}>
+            } ${(post as Person)?.state === '至急' && styles.item_category_hurry}`}>
             <span>{(post as Person)?.state}</span>
           </div>
         )}
 
         {(post as Person)?.handles &&
           (post as Person).handles.slice(0, 3).map((handle, index) => (
-            <div
-              className={`${styles.item_category} ${styles.item_category_handle}`}
-              key={index}>
+            <div className={`${styles.item_category} ${styles.item_category_handle}`} key={index}>
               <span>{handle}</span>
             </div>
           ))}

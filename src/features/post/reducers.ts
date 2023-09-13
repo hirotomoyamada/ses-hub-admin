@@ -1,28 +1,19 @@
-import { PayloadAction } from "@reduxjs/toolkit";
-import { initialState, State } from "features/post/initialState";
-import { Matter, Resource, Company, Person } from "types/post";
-import { FetchPost, FetchPosts } from "./actions";
-import { Post } from "features/post/postSlice";
-import { User } from "features/user/userSlice";
-import { UpdateAccount } from "features/root/actions";
+import { PayloadAction } from '@reduxjs/toolkit';
+import { initialState, State } from 'features/post/initialState';
+import { Matter, Resource, Company, Person } from 'types/post';
+import { FetchPost, FetchPosts } from './actions';
+import { Post } from 'features/post/postSlice';
+import { User } from 'features/user/userSlice';
+import { UpdateAccount } from 'features/root/actions';
 
-export const fetchPost = (
-  state: State,
-  action: PayloadAction<FetchPost["data"]>
-): void => {
+export const fetchPost = (state: State, action: PayloadAction<FetchPost['data']>): void => {
   state.post = action.payload.post;
 };
 
-export const fetchPosts = (
-  state: State,
-  action: PayloadAction<FetchPosts["data"]>
-): void => {
+export const fetchPosts = (state: State, action: PayloadAction<FetchPosts['data']>): void => {
   if (action.payload.hit?.currentPage !== 0 && action.payload.hit?.pages > 1) {
     state.posts = Object.assign(state.posts, {
-      [action.payload.index]: [
-        ...state.posts[action.payload.index],
-        ...action.payload.posts,
-      ],
+      [action.payload.index]: [...state.posts[action.payload.index], ...action.payload.posts],
     });
   } else {
     state.posts = Object.assign(state.posts, {
@@ -37,10 +28,7 @@ export const fetchPosts = (
   };
 };
 
-export const selectPost = (
-  state: State,
-  action: PayloadAction<Post["post"] | unknown>
-): void => {
+export const selectPost = (state: State, action: PayloadAction<Post['post'] | unknown>): void => {
   state.post = action.payload;
 };
 
@@ -49,9 +37,9 @@ export const resetPost = (): State => {
 };
 
 export const editPost = (state: State, action: PayloadAction<Post>): void => {
-  if (action.payload.index === "matters") {
+  if (action.payload.index === 'matters') {
     const post = state.posts.matters.find(
-      (post) => post?.objectID === action.payload.post.objectID
+      (post) => post?.objectID === action.payload.post.objectID,
     );
 
     if (!post) {
@@ -91,9 +79,9 @@ export const editPost = (state: State, action: PayloadAction<Post>): void => {
     post.updateAt = (action.payload.post as Matter).updateAt;
   }
 
-  if (action.payload.index === "resources") {
+  if (action.payload.index === 'resources') {
     const post = state.posts.resources.find(
-      (post) => post?.objectID === action.payload.post.objectID
+      (post) => post?.objectID === action.payload.post.objectID,
     );
 
     if (!post) {
@@ -131,60 +119,58 @@ export const editPost = (state: State, action: PayloadAction<Post>): void => {
 };
 
 export const deletePost = (state: State, action: PayloadAction<Post>): void => {
-  if (action.payload.index === "matters") {
+  if (action.payload.index === 'matters') {
     state.posts.matters = state.posts[action.payload.index].filter(
-      (post) => post?.objectID !== action.payload.post.objectID
+      (post) => post?.objectID !== action.payload.post.objectID,
     );
   }
 
-  if (action.payload.index === "resources") {
+  if (action.payload.index === 'resources') {
     state.posts.resources = state.posts[action.payload.index].filter(
-      (post) => post?.objectID !== action.payload.post.objectID
+      (post) => post?.objectID !== action.payload.post.objectID,
     );
   }
 };
 
 export const editUser = (state: State, action: PayloadAction<User>): void => {
-  if (action.payload.index === "companys") {
-    const user = state.posts.companys.find(
-      (post) => post?.uid === action.payload.user.uid
-    );
+  if (action.payload.index === 'companys') {
+    const user = state.posts.companys.find((post) => post?.uid === action.payload.user.uid);
 
     if (!user) {
       return;
     }
 
     if (
-      action.payload.filter === "status:hold" &&
-      user.status === "hold" &&
-      action.payload.user.status !== "hold"
+      action.payload.filter === 'status:hold' &&
+      user.status === 'hold' &&
+      action.payload.user.status !== 'hold'
     ) {
       state.posts.companys = state.posts.companys.filter(
-        (post) => post.uid !== action.payload.user.uid
+        (post) => post.uid !== action.payload.user.uid,
       );
 
       return;
     }
 
     if (
-      action.payload.filter === "status:disable" &&
-      user.status === "disable" &&
-      action.payload.user.status !== "disable"
+      action.payload.filter === 'status:disable' &&
+      user.status === 'disable' &&
+      action.payload.user.status !== 'disable'
     ) {
       state.posts.companys = state.posts.companys.filter(
-        (post) => post.uid !== action.payload.user.uid
+        (post) => post.uid !== action.payload.user.uid,
       );
 
       return;
     }
 
     if (
-      action.payload.filter === "application" &&
-      user.type === "individual" &&
-      (action.payload.user as Company).type !== "individual"
+      action.payload.filter === 'application' &&
+      user.type === 'individual' &&
+      (action.payload.user as Company).type !== 'individual'
     ) {
       state.posts.companys = state.posts.companys.filter(
-        (post) => post.uid !== action.payload.user.uid
+        (post) => post.uid !== action.payload.user.uid,
       );
 
       return;
@@ -192,8 +178,8 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
 
     if (
       user.application &&
-      user.type === "individual" &&
-      (action.payload.user as Company).type === "parent"
+      user.type === 'individual' &&
+      (action.payload.user as Company).type === 'parent'
     ) {
       user.application = false;
     }
@@ -220,34 +206,32 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
     };
   }
 
-  if (action.payload.index === "persons") {
-    const user = state.posts.persons.find(
-      (post) => post?.uid === action.payload.user.uid
-    );
+  if (action.payload.index === 'persons') {
+    const user = state.posts.persons.find((post) => post?.uid === action.payload.user.uid);
 
     if (!user) {
       return;
     }
 
     if (
-      action.payload.filter === "status:hold" &&
-      user.status === "hold" &&
-      action.payload.user.status !== "hold"
+      action.payload.filter === 'status:hold' &&
+      user.status === 'hold' &&
+      action.payload.user.status !== 'hold'
     ) {
       state.posts.persons = state.posts.persons.filter(
-        (post) => post.uid !== action.payload.user.uid
+        (post) => post.uid !== action.payload.user.uid,
       );
 
       return;
     }
 
     if (
-      action.payload.filter === "status:disable" &&
-      user.status === "disable" &&
-      action.payload.user.status !== "disable"
+      action.payload.filter === 'status:disable' &&
+      user.status === 'disable' &&
+      action.payload.user.status !== 'disable'
     ) {
       state.posts.persons = state.posts.persons.filter(
-        (post) => post.uid !== action.payload.user.uid
+        (post) => post.uid !== action.payload.user.uid,
       );
 
       return;
@@ -285,10 +269,7 @@ export const editUser = (state: State, action: PayloadAction<User>): void => {
   }
 };
 
-export const updateAccount = (
-  state: State,
-  action: PayloadAction<UpdateAccount>
-): void => {
+export const updateAccount = (state: State, action: PayloadAction<UpdateAccount>): void => {
   for (const user of action.payload) {
     const target = state.posts.companys.find((post) => post?.uid === user.uid);
 
@@ -297,13 +278,7 @@ export const updateAccount = (
 
       if (user.freelanceDirect) {
         target.payment.option = {
-          freelanceDirect: user.freelanceDirect === "enable" ? true : false,
-        };
-      }
-
-      if (user.analytics) {
-        target.payment.option = {
-          analytics: user.analytics === "enable" ? true : false,
+          freelanceDirect: user.freelanceDirect === 'enable' ? true : false,
         };
       }
 
@@ -334,13 +309,7 @@ const updateChildren = ({
 
       if (user.freelanceDirect) {
         target.payment.option = {
-          freelanceDirect: user.freelanceDirect === "enable" ? true : false,
-        };
-      }
-
-      if (user.analytics) {
-        target.payment.option = {
-          analytics: user.analytics === "enable" ? true : false,
+          freelanceDirect: user.freelanceDirect === 'enable' ? true : false,
         };
       }
     }

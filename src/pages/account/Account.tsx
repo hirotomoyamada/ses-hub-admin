@@ -1,30 +1,29 @@
-import styles from "./Account.module.scss";
+import styles from './Account.module.scss';
 
-import { useEffect, useState } from "react";
-import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as userSlice from "features/user/userSlice";
-import * as rootSlice from "features/root/rootSlice";
+import * as userSlice from 'features/user/userSlice';
+import * as rootSlice from 'features/root/rootSlice';
 
-import { Tag } from "./components/tag/Tag";
-import { Input } from "./components/input/Input";
-import { Toggle } from "./components/toggle/Toggle";
-import { Profile } from "./components/profile/Profile";
+import { Tag } from './components/tag/Tag';
+import { Input } from './components/input/Input';
+import { Toggle } from './components/toggle/Toggle';
+import { Profile } from './components/profile/Profile';
 
-import { updateAccount, UpdateAccount } from "features/root/actions";
-import { Accounts } from "features/user/initialState";
-import { Company } from "types/post";
-import { PageProvider } from "components/provider/page/PageProvider";
-import { Header } from "components/header/setting/Header";
-import { Index } from "features/root/initialState";
+import { updateAccount, UpdateAccount } from 'features/root/actions';
+import { Accounts } from 'features/user/initialState';
+import { Company } from 'types/post';
+import { PageProvider } from 'components/provider/page/PageProvider';
+import { Header } from 'components/header/setting/Header';
+import { Index } from 'features/root/initialState';
 
 export type Data = {
   account: {
     uid: string;
     status: string;
     freelanceDirect: string;
-    analytics: string;
   }[];
 };
 
@@ -37,7 +36,7 @@ export const Account: React.FC = () => {
   const methods = useForm<Data>();
 
   useEffect(() => {
-    if (index !== "companys") dispatch(rootSlice.handleIndex("companys"));
+    if (index !== 'companys') dispatch(rootSlice.handleIndex('companys'));
   }, [index]);
 
   const handleEdit: SubmitHandler<Data> = ({ account }): void => {
@@ -46,25 +45,21 @@ export const Account: React.FC = () => {
         ({ uid }, index) =>
           uid &&
           accounts?.[index] &&
-          "type" in (accounts[index] as Company) &&
-          (accounts[index] as Company).type !== "child"
+          'type' in (accounts[index] as Company) &&
+          (accounts[index] as Company).type !== 'child',
       )
-      .map(({ uid, status, freelanceDirect, analytics }) => {
+      .map(({ uid, status, freelanceDirect }) => {
         const data: UpdateAccount[number] = {
           uid,
-          status: isNaN(Number(status)) ? status : "active",
+          status: isNaN(Number(status)) ? status : 'active',
         };
 
         if (!isNaN(Number(status))) {
           data.account = Number(status);
         }
 
-        if (freelanceDirect !== "none") {
+        if (freelanceDirect !== 'none') {
           data.freelanceDirect = freelanceDirect;
-        }
-
-        if (analytics !== "none") {
-          data.analytics = analytics;
         }
 
         return data;
@@ -76,20 +71,15 @@ export const Account: React.FC = () => {
   return (
     <PageProvider header={<Header index={index} disable />}>
       <FormProvider {...methods}>
-        <form
-          id="account"
-          className={styles.account}
-          onSubmit={methods.handleSubmit(handleEdit)}
-        >
+        <form id='account' className={styles.account} onSubmit={methods.handleSubmit(handleEdit)}>
           <Tag accounts={accounts} />
           <Main index={index} accounts={accounts} display={display} />
 
           {display < 20 && (
             <button
-              type="button"
+              type='button'
               className={styles.account_btn}
-              onClick={() => setDisplay((prev) => prev + 5)}
-            >
+              onClick={() => setDisplay((prev) => prev + 5)}>
               さらに表示する
             </button>
           )}
@@ -119,7 +109,7 @@ const Main = ({
           <Toggle i={i} account={accounts[i]} />
         </div>
         <Profile account={accounts[i]} />
-      </div>
+      </div>,
     );
   }
 

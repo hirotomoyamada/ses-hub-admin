@@ -15,9 +15,9 @@ export const Type: React.FC = () => {
         state === 'child' && styles.form_toggle_child
       }`}
       {...register('type')}>
-      <option value="individual">個人</option>
-      <option value="parent">グループ(メイン)</option>
-      <option value="child" disabled>
+      <option value='individual'>個人</option>
+      <option value='parent'>グループ(メイン)</option>
+      <option value='child' disabled>
         グループ(サブ)
       </option>
     </select>

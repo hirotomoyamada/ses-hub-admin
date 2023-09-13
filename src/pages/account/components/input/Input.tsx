@@ -1,17 +1,17 @@
-import styles from "./Input.module.scss";
+import styles from './Input.module.scss';
 
-import CloseIcon from "@material-ui/icons/Close";
-import { Oval } from "react-loader-spinner";
+import CloseIcon from '@material-ui/icons/Close';
+import { Oval } from 'react-loader-spinner';
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useFormContext } from "react-hook-form";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormContext } from 'react-hook-form';
 
-import { fetchUser } from "features/user/actions";
-import * as userSlice from "features/user/userSlice";
-import * as rootSlice from "features/root/rootSlice";
-import { Index } from "features/root/initialState";
-import { Data } from "pages/account/Account";
+import { fetchUser } from 'features/user/actions';
+import * as userSlice from 'features/user/userSlice';
+import * as rootSlice from 'features/root/rootSlice';
+import { Index } from 'features/root/initialState';
+import { Data } from 'pages/account/Account';
 
 interface PropType {
   i: number;
@@ -28,8 +28,8 @@ export const Input: React.FC<PropType> = ({ i, index }) => {
   const load = useSelector(rootSlice.load).list;
 
   useEffect(() => {
-    if (uid?.length === 28 && index === "companys") {
-      dispatch(fetchUser({ index: index, uid: uid, type: "accounts", i: i }));
+    if (uid?.length === 28 && index === 'companys') {
+      dispatch(fetchUser({ index: index, uid: uid, type: 'accounts', i: i }));
       setFetch(true);
     }
   }, [dispatch, i, index, uid]);
@@ -39,19 +39,15 @@ export const Input: React.FC<PropType> = ({ i, index }) => {
   }, [load]);
 
   const handleReset = (): void => {
-    setValue(`account.${i}.uid`, "", {
+    setValue(`account.${i}.uid`, '', {
       shouldValidate: true,
       shouldDirty: true,
     });
-    setValue(`account.${i}.status`, "", {
+    setValue(`account.${i}.status`, '', {
       shouldValidate: true,
       shouldDirty: true,
     });
-    setValue(`account.${i}.freelanceDirect`, "none", {
-      shouldValidate: true,
-      shouldDirty: true,
-    });
-    setValue(`account.${i}.analytics`, "none", {
+    setValue(`account.${i}.freelanceDirect`, 'none', {
       shouldValidate: true,
       shouldDirty: true,
     });
@@ -61,14 +57,10 @@ export const Input: React.FC<PropType> = ({ i, index }) => {
 
   return (
     <div className={styles.input}>
-      <input
-        type="text"
-        className={styles.input_uid}
-        {...register(`account.${i}.uid` as const)}
-      />
-      <button type="button" onClick={handleReset} className={styles.input_btn}>
+      <input type='text' className={styles.input_uid} {...register(`account.${i}.uid` as const)} />
+      <button type='button' onClick={handleReset} className={styles.input_btn}>
         {fetch ? (
-          <Oval color="#49b757" height={20} width={20} />
+          <Oval color='#49b757' height={20} width={20} />
         ) : (
           <CloseIcon className={styles.input_icon} />
         )}

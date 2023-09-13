@@ -37,8 +37,8 @@ export const Payment: React.FC<PropType> = ({ user }) => {
           <span className={styles.data_item_tag}>Stripe Customer</span>
           <a
             href={user?.payment?.link}
-            target="_blank"
-            rel="noreferrer noopener"
+            target='_blank'
+            rel='noreferrer noopener'
             className={`${styles.data_item_text} ${styles.data_item_text_link}`}>
             {user?.payment?.link}
           </a>
@@ -60,8 +60,7 @@ export const Payment: React.FC<PropType> = ({ user }) => {
         <span className={styles.data_item_tag}>プラン</span>
 
         {!user?.payment?.price && user?.payment?.status !== 'canceled' && (
-          <span
-            className={`${styles.data_item_tag} ${styles.data_item_tag_extra}`}>
+          <span className={`${styles.data_item_tag} ${styles.data_item_tag_extra}`}>
             エキストラ
           </span>
         )}
@@ -98,22 +97,13 @@ export const Payment: React.FC<PropType> = ({ user }) => {
 
       <div className={styles.data_item}>
         <span className={styles.data_item_tag}>フリートライアル</span>
-        <span className={styles.data_item_text}>
-          {!user?.payment?.trial ? '済' : '未'}
-        </span>
+        <span className={styles.data_item_text}>{!user?.payment?.trial ? '済' : '未'}</span>
       </div>
 
       <div className={styles.data_item}>
         <span className={styles.data_item_tag}>Freelance Direct</span>
         <span className={styles.data_item_text}>
           {user?.payment?.option?.freelanceDirect ? '済' : '未'}
-        </span>
-      </div>
-
-      <div className={styles.data_item}>
-        <span className={styles.data_item_tag}>アナリティクス</span>
-        <span className={styles.data_item_text}>
-          {user?.payment?.option?.analytics ? '済' : '未'}
         </span>
       </div>
     </div>
